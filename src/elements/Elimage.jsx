@@ -9,17 +9,27 @@ const Elimage = (props) => {
         size: size,
     }
 
-    if(shape === "circle"){
-        return (
-            <ImageCircle {...styles}></ImageCircle>
+    if(shape === "profile"){
+    return (
+            <ProfileOutter>
+                <ProfileInner {...styles}></ProfileInner>
+            </ProfileOutter>
         )
     }
 
-    if(shape === "rectangle"){
+    if(shape === "bookImg"){
         return (
-            <AspectOutter>
-                <AspectInner {...styles}></AspectInner>
-            </AspectOutter>
+            <BookImgOutter>
+                <BookImgInner {...styles}></BookImgInner>
+            </BookImgOutter>
+        )
+    }
+
+    if(shape === "cardImg"){
+        return (
+            <CardImgOutter>
+                <CardImgInner {...styles}></CardImgInner>
+            </CardImgOutter>
         )
     }
 
@@ -31,33 +41,64 @@ const Elimage = (props) => {
 }
 
 Elimage.defaultProps = {
-  shape: "circle",
+  shape: "profile",
   src: "https://image.yes24.com/goods/73031896/XL",
+  // https://img.apti.co.kr/aptHome/images/sub/album_noimg.gif (이미지 없음에 대한 이미지)
   size: 36,
 };
 
-const AspectOutter = styled.div`
-    width: 100%;
-    min-width: 250px;
-`;
 
-const AspectInner = styled.div`
+const ProfileOutter = styled.div`
+    width: 90%;
+    min-width: 190px;
+    height: 90%;
+    min-height: 190px;
+`
+const ProfileInner = styled.div`
     position: relative;
-    padding-top: 75%;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     background-image: url("${(props) => props.src}");
-    background-size: cover;
-`;
+    background-size: cover; 
+    background-position: center;
+    border-radius: 24px;
+`
 
-const ImageCircle = styled.div`
-    --size: ${(props) => props.size}px;
-    width: var(--size);
-    height: var(--size);
-    border-radius: var(--size);
 
+const BookImgOutter = styled.div`
+    width: 100%;
+    min-width: 207px;
+    height: 100%;
+    min-height: 299px;
+`
+const BookImgInner = styled.div`
+    position: relative;
+    height: 100%;
+    overflow: hidden;
     background-image: url("${(props) => props.src}");
-    background-size: cover;
-    margin: 4px;
+    background-size: cover; 
+    background-position: center;
+    border-radius: 24px;
+`
+
+
+const CardImgOutter = styled.div`
+    width: 100%;
+    min-width: 206px;
+    height: 100%;
+    min-height: 179px;
+`
+
+const CardImgInner = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url("${(props) => props.src}");
+    background-size: cover; 
+    background-position: center;
+    border-radius: 24px;
 `;
 
 export default Elimage;
