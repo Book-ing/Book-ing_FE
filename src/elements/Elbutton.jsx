@@ -8,7 +8,7 @@ const Elbutton = ({ shape, children, ...rest }) => {
       return (
         <BrownFill
           disabled={rest.disabled}
-          color="main"
+          color="point"
           onClick={rest._onClick}
           {...rest}
         >
@@ -17,13 +17,13 @@ const Elbutton = ({ shape, children, ...rest }) => {
       );
     case "brown-outline":
       return (
-        <BrownLine color="main" onClick={rest._onClick} {...rest}>
+        <BrownLine color="point" onClick={rest._onClick} {...rest}>
           {children}
         </BrownLine>
       );
     default:
       return (
-        <BrownFill color="main" onClick={rest._onClick} {...rest}>
+        <BrownFill color="point" onClick={rest._onClick} {...rest}>
           {children}
         </BrownFill>
       );
@@ -32,10 +32,10 @@ const Elbutton = ({ shape, children, ...rest }) => {
 
 const BtnDefault = css`
   ${(props) => {
-    const { width, height } = props;
+    const { width } = props;
     return css`
       width: ${width ? `${width}px` : "100%"};
-      height: ${height ? `${height}px` : "50px"};
+      height: 50px; // 변경 가능성 있음
       border: 1px solid ${(props) => `var(--${props.color})`};
       font-size: 1.6rem;
       font-weight: bold;
@@ -58,17 +58,18 @@ const FillBtn = css`
   ${(props) =>
     props.disabled
       ? `background-color: var(--line); 
-    color: var(--grey);
-    border: 1px solid var(--grey);`
+    color: var(--gray);
+    border: 1px solid var(--gray);`
       : ""}
+
   &:hover {
     color: ${(props) => `var(--${props.color})`};
     background-color: var(--white);
     ${(props) =>
       props.disabled
         ? `background-color: var(--line); 
-    color: var(--grey);
-    border: 1px solid var(--grey)`
+    color: var(--gray);
+    border: 1px solid var(--gray)`
         : ""}
   }
 `;
