@@ -19,7 +19,6 @@ import {
   NoteWrite,
   Search,
 } from "../pages/index";
-import Mypage from "../pages/MyPage";
 
 function App() {
   return (
