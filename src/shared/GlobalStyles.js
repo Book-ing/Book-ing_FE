@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
     --line: #eaeaea;
 		--white : #ffffff;
 		--notice : #ff7776;
+		--gray : #989696;
   };
   * {
 		${scrollbar};
@@ -22,14 +23,13 @@ const GlobalStyles = createGlobalStyle`
 		margin : 0;
 		padding: 0;
 		box-sizing: border-box;
-		/* font-size:62.5%; */
+		font-size:62.5%;
 	}
 	body{
 		position: relative;
 		margin: 0;
 		padding: 0;
 		font-family: 'Noto Sans KR',sans-serif;
-		/* font-family:--apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  */
 	}
 	a { 
 		color: var(--black);
