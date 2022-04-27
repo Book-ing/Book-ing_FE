@@ -19,6 +19,7 @@ import {
   NoteWrite,
   Search,
 } from "../pages/index";
+import Test from "../pages/Test";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
       <GlobalStyle />
       <ConnectedRouter history={history}>
         <Switch>
-          <Route path="/" exact component={Main} />
+          <Route path="/" exact component={Test} />
           <Route path="/login" exact component={Login} />
           <Route path="/crew" exact component={Crew} />
           <Route path="/mypage" exact component={MyPage} />

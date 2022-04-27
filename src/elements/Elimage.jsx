@@ -2,16 +2,20 @@ import React from "react";
 import styled from 'styled-components';
 
 const Elimage = (props) => {
-  const {shape, src, size} = props;
+  const {shape, src, width, minWidth, height, minHeight, br} = props;
 
     const styles = {
         src: src,
-        size: size,
+        width: width,
+        height: height,
+        minWidth: minWidth,
+        minHeigth: minHeight,
+        br: br //border-raidus
     }
 
     if(shape === "profile"){
     return (
-            <ProfileOutter>
+            <ProfileOutter {...styles}>
                 <ProfileInner {...styles}></ProfileInner>
             </ProfileOutter>
         )
@@ -19,7 +23,7 @@ const Elimage = (props) => {
 
     if(shape === "bookImg"){
         return (
-            <BookImgOutter>
+            <BookImgOutter {...styles}>
                 <BookImgInner {...styles}></BookImgInner>
             </BookImgOutter>
         )
@@ -27,7 +31,7 @@ const Elimage = (props) => {
 
     if(shape === "cardImg"){
         return (
-            <CardImgOutter>
+            <CardImgOutter {...styles}>
                 <CardImgInner {...styles}></CardImgInner>
             </CardImgOutter>
         )
@@ -49,10 +53,10 @@ Elimage.defaultProps = {
 
 
 const ProfileOutter = styled.div`
-    width: 90%;
-    min-width: 190px;
-    height: 90%;
-    min-height: 190px;
+    ${(props) => (props.width ? `width: ${props.width}` : "width:100%")};
+    ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : "min-width:190px")};
+    ${(props) => (props.height ? `height: ${props.height}` : "height:100%")};
+    ${(props) => (props.minHeight ? `min-height: ${props.minHeight}` : "min-height:190px")};
 `
 const ProfileInner = styled.div`
     position: relative;
@@ -62,15 +66,15 @@ const ProfileInner = styled.div`
     background-image: url("${(props) => props.src}");
     background-size: cover; 
     background-position: center;
-    border-radius: 24px;
+    ${(props) => (props.br ? `border-radius: ${props.br}` : "border-radius:24px")};
 `
 
 
 const BookImgOutter = styled.div`
-    width: 100%;
-    min-width: 207px;
-    height: 100%;
-    min-height: 299px;
+    ${(props) => (props.width ? `width: ${props.width}` : "width:100%")};
+    ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : "min-width:150px")};
+    ${(props) => (props.height ? `height: ${props.height}` : "height:100%")};
+    ${(props) => (props.minHeight ? `min-height: ${props.minHeight}` : "min-height:220px")};
 `
 const BookImgInner = styled.div`
     position: relative;
@@ -78,16 +82,15 @@ const BookImgInner = styled.div`
     overflow: hidden;
     background-image: url("${(props) => props.src}");
     background-size: cover; 
-    background-position: center;
-    border-radius: 24px;
+    ${(props) => (props.br ? `border-radius: ${props.br}` : "")};
 `
 
 
 const CardImgOutter = styled.div`
-    width: 100%;
-    min-width: 206px;
-    height: 100%;
-    min-height: 179px;
+    ${(props) => (props.width ? `width: ${props.width}` : "width:100%")};
+    ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : "min-width:150px")};
+    ${(props) => (props.height ? `height: ${props.height}` : "height:100%")};
+    ${(props) => (props.minHeight ? `min-height: ${props.minHeight}` : "min-height:150px")};
 `
 
 const CardImgInner = styled.div`
@@ -98,7 +101,7 @@ const CardImgInner = styled.div`
     background-image: url("${(props) => props.src}");
     background-size: cover; 
     background-position: center;
-    border-radius: 24px;
+    ${(props) => (props.br ? `border-radius: ${props.br}` : "border-radius:24px")};
 `;
 
 export default Elimage;
