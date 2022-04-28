@@ -28,6 +28,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact component={Test} />
+          {/* <Route path="/" exact component={Main} /> */}
           <Route path="/login" exact component={Login} />
           <Route path="/crew" exact component={Crew} />
           <Route path="/mypage" exact component={MyPage} />
