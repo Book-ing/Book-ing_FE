@@ -43,6 +43,7 @@ const FooterWrap = styled.div`
 const FooterBox = styled.div`
   width: 1440px;
   height: 64px;
+
   ${flex("between", "center", true)}
 `;
 

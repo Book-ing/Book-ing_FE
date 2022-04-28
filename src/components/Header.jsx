@@ -48,7 +48,7 @@ const Header = () => {
                   Log out
                 </StBtn>
                 <StBtn
-                  shape="brown-fill"
+                  shape="brown-outline"
                   _onClick={() => {
                     history.push("/mypage");
                   }}
@@ -69,6 +69,7 @@ export default Header;
 const HeaderWrap = styled.div`
   z-index: 99999;
   width: 100vw;
+  padding: 20px 0;
   background-color: #fff;
   ${flex("center", "center", true)}
 `;
@@ -76,7 +77,6 @@ const HeaderWrap = styled.div`
 const HeaderBox = styled.div`
   width: 1440px;
   height: 64px;
-
   ${flex("between", "center", true)}
 `;
 
