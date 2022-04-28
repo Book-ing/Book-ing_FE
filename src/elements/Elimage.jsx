@@ -49,10 +49,10 @@ const Elimage = (props) => {
 }
 
 Elimage.defaultProps = {
-  shape: "profile",
-  src: "https://image.yes24.com/goods/73031896/XL",
-  // https://img.apti.co.kr/aptHome/images/sub/album_noimg.gif (이미지 없음에 대한 이미지)
-  size: 36,
+//   shape: "profile",
+//   src: "https://image.yes24.com/goods/73031896/XL",
+//   // https://img.apti.co.kr/aptHome/images/sub/album_noimg.gif (이미지 없음에 대한 이미지)
+//   size: 36,
 };
 
 
