@@ -4,6 +4,7 @@ import Eltext from "../elements/Eltext";
 import Elimage from "../elements/Elimage";
 import styled from "styled-components";
 import Elcategory from "../elements/Elcategory";
+import Ellocation from "../elements/Ellocation";
 
 
 const Cards = (props) => {
@@ -33,10 +34,10 @@ const Cards = (props) => {
 
               <Eltext type="sub_2_bold">
                 <TagGrid>
-                  <Elcategory type="novel">
+                  <Ellocation>
                       {props.location}
-                  </Elcategory>
-                  <Elcategory type="sports">
+                  </Ellocation>
+                  <Elcategory type={props.categoryId}>
                       {props.category}
                   </Elcategory>
                 </TagGrid>
@@ -51,13 +52,15 @@ const Cards = (props) => {
           </CardGrid>
         </Card>
       {/* </button> */}
+      
       </React.Fragment>
     );
 };
 
 Cards.defaultProps = {
   image_url:"https://image.trevari.co.kr/f236d0ae-5845-4bbf-b31f-1eb297187d9e.png",
-  category:"스포츠",
+  categoryId:"construction",
+  category:"건축",
   location:"서울",
   title:"The Alchemist study",
   subTitle:"항해99 사람들이 책을 읽으러 오는 독서모임입니다. 만나서 반가워요! 재밌는 독서모임을 합시다!"
