@@ -4,35 +4,39 @@ import styled from 'styled-components';
 const Elimage = (props) => {
   const {shape, src, width, minWidth, height, minHeight, br} = props;
 
-    const styles = {
-        src: src,
+    const outStyles = {
         width: width,
         height: height,
         minWidth: minWidth,
         minHeigth: minHeight,
-        br: br //border-raidus
+    }
+
+    const inStyles = {
+        src: src,
+        br: br,
+        //border-raidus
     }
 
     if(shape === "profile"){
     return (
-            <ProfileOutter {...styles}>
-                <ProfileInner {...styles}></ProfileInner>
+            <ProfileOutter {...outStyles}>
+                <ProfileInner {...inStyles}></ProfileInner>
             </ProfileOutter>
         )
     }
 
     if(shape === "bookImg"){
         return (
-            <BookImgOutter {...styles}>
-                <BookImgInner {...styles}></BookImgInner>
+            <BookImgOutter {...outStyles}>
+                <BookImgInner {...inStyles}></BookImgInner>
             </BookImgOutter>
         )
     }
 
     if(shape === "cardImg"){
         return (
-            <CardImgOutter {...styles}>
-                <CardImgInner {...styles}></CardImgInner>
+            <CardImgOutter {...outStyles}>
+                <CardImgInner {...inStyles}></CardImgInner>
             </CardImgOutter>
         )
     }
@@ -53,7 +57,7 @@ Elimage.defaultProps = {
 
 
 const ProfileOutter = styled.div`
-    ${(props) => (props.width ? `width: ${props.width}` : "width:100%")};
+    ${(props) => (props.width ? `width: ${props.width}` : "width:100%")}; 
     ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : "min-width:190px")};
     ${(props) => (props.height ? `height: ${props.height}` : "height:100%")};
     ${(props) => (props.minHeight ? `min-height: ${props.minHeight}` : "min-height:190px")};
@@ -66,6 +70,7 @@ const ProfileInner = styled.div`
     background-image: url("${(props) => props.src}");
     background-size: cover; 
     background-position: center;
+    border: solid 1px black;
     ${(props) => (props.br ? `border-radius: ${props.br}` : "border-radius:24px")};
 `
 
@@ -78,19 +83,21 @@ const BookImgOutter = styled.div`
 `
 const BookImgInner = styled.div`
     position: relative;
+    width: 100%;
     height: 100%;
     overflow: hidden;
     background-image: url("${(props) => props.src}");
     background-size: cover; 
+    border: 3px solid black;
     ${(props) => (props.br ? `border-radius: ${props.br}` : "")};
 `
 
 
 const CardImgOutter = styled.div`
     ${(props) => (props.width ? `width: ${props.width}` : "width:100%")};
-    ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : "min-width:150px")};
+    ${(props) => (props.minWidth ? `min-width: ${props.minWidth}` : "min-width:193px")};
     ${(props) => (props.height ? `height: ${props.height}` : "height:100%")};
-    ${(props) => (props.minHeight ? `min-height: ${props.minHeight}` : "min-height:150px")};
+    ${(props) => (props.minHeight ? `min-height: ${props.minHeight}` : "min-height:193px")};
 `
 
 const CardImgInner = styled.div`
