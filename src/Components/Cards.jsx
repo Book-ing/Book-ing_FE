@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import Eltext from "../elements/Eltext";
 import Elimage from "../elements/Elimage";
 import styled from "styled-components";
+import Elcategory from "../elements/Elcategory";
 
 
 const Cards = (props) => {
@@ -14,7 +15,7 @@ const Cards = (props) => {
         {/* <button style={{
           textAlign: "left"
         }}> */}
-        <Card sx={{ maxWidth: 220, height: 350 }}>
+        <Card style={{ border:"none", boxShadow:"none", margin:"10px"}} variant="outlined" sx={{ maxWidth: 220, height: 350 }}>
           <CardGrid>
 
             <ImgGrid>
@@ -30,14 +31,20 @@ const Cards = (props) => {
                 </TitleGrid>
               </Eltext>
 
-            <TagGrid>
-              <span>{props.category}</span>
-              <span>{props.location}</span>
-            </TagGrid>
+              <Eltext type="sub_2_bold">
+                <TagGrid>
+                  <Elcategory type="novel">
+                      {props.location}
+                  </Elcategory>
+                  <Elcategory type="sports">
+                      {props.category}
+                  </Elcategory>
+                </TagGrid>
+              </Eltext>
 
               <Eltext type="sub_2">
                 <SubGird>
-                {props.subTitle}
+                  {props.subTitle}
                 </SubGird>
               </Eltext>
             
@@ -61,31 +68,33 @@ const CardGrid = styled.div`
 `
 const ImgGrid = styled.div`
   margin: auto;
-  width:193px;
+  width: 193px;
   height: 193px;
 `
 const TitleGrid = styled.div`
-    width:197px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    padding: 8px 12px 0px 11px;
-    margin: auto;
+    width: 197px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 8px;
 ` 
 
-const TagGrid=styled.div`
+const TagGrid = styled.div`
+    display: flex;
+    justify-content: space-between;
     width: 198px;
-    padding: 10px 11px 0px 12px;
+    height: 30px;
+    margin-top: 10px;
 `
 
 const SubGird = styled.div`
-    padding: 5px 12px 6px 11px;
+    margin-top: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3; /* 라인수 */
     -webkit-box-orient: vertical;
-    word-wrap:break-word; 
+    word-wrap: break-word; 
     line-height: 1.6em;
     height: 4.8em;
 `
