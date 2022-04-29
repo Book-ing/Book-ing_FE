@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Modal from "react-modal"
 
-const ModalCrew = () => {
+const Modalcrew = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
     return (
@@ -15,4 +15,4 @@ const ModalCrew = () => {
     );
 };
 
-export default ModalCrew;
+export default Modalcrew;

@@ -70,7 +70,6 @@ const ProfileInner = styled.div`
     background-image: url("${(props) => props.src}");
     background-size: cover; 
     background-position: center;
-    border: solid 1px black;
     ${(props) => (props.br ? `border-radius: ${props.br}` : "border-radius:24px")};
 `
 
@@ -88,7 +87,6 @@ const BookImgInner = styled.div`
     overflow: hidden;
     background-image: url("${(props) => props.src}");
     background-size: cover; 
-    border: 3px solid black;
     ${(props) => (props.br ? `border-radius: ${props.br}` : "")};
 `
 
