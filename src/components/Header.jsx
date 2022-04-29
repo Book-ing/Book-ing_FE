@@ -4,7 +4,7 @@ import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
 // assets
-import LogoSrc from "../assets/Logo.png";
+import LogoSrc from "../assets/bookingLogo.svg";
 
 import flex from "../themes/flex";
 import { Elbutton, Eltext } from "../elements";
