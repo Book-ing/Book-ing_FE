@@ -12,8 +12,14 @@ const OAuth2RedirectHandler = (props) => {
     dispatch(kakaoLogin(code));
   }, []);
   return (
-    <Box sx={{ display: "flex" }}>
-      <CircularProgress style={{ color: `var(--point)` }} />
+    <Box
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+      }}
+    >
+      <CircularProgress style={{ color: `var(--point)`, margin: "auto" }} />
     </Box>
   );
 };
