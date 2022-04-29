@@ -5,7 +5,7 @@ import flex from "../themes/flex";
 import Eltext from "../elements/Eltext";
 
 // 이미지
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/bookingLogo.svg";
 import MainImg from "../assets/mainImgs/mainImg1.jpg";
 import KakaoBtnImg from "../assets/kakao_login_medium_wide.png";
 
