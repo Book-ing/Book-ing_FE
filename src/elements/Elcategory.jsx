@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import {
     novel,
     poem,
@@ -31,8 +32,8 @@ const Elcategory = ({ children, ...rest }) => {
   };
 
   const Wrapper = styled.div`
-  ${({ type }) => {
-    switch (type) {
+  ${({ shape }) => {
+    switch (shape) {
         case "novel":
             return `${novel}`;
         case "poem":
@@ -83,8 +84,8 @@ const Elcategory = ({ children, ...rest }) => {
             return;
     }
   }}
-  /* color: ${(props) =>
-    props.color ? `var(--${props.color})` : `var(--fontColor)`}; */
+  color: ${(props) =>
+    props.color ? `var(--${props.color})` : `var(--fontColor)`};
 `;
 
 
