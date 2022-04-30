@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
+import ElcategoryRadio from "../../elements/ElcategoryRadio";
 
 import flex from "../../themes/flex";
 
@@ -65,16 +66,14 @@ const ModalCrew = (props) => {
               onChange={onChangeInputHandler}
             />
             {/* 카테고리 삽입 */}
-            <div
-              style={{
-                margin: "15px 0",
-                width: "100%",
-                height: "142px",
-                border: "1px solid red",
-              }}
-            >
-              카테고리
-            </div>
+            
+            <ElcategoryRadio/>
+            {/* <input id="개새야" type="radio"/>
+            <label htmlFor="개새야">안녕하세요</label>
+            <input id="개새야1" type="radio"/>
+            <label htmlFor="개새야1">안녕하세요</label>
+            <input id="개새야2" type="radio"/>
+            <label htmlFor="개새야2">안녕하세요</label> */}
             {/* 카테고리 삽입 */}
             <StInputName type="sub_2_bold">모임 소개 글</StInputName>
             <StInput

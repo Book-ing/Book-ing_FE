@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Slide from "../components/Slide";
-// import ModalCrew from "../components/Modal/ModalCrew";
+import ModalCrew from "../components/Modal/ModalCrew";
 import Cards from "../components/Cards";
 
 import { Modal, Box, Grid } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
+
 import { Elbutton, Eltext, Elchip } from "../elements";
 
 const Main = (props) => {
@@ -31,7 +32,7 @@ const Main = (props) => {
             <ModalCloseBtn onClick={handleModalClose}>
               <CloseIcon fontSize="large" />
             </ModalCloseBtn>
-            {/* <ModalCrew /> */}
+            <ModalCrew />
           </Box>
         </Modal>
       </ModalBtnGrid>

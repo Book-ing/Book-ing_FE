@@ -8,6 +8,7 @@ import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
 import { Elbutton } from "../elements";
+import ElcategoryRadio from "../elements/ElcategoryRadio";
 
 const Test = (props) => {
   const [open, setOpen] = useState(false);
@@ -30,6 +31,7 @@ const Test = (props) => {
           <ModalCrew />
         </Box>
       </Modal>
+      <ElcategoryRadio />
       <Footer />
     </>
   );
