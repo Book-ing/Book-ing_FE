@@ -87,4 +87,5 @@ const Elcategory = ({ children, ...rest }) => {
     props.color ? `var(--${props.color})` : `var(--fontColor)`}; */
 `;
 
+
 export default Elcategory;

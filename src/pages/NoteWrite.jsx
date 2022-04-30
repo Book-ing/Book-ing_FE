@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import flex from "../themes/flex"
 import Elchip from "../elements/Elchip";
 import { Elimage, Eltext } from "../elements";
-import Editor from "../Components/Editor";
+import Editor from "../components/Editor";
 
 const NoteWrite = () => {
   return (
