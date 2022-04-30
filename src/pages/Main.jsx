@@ -8,9 +8,7 @@ import Cards from "../components/Cards";
 import { Modal, Box, Grid } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
-import { Elbutton } from "../elements";
-import Eltext from "../elements/Eltext";
-import Elchip from "../elements/Elchip";
+import { Elbutton, Eltext, Elchip } from "../elements";
 
 const Main = (props) => {
   const [open, setOpen] = useState(false);
