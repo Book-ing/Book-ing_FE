@@ -1,23 +1,64 @@
-import React from "react";
-import Cards from "../Components/Cards";
-import { Grid } from "@mui/material";
+import React, { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Slide from "../components/Slide";
+import ModalCrew from "../components/Modal/ModalCrew";
 
+import { Modal, Box } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import styled from "styled-components";
+import { Elbutton } from "../elements";
 
 const Test = (props) => {
+  const [open, setOpen] = useState(false);
+
+  const hadleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
 
   return (
-    <React.Fragment>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center">
-      <Cards></Cards>
-      <Cards></Cards>
-      </Grid>
-      
-    </React.Fragment>
+    <>
+      <Header />
+      <Slide />
+      <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+        모임 생성하기
+      </ModalOpenBtn>
+      <Modal open={open}>
+        <Box sx={style} style={{ position: "relative" }}>
+          <ModalCloseBtn onClick={handleModalClose}>
+            <CloseIcon fontSize="large" />
+          </ModalCloseBtn>
+          <ModalCrew />
+        </Box>
+      </Modal>
+      <Footer />
+    </>
   );
 };
 
 export default Test;
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "1300px",
+  height: "906px",
+  bgcolor: "#fbf9f9",
+  border: "1px solid var(--point)",
+  boxShadow: 24,
+  borderRadius: "5px",
+};
+
+const ModalOpenBtn = styled(Elbutton)`
+  width: 147px;
+  height: 35px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+`;
+
+const ModalCloseBtn = styled.button`
+  position: absolute;
+  right: 160px;
+  top: 30px;
+`;
