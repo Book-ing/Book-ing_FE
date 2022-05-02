@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
+import Slide from "../components/Slide";
 import Footer from "../components/Footer";
 import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
@@ -19,46 +20,9 @@ const Test = (props) => {
     <>
       <Header />
       <Slide />
-      <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-        모임 생성하기
-      </ModalOpenBtn>
-      <Modal open={open}>
-        <Box sx={style} style={{ position: "relative" }}>
-          <ModalCloseBtn onClick={handleModalClose}>
-            <CloseIcon fontSize="large" />
-          </ModalCloseBtn>
-          <ModalCrew />
-        </Box>
-      </Modal>
       <Footer />
     </>
   );
 };
 
 export default Test;
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "1300px",
-  height: "906px",
-  bgcolor: "#fbf9f9",
-  border: "1px solid var(--point)",
-  boxShadow: 24,
-  borderRadius: "5px",
-};
-
-const ModalOpenBtn = styled(Elbutton)`
-  width: 147px;
-  height: 35px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-`;
-
-const ModalCloseBtn = styled.button`
-  position: absolute;
-  right: 160px;
-  top: 30px;
-`;

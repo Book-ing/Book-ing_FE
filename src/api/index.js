@@ -1,7 +1,7 @@
 import axios from "axios";
 import { cookies } from "../shared/cookie";
 
-const targetServer = "";
+const targetServer = "https://sparta-hs.shop/";
 
 export const instance = axios.create({
   baseURL: targetServer,

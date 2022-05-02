@@ -2,21 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+
+// kakao logout uri
+import { LOGOUT_KAKAO_AUTH_URL } from "../shared/OAuth";
+
+// login check
+import logged from "../auth/logged";
 
 // assets
 import LogoSrc from "../assets/bookingLogo.svg";
 
+// elements & theme
 import flex from "../themes/flex";
 import { Elbutton, Eltext } from "../elements";
-import logged from "../auth/logged";
 
 const Header = () => {
   const dispatch = useDispatch();
 
+  // login check
   const isLogin = logged();
+  console.log(isLogin);
+
   const clickLogout = () => {
-    // dispatch(__logout());
-    history.replace("/");
+    dispatch(userActions.kakaoLogout());
   };
 
   return (
@@ -44,9 +53,11 @@ const Header = () => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                <StBtn shape="brown-outline" _onClick={clickLogout}>
-                  Log out
-                </StBtn>
+                <a href={LOGOUT_KAKAO_AUTH_URL}>
+                  <StBtn shape="brown-outline" _onClick={clickLogout}>
+                    Log out
+                  </StBtn>
+                </a>
                 <StBtn
                   shape="brown-outline"
                   _onClick={() => {
