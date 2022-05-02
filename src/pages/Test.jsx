@@ -9,6 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
 import { Elbutton } from "../elements";
 import ElcategoryRadio from "../elements/ElcategoryRadio";
+import Accordion from "../components/Accordion";
 
 const Test = (props) => {
   const [open, setOpen] = useState(false);
@@ -32,6 +33,10 @@ const Test = (props) => {
         </Box>
       </Modal>
       <ElcategoryRadio />
+      <StAccordion>
+        <Accordion></Accordion>
+        <Accordion></Accordion>
+      </StAccordion>
       <Footer />
     </>
   );
@@ -64,3 +69,9 @@ const ModalCloseBtn = styled.button`
   right: 160px;
   top: 30px;
 `;
+
+const StAccordion = styled.div`
+  margin: auto;
+  width: 1440px;
+  height: 500px;
+`
