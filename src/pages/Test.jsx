@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Slide from "../components/Slide";
+import Footer from "../components/Footer";
 import ModalCrew from "../components/Modal/ModalCrew";
 
 import { Modal, Box } from "@mui/material";

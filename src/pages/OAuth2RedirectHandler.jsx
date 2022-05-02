@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { kakaoLogin } from "../redux/modules/user";
-import { CircularProgress, Box } from "@mui/material";
+import Spinner from "../components/Spinner";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const OAuth2RedirectHandler = (props) => {
   const dispatch = useDispatch();
@@ -9,13 +9,9 @@ const OAuth2RedirectHandler = (props) => {
   let code = new URL(window.location.href).searchParams.get("code");
 
   React.useEffect(() => {
-    dispatch(kakaoLogin(code));
+    dispatch(userActions.kakaoLogin(code));
   }, []);
-  return (
-    <Box sx={{ display: "flex" }}>
-      <CircularProgress style={{ color: `var(--point)` }} />
-    </Box>
-  );
+  return <Spinner />;
 };
 
 export default OAuth2RedirectHandler;
