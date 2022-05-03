@@ -32,7 +32,7 @@ const Test = (props) => {
           <ModalCrew />
         </Box>
       </Modal>
-      <ElcategoryRadio />
+      {/* <ElcategoryRadio /> */}
       <StAccordion>
         <Accordion></Accordion>
         <Accordion></Accordion>

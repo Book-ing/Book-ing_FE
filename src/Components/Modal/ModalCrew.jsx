@@ -99,7 +99,7 @@ const ModalCrew = (props) => {
             <input id="name2" type="radio"/>
             <label htmlFor="name2">안녕하세요</label>
             <input id="name3" type="radio"/>
-            <label htmlFor="name3">안녕하세요</label>
+            <label htmlFor="name3">안녕하세요</label> */}
             <div>
             <StInputRadio
                   id="name4"
@@ -141,8 +141,8 @@ const ModalCrew = (props) => {
                 <StRadioLabel htmlFor={category.name} color={category.hex}>{category.name}</StRadioLabel>
               </div>
             ))}
-            </div> */}
-            
+            </div>
+            {/* <ElcategoryRadio /> */}
             {/* 카테고리 삽입 */}
             <StInputName type="sub_2_bold">모임 소개 글</StInputName>
             <StInput
@@ -268,30 +268,30 @@ const StInput = styled.input`
   border: 1px solid var(--point);
 `;
 
-// const StRadioLabel = styled.label`
-//     ${flex("center", "center", false)}
-//     float: left;
-//     font-size: 1.6rem;
-//     line-height: 2.2rem;
-//     letter-spacing: -0.015rem;
-//     color: black;
-//     width: 96px;
-//     height: 30px;
-//     border: 1px solid ${(props) => props.color};
-//     box-sizing: border-box;
-//     border-radius: 6px;
-//     margin-right: 6px;
-//     margin-bottom: 10px;
-// `;
+const StRadioLabel = styled.label`
+    ${flex("center", "center", false)}
+    float: left;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    letter-spacing: -0.015rem;
+    color: black;
+    width: 96px;
+    height: 30px;
+    border: 1px solid ${(props) => props.color};
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin-right: 6px;
+    margin-bottom: 10px;
+`;
 
-// const StInputRadio = styled.input`
+const StInputRadio = styled.input`
     
-//     display: none;
-//     &:checked + ${StRadioLabel} {
-//         background-color: ${(props) => props.color};
-//         color: white;
-//     }
-//     `;
+    display: none;
+    &:checked + ${StRadioLabel} {
+        background-color: ${(props) => props.color};
+        color: white;
+    }
+    `;
 
 
 const StSelect = styled.select`
