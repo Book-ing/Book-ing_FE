@@ -1,4 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+import { actionCreators as userActions } from "../redux/modules/user";
+
+// kakao logout uri
+import { LOGOUT_KAKAO_AUTH_URL } from "../shared/OAuth";
 
 // mui
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -9,8 +15,15 @@ import { Elbutton, Elimage, Eltext } from "../elements";
 
 // theme
 import flex from "../themes/flex";
+import { history } from "../redux/configStore";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  const clickLogout = () => {
+    dispatch(userActions.kakaoLogout());
+  };
+
   const loginUserName = localStorage.getItem("username");
   return (
     <React.Fragment>
@@ -35,12 +48,28 @@ const Sidebar = () => {
           </form>
         </StatusMessage>
         <PageList>
-          <MyCrew type="head_6">내 모임</MyCrew>
-          <MyStudy type="head_6">내 스터디</MyStudy>
+          <MyCrew
+            type="head_6"
+            _onClick={() => {
+              history.push("/mycrew");
+            }}
+          >
+            내 모임
+          </MyCrew>
+          <MyStudy
+            type="head_6"
+            _onClick={() => {
+              history.push("/mystudy");
+            }}
+          >
+            내 스터디
+          </MyStudy>
         </PageList>
-        <LogoutBtn>
-          <BtnText type="sub_1">로그아웃</BtnText>
-        </LogoutBtn>
+        <a href="LOGOUT_KAKAO_AUTH_URL">
+          <LogoutBtn _onClick={clickLogout}>
+            <BtnText type="sub_1">로그아웃</BtnText>
+          </LogoutBtn>
+        </a>
       </SidebarWrap>
     </React.Fragment>
   );
