@@ -11,6 +11,15 @@ export const instance = axios.create({
   },
 });
 
+// 로그인 상태가 필수로 요구되는 API 요청시 사용하는 instance
+export const requiredInstance = axios.create({
+  baseURL: targetServer,
+  headers: {
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json,",
+  },
+});
+
 // formdata 로 넘길 때 쓰일 인스턴스 (모임방 생성)
 export const formDataInstance = axios.create({
   baseURL: targetServer,
@@ -34,12 +43,26 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-nonTokenInstance.interceptors.request.use((config) => {
+requiredInstance.interceptors.request.use((config) => {
   const accessToken = cookies.get("accessToken");
   config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  config.headers.common["required"] = 1;
   return config;
 });
 
+formDataInstance.interceptors.request.use((config) => {
+  const accessToken = cookies.get("accessToken");
+  config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  config.headers.common["required"] = 1;
+  return config;
+});
+
+nonTokenInstance.interceptors.request.use((config) => {
+  const accessToken = cookies.get("accessToken");
+  config.headers.common["Authorization"] = `Bearer ${accessToken}`;
+
+  return config;
+});
 
 // Refresh Token 발급 로직
 let isTokenRefreshing = false;
@@ -108,4 +131,3 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-

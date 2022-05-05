@@ -27,18 +27,18 @@ const kakaoLogin = (payload) => (dispatch, getState) => {
     .login(payload)
     .then((res) => {
       console.log(res);
-      const accessToken = res.data.data.access_token;
+      const accessToken = res.data.data.accessToken;
       const refreshToken = res.data.data.refreshToken;
       const { userId, username, kakaoUserId } = jwtDecode(accessToken);
       setCookie("accessToken", accessToken, {
         path: "/",
-        maxAge: 1800, // 30분
+        maxAge: 3600, // 1시간
         sameSite: "None",
         secure: true,
       });
       setCookie("refreshToken", refreshToken, {
         path: "/",
-        maxAge: 604800, // 7일
+        maxAge: 432000, // 5일
         sameSite: "None",
         secure: true,
       });
