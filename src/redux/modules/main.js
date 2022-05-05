@@ -24,10 +24,10 @@ const initialState = {
   newMeeting:""
 };
 
-const loadCrewDB = () => {
+const login_loadCrewDB = (userId) => {
   return function (dispatch, getState){
   mainApi
-    .load()
+    .load(userId)
     .then((res) => {
       console.log(res.data);
       dispatch(loadCrew(res.data));
@@ -38,38 +38,51 @@ const loadCrewDB = () => {
   };
 };
 
-const addCrewDB = ({modalCrewInfo, file}) => {
+const loadCrewDB = () => {
+  return function (dispatch, getState){
+  mainApi
+    .load_none()
+    .then((res) => {
+      console.log(res.data);
+      dispatch(loadCrew(res.data));
+    })
+    .catch((err) => {
+      console.log(`모임 정보 로드에러!`)
+    });
+  };
+};
 
-  return function(dispatch, {history}) {
-    console.log(modalCrewInfo)
-    console.log(modalCrewInfo.region)
-    console.log(file)
+const addCrewDB = (newCrewInfo) => {
+
+  return function(dispatch) {
+    // console.log(newCrewInfo.name)
+    // console.log(newCrewInfo.image)
+
     const formData = new FormData();
 
-    formData.append (
+    formData.append("meetingName", newCrewInfo.name);
+    formData.append("meetingCategory", newCrewInfo.category);  
+    formData.append("meetingIntro", newCrewInfo.intro);
+    formData.append("meetingLocation", newCrewInfo.location);
+    formData.append("meetingLimitCnt", newCrewInfo.cnt);
+    formData.append ("meetingImage", newCrewInfo.image);
+   
+     // FormData의 key 확인
+      for (let key of formData.keys()) {
+        console.log(key);
+      }
 
-      "meetingInfo", new Blob(
-        {
-          meetingName: modalCrewInfo.title,
-          meetingCategory : modalCrewInfo.category,
-          meetingIntro : modalCrewInfo.intro,
-          meetingLocation : modalCrewInfo.region,
-          meetingLimitCtn : Number(modalCrewInfo.headCount),
-          // meetingImage: file
-        },
-        {type: "application/json"})
-
-      );
-          console.log(formData);
-    // formData.append("meetingImage", file, `${file.name}`);
-  
+      // FormData의 value 확인
+      for (let value of formData.values()) {
+        console.log(value);
+      }
 
     mainApi
     .posting(formData)
     .then((res) => {
       console.log(res)
-      dispatch(mainActions.loadCrewDB());
-      history.push("/main");
+      // dispatch(mainActions.loadCrewDB());
+      window.location.replace("http://localhost:3000/");
     })
     .catch((error) => {
       console.log("게시글 등록 에러!")
@@ -82,7 +95,7 @@ export default handleActions (
     produce (state, (draft) => {
       // console.log(action.payload.data);
       draft.isMeetingMaster = action.payload.data.isMeetingMaster;
-      draft.myMetting = action.payload.data.response.myMetting;
+      draft.myMeeting = action.payload.data.response.myMeeting;
       draft.todayMeeting = action.payload.data.response.todayMeeting;
       draft.recommendMeeting = action.payload.data.response.recommendMeeting;
       draft.newMeeting = action.payload.data.response.newMeeting;
@@ -97,6 +110,7 @@ export default handleActions (
 
 const mainActions = {
   loadCrewDB,
+  login_loadCrewDB,
   addCrewDB,
 };
 

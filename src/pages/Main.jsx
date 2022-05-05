@@ -28,14 +28,20 @@ const Main = (props) => {
   const __listRecommendMeeting = useSelector((state) => state.main.recommendMeeting);
   const __listNewMeeting = useSelector((state) => state.main.newMeeting);
 
-  // const __isMaster = useSelector((state) => state);
-
+  // const isMaster = useSelector((state) => state);
+  // console.log(isMaster)
   console.log(__listMyMeeting)
+  console.log(__listTodayMeeting)
+  console.log(__listRecommendMeeting)
   // ========================================================================
-
+  const userId = localStorage.getItem("userId")
+  // console.log(userId)
   React.useEffect(()=> {
-    dispatch(mainActions.loadCrewDB());
+    userId === null ? 
+    dispatch(mainActions.loadCrewDB()):
+    dispatch(mainActions.login_loadCrewDB(userId))
   }, []);
+
   
   const [open, setOpen] = useState(false);
   
@@ -95,7 +101,7 @@ const Main = (props) => {
       {/* <MyCrewGrid> */}
         <CardGrid>
 
-          {__listMyMeeting === "" 
+          {JSON.stringify(__listMyMeeting) === "{}"
           ? 
           (
               <StMyCrew>
@@ -103,13 +109,13 @@ const Main = (props) => {
                     마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
                 </Eltext>
               </StMyCrew>
-            )  
-            :
-             ( 
-              __listMyMeeting.map((p, idx) => {
+          )  
+          :
+          ( 
+             __listMyMeeting.map((p, idx) => {
               return <Cards key={idx} {...p}/>})
-             )
-            }
+          )
+          }
        
         </CardGrid>
         
