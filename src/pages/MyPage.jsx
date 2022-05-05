@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // style
 import styled from "styled-components";
@@ -10,15 +10,21 @@ import Sidebar from "../components/Sidebar";
 
 // theme
 import flex from "../themes/flex";
+import MyCrew from "../components/MyCrew";
+import MyStudy from "../components/MyStudy";
 
 const Mypage = () => {
+  const [isMyCrew, setIsMyCrew] = useState(true);
+
   return (
     <React.Fragment>
       <MypageWrap>
         <Header />
         <CenterWrap>
-          <Sidebar />
-          <MainSection />
+          <Sidebar clickText={setIsMyCrew} />
+          <MainSection>
+            {isMyCrew === true ? <MyCrew /> : <MyStudy />}
+          </MainSection>
         </CenterWrap>
         <Footer />
       </MypageWrap>

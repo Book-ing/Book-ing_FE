@@ -22,7 +22,7 @@ const Header = () => {
 
   // login check
   const isLogin = logged();
-  console.log(isLogin);
+  console.log("로그인 참트루?", isLogin);
 
   const clickLogout = () => {
     dispatch(userActions.kakaoLogout());

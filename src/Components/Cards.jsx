@@ -58,21 +58,21 @@ const Cards = (props) => {
 };
 
 Cards.defaultProps = {
-  image_url:"https://image.trevari.co.kr/f236d0ae-5845-4bbf-b31f-1eb297187d9e.png",
-  categoryId:"construction",
-  category:"건축",
-  location:"서울",
-  title:"The Alchemist study",
-  subTitle:"항해99 사람들이 책을 읽으러 오는 독서모임입니다. 만나서 반가워요! 재밌는 독서모임을 합시다!"
+    image_url:"https://image.trevari.co.kr/f236d0ae-5845-4bbf-b31f-1eb297187d9e.png",
+    categoryId:"construction",
+    category:"건축",
+    location:"서울",
+    title:"The Alchemist study",
+    subTitle:"항해99 사람들이 책을 읽으러 오는 독서모임입니다. 만나서 반가워요! 재밌는 독서모임을 합시다!"
 }
 
 const CardGrid = styled.div`
-  padding: 5px 11px 6px 11px;
+    
 `
 const ImgGrid = styled.div`
-  margin: auto;
-  width: 193px;
-  height: 193px;
+    margin: auto;
+    width: 193px;
+    height: 193px;
 `
 const TitleGrid = styled.div`
     width: 197px;

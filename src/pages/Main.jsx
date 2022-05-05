@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Slide from "../components/Slide";
-// import ModalCrew from "../components/Modal/ModalCrew";
+import ModalCrew from "../components/Modal/ModalCrew";
 import Cards from "../components/Cards";
 
 import { Modal, Box, Grid } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
+
 import { Elbutton, Eltext, Elchip } from "../elements";
 
 const Main = (props) => {
@@ -21,40 +22,38 @@ const Main = (props) => {
       <Header />
       <Slide />
       <Container>
+        <ModalBtnGrid>
+          <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+            모임 생성하기
+          </ModalOpenBtn>
+          <Modal open={open}>
+            <Box sx={style} style={{ position: "relative" }}>
+              <ModalCloseBtn onClick={handleModalClose}>
+                <CloseIcon fontSize="large" />
+              </ModalCloseBtn>
+              <ModalCrew />
+            </Box>
+          </Modal>
+        </ModalBtnGrid>
 
-      <ModalBtnGrid>
-        <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-          모임 생성하기
-        </ModalOpenBtn>
-        <Modal open={open}>
-          <Box sx={style} style={{ position: "relative" }}>
-            <ModalCloseBtn onClick={handleModalClose}>
-              <CloseIcon fontSize="large" />
-            </ModalCloseBtn>
-            {/* <ModalCrew /> */}
-          </Box>
-        </Modal>
-      </ModalBtnGrid>
-
-      <TitleGrid>
-        <Elchip shape="Fill" width="96px" height="35px">
-          <Eltext type="sub_2_bold" color="white">
-            내 모임
-          </Eltext>
-        </Elchip>
-      </TitleGrid>
-
-      <MyCrewGrid>
-        <CardGrid>
-          <Cards />
-        </CardGrid>
-        <PhraseGrid>
-            <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
-                마음의 양식을 쌓아볼까요?
+        <TitleGrid>
+          <Elchip shape="Fill" width="96px" height="35px">
+            <Eltext type="sub_2_bold" color="white">
+              내 모임
             </Eltext>
-        </PhraseGrid>
-      </MyCrewGrid>
+          </Elchip>
+        </TitleGrid>
 
+        <MyCrewGrid>
+          <CardGrid>
+            <Cards />
+          </CardGrid>
+          <PhraseGrid>
+            <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
+              마음의 양식을 쌓아볼까요?
+            </Eltext>
+          </PhraseGrid>
+        </MyCrewGrid>
       </Container>
 
       <CrewGroupGrid>
@@ -169,21 +168,21 @@ const ModalBtnGrid = styled.div`
   justify-content: flex-end;
   padding: 62px 73px 0px 0px;
   /* border: 1px solid black; */
-`
+`;
 
 const TitleGrid = styled.div`
   width: 100%;
-  height : 45px;
+  height: 45px;
   margin: 20px 0 0 15px;
   /* border: 1px solid #815854; */
-`
+`;
 
 const TitleGridA = styled.div`
   width: 100%;
-  height : 45px;
+  height: 45px;
   margin-left: 15px;
   /* border: 1px solid #815854; */
-`
+`;
 
 const Container = styled.div`
   margin: auto;
@@ -193,19 +192,19 @@ const Container = styled.div`
   height: 600px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   /* border: 1px solid black; */
-`
+`;
 
 const CardGrid = styled.div`
   width: 235px;
   height: 365px;
   margin: 10px 30px 0 0px;
   /* border: 1px solid black; */
-`
+`;
 
 const MyCrewGrid = styled.div`
   display: flex;
   /* border: 1px solid black; */
-`
+`;
 
 const PhraseGrid = styled.div`
   display: flex;
@@ -214,7 +213,7 @@ const PhraseGrid = styled.div`
   margin-left: 70px;
   color: rgba(40, 34, 36, 0.5);
   /* border: 1px solid black; */
-`
+`;
 
 const CrewGroupGrid = styled.div`
   padding: 85px 0 0 80px;
@@ -223,10 +222,9 @@ const CrewGroupGrid = styled.div`
   max-width: 1440px;
   height: 1515px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-`
+`;
 
 const GroupGrid = styled.div`
   display: flex;
   /* margin-left: 40px; */
-`
+`;

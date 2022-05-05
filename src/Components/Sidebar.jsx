@@ -1,7 +1,8 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as mypageActions } from "../redux/modules/mypage";
 
 // kakao logout uri
 import { LOGOUT_KAKAO_AUTH_URL } from "../shared/OAuth";
@@ -13,15 +14,40 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import styled from "styled-components";
 import { Elbutton, Elimage, Eltext } from "../elements";
 
-// theme
+// shared & theme
 import flex from "../themes/flex";
 import { history } from "../redux/configStore";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const dispatch = useDispatch();
+
+  // state
+  const [statusMsg, setStatusMsg] = useState("");
+
+  // redux store
+  const __myProfileData = useSelector((state) => state.mypage.myProfile);
+  console.log(__myProfileData);
+
+  // variables
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    dispatch(mypageActions.getMyProfileDB(userId));
+  }, [__myProfileData.statusMessage]);
 
   const clickLogout = () => {
     dispatch(userActions.kakaoLogout());
+  };
+
+  const handleChange = (e) => {
+    setStatusMsg(e.target.value);
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(statusMsg);
+    dispatch(mypageActions.changeStatusMsgDB(userId, statusMsg));
   };
 
   const loginUserName = localStorage.getItem("username");
@@ -33,15 +59,22 @@ const Sidebar = () => {
           width="190px"
           height="190px"
           shape="profile"
-          src="http://friends.co.kr/shopimages/life25/0140020024062.jpg?1568182160"
+          src={__myProfileData.profileImage}
         />
         <StatusMessage>
-          <StatusMessageInput placeholder="상태메시지를 입력해주세요"></StatusMessageInput>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
+          <form onSubmit={onSubmitHandler}>
+            {__myProfileData.isStatusMessage === true ? (
+              <StatusMessageInput
+                placeholder={__myProfileData.statusMessage}
+                onChange={handleChange}
+              ></StatusMessageInput>
+            ) : (
+              <StatusMessageInput
+                placeholder="상태메시지를 입력해주세요"
+                onChange={handleChange}
+              ></StatusMessageInput>
+            )}
+
             <StatusMessageIcon>
               <BorderColorIcon fontSize="large" />
             </StatusMessageIcon>
@@ -51,7 +84,7 @@ const Sidebar = () => {
           <MyCrew
             type="head_6"
             _onClick={() => {
-              history.push("/mycrew");
+              props.clickText(true);
             }}
           >
             내 모임
@@ -59,17 +92,17 @@ const Sidebar = () => {
           <MyStudy
             type="head_6"
             _onClick={() => {
-              history.push("/mystudy");
+              props.clickText(false);
             }}
           >
             내 스터디
           </MyStudy>
         </PageList>
-        <a href="LOGOUT_KAKAO_AUTH_URL">
-          <LogoutBtn _onClick={clickLogout}>
+        <LogoutBtn _onClick={clickLogout}>
+          <StyledAtag href={LOGOUT_KAKAO_AUTH_URL}>
             <BtnText type="sub_1">로그아웃</BtnText>
-          </LogoutBtn>
-        </a>
+          </StyledAtag>
+        </LogoutBtn>
       </SidebarWrap>
     </React.Fragment>
   );
@@ -141,10 +174,21 @@ const LogoutBtn = styled(Elbutton)`
   margin-top: 111px;
 `;
 
+const StyledAtag = styled.a`
+  ${flex("center", "center", false)}
+  width: 107px;
+  height: 37px;
+  border-radius: 100px;
+`;
+
 const BtnText = styled(Eltext)`
+  ${flex("center", "center", false)}
   color: #fff;
   font-weight: 500;
   transition: 300ms ease-in-out;
+  width: 107px;
+  height: 37px;
+  border-radius: 100px;
 
   &:hover {
     color: var(--point);

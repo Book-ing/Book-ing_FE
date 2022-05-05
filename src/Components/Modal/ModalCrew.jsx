@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
+import ElcategoryRadio from "../../elements/ElcategoryRadio";
 
 import flex from "../../themes/flex";
 
@@ -27,6 +28,32 @@ const ModalCrew = (props) => {
   };
 
   const fileInput = React.useRef();
+
+  const Categorys = [
+    { name: "소설", hex: "#594157" },
+    { name: "시", hex: "#726DA8" },
+    { name: "에세이", hex: "#DD5C72" },
+    { name: "경제/경영", hex: "#69B5C7" },
+    { name: "자기계발", hex: "#665780" },
+    { name: "인문", hex: "#8FAFD0" },
+    { name: "철학", hex: "#94B029" },
+    { name: "과학", hex: "#AB4858" },
+    { name: "사회", hex: "#AC8693" },
+    { name: "예술", hex: "#949885" },
+    { name: "대중문화", hex: "#84B3A7" },
+    { name: "기술/공학", hex: "#AEAEAE" },
+    { name: "IT/컴퓨터", hex: "#567A56" },
+    { name: "생활/요리", hex: "#5D9E90" },
+    { name: "건강", hex: "#CC8449" },
+    { name: "건축", hex: "#F14048" },
+    { name: "문학", hex: "#6197ED" },
+    { name: "외국어", hex: "#52796F" },
+    { name: "교육", hex: "#7A6E2C" },
+    { name: "스포츠", hex: "#552248" },
+    { name: "취업", hex: "#003566" },
+    { name: "수험", hex: "#2C1D25" },
+    { name: "역사", hex: "#FF6445" },
+  ];
 
   const SelectList = [
     "지역을 선택해주세요",
@@ -65,16 +92,66 @@ const ModalCrew = (props) => {
               onChange={onChangeInputHandler}
             />
             {/* 카테고리 삽입 */}
-            <div
-              style={{
-                margin: "15px 0",
-                width: "100%",
-                height: "142px",
-                border: "1px solid red",
-              }}
-            >
-              카테고리
+
+            {/* <ElcategoryRadio/>
+            <input id="name1" type="radio"/>
+            <label htmlFor="name1">안녕하세요</label>
+            <input id="name2" type="radio"/>
+            <label htmlFor="name2">안녕하세요</label>
+            <input id="name3" type="radio"/>
+            <label htmlFor="name3">안녕하세요</label> */}
+            <div>
+              <StInputRadio
+                id="name4"
+                type="radio"
+                name="category-selector"
+                value="1"
+                color="red"
+              />
+              <StRadioLabel htmlFor="name4" color="red">
+                Button
+              </StRadioLabel>
+              <StInputRadio
+                id="name5"
+                type="radio"
+                name="category-selector"
+                value="1"
+                color="red"
+              />
+              <StRadioLabel htmlFor="name5" color="red">
+                Button
+              </StRadioLabel>
+              <div key="name6">
+                <StInputRadio
+                  id={"name6"}
+                  type="radio"
+                  name="category-selector"
+                  value="1"
+                  color="red"
+                />
+                <StRadioLabel htmlFor={"name6"} color="red">
+                  Button
+                </StRadioLabel>
+              </div>
             </div>
+            <div>
+              {Categorys.map((category) => (
+                <div key={category.name}>
+                  <StInputRadio
+                    key={category.name}
+                    id={category.name}
+                    type="radio"
+                    name="category-selector"
+                    value={category.name}
+                    color={category.hex}
+                  />
+                  <StRadioLabel htmlFor={category.name} color={category.hex}>
+                    {category.name}
+                  </StRadioLabel>
+                </div>
+              ))}
+            </div>
+            {/* <ElcategoryRadio /> */}
             {/* 카테고리 삽입 */}
             <StInputName type="sub_2_bold">모임 소개 글</StInputName>
             <StInput
@@ -198,6 +275,30 @@ const StInput = styled.input`
   background-color: transparent;
   border-radius: 5px;
   border: 1px solid var(--point);
+`;
+
+const StRadioLabel = styled.label`
+  ${flex("center", "center", false)}
+  float: left;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  letter-spacing: -0.015rem;
+  color: black;
+  width: 96px;
+  height: 30px;
+  border: 1px solid ${(props) => props.color};
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 6px;
+  margin-bottom: 10px;
+`;
+
+const StInputRadio = styled.input`
+  display: none;
+  &:checked + ${StRadioLabel} {
+    background-color: ${(props) => props.color};
+    color: white;
+  }
 `;
 
 const StSelect = styled.select`
