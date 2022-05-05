@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+// module
+import { actionCreators as userActions } from "../redux/modules/user";
 
 // style
 import styled from "styled-components";
@@ -14,7 +18,12 @@ import MyCrew from "../components/MyCrew";
 import MyStudy from "../components/MyStudy";
 
 const Mypage = () => {
+  const dispatch = useDispatch();
   const [isMyCrew, setIsMyCrew] = useState(true);
+
+  useEffect(() => {
+    dispatch(userActions.loginCheckDB());
+  }, []);
 
   return (
     <React.Fragment>

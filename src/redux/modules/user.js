@@ -4,16 +4,18 @@ import jwtDecode from "jwt-decode";
 import { history } from "../configStore";
 
 // shared & api
-import { setCookie, getCookie } from "../../shared/cookie";
+import { setCookie, getCookie, removeCookie } from "../../shared/cookie";
 import { userApi } from "../../api/userApi";
 
 // action
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
+const LOGIN_CHECK = "LOGIN_CHECK";
 
 // action creator
 const login = createAction(LOG_IN, (payload) => ({ payload }));
 const logout = createAction(LOG_OUT, (payload) => ({ payload }));
+const loginCheck = createAction(LOGIN_CHECK, (payload) => ({ payload }));
 
 // initialState
 const initialstate = {
@@ -32,13 +34,11 @@ const kakaoLogin = (payload) => (dispatch, getState) => {
       const { userId, username, kakaoUserId } = jwtDecode(accessToken);
       setCookie("accessToken", accessToken, {
         path: "/",
-        maxAge: 3600, // 1시간
         sameSite: "None",
         secure: true,
       });
       setCookie("refreshToken", refreshToken, {
         path: "/",
-        maxAge: 432000, // 5일
         sameSite: "None",
         secure: true,
       });
@@ -56,20 +56,60 @@ const kakaoLogin = (payload) => (dispatch, getState) => {
 };
 
 const kakaoLogout = (payload) => (dispatch, getState) => {
-  const accessToken = getCookie("accessToken");
-  const refreshToken = getCookie("refreshToken");
-  setCookie("accessToken", accessToken, {
+  removeCookie("accessToken", {
     path: "/",
-    maxAge: 0, // 로그아웃 실행시 토큰 만료
   });
-  setCookie("refreshToken", refreshToken, {
+  removeCookie("refreshToken", {
     path: "/",
-    maxAge: 0, // 로그아웃 실행시 토큰 만료
   });
   localStorage.removeItem("userId");
   localStorage.removeItem("username");
   localStorage.removeItem("kakaoUserId");
   dispatch(logout());
+};
+
+const loginCheckDB = () => (dispatch, getState) => {
+  userApi
+    .loginCheck()
+    .then((res) => {
+      console.log(res);
+      const status = res.status;
+      const accessToken = res.data.data.accessToken;
+      const refreshToken = res.data.data.refreshToken;
+      if (status === 201) {
+        setCookie("accessToken", accessToken, {
+          path: "/",
+          sameSite: "None",
+          secure: true,
+        });
+        setCookie("refreshToken", refreshToken, {
+          path: "/",
+          sameSite: "None",
+          secure: true,
+        });
+      }
+      dispatch(loginCheck());
+    })
+    .catch((error) => {
+      if (error?.response) {
+        const status = error.response.status;
+        if (status === 401) {
+          const accessToken = getCookie("accessToken");
+          const refreshToken = getCookie("refreshToken");
+          removeCookie("accessToken", accessToken, {
+            path: "/",
+          });
+          removeCookie("refreshToken", refreshToken, {
+            path: "/",
+          });
+          localStorage.removeItem("userId");
+          localStorage.removeItem("username");
+          localStorage.removeItem("kakaoUserId");
+          history.replace("/login");
+        }
+        alert("세션이 만료되었습니다. 다시 로그인 해주세요.");
+      }
+    });
 };
 
 // reducer
@@ -90,6 +130,7 @@ export default handleActions(
 const actionCreators = {
   kakaoLogin,
   kakaoLogout,
+  loginCheckDB,
 };
 
 export { actionCreators };
