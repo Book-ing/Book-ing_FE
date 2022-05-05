@@ -390,6 +390,7 @@ const StTextBox = styled.div`
 
 const StButton = styled.div`
   padding-top: 20px;
+  padding-right: 63px;
   align-items: center;
   /* border: 1px solid black; */
 `

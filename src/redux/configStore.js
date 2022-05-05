@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
 // modules
-// import user from "./modules/user";
+import main from "./modules/main";
 
 // middlewares
 import thunk from "redux-thunk";
@@ -12,6 +12,7 @@ import { connectRouter } from "connected-react-router";
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  main: main,
   // user: user,
   router: connectRouter(history),
 });

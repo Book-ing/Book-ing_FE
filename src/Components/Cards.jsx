@@ -9,65 +9,65 @@ import Ellocation from "../elements/Ellocation";
 
 const Cards = (props) => {
 
-    console.log(props.image_url);
+    // console.log(props.image_url);
     return (
       <React.Fragment>
-        {/* 버튼으로 감쌀것 */}
-        {/* <button style={{
-          textAlign: "left"
-        }}> */}
+      <StButton>
+
         <Card style={{ border:"none", boxShadow:"none", margin:"10px"}} variant="outlined" sx={{ maxWidth: 220, height: 350 }}>
           <CardGrid>
 
             <ImgGrid>
               <Elimage
                 shape="cardImg"
-                src={props.image_url}
+                src={props.meetingImage}
               />
             </ImgGrid>
             
               <Eltext type="sub_1_bold">
                 <TitleGrid>
-                  {props.title}
+                  {props.meetingName}
                 </TitleGrid>
               </Eltext>
 
               <Eltext type="sub_2_bold">
                 <TagGrid>
                   <Ellocation>
-                      {props.location}
+                      {props.meetingLocation}
                   </Ellocation>
-                  <Elcategory type={props.categoryId}>
-                      {props.category}
+                  <Elcategory shape={props.meetingCategory} color="white">
+                      {props.meetingCategory}
                   </Elcategory>
                 </TagGrid>
               </Eltext>
 
               <Eltext type="sub_2">
                 <SubGird>
-                  {props.subTitle}
+                  {props.meetingIntro}
                 </SubGird>
               </Eltext>
             
           </CardGrid>
         </Card>
-      {/* </button> */}
       
+      </StButton>
       </React.Fragment>
     );
 };
 
 Cards.defaultProps = {
-    image_url:"https://image.trevari.co.kr/f236d0ae-5845-4bbf-b31f-1eb297187d9e.png",
+    meetingName: "The Alchemist study",
+    meetingCategory: "에세이",
+    meetingLocation: "경기",
+    meetingImage: "https://image.trevari.co.kr/f236d0ae-5845-4bbf-b31f-1eb297187d9e.png",
+    meetingIntro: "항해99 사람들이 책을 읽으러 오는 독서모임입니다. 만나서 반가워요! 재밌는 독서모임을 합시다!",
     categoryId:"construction",
-    category:"건축",
-    location:"서울",
-    title:"The Alchemist study",
-    subTitle:"항해99 사람들이 책을 읽으러 오는 독서모임입니다. 만나서 반가워요! 재밌는 독서모임을 합시다!"
 }
 
 const CardGrid = styled.div`
-    
+    width: 198px;
+    height: 339px;
+    /* border: 1px solid black; */
 `
 const ImgGrid = styled.div`
     margin: auto;
@@ -100,6 +100,10 @@ const SubGird = styled.div`
     word-wrap: break-word; 
     line-height: 1.6em;
     height: 4.8em;
+`
+
+const StButton = styled.button`
+  text-align: left;
 `
 
 

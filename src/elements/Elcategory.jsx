@@ -34,51 +34,51 @@ const Elcategory = ({ children, ...rest }) => {
   const Wrapper = styled.div`
   ${({ shape }) => {
     switch (shape) {
-        case "novel":
+        case "소설":
             return `${novel}`;
-        case "poem":
+        case "시":
             return `${poem}`;
-        case "essay":
+        case "에세이":
             return `${essay}`;
-        case "economy":
+        case "경제/경영":
             return `${economy}`;
-        case "selfDev":
+        case "자기계발":
             return `${selfDev}`;
-        case "humanities":
+        case "인문":
             return `${humanities}`;
-        case "philosophy":
+        case "철학":
             return `${philosophy}`;
-        case "science":
+        case "과학":
             return `${science}`;
-        case "society":
+        case "사회":
             return `${society}`; 
-        case "art":
+        case "예술":
             return `${art}`;
-        case "popularCulture":
+        case "대중문화":
             return `${popularCulture}`;
-        case "technology":
+        case "기술/공학":
             return `${technology}`;
-        case "itComputer":
+        case "IT/컴퓨터":
             return `${itComputer}`;
-        case "life":
+        case "생활/요리":
             return `${life}`;
-        case "health":
+        case "건강":
             return `${health}`;
-        case "construction":
+        case "건축":
             return `${construction}`;
-        case "literature":
+        case "문학":
             return `${literature}`;
-        case "language":
+        case "외국어":
             return `${language}`;
-        case "edu":
+        case "교육":
             return `${edu}`;
-        case "sports":
+        case "스포츠":
             return `${sports}`;
-        case "job":
+        case "취업":
             return `${job}`;
-        case "exam":
+        case "수험":
             return `${exam}`;
-        case "history":
+        case "역사":
             return `${history}`;
         default:
             return;

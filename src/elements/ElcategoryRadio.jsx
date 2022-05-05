@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import flex from "../themes/flex";
 
-const ElcategoryRadio = () => {
+const ElcategoryRadio = (props) => {
 
     const Categorys = [
         { name: '소설', hex: '#594157' },
@@ -38,9 +38,10 @@ const ElcategoryRadio = () => {
                 <StInputRadio
                   id={category.name}
                   type="radio"
-                  name="category-selector"
+                  name="category"
                   value={category.name}
                   color={category.hex}
+                  onChange={props.onChange}
                 />
                 <StRadioLabel htmlFor={category.name} color={category.hex}>{category.name}</StRadioLabel>
               </div>
@@ -56,8 +57,6 @@ const RadioCategoryWrap = styled.div`
     display: inline-block;
     width: 900px;
     height: 135px;
-    margin-top: 8px;
-    padding-top: 10px;
     padding-bottom: 10px;
 `;
 

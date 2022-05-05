@@ -11,6 +11,14 @@ export const instance = axios.create({
   },
 });
 
+// formdata 로 넘길 때 쓰일 인스턴스 (모임방 생성)
+export const formDataInstance = axios.create({
+  baseURL: targetServer,
+  headers: {
+    "content-type": "multipart/form-data",
+  },
+});
+
 // 토큰이 필요없는 요청에 쓰일 인스턴스 (로그인)
 export const nonTokenInstance = axios.create({
   baseURL: targetServer,
@@ -31,6 +39,7 @@ nonTokenInstance.interceptors.request.use((config) => {
   config.headers.common["Authorization"] = `Bearer ${accessToken}`;
   return config;
 });
+
 
 // Refresh Token 발급 로직
 let isTokenRefreshing = false;
@@ -99,3 +108,4 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
