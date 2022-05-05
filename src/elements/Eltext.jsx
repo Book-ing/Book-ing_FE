@@ -32,7 +32,11 @@ import {
 } from "../themes/textStyle";
 
 const Eltext = ({ children, ...rest }) => {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+  return (
+    <Wrapper onClick={rest._onClick} {...rest}>
+      {children}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`

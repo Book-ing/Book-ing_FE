@@ -9,16 +9,7 @@ import { Route } from "react-router-dom";
 import GlobalStyle from "./GlobalStyles";
 
 // import pages
-import {
-  Login,
-  Crew,
-  Main,
-  MyCrew,
-  MyPage,
-  MyStudy,
-  NoteWrite,
-  Search,
-} from "../pages/index";
+import { Login, Crew, Main, MyPage, NoteWrite, Search } from "../pages/index";
 import Test from "../pages/Test";
 import OAuth2RedirectHandler from "../pages/OAuth2RedirectHandler";
 
@@ -27,13 +18,11 @@ function App() {
     <React.Fragment>
       <GlobalStyle />
       <ConnectedRouter history={history}>
-        <Route path="/" exact component={Test} />
-        <Route path="/main" exact component={Main} />
+        {/* <Route path="/" exact component={Test} /> */}
+        <Route path="/" exact component={Main} />
         <Route path="/login" exact component={Login} />
         <Route path="/crew" exact component={Crew} />
         <Route path="/mypage" exact component={MyPage} />
-        <Route path="/mycrew" exact component={MyCrew} />
-        <Route path="/mystudy" exact component={MyStudy} />
         <Route path="/notewrite" exact component={NoteWrite} />
         <Route path="/search" exact component={Search} />
 

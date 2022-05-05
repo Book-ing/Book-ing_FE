@@ -9,7 +9,7 @@ export const scrollbar = css`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--main);
+    background-color: var(--point);
     background-clip: padding-box;
     border-radius: 5px;
     border: 2px solid transparent;

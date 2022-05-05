@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
 import { Elbutton } from "../elements";
 import ElcategoryRadio from "../elements/ElcategoryRadio";
-import Accordion from "../components/Accordion";
+import Accordion from "../components/Accordion/Accordion";
 
 const Test = (props) => {
   const [open, setOpen] = useState(false);
@@ -74,4 +74,4 @@ const StAccordion = styled.div`
   margin: auto;
   width: 1440px;
   height: 500px;
-`
+`;

@@ -52,7 +52,8 @@ const Main = (props) => {
     <>
       <Header />
       <Slide />
-      <Container>
+      {/* container St 작업 */}
+      <Container> 
 
       <StSearchBox>
         <StInputLine>
@@ -82,7 +83,6 @@ const Main = (props) => {
           </Box>
         </Modal>
       </ModalBtnGrid>
-
 
       <StCrewTitle>
         <Elchip shape="Fill" width="96px" height="35px">
@@ -228,7 +228,7 @@ const ModalBtnGrid = styled.div`
   justify-content: flex-end;
   padding: 62px 73px 0px 0px;
   /* border: 1px solid black; */
-`
+`;
 
 const GoSearchBtn = styled(Elbutton)`
   width: 147px;
@@ -241,21 +241,21 @@ const GoSearchBtnGrid = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 62px 73px 0px 0px;
-`
+`;
 
 const StCrewTitle = styled.div`
   width: 100%;
-  height : 45px;
+  height: 45px;
   margin: 20px 0 0 15px;
   /* border: 1px solid #815854; */
-`
+`;
 
 const TitleGridA = styled.div`
   width: 100%;
-  height : 45px;
+  height: 45px;
   margin-left: 15px;
   /* border: 1px solid #815854; */
-`
+`;
 
 const Container = styled.div`
   margin: auto;
@@ -265,7 +265,7 @@ const Container = styled.div`
   height: 700px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   /* border: 1px solid black; */
-`
+`;
 
 const CardGrid = styled.div`
   display: flex;
@@ -273,12 +273,8 @@ const CardGrid = styled.div`
   height: 390px;
   margin: 10px 30px 0 0px;
   /* border: 1px solid black; */
-`
+`;
 
-// const MyCrewGrid = styled.div`
-//   display: flex;
-//   border: 1px solid yellow;
-// `
 
 const StMyCrew = styled.div`
   ${flex("center", "center", true)}
@@ -286,7 +282,7 @@ const StMyCrew = styled.div`
   /* margin-left: 70px; */
   color: rgba(40, 34, 36, 0.5);
   /* border: 1px solid black; */
-`
+`;
 
 const CrewGroupGrid = styled.div`
   padding: 20px 0 0 80px;
@@ -295,13 +291,12 @@ const CrewGroupGrid = styled.div`
   max-width: 1440px;
   height: 1515px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-`
+`;
 
 const GroupGrid = styled.div`
   display: flex;
   /* margin-left: 40px; */
-`
+`;
 
 const StSearchBox = styled.div`
   display: flex;
@@ -311,7 +306,8 @@ const StSearchBox = styled.div`
 
 const StSearchBtn = styled.button`
   vertical-align: middle;
-`
+`;
+
 const StInputLine = styled.div`
   width: 1045px;
   height: 35px;
@@ -319,7 +315,8 @@ const StInputLine = styled.div`
   align-items: center;
   border-radius: 5px;
   border: 1px solid var(--point);
-`
+`;
+
 const StInput = styled.input`
   width: 1000px;
   height: 35px;

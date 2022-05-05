@@ -1,0 +1,110 @@
+{
+  "myMeeting": {},
+  "joinedMeeting": [
+    {
+      "meetingId": "1",
+      "meetingName": "미팅원",
+      "meetingImage": "https://cdn.pixabay.com/photo/2016/11/14/03/16/book-1822474__340.jpg",
+      "meetingJoinedCnt": "3",
+      "meetingStudyCnt": "10",
+      "meetingIntro": "남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세"
+    },
+    {
+      "meetingId": "2",
+      "meetingName": "미팅투",
+      "meetingImage": "https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716__340.jpg",
+      "meetingJoinedCnt": "7",
+      "meetingStudyCnt": "18",
+      "meetingIntro": "가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세"
+    },
+    {
+      "meetingId": "3",
+      "meetingName": "미팅뜨리",
+      "meetingImage": "https://cdn.pixabay.com/photo/2015/09/05/21/51/reading-925589__340.jpg",
+      "meetingJoinedCnt": "90",
+      "meetingStudyCnt": "122",
+      "meetingIntro": "이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세"
+    },
+    {
+      "meetingId": "4",
+      "meetingName": "미팅포",
+      "meetingImage": "https://cdn.pixabay.com/photo/2016/06/01/06/26/open-book-1428428__340.jpg",
+      "meetingJoinedCnt": "3",
+      "meetingStudyCnt": "10",
+      "meetingIntro": "남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세"
+    },
+    {
+      "meetingId": "5",
+      "meetingName": "미팅파이브",
+      "meetingImage": "https://cdn.pixabay.com/photo/2016/01/27/04/32/books-1163695__340.jpg",
+      "meetingJoinedCnt": "7",
+      "meetingStudyCnt": "18",
+      "meetingIntro": "가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세"
+    },
+    {
+      "meetingId": "6",
+      "meetingName": "미팅식스",
+      "meetingImage": "https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809__340.jpg",
+      "meetingJoinedCnt": "90",
+      "meetingStudyCnt": "122",
+      "meetingIntro": "이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세"
+    }
+  ],
+  "profile": {
+    "data": {
+      "userId": "1",
+      "profileImage": "http://friends.co.kr/shopimages/life25/0140020024062.jpg?1568182160",
+      "statusMessage": "I'm the KING",
+      "isStatusMessage": true
+    }
+  },
+  "myStudy": [
+    {
+      "studyId": "1",
+      "studyTitle": "민우 스터디",
+      "studyDateTime": "18:00",
+      "studyAddr": "네카라쿠배당토 11번가 옥션빌딩",
+      "studyAddrDetail": "1층 스타벅스",
+      "studyNotice": "다들 필참해주세옹",
+      "studyPrice": "1억"
+    },
+    {
+      "studyId": "2",
+      "studyTitle": "학선 스터디",
+      "studyDateTime": "20:00",
+      "studyAddr": "서울특별시 강남구 테헤란로 111",
+      "studyAddrDetail": "ABC빌딩 1층 TOM&TOMS",
+      "studyNotice": "오늘 아주 코드 박살내실분들 환영합니다.",
+      "studyPrice": "2억"
+    }
+  ],
+  "joinedStudy": [
+    {
+      "studyId": "1",
+      "studyTitle": "주탁 스터디",
+      "studyDateTime": "18:00",
+      "studyAddr": "네카라쿠배당토 11번가 옥션빌딩",
+      "studyAddrDetail": "1층 스타벅스",
+      "studyNotice": "다들 필참해주세옹",
+      "studyPrice": "1억"
+    },
+    {
+      "studyId": "2",
+      "studyTitle": "배승 스터디",
+      "studyDateTime": "20:00",
+      "studyAddr": "서울특별시 강남구 테헤란로 111",
+      "studyAddrDetail": "ABC빌딩 1층 TOM&TOMS",
+      "studyNotice": "로직은 이렇게 짜는것이고 알고리즘이란 이런것이다.",
+      "studyPrice": "2억"
+    },
+    {
+      "studyId": "3",
+      "studyTitle": "호진 스터디",
+      "studyDateTime": "20:00",
+      "studyAddr": "서울특별시 송파구 롯데월드몰",
+      "studyAddrDetail": "옥상",
+      "studyNotice": "다들 키보드 필수지참 해주세요",
+      "studyPrice": "3억"
+    }
+  ]
+}
