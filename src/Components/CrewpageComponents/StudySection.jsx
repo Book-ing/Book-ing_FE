@@ -1,0 +1,89 @@
+import React from "react";
+
+// styled components
+import styled from "styled-components";
+
+// components
+import CustomAccordions from "../Accordion/Accordion";
+
+// elements
+import { Elbutton, Elinput, Eltext } from "../../elements";
+
+// themes
+import flex from "../../themes/flex";
+
+const StudySection = () => {
+  return (
+    <StudySectionWrap>
+      <StudySectionBox>
+        <StudySectionBoxLeft>
+          <StudysectionTag type="sub_2_bold">
+            스터디 목록(817{})
+          </StudysectionTag>
+          <StudysectionSearchInput placeholder="원하는 스터디를 검색해주세요." />
+        </StudySectionBoxLeft>
+        <StudySectionBoxRight>
+          <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn>
+        </StudySectionBoxRight>
+      </StudySectionBox>
+      <AccordionSection>
+        <CustomAccordions></CustomAccordions>
+      </AccordionSection>
+    </StudySectionWrap>
+  );
+};
+
+export default StudySection;
+
+const StudySectionWrap = styled.div`
+  width: 100%;
+  min-height: 700px;
+  padding-bottom: 40px;
+  height: auto;
+  background-color: var(--main);
+`;
+
+const StudySectionBox = styled.div`
+  ${flex("between", "center", true)}
+  width: 90%;
+  margin: auto;
+  padding: 60px 0 25px 0;
+`;
+
+const StudySectionBoxLeft = styled.div`
+  ${flex("between", "start", true)}
+  width: 530px;
+`;
+
+const StudysectionTag = styled(Eltext)`
+  ${flex}
+  width: 147px;
+  height: 35px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+  color: var(--white);
+  background-color: var(--point);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+const StudysectionSearchInput = styled.input`
+  min-width: 343px;
+  height: 35px;
+  padding-left: 10px;
+  border: 1px solid var(--point);
+  border-radius: 3px;
+`;
+
+const StudySectionBoxRight = styled.div``;
+
+const CreateStudyBtn = styled(Elbutton)`
+  width: 147px;
+  height: 35px;
+  border-radius: 7px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+const AccordionSection = styled.div`
+  width: 90%;
+  margin: auto;
+`;

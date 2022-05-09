@@ -1,10 +1,7 @@
-import { instance, nonTokenInstance } from "./index";
+import { instance, loginInstance } from "./index";
 
 export const mainApi = {
-  load: () =>
-    nonTokenInstance.get(`/api/main`),
+  load: () => loginInstance.get(`/api/main`),
 
-  posting: (formData) =>
-    instance.post(`/api/meeting`, formData),
-    
-  };
+  posting: (formData) => instance.post(`/api/meeting`, formData),
+};

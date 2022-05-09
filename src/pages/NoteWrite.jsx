@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import flex from "../themes/flex"
+import flex from "../themes/flex";
 import Elchip from "../elements/Elchip";
 import { Elimage, Eltext } from "../elements";
 import Editor from "../components/Editor";
@@ -10,7 +10,6 @@ import Editor from "../components/Editor";
 const NoteWrite = () => {
   return (
     <React.Fragment>
-      <Header />
       <Grids>
         <Container>
           <TitleGrid>
@@ -72,7 +71,6 @@ const NoteWrite = () => {
           </BtnGrid>
         </Container>
       </Grids>
-      <Footer />
     </React.Fragment>
   );
 };

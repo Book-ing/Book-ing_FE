@@ -8,7 +8,7 @@ import Cards from "../components/Cards";
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 import flex from "../themes/flex";
 import { Elbutton, Eltext, Elchip } from "../elements";
@@ -25,104 +25,107 @@ const Main = (props) => {
   const __isMaster = useSelector((state) => state.main.isMeetingMaster);
   const __listMyMeeting = useSelector((state) => state.main.myMeeting);
   const __listTodayMeeting = useSelector((state) => state.main.todayMeeting);
-  const __listRecommendMeeting = useSelector((state) => state.main.recommendMeeting);
+  const __listRecommendMeeting = useSelector(
+    (state) => state.main.recommendMeeting
+  );
   const __listNewMeeting = useSelector((state) => state.main.newMeeting);
 
   // const __isMaster = useSelector((state) => state);
 
-  console.log(__listMyMeeting)
+  console.log(__listMyMeeting);
   // ========================================================================
 
-  React.useEffect(()=> {
+  React.useEffect(() => {
     dispatch(mainActions.loadCrewDB());
   }, []);
-  
+
   const [open, setOpen] = useState(false);
-  
+
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
-  
-  // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정  
 
-  if (__isMaster === "" && __listMyMeeting === "" && __listTodayMeeting === "" && __listRecommendMeeting === "" && __listNewMeeting === "" ) return <></>;
+  // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정
+
+  if (
+    __isMaster === "" &&
+    __listMyMeeting === "" &&
+    __listTodayMeeting === "" &&
+    __listRecommendMeeting === "" &&
+    __listNewMeeting === ""
+  )
+    return <></>;
 
   // ========================================================================
 
   return (
     <>
-      <Header />
       <Slide />
       {/* container St 작업 */}
-      <Container> 
-
-      <StSearchBox>
-        <StInputLine>
-          <StInput 
+      <Container>
+        <StSearchBox>
+          <StInputLine>
+            <StInput
               name="title"
-              placeholder="원하는 모임을 검색해주세요." 
-              
+              placeholder="원하는 모임을 검색해주세요."
+
               // onChange={onChangeInputHandler}
             />
-          <StSearchBtn>
-            <SearchIcon fontSize="large"/>
-          </StSearchBtn>
-        </StInputLine>
-      </StSearchBox>
+            <StSearchBtn>
+              <SearchIcon fontSize="large" />
+            </StSearchBtn>
+          </StInputLine>
+        </StSearchBox>
 
+        <ModalBtnGrid>
+          <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+            모임 생성하기
+          </ModalOpenBtn>
+          <Modal open={open}>
+            <Box sx={style} style={{ position: "relative" }}>
+              <ModalCloseBtn onClick={handleModalClose}>
+                <CloseIcon fontSize="large" />
+              </ModalCloseBtn>
+              <ModalCrew />
+            </Box>
+          </Modal>
+        </ModalBtnGrid>
 
-      <ModalBtnGrid>
-        <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-          모임 생성하기
-        </ModalOpenBtn>
-        <Modal open={open}>
-          <Box sx={style} style={{ position: "relative" }}>
-            <ModalCloseBtn onClick={handleModalClose}>
-              <CloseIcon fontSize="large" />
-            </ModalCloseBtn>
-            <ModalCrew />
-          </Box>
-        </Modal>
-      </ModalBtnGrid>
+        <StCrewTitle>
+          <Elchip shape="Fill" width="96px" height="35px">
+            <Eltext type="sub_2_bold" color="white">
+              내 모임
+            </Eltext>
+          </Elchip>
+        </StCrewTitle>
 
-      <StCrewTitle>
-        <Elchip shape="Fill" width="96px" height="35px">
-          <Eltext type="sub_2_bold" color="white">
-            내 모임
-          </Eltext>
-        </Elchip>
-      </StCrewTitle>
-
-      {/* <MyCrewGrid> */}
+        {/* <MyCrewGrid> */}
         <CardGrid>
-
-          {__listMyMeeting === "" 
-          ? 
-          (
-              <StMyCrew>
-                <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
-                    마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
-                </Eltext>
-              </StMyCrew>
-            )  
-            :
-             ( 
-              __listMyMeeting.map((p, idx) => {
-              return <Cards key={idx} {...p}/>})
-             )
-            }
-       
+          {__listMyMeeting === "" ? (
+            <StMyCrew>
+              <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
+                마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
+              </Eltext>
+            </StMyCrew>
+          ) : (
+            __listMyMeeting.map((p, idx) => {
+              return <Cards key={idx} {...p} />;
+            })
+          )}
         </CardGrid>
-        
-      {/* </MyCrewGrid> */}
 
+        {/* </MyCrewGrid> */}
       </Container>
       <CrewGroupGrid>
-      <GoSearchBtnGrid>
-        <GoSearchBtn shape="brown-outline" 
-        onClick={()=>{history.push("/search")}}>
-          전체 보기
-        </GoSearchBtn>
-      </GoSearchBtnGrid>
+        <GoSearchBtnGrid>
+          <GoSearchBtn
+            shape="brown-outline"
+            onClick={() => {
+              history.push("/search");
+            }}
+          >
+            전체 보기
+          </GoSearchBtn>
+        </GoSearchBtnGrid>
         <TitleGridA>
           <Elchip shape="Fill" width="170px" height="35px">
             <Eltext type="sub_2_bold" color="white">
@@ -131,19 +134,15 @@ const Main = (props) => {
           </Elchip>
         </TitleGridA>
         <GroupGrid>
-
           <CardGrid>
-          {__listTodayMeeting.map((p, idx) => { 
-            return (
-            <CardGrid key={idx}>
-            <Cards {...p} /> 
-            </CardGrid>
-                )
-              }
-            )
-          }
+            {__listTodayMeeting.map((p, idx) => {
+              return (
+                <CardGrid key={idx}>
+                  <Cards {...p} />
+                </CardGrid>
+              );
+            })}
           </CardGrid>
-        
         </GroupGrid>
         <StCrewTitle>
           <Elchip shape="Fill" width="120px" height="35px">
@@ -153,19 +152,15 @@ const Main = (props) => {
           </Elchip>
         </StCrewTitle>
         <GroupGrid>
-
           <CardGrid>
-          {__listRecommendMeeting.map((p, idx) => { 
-            return (
-            <CardGrid key={idx}>
-            <Cards {...p} /> 
-            </CardGrid>
-                )
-              }
-            )
-          }
+            {__listRecommendMeeting.map((p, idx) => {
+              return (
+                <CardGrid key={idx}>
+                  <Cards {...p} />
+                </CardGrid>
+              );
+            })}
           </CardGrid>
-         
         </GroupGrid>
         <StCrewTitle>
           <Elchip shape="Fill" width="120px" height="35px">
@@ -175,22 +170,17 @@ const Main = (props) => {
           </Elchip>
         </StCrewTitle>
         <GroupGrid>
-          
-        <CardGrid>
-          {__listNewMeeting.map((p, idx) => { 
-            return (
-            <CardGrid key={idx}>
-            <Cards {...p} /> 
-            </CardGrid>
-                )
-              }
-            )
-          }
-        </CardGrid>
-          
+          <CardGrid>
+            {__listNewMeeting.map((p, idx) => {
+              return (
+                <CardGrid key={idx}>
+                  <Cards {...p} />
+                </CardGrid>
+              );
+            })}
+          </CardGrid>
         </GroupGrid>
       </CrewGroupGrid>
-      <Footer />
     </>
   );
 };
@@ -275,7 +265,6 @@ const CardGrid = styled.div`
   /* border: 1px solid black; */
 `;
 
-
 const StMyCrew = styled.div`
   ${flex("center", "center", true)}
   width: 100%;
@@ -311,7 +300,7 @@ const StSearchBtn = styled.button`
 const StInputLine = styled.div`
   width: 1045px;
   height: 35px;
-  margin-top:62px;
+  margin-top: 62px;
   align-items: center;
   border-radius: 5px;
   border: 1px solid var(--point);

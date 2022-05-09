@@ -56,12 +56,10 @@ const kakaoLogin = (payload) => (dispatch, getState) => {
 };
 
 const kakaoLogout = (payload) => (dispatch, getState) => {
-  const accessToken = getCookie("accessToken");
-  const refreshToken = getCookie("refreshToken");
-  removeCookie("accessToken", accessToken, {
+  removeCookie("accessToken", {
     path: "/",
   });
-  removeCookie("refreshToken", refreshToken, {
+  removeCookie("refreshToken", {
     path: "/",
   });
   localStorage.removeItem("userId");

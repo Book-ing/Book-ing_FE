@@ -79,7 +79,7 @@ export default Header;
 
 const HeaderWrap = styled.div`
   z-index: 99999;
-  width: 100vw;
+  width: 100%;
   padding: 20px 0;
   background-color: #fff;
   ${flex("center", "center", true)}

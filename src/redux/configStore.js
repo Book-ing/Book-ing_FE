@@ -4,6 +4,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import main from "./modules/main";
 import user from "./modules/user";
 import mypage from "./modules/mypage";
+import crew from "./modules/crew";
+import accordion from "./modules/accordion";
 
 // middlewares
 import thunk from "redux-thunk";
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
   main: main,
   user: user,
   mypage: mypage,
+  crew: crew,
+  accordion: accordion,
   router: connectRouter(history),
 });
 
