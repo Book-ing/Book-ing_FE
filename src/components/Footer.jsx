@@ -35,9 +35,10 @@ const Footer = () => {
 export default Footer;
 
 const FooterWrap = styled.div`
-  width: 100vw;
-  background-color: #fff;
   ${flex("center", "center", true)}
+  width: 100%;
+  background-color: #fff;
+  margin-top: auto;
 `;
 
 const FooterBox = styled.div`

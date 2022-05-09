@@ -1,21 +1,32 @@
 import * as React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
+// modules
+import { actionCreators as accordionActions } from "../../redux/modules/accordion";
+
+// mui
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 
 // styled components
-import styledComp from "styled-components";
-import { Eltext } from "../../elements";
+import { Eltext, Elbutton } from "../../elements";
+
+// components
+import AccordionSummaryComponent from "./AccordionSummaryComponents";
 
 // theme
 import flex from "../../themes/flex";
+import AccordionDetailsComponent from "./AccordionDetailsComponent";
 
 const Accordion = styled((props) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
+  <MuiAccordion disableGutters elevation={3} square {...props} />
 ))(({ theme }) => ({
+  marginBottom: "5px",
   border: `1px solid ${theme.palette.divider}`,
   "&:not(:last-child)": {
     borderBottom: 0,
@@ -25,111 +36,65 @@ const Accordion = styled((props) => (
   },
 }));
 
-const AccordionSummary = styled((props) => (
-  <MuiAccordionSummary
-    style={{ paddingLeft: "42px", paddingRight: "42px" }}
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "25px" }} />}
-    {...props}
-  />
-))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark" ? "rgba(255, 255, 255, .05)" : "#fbf9f9",
-  flexDirection: "row-reverse",
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
-  },
-  "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
-  },
-}));
+const CustomizedAccordions = (props) => {
+  const dispatch = useDispatch();
 
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
-}));
+  // redux store
+  const __meetingId = useSelector((state) => state.crew.meetingId);
+  const __accorionData = useSelector((state) => state.accordion.accordionData);
 
-const CustomizedAccordions = () => {
-  const [expanded, setExpanded] = React.useState("panel1");
+  const [expanded, setExpanded] = React.useState("");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
-  return (
-    <div>
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <CrewInfo>
-            <TitleText type="sub_2_bold">
-              모임명 :{} 햄찌 친구들 모여라~!
-            </TitleText>
-            <InfoText type="sub_2">금액 : {}5000원</InfoText>
-            <InfoText type="sub_2">일시 : {}2022년 12월 32일 14:00</InfoText>
-            <InfoText type="sub_2">
-              위치 : {}태양도 수성시 금성구 지구동 화성면 369-30, 1층
-            </InfoText>
-          </CrewInfo>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget.Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget.Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget.Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+  useEffect(() => {
+    dispatch(accordionActions.getAccordionDB(__meetingId));
+  }, []);
 
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
-      >
-        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Collapsible Group Item #2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </div>
+  if (__accorionData === "") return <></>;
+
+  return (
+    <>
+      {__accorionData.length ? (
+        __accorionData.map((cur, idx) => {
+          return (
+            <Accordion
+              expanded={expanded === __accorionData[idx].studyId}
+              onChange={handleChange(__accorionData[idx].studyId)}
+              key={idx}
+            >
+              <AccordionSummaryComponent props={cur} />
+
+              <AccordionDetailsComponent props={cur} />
+            </Accordion>
+          );
+        })
+      ) : (
+        <StudyNoneNotice type="sub_1">
+          생성된 스터디가 없습니다,
+          <br /> 새로운 스터디를 만들어 볼까요?
+          <br />
+          <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn>
+        </StudyNoneNotice>
+      )}
+    </>
   );
 };
 
 export default CustomizedAccordions;
 
-const CrewInfo = styledComp.div`
-${flex("center", "start", false)}
-  margin-left: 40px;
+const StudyNoneNotice = styled(Eltext)`
+  text-align: center;
+  line-height: 50px;
+  margin: auto;
+  color: var(--gray);
 `;
 
-const TitleText = styledComp(Eltext)``;
-
-const InfoText = styledComp(Eltext)``;
+const CreateStudyBtn = styled(Elbutton)`
+  width: 147px;
+  height: 35px;
+  border-radius: 7px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+`;

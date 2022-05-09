@@ -23,43 +23,42 @@ const Search = () => {
 
   return (
     <React.Fragment>
-      <Header />
       <TagTop>
-      <StSearchBox>
-        <StSelect name="region">
-          {SelectList.map((cur) => (
-            <option value={cur} key={cur}>
-              {cur}
-            </option>
-          ))}
-        </StSelect>
-        <StInput
-              name="title"
-              placeholder="원하는 모임을 검색해주세요."
-              // onChange={onChangeInputHandler}
-            />
-      </StSearchBox>
-      <StCategoryBox>
-      <StInputName type="sub_2_bold">Category</StInputName>
-        <ElcategoryCheckbox />
-      </StCategoryBox>
+        <StSearchBox>
+          <StSelect name="region">
+            {SelectList.map((cur) => (
+              <option value={cur} key={cur}>
+                {cur}
+              </option>
+            ))}
+          </StSelect>
+          <StInput
+            name="title"
+            placeholder="원하는 모임을 검색해주세요."
+            // onChange={onChangeInputHandler}
+          />
+        </StSearchBox>
+        <StCategoryBox>
+          <StInputName type="sub_2_bold">Category</StInputName>
+          <ElcategoryCheckbox />
+        </StCategoryBox>
       </TagTop>
       <TagBottom>
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -72,18 +71,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -96,18 +95,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -120,18 +119,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -144,18 +143,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -168,18 +167,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -192,18 +191,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -216,18 +215,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -240,18 +239,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -264,43 +263,18 @@ const Search = () => {
         <StCrewList>
           <StCrewInfo>
             <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
             </StTextBox>
             <Elcategory shape="sports">
               <Eltext type="sub_2" color="white">
                 스포츠
               </Eltext>
-              </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList> 
-        
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-            <Eltext type="sub_2_bold">
-              <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-            </Eltext>
-            <Eltext type="sub_2">
-              <div>모임소개글 Info가 적히게 됩니다.</div>
-            </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-              </Elcategory>
+            </Elcategory>
           </StCrewInfo>
           <StButton>
             <Elchip shape="Fill" width="96px" height="36px">
@@ -311,8 +285,31 @@ const Search = () => {
           </StButton>
         </StCrewList>
 
+        <StCrewList>
+          <StCrewInfo>
+            <StTextBox>
+              <Eltext type="sub_2_bold">
+                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
+              </Eltext>
+              <Eltext type="sub_2">
+                <div>모임소개글 Info가 적히게 됩니다.</div>
+              </Eltext>
+            </StTextBox>
+            <Elcategory shape="sports">
+              <Eltext type="sub_2" color="white">
+                스포츠
+              </Eltext>
+            </Elcategory>
+          </StCrewInfo>
+          <StButton>
+            <Elchip shape="Fill" width="96px" height="36px">
+              <Eltext type="sub_2" color="white">
+                보러가기
+              </Eltext>
+            </Elchip>
+          </StButton>
+        </StCrewList>
       </TagBottom>
-      <Footer />
     </React.Fragment>
   );
 };
@@ -369,7 +366,7 @@ const StCrewList = styled.div`
   margin-left: 99px;
   width: 1267px;
   height: 85px;
-  background-color: #FBF9F9;
+  background-color: #fbf9f9;
   margin-bottom: 15px;
   /* border: 1px solid black; */
 `;
@@ -393,4 +390,4 @@ const StButton = styled.div`
   padding-right: 63px;
   align-items: center;
   /* border: 1px solid black; */
-`
+`;

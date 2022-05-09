@@ -28,14 +28,12 @@ const Mypage = () => {
   return (
     <React.Fragment>
       <MypageWrap>
-        <Header />
         <CenterWrap>
           <Sidebar clickText={setIsMyCrew} />
           <MainSection>
             {isMyCrew === true ? <MyCrew /> : <MyStudy />}
           </MainSection>
         </CenterWrap>
-        <Footer />
       </MypageWrap>
     </React.Fragment>
   );

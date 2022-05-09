@@ -16,6 +16,8 @@ const GlobalStyles = createGlobalStyle`
 		--gray : #989696;
   };
   * {
+		margin:0;
+		padding: 0;
 		${scrollbar};
 		box-sizing : border-box;
 	}
@@ -24,12 +26,17 @@ const GlobalStyles = createGlobalStyle`
 		padding: 0;
 		box-sizing: border-box;
 		font-size:62.5%;
+		height: 100%;
 	}
 	body{
 		position: relative;
 		margin: 0;
 		padding: 0;
 		font-family: 'Noto Sans KR',sans-serif;
+		height: 100%;
+	}
+	#root {
+		height: 100%;
 	}
 	a { 
 		color: var(--black);
