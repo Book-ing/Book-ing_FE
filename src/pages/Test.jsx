@@ -2,14 +2,50 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Slide from "../components/Slide";
 import Footer from "../components/Footer";
-import ModalCrew from "../components/Modal/ModalCrew";
+import ModalStudy from "../components/Modal/ModalStudy";
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
 import { Elbutton } from "../elements";
-import ElcategoryRadio from "../elements/ElcategoryRadio";
-import Accordion from "../components/Accordion/Accordion";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+// import React, { useState } from 'react';
+// import PopupDom from './PopupDom';
+// import PopupPostCode from './PopupPostCode';
+ 
+// const Test = () => {
+// 	// 팝업창 상태 관리
+//     const [isPopupOpen, setIsPopupOpen] = useState(false)
+ 
+// 	// 팝업창 열기
+//     const openPostCode = () => {
+//         setIsPopupOpen(true)
+//     }
+ 
+// 	// 팝업창 닫기
+//     const closePostCode = () => {
+//         setIsPopupOpen(false)
+//     }
+ 
+//     return(
+//         <div>
+//         	// 버튼 클릭 시 팝업 생성
+//             <button type='button' onClick={openPostCode}>우편번호 검색</button>
+//             // 팝업 생성 기준 div
+//             <div id='popupDom'>
+//                 {isPopupOpen && (
+//                     <PopupDom>
+//                         <PopupPostCode onClose={closePostCode} />
+//                     </PopupDom>
+//                 )}
+//             </div>
+//         </div>
+//     )
+// }
+ 
+// export default Test;
 
 const Test = (props) => {
   const [open, setOpen] = useState(false);
@@ -17,26 +53,34 @@ const Test = (props) => {
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 
+  const [date, setDate] = useState(new Date());
+
+  const handleCalendarClose = () => console.log("Calendar closed");
+  const handleCalendarOpen = () => console.log("Calendar opened");
+
   return (
     <>
       <Header />
       <Slide />
+      <DatePicker />
       <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-        모임 생성하기
+       스터디 생성하기
       </ModalOpenBtn>
       <Modal open={open}>
         <Box sx={style} style={{ position: "relative" }}>
           <ModalCloseBtn onClick={handleModalClose}>
             <CloseIcon fontSize="large" />
           </ModalCloseBtn>
-          <ModalCrew />
+          <ModalStudy />
         </Box>
       </Modal>
-      {/* <ElcategoryRadio /> */}
-      <StAccordion>
-        <Accordion></Accordion>
-        <Accordion></Accordion>
-      </StAccordion>
+      <DatePicker
+      selected={date}
+      onChange={(date) => setDate(date)}
+      onCalendarClose={handleCalendarClose}
+      onCalendarOpen={handleCalendarOpen}
+    />
+
       <Footer />
     </>
   );
