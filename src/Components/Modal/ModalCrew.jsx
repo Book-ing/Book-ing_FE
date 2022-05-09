@@ -12,7 +12,7 @@ const ModalCrew = (props) => {
 
   // state
   const [fileName, setFileName] = useState("");
-  const [modalCrewInfo, setModalCrewInfo] = useState({
+  const [addCrewInfo, setAddCrewInfo] = useState({
     title: "",
     category: "",
     intro: "",
@@ -22,9 +22,11 @@ const ModalCrew = (props) => {
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;
-    setModalCrewInfo({
-      ...modalCrewInfo,
+
+    setAddCrewInfo({
+      ...addCrewInfo,
       [name]: value,
+      
     });
   };
 
@@ -47,12 +49,20 @@ const ModalCrew = (props) => {
   // dispatch function for axios
   const ProduceDB = (e) => {
     e.preventDefault();
-    console.log(modalCrewInfo);
     const file = fileInput.current.files[0];
-    console.log(file);
-    dispatch(mainActions.addCrewDB({modalCrewInfo, file}));
-  };
 
+    const newCrewInfo = {
+      name: addCrewInfo.title,
+      category: addCrewInfo.category,
+      intro: addCrewInfo.intro,
+      location: addCrewInfo.region,
+      cnt: addCrewInfo.headCount,
+      image:file,
+    }
+    console.log(newCrewInfo);
+    dispatch(mainActions.addCrewDB(newCrewInfo));
+  };
+  const handleModalClose = props.handleModalClose
   return (
     <React.Fragment>
       <ModalWrap>
@@ -138,6 +148,7 @@ const ModalCrew = (props) => {
               }}
             >
               <PostBtn shape="brown-outline">게시하기</PostBtn>
+              {/* <button onClick={handleModalClose}>닫기버튼이다싸바라</button> */}
             </div>
           </form>
         </ModalBox>

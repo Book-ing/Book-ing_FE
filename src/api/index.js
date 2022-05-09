@@ -25,7 +25,7 @@ export const requiredInstance = axios.create({
 // formdata 로 넘길 때 쓰일 인스턴스 (모임방 생성)
 export const formDataInstance = axios.create({
   baseURL: targetServer,
-  headers: {
+  body: {
     "content-type": "multipart/form-data",
   },
 });

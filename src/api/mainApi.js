@@ -1,7 +1,9 @@
-import { instance, loginInstance } from "./index";
+import { instance, requiredInstance } from "./index";
 
 export const mainApi = {
-  load: () => loginInstance.get(`/api/main`),
+  load: (userId) => requiredInstance.get(`/api/main?userId=${userId}`),
+
+  load_none: () => instance.get(`/api/main`),
 
   posting: (formData) => instance.post(`/api/meeting`, formData),
 };

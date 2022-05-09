@@ -24,7 +24,7 @@ const initialstate = {
 
 // thunk
 const kakaoLogin = (payload) => (dispatch, getState) => {
-  console.log(payload);
+  
   userApi
     .login(payload)
     .then((res) => {
