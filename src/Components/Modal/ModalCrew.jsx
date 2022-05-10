@@ -108,7 +108,12 @@ const ModalCrew = (props) => {
                 <div style={{ display: "flex" }}>
                   <StInput
                     name="headCount"
-                    max="300"
+                    max="300"       
+
+                    
+                    // ================= min="2" 처리해야하는데 css깨짐
+
+
                     type="number"
                     placeholder="최대 300명 까지 가능합니다."
                     onChange={onChangeInputHandler}

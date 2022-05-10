@@ -1,11 +1,14 @@
 import React from 'react';
 import DaumPostcode from "react-daum-postcode";
+import { useDispatch } from 'react-redux';
+import { postCode } from '../../redux/modules/postcode';
  
 const PopupPostCode = (props) => {
-	// 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
-    const handlePostCode = (data) => {
-        let fullAddress = data.address;
-        let extraAddress = ''; 
+  const dispatch = useDispatch();
+  // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
+  const handlePostCode = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = ''; 
         
         // 주소 조합용 로직 수정해야할 사항 있음
         if (data.addressType === 'R') {
@@ -17,13 +20,10 @@ const PopupPostCode = (props) => {
           }
           fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-        document.getElementById('roadAddress').value = data.roadAddress;
-        document.getElementById('postCode').value = data.zonecode;
-        document.getElementById('jibunAddress').value = data.jibunAddress;
-        document.getElementById('buildingName').value = data.buildingName;
-        // console.log(data)
-        // console.log(fullAddress)
-        // console.log(data.zonecode)
+
+        dispatch(postCode(data));
+        // console.log(fullAddress);
+        // console.log(data.zonecode);
         props.onClose()
     }
  

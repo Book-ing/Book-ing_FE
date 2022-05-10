@@ -6,6 +6,8 @@ import user from "./modules/user";
 import mypage from "./modules/mypage";
 import crew from "./modules/crew";
 import accordion from "./modules/accordion";
+import book from "./modules/book";
+import study from "./modules/study";
 
 // middlewares
 import thunk from "redux-thunk";
@@ -13,9 +15,13 @@ import thunk from "redux-thunk";
 // redux router
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
+import postcode from "./modules/postcode";
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  study: study,
+  postcode: postcode,
+  book: book,
   main: main,
   user: user,
   mypage: mypage,

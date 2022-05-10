@@ -4,5 +4,6 @@ import Main from "./Main";
 import MyPage from "./MyPage";
 import NoteWrite from "./NoteWrite";
 import Search from "./Search";
+import Test from "./Test"
 
-export { Login, Crew, Main, MyPage, NoteWrite, Search };
+export { Login, Crew, Main, MyPage, NoteWrite, Search, Test };

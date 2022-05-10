@@ -6,7 +6,9 @@
    import BookSearch from "../BookSearch/BookSearch";
    import Book from "../BookSearch/Book";
 
+
    const PopupBookSearch = (props) => {
+
    // 검색어를 관리할 State
    const [searchValue, setSearchValue] = useState('');
 
@@ -42,7 +44,9 @@
       {/* 검색 결과 컨테이너 */}
       <ResultContainer>
         {searchBookList.map((book, index) => (
-            <Book key={index} imgURL={book.thumbnail} name={book.title} price={book.price} writer={book.authors.join(', ')} publisher={book.publisher} salePrice={book.sale_price} desc={book.contents} />
+          <div key={index}>
+            <Book imgURL={book.thumbnail} name={book.title} price={book.price} writer={book.authors.join(', ')} publisher={book.publisher} salePrice={book.sale_price} desc={book.contents} popupClose={props.onClose}/>
+          </div>
         ))}
       </ResultContainer>
     </React.Fragment>
