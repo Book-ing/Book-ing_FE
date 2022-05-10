@@ -12,6 +12,7 @@ import { Eltext, Elbutton } from "../../elements";
 
 // theme
 import flex from "../../themes/flex";
+import Location from "../Location";
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(5),
@@ -20,7 +21,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const studyNote = null;
 
-const AccordionDetailsComponent = () => {
+const AccordionDetailsComponent = (props) => {
+  console.log(props.props);
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>
@@ -28,17 +30,16 @@ const AccordionDetailsComponent = () => {
           <StudysectionTag type="sub_2_bold">스터디 공지</StudysectionTag>
 
           <StudyNoticeText type="sub_2">
-            {}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus tempore eaque ut aliquid corporis recusandae itaque,
-            ad in sed earum blanditiis et iste porro vero laboriosam odit non,
+            {props.props.studyNotice}
           </StudyNoticeText>
         </Grid>
 
         <Grid item xs={6}>
           <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
           {/* Markered 지도 삽입 */}
-          <KAKAOMAPSECTION style={{ marginTop: "20px" }}></KAKAOMAPSECTION>
+          <KAKAOMAPSECTION style={{ marginTop: "20px" }}>
+            <Location props={props.props} />
+          </KAKAOMAPSECTION>
         </Grid>
       </Grid>
 
@@ -72,19 +73,19 @@ const AccordionDetailsComponent = () => {
                 <Avatar
                   sx={{ width: "150px", height: "220px" }}
                   variant="square"
-                  // src={}
+                  src={props.props.studyBookImg}
                 />
               </Grid>
               <Grid item xs style={{ marginLeft: "40px" }}>
-                <Eltext type="sub_2_bold">책 제목 : {}React 부셔버리기</Eltext>
-                <Eltext type="sub_2">지은이 : {}박민우</Eltext>
-                <Eltext type="sub_2">출판사 : {} 스파르타코딩클럽</Eltext>
+                <Eltext type="sub_2_bold">
+                  책 제목 : {props.props.studyBookTitle}
+                </Eltext>
+                <Eltext type="sub_2">지은이 : 필요값{}</Eltext>
+                <Eltext type="sub_2">출판사 : 필요값{}</Eltext>
                 <Eltext type="sub_2">
-                  책 소개 : {}
+                  책 소개 :
                   <br />
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae, eos voluptas. Harum dignissimos aliquid repellat
-                  illum inventore molestias blanditiis, nesciunt perspiciatis.
+                  {props.props.studyBookInfo}
                 </Eltext>
               </Grid>
             </Grid>
@@ -161,7 +162,6 @@ const StudysectionTag = styled(Eltext)`
 `;
 
 const StudyNoticeText = styled(Eltext)`
-  border: 1px solid red;
   width: 80%;
   margin: 20px 0 0 10px;
 `;
@@ -210,5 +210,5 @@ const CreateStudyNote = styled(Elbutton)`
 const KAKAOMAPSECTION = styledComp.div`
   border: 2px solid var(--point);
   width: 100%;
-  min-height: 200px;
+  min-height: 300px;
 `;

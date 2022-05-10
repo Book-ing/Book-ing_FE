@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { actionCreators as CrewActions } from "../redux/modules/crew";
@@ -10,6 +10,7 @@ import styled from "styled-components";
 import CrewInfoTopBox from "../components/CrewpageComponents/CrewInfoTopBox";
 import CrewInfoBottomBox from "../components/CrewpageComponents/CrewInfoBottomBox";
 import StudySection from "../components/CrewpageComponents/StudySection";
+import Spinner from "../components/Spinner";
 
 // themes
 import flex from "../themes/flex";

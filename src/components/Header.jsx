@@ -39,7 +39,14 @@ const Header = () => {
             }}
           ></Logo>
           <HeaderBtns>
-            <StBtn shape="brown-outline">HOME</StBtn>
+            <StBtn
+              shape="brown-outline"
+              _onClick={() => {
+                history.push("/");
+              }}
+            >
+              HOME
+            </StBtn>
             {!isLogin ? (
               <React.Fragment>
                 <StBtn

@@ -6,15 +6,18 @@ import { accordionApi } from "../../api/accordion";
 
 // action
 const GET_ACCORDION_INFO = "GET_ACCORDION_INFO";
+const RESET_ACCORDION = "RESET_ACCORDION";
 
 // action creators
 const get_accordion_info = createAction(GET_ACCORDION_INFO, (payload) => ({
   payload,
 }));
+const reset_accordion = createAction(RESET_ACCORDION, () => ({}));
 
 // initialState
 const initialState = {
   accordionData: "",
+  isLoading: true,
 };
 
 // thunk
@@ -22,7 +25,6 @@ const getAccordionDB = (payload) => (dispatch, getState) => {
   accordionApi
     .getAccordion(payload)
     .then((res) => {
-      console.log(res.data.studyList);
       dispatch(get_accordion_info(res.data.studyList));
     })
     .catch((err) => {
@@ -36,11 +38,17 @@ export default handleActions(
     [GET_ACCORDION_INFO]: (state, action) =>
       produce(state, (draft) => {
         draft.accordionData = action.payload.payload;
+        draft.isLoading = false;
+      }),
+    [RESET_ACCORDION]: (state, action) =>
+      produce(state, (draft) => {
+        draft.accordionData = "";
+        console.log(draft.accordionData);
       }),
   },
   initialState
 );
 
-const actionCreators = { getAccordionDB };
+const actionCreators = { getAccordionDB, reset_accordion };
 
 export { actionCreators };
