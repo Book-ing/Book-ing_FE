@@ -14,21 +14,21 @@ import "react-datepicker/dist/react-datepicker.css";
 // import React, { useState } from 'react';
 // import PopupDom from './PopupDom';
 // import PopupPostCode from './PopupPostCode';
- 
+
 // const Test = () => {
 // 	// 팝업창 상태 관리
 //     const [isPopupOpen, setIsPopupOpen] = useState(false)
- 
+
 // 	// 팝업창 열기
 //     const openPostCode = () => {
 //         setIsPopupOpen(true)
 //     }
- 
+
 // 	// 팝업창 닫기
 //     const closePostCode = () => {
 //         setIsPopupOpen(false)
 //     }
- 
+
 //     return(
 //         <div>
 //         	// 버튼 클릭 시 팝업 생성
@@ -44,7 +44,7 @@ import "react-datepicker/dist/react-datepicker.css";
 //         </div>
 //     )
 // }
- 
+
 // export default Test;
 
 const Test = (props) => {
@@ -64,7 +64,7 @@ const Test = (props) => {
       <Slide />
       <DatePicker />
       <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-       스터디 생성하기
+        스터디 생성하기
       </ModalOpenBtn>
       <Modal open={open}>
         <Box sx={style} style={{ position: "relative" }}>
@@ -75,11 +75,11 @@ const Test = (props) => {
         </Box>
       </Modal>
       <DatePicker
-      selected={date}
-      onChange={(date) => setDate(date)}
-      onCalendarClose={handleCalendarClose}
-      onCalendarOpen={handleCalendarOpen}
-    />
+        selected={date}
+        onChange={(date) => setDate(date)}
+        onCalendarClose={handleCalendarClose}
+        onCalendarOpen={handleCalendarOpen}
+      />
 
       <Footer />
     </>
