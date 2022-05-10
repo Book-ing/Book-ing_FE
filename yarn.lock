@@ -6331,6 +6331,11 @@ jwt-decode@^3.1.2:
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
   integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
+kakao.maps.d.ts@^0.1.26:
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/kakao.maps.d.ts/-/kakao.maps.d.ts-0.1.26.tgz#82499b5f260a7cf4a66a3c5363cc1da2d25d169b"
+  integrity sha512-62NXQuEN/gsdi6qdsTBndpEvsLLG8GFKnkgFnG1ECi30YIENB1atqozkP2/b8MtkwUztoYwGu3KpXtH2u0xf4Q==
+
 keyv@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.1.0.tgz#ecc228486f69991e49e9476485a5be1e8fc5c4d9"
@@ -8047,6 +8052,13 @@ react-is@^17.0.1, react-is@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-kakao-maps-sdk@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-kakao-maps-sdk/-/react-kakao-maps-sdk-1.0.7.tgz#2903c7613ab74f4d9c459bf5842dfec911816608"
+  integrity sha512-Y2uG3Rxsd9IirFmgXqNt3o9IPkTCuZsJcXODSMyeH1FAnSOeYh7pWLIm5S2YvygJMkUNWO+aqWU6fHkCxj1sDQ==
+  dependencies:
+    kakao.maps.d.ts "^0.1.26"
 
 react-lifecycles-compat@^3.0.0:
   version "3.0.4"

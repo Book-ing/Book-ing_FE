@@ -38,10 +38,10 @@ const Accordion = styled((props) => (
 
 const CustomizedAccordions = (props) => {
   const dispatch = useDispatch();
+  const paramsUserId = useParams();
 
   // redux store
-  const __meetingId = useSelector((state) => state.crew.meetingId);
-  const __accorionData = useSelector((state) => state.accordion.accordionData);
+  const __accordionData = useSelector((state) => state.accordion.accordionData);
 
   const [expanded, setExpanded] = React.useState("");
 
@@ -50,19 +50,22 @@ const CustomizedAccordions = (props) => {
   };
 
   useEffect(() => {
-    dispatch(accordionActions.getAccordionDB(__meetingId));
+    dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
+    return () => {
+      dispatch(accordionActions.reset_accordion());
+    };
   }, []);
 
-  if (__accorionData === "") return <></>;
+  if (__accordionData === "") return <></>;
 
   return (
     <>
-      {__accorionData.length ? (
-        __accorionData.map((cur, idx) => {
+      {__accordionData.length ? (
+        __accordionData.map((cur, idx) => {
           return (
             <Accordion
-              expanded={expanded === __accorionData[idx].studyId}
-              onChange={handleChange(__accorionData[idx].studyId)}
+              expanded={expanded === __accordionData[idx].studyId}
+              onChange={handleChange(__accordionData[idx].studyId)}
               key={idx}
             >
               <AccordionSummaryComponent props={cur} />

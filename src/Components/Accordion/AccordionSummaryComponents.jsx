@@ -40,8 +40,14 @@ const AccordionSummary = styled((props) => (
 }));
 
 const AccordionSummaryComponent = (props) => {
-  console.log(props);
-  console.log(props.props.together.profileImage);
+  // variables
+  const studyDate = props.props.studyDateTime;
+  const [splitedStudyDate, splitedTime] = studyDate.split(" ");
+  const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
+
+  console.log("스플릿결과", splitedStudyDate, splitedTime);
+  console.log(splitedYY, splitedMM, splitedDD);
+
   return (
     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
       <AccordionHeaderWrap>
@@ -55,10 +61,10 @@ const AccordionSummaryComponent = (props) => {
             </TitleText>
             <InfoText type="sub_2">금액 : {props.props.studyPrice}원</InfoText>
             <InfoText type="sub_2">
-              일시 : {props.props.studyDateTime}2022년 12월 32일 14:00
+              일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
             </InfoText>
             <InfoText type="sub_2">
-              위치 : {props.props.studyAddr} {props.props.studyAddrDetail}
+              위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
             </InfoText>
           </CrewInfo>
         </Grid>
@@ -70,28 +76,20 @@ const AccordionSummaryComponent = (props) => {
           alignItems="center"
         >
           <TotalMember type="sub_2">
-            {}5명 / {}10명
+            {props.props.studyUserCnt}명 /{props.props.studyLimitCnt}명
           </TotalMember>
           <Avatar
             style={{
               marginRight: "10px",
               border: "2px solid var(--point)",
             }}
-            src={
-              props.props.together.isStudyMaster === true
-                ? props.props.together.profileImage
-                : null
-            }
+            src={props.props.studyMasterProfile.profileImage}
           />
           <AvatarGroup max={4}>
             {props.props.together.map((cur, idx) => (
               <Avatar
                 key={idx}
-                src={
-                  !props.props.together[idx].isStudyMaster
-                    ? props.props.together[idx].profileImage
-                    : null
-                }
+                src={props.props.together[idx].profileImage}
               ></Avatar>
             ))}
           </AvatarGroup>

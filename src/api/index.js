@@ -1,8 +1,8 @@
 import axios from "axios";
 import { setCookie, getCookie } from "../shared/cookie";
 
-// const targetServer = "https://sparta-hs.shop/";
-const targetServer = "https://moingxtwice.shop/";
+const targetServer = "https://sparta-hs.shop/";
+// const targetServer = "https://moingxtwice.shop/";
 
 // 로그인, 비로그인 상태에서 required flag를 통하여 판별하여 데이터 렌더링
 export const instance = axios.create({
@@ -48,7 +48,6 @@ instance.interceptors.request.use((config) => {
 
 requiredInstance.interceptors.request.use((config) => {
   const accessToken = getCookie("accessToken");
-  console.log("accessToken", accessToken);
   config.headers.common["Authorization"] = `Bearer ${accessToken}`;
   config.headers.common["required"] = 1;
   return config;
@@ -100,7 +99,7 @@ instance.interceptors.response.use(
         isTokenRefreshing = true; // false 일때는 true로 바꿔주고.
         const refreshToken = getCookie("refreshToken"); // 리프레시 토큰을 쿠키에서 가져와서
 
-        const { data } = await axios.post(
+        const { data } = await axios.get(
           `${targetServer}api/auth/refreshtoken`,
           {
             refreshToken,
