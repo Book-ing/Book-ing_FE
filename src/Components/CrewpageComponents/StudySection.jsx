@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useSelector } from "react-redux";
 
 // styled components
 import styled from "styled-components";
@@ -21,6 +22,9 @@ const StudySection = () => {
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
+  
+  const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
+  const loggedId = localStorage.getItem("userId");
 
   return (
     <StudySectionWrap>
@@ -34,10 +38,16 @@ const StudySection = () => {
         <StudySectionBoxRight>
           {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
 
-        <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+
+          {__isJoinedCrew === true && loggedId ? ( 
+            <>
+            {/* // <CreateStudyBtn shape="brown-outline">
+            //   스터디 생성하기
+            // </CreateStudyBtn> */}
+            <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
           스터디 생성하기
         </ModalOpenBtn>
-        
+ 
         <Modal open={open}>
           <Box sx={style} style={{ position: "relative" }}>
             <ModalCloseBtn onClick={handleModalClose}>
@@ -46,7 +56,8 @@ const StudySection = () => {
               <ModalStudy />
           </Box>
         </Modal>
-
+        </>
+          ) : null}
         </StudySectionBoxRight>
       </StudySectionBox>
       <AccordionSection>
@@ -99,12 +110,12 @@ const StudysectionSearchInput = styled.input`
 
 const StudySectionBoxRight = styled.div``;
 
-const CreateStudyBtn = styled(Elbutton)`
-  width: 147px;
-  height: 35px;
-  border-radius: 7px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-`;
+// const CreateStudyBtn = styled(Elbutton)`
+//   width: 147px;
+//   height: 35px;
+//   border-radius: 7px;
+//   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+// `;
 
 const AccordionSection = styled.div`
   width: 90%;

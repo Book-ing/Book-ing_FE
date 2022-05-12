@@ -19,11 +19,14 @@ const Crew = (props) => {
   const { meetingId } = useParams();
   const dispatch = useDispatch();
 
+  // redux store
   const __crewInfo = useSelector((state) => state.crew.crewData);
+  const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
+  const __newProfileUser = useSelector((state) => state.crew.newProfileUser);
 
   useEffect(() => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
-  }, []);
+  }, [dispatch, meetingId, __isJoinedCrew, __newProfileUser]);
 
   if (__crewInfo === "") return <></>;
 

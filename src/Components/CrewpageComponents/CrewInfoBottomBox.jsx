@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 // mui
-import { Avatar } from "@mui/material";
+import { Avatar, backdropClasses } from "@mui/material";
+import { Modal, Box } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 // styled components
 import styled from "styled-components";
+
+// components
+import UserListModal from "../Modal/UserListModal/UserListModal";
 
 // elelments
 import { Eltext, Elimage, Elbutton } from "../../elements";
@@ -14,6 +19,10 @@ import flex from "../../themes/flex";
 import EachMember from "./EachMember";
 
 const CrewInfoBottomBox = (props) => {
+  const [open, setOpen] = useState(false);
+  const handleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
+
   // variables
   const __crewInfo = props.__crewInfo;
   const __MasterProfile = props.__crewInfo.meetingMasterProfile;
@@ -54,7 +63,24 @@ const CrewInfoBottomBox = (props) => {
       <RightBottomBox>
         <RightBottomBoxHeader>
           <CrewMemberList type="sub_2_bold">함께하는 사람</CrewMemberList>
-          <MembersCheck shape="brown-outline">더보기 +</MembersCheck>
+          <MembersCheck shape="brown-outline" onClick={handleModalOpen}>
+            더보기 +
+          </MembersCheck>
+          {/*  유저리스트 모달 section start */}
+          <Modal
+            open={open}
+            disableScrollLock={true}
+            onBackdropClick={handleModalClose}
+            BackdropProps={{ style: { opacity: 0 } }}
+          >
+            <Box sx={style}>
+              <ModalCloseBtn onClick={handleModalClose}>
+                <CloseIcon fontSize="large" />
+              </ModalCloseBtn>
+              <UserListModal />
+            </Box>
+          </Modal>
+          {/*  유저리스트 모달 section start */}
         </RightBottomBoxHeader>
         <RightBottomBoxMemberBox>
           <EachMember MasterProfile={__MasterProfile} />
@@ -68,6 +94,28 @@ const CrewInfoBottomBox = (props) => {
 };
 
 export default CrewInfoBottomBox;
+
+const style = {
+  position: "absolute",
+  width: "300px",
+  height: "600px",
+  right: "1%",
+  top: "1%",
+  bgcolor: "#fbf9f9",
+  border: "1px solid var(--point)",
+  boxShadow: 24,
+};
+
+const ModalCloseBtn = styled.button`
+  z-index: 20;
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  color: var(--point);
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const TopWrapBottomBox = styled.div`
   ${flex("between", "center", true)}
