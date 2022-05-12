@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { history } from "../../redux/configStore";
+
+// mui
+import { Box, Popover } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 // module
 import { actionCreators as CrewActions } from "../../redux/modules/crew";
@@ -8,12 +13,14 @@ import { actionCreators as CrewActions } from "../../redux/modules/crew";
 // styled components
 import styled from "styled-components";
 
+// components
+import ModalCrew from "../Modal/ModalCrew";
+
 // elelments
 import { Eltext, Ellocation, Elcategory, Elbutton } from "../../elements";
 
 // themes
 import flex from "../../themes/flex";
-import { history } from "../../redux/configStore";
 
 const CrewInfoTopBox = (props) => {
   const dispatch = useDispatch();
@@ -23,6 +30,7 @@ const CrewInfoTopBox = (props) => {
   const isJoinedCrew = props.__crewInfo.isMeetingJoined;
   const crewMasterIdNum = props.__crewInfo.meetingMasterProfile.userId;
   const loggedIdNum = localStorage.getItem("userId");
+  const crewInfo = props.__crewInfo;
 
   // functions
   const deleteCrew = () => {
@@ -53,11 +61,23 @@ const CrewInfoTopBox = (props) => {
     dispatch(CrewActions.quitCrewDB(params.meetingId));
   };
 
-  const [open, setOpen] = useState(false);
-  const handleModalOpen = () => setOpen(true);
-  const handleModalClose = () => setOpen(false);
-
   const __crewInfo = props.__crewInfo;
+
+  // mui Popover - 모달창 중첩 오류 발생원인으로 인하여 Popover로 대체
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setIsEdit(true);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    setIsEdit(false);
+  };
+  const open = Boolean(anchorEl);
+  const id = open ? "EditCrew-popover" : undefined;
+
   return (
     <TopWrapTopBox>
       <TopWrapTopBoxTagBox>
@@ -99,15 +119,34 @@ const CrewInfoTopBox = (props) => {
         </LeftTitleBox>
         <RightTitleBox>
           {crewMasterIdNum === parseInt(loggedIdNum) ? (
-            <EditCrewBtn
-              shape="brown-outline"
-              __onClick={() => {
-                handleModalOpen();
-              }}
-            >
+            <EditCrewBtn shape="brown-outline" onClick={handleClick}>
               수정하기
             </EditCrewBtn>
           ) : null}
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            PaperProps={{
+              styles: {
+                width: "100%",
+              },
+            }}
+          >
+            <Box sx={style}>
+              <CloseIcon fontSize="large" />
+              <ModalCrew isEdit={isEdit} crewInfo={crewInfo} />
+            </Box>
+          </Popover>
         </RightTitleBox>
       </TopWrapTopBoxTitleBox>
     </TopWrapTopBox>
@@ -157,3 +196,11 @@ const EditCrewBtn = styled(Elbutton)`
 `;
 
 const RightTitleBox = styled.div``;
+
+const style = {
+  width: "1300px",
+  height: "100%",
+  bgcolor: "#fbf9f9",
+  boxShadow: 24,
+  borderRadius: "5px",
+};

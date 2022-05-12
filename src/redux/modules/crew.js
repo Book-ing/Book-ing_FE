@@ -12,7 +12,9 @@ const DELETE_CREW = "DELETE_CREW";
 const JOIN_CREW = "JOIN_CREW";
 const QUIT_CREW = "QUIT_CREW";
 const GET_CREW_USERLIST = "GET_CREW_USERLIST";
-const DELETE_CREW_USER_LIST = "DELETE_CREW_USER_LIST";
+const RESET_CREW_USER_LIST = "RESET_CREW_USER_LIST";
+const KICK_CREW_USER = "KICK_CREW_USER";
+const EDIT_CREW_INFO = "EDIT_CREW_INFO";
 
 // action creators
 const get_crew_info = createAction(
@@ -34,10 +36,12 @@ const get_crew_user_list = createAction(
     profileUser,
   })
 );
-const delete_crew_user_list = createAction(
-  DELETE_CREW_USER_LIST,
-  (payload) => ({ payload })
-);
+
+const resetCrewUserList = createAction(RESET_CREW_USER_LIST, () => ({}));
+
+const kick_crew_user = createAction(KICK_CREW_USER, (payload) => ({ payload }));
+
+const edit_crew_info = createAction(EDIT_CREW_INFO, (payload) => ({ payload }));
 
 // initialState
 const initialState = {
@@ -47,6 +51,7 @@ const initialState = {
   profileMy: "",
   profileMaster: "",
   profileUser: [],
+  newProfileUser: [],
 };
 
 // thunk
@@ -114,11 +119,43 @@ const getCrewUserListDB = (payload) => (dispatch, getState) => {
     });
 };
 
-const deleteCrewUserListDB = (payload) => (dispatch, getState) => {
+const kickCrewUserDB =
+  (payloadUserId, payloadMeetingId) => (dispatch, getState) => {
+    crewApi
+      .deleteCrewUserList(payloadUserId, payloadMeetingId)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(kick_crew_user(payloadUserId));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+const editCrewDB = (meetingId, editCrewInfo) => (dispatch, getState) => {
+  console.log(editCrewInfo);
+  const formData = new FormData();
+
+  formData.append("meetingCategory", editCrewInfo.category);
+  formData.append("meetingIntro", editCrewInfo.intro);
+  formData.append("meetingLocation", editCrewInfo.location);
+  formData.append("meetingImage", editCrewInfo.image);
+
+  // FormData의 key 확인
+  for (let key of formData.keys()) {
+    console.log(key);
+  }
+
+  // FormData의 value 확인
+  for (let value of formData.values()) {
+    console.log(value);
+  }
+
   crewApi
-    .deleteCrewUserList()
+    .editCrewInfo(meetingId, formData)
     .then((res) => {
       console.log(res);
+      dispatch(edit_crew_info(res.data.data));
     })
     .catch((err) => {
       console.log(err);
@@ -150,6 +187,18 @@ export default handleActions(
         draft.profileMaster = action.payload.profileMaster;
         draft.profileUser = action.payload.profileUser;
       }),
+    [RESET_CREW_USER_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.profileMy = "";
+        draft.profileMaster = "";
+        draft.profileUser = [];
+      }),
+    [KICK_CREW_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.newProfileUser = draft.profileUser.filter(
+          (e) => e.userId === action.payload.userId
+        );
+      }),
   },
   initialState
 );
@@ -160,7 +209,9 @@ const actionCreators = {
   quitCrewDB,
   deleteCrewDB,
   getCrewUserListDB,
-  deleteCrewUserListDB,
+  resetCrewUserList,
+  kickCrewUserDB,
+  editCrewDB,
 };
 
 export { actionCreators };

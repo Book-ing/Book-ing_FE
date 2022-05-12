@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // mui
 import { Avatar, backdropClasses } from "@mui/material";
-import { Modal, Box, Backdrop } from "@mui/material";
+import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 // styled components

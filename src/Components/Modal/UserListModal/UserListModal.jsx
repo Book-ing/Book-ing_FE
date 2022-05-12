@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators as crewActions } from "../../../redux/modules/crew";
@@ -26,17 +26,27 @@ const UserList = (props) => {
   const __profileUser = useSelector((state) => state.crew.profileUser);
   const testSeletor = useSelector((state) => state.crew);
   console.log(testSeletor);
+  console.log(__profileUser);
+
+  const __newProfileUser = useSelector((state) => state.crew.newProfileUser);
 
   // variables
   const myUserId = localStorage.getItem("userId");
   const filterdUserList = __profileUser.filter(
     (e) =>
-      e.userId !== parseInt(myUserId) && e.userId !== __profileMaster.userId
+      e.userId !== __profileMine.userId && e.userId !== __profileMaster.userId
   );
 
   useEffect(() => {
     dispatch(crewActions.getCrewUserListDB(__crewInfo.meetingId));
-  }, []);
+    return dispatch(crewActions.resetCrewUserList());
+  }, [dispatch, __crewInfo.meetingId, __newProfileUser]);
+
+  const kickUserBtnHandler = (payloadUsername, payloadUserId) => {
+    if (window.confirm(`${payloadUsername} 유저를 내보내시겠습니까?`)) {
+      dispatch(crewActions.kickCrewUserDB(payloadUserId, __crewInfo.meetingId));
+    }
+  };
 
   return (
     <UserListModalWrap>
@@ -51,7 +61,7 @@ const UserList = (props) => {
         <UserCnt type="sub_2">{__crewInfo.meetingUserCnt}명</UserCnt>
       </Header>
       <UserlistBox>
-        {/* EachUser 맵 돌려야 한다 */}
+        {/* 나 영역 시작 */}
         <EachUser>
           <EachUserLeftBox>
             <Avatar
@@ -60,24 +70,29 @@ const UserList = (props) => {
             />
             <UserName type="sub_2_bold">{__profileMine.username}</UserName>
             <TagMe type="body_4_bold">나</TagMe>
-            {__profileMaster.userId === parseInt(myUserId) ? (
+            {__profileMaster.userId === __profileMine.userId ? (
               <TagMaster type="body_4_bold">모임장</TagMaster>
             ) : null}
           </EachUserLeftBox>
         </EachUser>
-        <EachUser>
-          {__profileMaster.userId === parseInt(myUserId) ? null : (
+        {/* 나 영역 끝 */}
+
+        {/* 모임장 영역 시작 */}
+        {__profileMaster.userId === __profileMine.userId ? null : (
+          <EachUser>
             <EachUserLeftBox>
               <Avatar
                 sx={{ marginRight: "10px" }}
                 src={__profileMaster.profileImage}
               />
-
               <UserName type="sub_2_bold">{__profileMaster.username}</UserName>
               <TagMaster type="body_4_bold">모임장</TagMaster>
             </EachUserLeftBox>
-          )}
-        </EachUser>
+          </EachUser>
+        )}
+        {/* 모임장 영역 끝 */}
+
+        {/* 일반 유저 영역 시작 */}
         {filterdUserList.map((cur, idx) => {
           return (
             <EachUser key={idx}>
@@ -88,12 +103,18 @@ const UserList = (props) => {
                 </UserName>
               </EachUserLeftBox>
               {/* 모임장이 아니라면 보이지 않게 해야함 */}
-              <KickBtn shape="red-outline" onClick={() => {}}>
-                내보내기
-              </KickBtn>
+              {__profileMine.userId === __profileMaster.userId ? (
+                <KickBtn
+                  shape="red-outline"
+                  onClick={() => kickUserBtnHandler(cur.username, cur.userId)}
+                >
+                  내보내기
+                </KickBtn>
+              ) : null}
             </EachUser>
           );
         })}
+        {/* 일반 유저 영역 끝 */}
       </UserlistBox>
     </UserListModalWrap>
   );
