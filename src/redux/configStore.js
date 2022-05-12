@@ -8,6 +8,7 @@ import crew from "./modules/crew";
 import accordion from "./modules/accordion";
 import book from "./modules/book";
 import study from "./modules/study";
+import search from "./modules/search";
 
 // middlewares
 import thunk from "redux-thunk";
@@ -19,6 +20,7 @@ import postcode from "./modules/postcode";
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  search: search,
   study: study,
   postcode: postcode,
   book: book,

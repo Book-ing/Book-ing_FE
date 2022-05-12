@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
+import { Modal, Box } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 // styled components
 import styled from "styled-components";
 
 // components
 import CustomAccordions from "../Accordion/Accordion";
+import ModalStudy from "../Modal/ModalStudy";
 
 // elements
 import { Elbutton, Elinput, Eltext } from "../../elements";
@@ -13,6 +16,12 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 import flex from "../../themes/flex";
 
 const StudySection = () => {
+
+  const [open, setOpen] = useState(false);
+
+  const hadleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
+
   return (
     <StudySectionWrap>
       <StudySectionBox>
@@ -23,7 +32,21 @@ const StudySection = () => {
           <StudysectionSearchInput placeholder="원하는 스터디를 검색해주세요." />
         </StudySectionBoxLeft>
         <StudySectionBoxRight>
-          <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn>
+          {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
+
+        <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+          스터디 생성하기
+        </ModalOpenBtn>
+        
+        <Modal open={open}>
+          <Box sx={style} style={{ position: "relative" }}>
+            <ModalCloseBtn onClick={handleModalClose}>
+              <CloseIcon fontSize="large" />
+            </ModalCloseBtn>
+              <ModalStudy />
+          </Box>
+        </Modal>
+
         </StudySectionBoxRight>
       </StudySectionBox>
       <AccordionSection>
@@ -86,4 +109,30 @@ const CreateStudyBtn = styled(Elbutton)`
 const AccordionSection = styled.div`
   width: 90%;
   margin: auto;
+`;
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "1300px",
+  height: "906px",
+  bgcolor: "#fbf9f9",
+  border: "1px solid var(--point)",
+  boxShadow: 24,
+  borderRadius: "5px",
+};
+
+const ModalOpenBtn = styled(Elbutton)`
+  width: 147px;
+  height: 35px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+`;
+
+const ModalCloseBtn = styled.button`
+  position: absolute;
+  right: 160px;
+  top: 30px;
 `;

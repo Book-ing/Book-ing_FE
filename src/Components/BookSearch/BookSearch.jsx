@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components'
 
-// App.js로부터 searchValue(상태값)와 getSearchValue 함수를 전달받음
-const Search = ({ getSearchValue, getSortingOption }) => {
+//  searchValue(상태값)와 함수를 전달받음
+const BookSearch = ({ getSearchValue }) => {
   // 검색항목 관리 State
   const [searchValue, setSearchValue] = useState('');
   
@@ -23,7 +23,7 @@ const Search = ({ getSearchValue, getSortingOption }) => {
   );
 };
 
-export default Search;
+export default BookSearch;
 
 const SearchWindowContainer = styled.div`
     border: 1px solid black;

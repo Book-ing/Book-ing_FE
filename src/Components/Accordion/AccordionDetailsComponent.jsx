@@ -85,7 +85,7 @@ const AccordionDetailsComponent = (props) => {
                 <Eltext type="sub_2">
                   책 소개 :
                   <br />
-                  {props.props.studyBookInfo}
+                  {props.props.studyBookInfo}...
                 </Eltext>
               </Grid>
             </Grid>

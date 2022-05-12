@@ -6,4 +6,6 @@ export const mainApi = {
   load_none: () => instance.get(`/api/main`),
 
   posting: (formData) => instance.post(`/api/meeting`, formData),
+
+  searching: (value) => instance.get(`/api/search?location=&keyword=${value}&category=`) 
 };

@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Cards from "../components/Cards";
+import SearchBar from "../components/mainSearch/SearchBar";
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,6 +16,7 @@ import { Elbutton, Eltext, Elchip } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { mainActions } from "../redux/modules/main";
 import { useHistory } from "react-router-dom";
+import CrewSearch from "../components/mainSearch/CrewSearch";
 
 const Main = (props) => {
   const history = useHistory();
@@ -67,7 +69,7 @@ const Main = (props) => {
       <Slide />
       {/* container St 작업 */}
       <Container>
-        <StSearchBox>
+        {/* <StSearchBox>
           <StInputLine>
             <StInput
               name="title"
@@ -79,7 +81,8 @@ const Main = (props) => {
               <SearchIcon fontSize="large" />
             </StSearchBtn>
           </StInputLine>
-        </StSearchBox>
+        </StSearchBox> */}
+        <CrewSearch/>
 
         <ModalBtnGrid>
           <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>

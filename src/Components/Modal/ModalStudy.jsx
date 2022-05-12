@@ -13,13 +13,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import PopupBookSearch from "../BookSearch/PopupBookSearch";
+import { useParams } from "react-router-dom";
 
 const ModalStudy = (props) => {
   const dispatch = useDispatch();
+  const params = useParams();
   
   const bookInfo = useSelector((state) => state.book)
   // const bookInfo = useSelector((state) => state.book.list)
   // console.log(bookInfo)
+  console.log(params.meetingId)
 
   const postInfo = useSelector((state) => state.postcode)
   // console.log(postInfo)
@@ -91,11 +94,11 @@ const ModalStudy = (props) => {
     e.preventDefault();
 
     const newStudyInfo = {
-      meetingId: {},
+      meetingId: Number(params.meetingId),
       studyTitle: addStudyInfo.title,
       studyDateTime: day, 
-      studyAddress: postInfo.jibunAdd,
-      studyAddDetail: addStudyInfo.addDetail,
+      studyAddr: postInfo.jibunAdd,
+      studyAddrDetail: addStudyInfo.addDetail,
       studyLimitCnt: addStudyInfo.headCount,
       studyPrice: addStudyInfo.price,
       studyNotice: addStudyInfo.notice,
@@ -103,10 +106,10 @@ const ModalStudy = (props) => {
       studyBookImg: bookInfo.imgURL,
       studyBookInfo: bookInfo.desc,
       studyBookWriter: bookInfo.writer,
-      studyBookPurblisher: bookInfo.publisher,
+      studyBookPurblisher: bookInfo.publisher
     }
     console.log(newStudyInfo);
-    // dispatch(studyActions.addCrewDB(newStudyInfo));
+    dispatch(studyActions.addStudyDB(newStudyInfo));
   };
   const handleModalClose = props.handleModalClose
 

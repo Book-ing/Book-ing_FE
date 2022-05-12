@@ -1,314 +1,123 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ElcategoryCheckbox from "../elements/ElcategoryCheckbox";
 import { Elchip, Eltext } from "../elements";
 import Elcategory from "../elements/Elcategory";
+import CrewList from "../components/CrewList";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getSearch } from "../redux/modules/search";
+import SearchIcon from "@mui/icons-material/Search";
+import { searchActions } from "../redux/modules/search";
+
 
 const Search = () => {
+  const dispatch = useDispatch();
+
+  const info = useSelector((state)=> state.search.result);
+  
+  console.log(info)
+
+  useEffect = () => {
+
+  }
+
+  const [searchInfo, setSearchInfo] = useState({
+    title: "",
+    category: "",
+    region: "",
+  });
+
+  const onChangeInputHandler = (e) => {
+    const { value, name } = e.target;
+
+    setSearchInfo({
+      ...searchInfo,
+      [name]: value,
+      
+    });
+  };
+
+  const ProduceValue = (e) => {
+    e.preventDefault();
+    
+    const value = {
+      word: searchInfo.title,
+      cate: Number(searchInfo.category),
+      loc: Number(searchInfo.region), 
+    }
+    console.log(value);
+    dispatch(searchActions.getSearchDB(value));
+  };
+
   const SelectList = [
-    "지역을 선택해주세요",
-    "서울",
-    "경기",
-    "강원",
-    "충북",
-    "충남",
-    "전북",
-    "전남",
-    "경북",
-    "경남",
-    "제주",
+    { name:"지역을 선택해주세요", code:""},
+    { name:"서울", code: 101 },
+    { name:"부산", code: 102 },
+    { name:"대구", code: 103 },
+    { name:"인천", code: 104 },
+    { name:"광주", code: 105 },
+    { name:"대전", code: 106 },
+    { name:"울산", code: 107 },
+    { name:"세종", code: 108 },
+    { name:"경기", code: 109 },
+    { name:"강원", code: 110 },
+    { name:"충북", code: 111 },
+    { name:"충남", code: 112 },
+    { name:"전북", code: 113 },
+    { name:"전남", code: 114 },
+    { name:"경북", code: 115 },
+    { name:"경남", code: 116 },
+    { name:"제주", code: 117 },
   ];
+  if (info === ""
+  )
+    return <></>;
 
   return (
     <React.Fragment>
       <TagTop>
+       <form onSubmit={ProduceValue}>
         <StSearchBox>
-          <StSelect name="region">
+          <StSelect name="region" onChange={onChangeInputHandler}>
             {SelectList.map((cur) => (
-              <option value={cur} key={cur}>
-                {cur}
+              <option value={cur.code} key={cur.code}>
+                {cur.name}
               </option>
             ))}
           </StSelect>
+          <StInputLine>
           <StInput
             name="title"
             placeholder="원하는 모임을 검색해주세요."
-            // onChange={onChangeInputHandler}
+            onChange={onChangeInputHandler}
           />
+          <StSearchBtn >
+          {/* <Link to="/search"> */}
+            <SearchIcon fontSize="large" />
+          {/* </Link> */}
+          {/* <SearchIcon fontSize="large" /> */}
+        </StSearchBtn>
+        </StInputLine>
         </StSearchBox>
         <StCategoryBox>
           <StInputName type="sub_2_bold">Category</StInputName>
-          <ElcategoryCheckbox />
+          <ElcategoryCheckbox onChange={onChangeInputHandler}/>
         </StCategoryBox>
+        </form>
       </TagTop>
       <TagBottom>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
-
-        <StCrewList>
-          <StCrewInfo>
-            <StTextBox>
-              <Eltext type="sub_2_bold">
-                <div>[서울] 햄찌친구들 모여라~! (299/300)</div>
-              </Eltext>
-              <Eltext type="sub_2">
-                <div>모임소개글 Info가 적히게 됩니다.</div>
-              </Eltext>
-            </StTextBox>
-            <Elcategory shape="sports">
-              <Eltext type="sub_2" color="white">
-                스포츠
-              </Eltext>
-            </Elcategory>
-          </StCrewInfo>
-          <StButton>
-            <Elchip shape="Fill" width="96px" height="36px">
-              <Eltext type="sub_2" color="white">
-                보러가기
-              </Eltext>
-            </Elchip>
-          </StButton>
-        </StCrewList>
+        {info.map((p, idx) => {
+          return (
+        <CrewList key={idx} {...p}/>
+          );
+        })}
+        <CrewList></CrewList>
+        <CrewList></CrewList>
+        <CrewList></CrewList>
+        <CrewList></CrewList>
       </TagBottom>
     </React.Fragment>
   );
@@ -338,8 +147,8 @@ const StInput = styled.input`
   width: 750px;
   height: 30px;
   background-color: transparent;
-  border-radius: 5px;
-  border: 1px solid var(--point);
+  /* border-radius: 5px;
+  border: 1px solid var(--point); */
 `;
 
 const StSelect = styled.select`
@@ -356,38 +165,21 @@ const StInputName = styled(Eltext)`
 const TagBottom = styled.div`
   width: 1440px;
   height: 1240px;
+  overflow: scroll;
   margin: auto;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const StCrewList = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-left: 99px;
-  width: 1267px;
-  height: 85px;
-  background-color: #fbf9f9;
-  margin-bottom: 15px;
-  /* border: 1px solid black; */
-`;
-
-const StCrewInfo = styled.div`
-  display: flex;
-  align-items: flex-start;
-  padding-top: 15px;
-  width: 400px;
-  margin-left: 150px;
-  /* border: 1px solid black; */
-`;
-
-const StTextBox = styled.div`
-  width: 275px;
-  /* border: 1px solid black; */
-`;
-
-const StButton = styled.div`
-  padding-top: 20px;
-  padding-right: 63px;
+const StInputLine = styled.div`
+  width: 800px;
+  height: 35px;
+  /* margin-top: 62px; */
   align-items: center;
-  /* border: 1px solid black; */
+  border-radius: 5px;
+  border: 1px solid var(--point);
+`;
+
+
+const StSearchBtn = styled.button`
+  vertical-align: middle;
 `;

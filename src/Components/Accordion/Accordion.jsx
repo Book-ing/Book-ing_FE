@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -8,6 +9,8 @@ import { actionCreators as accordionActions } from "../../redux/modules/accordio
 
 // mui
 import { styled } from "@mui/material/styles";
+import { Modal, Box } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
@@ -18,6 +21,7 @@ import { Eltext, Elbutton } from "../../elements";
 
 // components
 import AccordionSummaryComponent from "./AccordionSummaryComponents";
+import ModalStudy from "../Modal/ModalStudy";
 
 // theme
 import flex from "../../themes/flex";
@@ -39,6 +43,11 @@ const Accordion = styled((props) => (
 const CustomizedAccordions = (props) => {
   const dispatch = useDispatch();
   const paramsUserId = useParams();
+
+  const [open, setOpen] = useState(false);
+
+  const hadleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
 
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
@@ -79,7 +88,24 @@ const CustomizedAccordions = (props) => {
           생성된 스터디가 없습니다,
           <br /> 새로운 스터디를 만들어 볼까요?
           <br />
-          <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn>
+          {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
+
+        <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+          스터디 생성하기
+        </ModalOpenBtn>
+
+        <Modal open={open}>
+          <Box sx={style} style={{ position: "relative" }}>
+
+            {/* button에 styled component 사용 불가하여 inline-style 사용 */}
+            
+            <button style={{position: "absolute", right:"160px", top:"30px"}} onClick={handleModalClose}>
+              <CloseIcon fontSize="large" />
+            </button>    
+              <ModalStudy />
+          </Box>
+        </Modal>
+
         </StudyNoneNotice>
       )}
     </>
@@ -101,3 +127,29 @@ const CreateStudyBtn = styled(Elbutton)`
   border-radius: 7px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "1300px",
+  height: "906px",
+  bgcolor: "#fbf9f9",
+  border: "1px solid var(--point)",
+  boxShadow: 24,
+  borderRadius: "5px",
+};
+
+const ModalOpenBtn = styled(Elbutton)`
+  width: 147px;
+  height: 35px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+`;
+
+// const ModalCloseBtn = styled.button`
+//   position: absolute;
+//   right: 160px;
+//   top: 30px;
+// `;

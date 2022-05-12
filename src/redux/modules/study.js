@@ -20,6 +20,7 @@ const initialState = {
 };
 
 const addStudyDB = (newStudyInfo) => {
+
   return function(dispatch) {
 
   console.log(newStudyInfo)
@@ -28,18 +29,22 @@ const addStudyDB = (newStudyInfo) => {
   .posting(newStudyInfo)
   .then((res) => {
     console.log(res)
-    // window.location.replace(`http://localhost:3000/crew/:${newStudyInfo.meetingId}`)
+    window.location.replace(`http://localhost:3000/crew/${newStudyInfo.meetingId}`)
   })
+  .catch((err) => {
+    console.log(`모임 정보 로드에러!`)
+  });
   }};
 
   export default handleActions (
     {
       [ADD_STUDY]: (state, action) =>
       produce(state,(draft) => {
-        console.log("전달 완료")
+        // console.log("전달 완료")
       })
-    }
-  )
+    },
+    initialState
+  );
 
 
 const studyActions = {
