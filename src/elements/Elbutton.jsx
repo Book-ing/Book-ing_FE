@@ -21,6 +21,23 @@ const Elbutton = ({ shape, children, ...rest }) => {
           {children}
         </BrownLine>
       );
+    case "red-fill":
+      return (
+        <RedFill
+          disabled={rest.disabled}
+          color="notice"
+          onClick={rest._onClick}
+          {...rest}
+        >
+          {children}
+        </RedFill>
+      );
+    case "red-outline":
+      return (
+        <RedLine color="notice" onClick={rest._onClick} {...rest}>
+          {children}
+        </RedLine>
+      );
     default:
       return (
         <BrownFill color="point" onClick={rest._onClick} {...rest}>
@@ -89,6 +106,14 @@ const BrownFill = styled.button`
 `;
 
 const BrownLine = styled.button`
+  ${LineBtn};
+`;
+
+const RedFill = styled.button`
+  ${FillBtn};
+`;
+
+const RedLine = styled.button`
   ${LineBtn};
 `;
 

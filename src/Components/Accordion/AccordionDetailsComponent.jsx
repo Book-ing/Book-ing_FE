@@ -22,7 +22,6 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 const studyNote = null;
 
 const AccordionDetailsComponent = (props) => {
-  console.log(props.props);
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>

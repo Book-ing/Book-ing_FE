@@ -45,9 +45,6 @@ const AccordionSummaryComponent = (props) => {
   const [splitedStudyDate, splitedTime] = studyDate.split(" ");
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
-  console.log("스플릿결과", splitedStudyDate, splitedTime);
-  console.log(splitedYY, splitedMM, splitedDD);
-
   return (
     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
       <AccordionHeaderWrap>
@@ -95,15 +92,10 @@ const AccordionSummaryComponent = (props) => {
           </AvatarGroup>
         </Grid>
 
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <RightBox>
           <JoinBtn shape="brown-fill">참가하기</JoinBtn>
           <CancelBtn shape="brown-outline">취소하기</CancelBtn>
-        </Grid>
+        </RightBox>
       </AccordionHeaderWrap>
     </AccordionSummary>
   );
@@ -169,4 +161,8 @@ const CancelBtn = styled(Elbutton)`
   width: 96px;
   height: 30px;
   border-radius: 5px;
+`;
+
+const RightBox = styledComp.div`
+  ${flex}
 `;

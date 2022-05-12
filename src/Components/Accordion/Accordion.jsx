@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 // modules
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -18,6 +19,9 @@ import { Eltext, Elbutton } from "../../elements";
 
 // components
 import AccordionSummaryComponent from "./AccordionSummaryComponents";
+
+// styled components
+import styledComp from "styled-components";
 
 // theme
 import flex from "../../themes/flex";
@@ -42,6 +46,10 @@ const CustomizedAccordions = (props) => {
 
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
+  const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
+
+  // variables
+  const userId = localStorage.getItem("userId");
 
   const [expanded, setExpanded] = React.useState("");
 
@@ -57,6 +65,31 @@ const CustomizedAccordions = (props) => {
   }, []);
 
   if (__accordionData === "") return <></>;
+
+  if (!userId || !__isJoinedCrew)
+    return (
+      <>
+        {__accordionData.length ? (
+          __accordionData.map((cur, idx) => {
+            return (
+              <Accordion
+                expanded={expanded === __accordionData[idx].studyId}
+                onChange={handleChange(__accordionData[idx].studyId)}
+                key={idx}
+              >
+                <AccordionSummaryComponent props={cur} />
+
+                <AccordionDetailsComponent props={cur} />
+              </Accordion>
+            );
+          })
+        ) : (
+          <StudyNoneNotice type="sub_1">
+            생성된 스터디가 없습니다,
+          </StudyNoneNotice>
+        )}
+      </>
+    );
 
   return (
     <>
@@ -89,15 +122,19 @@ const CustomizedAccordions = (props) => {
 export default CustomizedAccordions;
 
 const StudyNoneNotice = styled(Eltext)`
+  ${flex("center", "center", false)}
   text-align: center;
+  width: 100%;
+  height: 450px;
   line-height: 50px;
   margin: auto;
   color: var(--gray);
 `;
 
 const CreateStudyBtn = styled(Elbutton)`
-  width: 147px;
-  height: 35px;
+  max-width: 147px;
+  max-height: 35px;
+  margin-top: 40px;
   border-radius: 7px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;

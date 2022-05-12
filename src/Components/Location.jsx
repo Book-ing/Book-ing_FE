@@ -3,7 +3,6 @@ import React from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 const Location = (props) => {
-  console.log(props.props.Lat);
   return (
     <Map // 지도를 표시할 Container
       center={{

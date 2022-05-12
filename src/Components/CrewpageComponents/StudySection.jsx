@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 // styled components
 import styled from "styled-components";
@@ -13,6 +14,9 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 import flex from "../../themes/flex";
 
 const StudySection = () => {
+  const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
+  const loggedId = localStorage.getItem("userId");
+
   return (
     <StudySectionWrap>
       <StudySectionBox>
@@ -23,7 +27,11 @@ const StudySection = () => {
           <StudysectionSearchInput placeholder="원하는 스터디를 검색해주세요." />
         </StudySectionBoxLeft>
         <StudySectionBoxRight>
-          <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn>
+          {__isJoinedCrew === true && loggedId ? (
+            <CreateStudyBtn shape="brown-outline">
+              스터디 생성하기
+            </CreateStudyBtn>
+          ) : null}
         </StudySectionBoxRight>
       </StudySectionBox>
       <AccordionSection>
