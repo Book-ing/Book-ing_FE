@@ -7,10 +7,9 @@
 // AWS.config.update({
 //   region: REGION,
 //   credentials: new AWS.CognitoIdentityCredentials({
-//     IdentityPoolId: "ap-northeast-2:a2a935f7-cd6a-47b9-8e6b-c02b7b2e0bb2",
+//     IdentityPoolId: "",
 //   }),
 // });
-
 
 // export const uploadFile = async (file) => {
 //   const params = {
