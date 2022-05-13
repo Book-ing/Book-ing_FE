@@ -143,8 +143,18 @@ const CrewInfoTopBox = (props) => {
             }}
           >
             <Box sx={style}>
-              <CloseIcon fontSize="large" />
-              <ModalCrew isEdit={isEdit} crewInfo={crewInfo} />
+              <button onClick={handleClose}>
+                <CloseIcon
+                  fontSize="large"
+                  sx={{ position: "absolute", right: "50px", top: "20px" }}
+                />
+              </button>
+              <ModalCrew
+                isEdit={isEdit}
+                crewInfo={crewInfo}
+                setAnchorEl={setAnchorEl}
+                handleClose={handleClose}
+              />
             </Box>
           </Popover>
         </RightTitleBox>
@@ -203,4 +213,5 @@ const style = {
   bgcolor: "#fbf9f9",
   boxShadow: 24,
   borderRadius: "5px",
+  position: "relative",
 };

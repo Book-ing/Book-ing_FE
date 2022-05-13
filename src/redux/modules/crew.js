@@ -3,7 +3,7 @@ import { produce } from "immer";
 
 // api
 import { crewInfoApi } from "../../api/crewInfoApi";
-import { crewApi } from "../../api/crew";
+import { crewApi } from "../../api/crewApi";
 import { history } from "../configStore";
 
 // action
@@ -132,35 +132,58 @@ const kickCrewUserDB =
       });
   };
 
-const editCrewDB = (meetingId, editCrewInfo) => (dispatch, getState) => {
-  console.log(editCrewInfo);
-  const formData = new FormData();
+const editCrewDB =
+  (meetingId, editCrewInfo, closeFunc) => (dispatch, getState) => {
+    console.log(closeFunc);
+    const formData = new FormData();
 
-  formData.append("meetingCategory", editCrewInfo.category);
-  formData.append("meetingIntro", editCrewInfo.intro);
-  formData.append("meetingLocation", editCrewInfo.location);
-  formData.append("meetingImage", editCrewInfo.image);
+    formData.append("meetingCategory", editCrewInfo.category);
+    formData.append("meetingIntro", editCrewInfo.intro);
+    formData.append("meetingLocation", editCrewInfo.location);
+    formData.append("meetingImage", editCrewInfo.image);
+    formData.append("meetingId", Number(meetingId));
 
-  // FormData의 key 확인
-  for (let key of formData.keys()) {
-    console.log(key);
-  }
+    // FormData의 key 확인
+    for (let key of formData.keys()) {
+      console.log(key);
+    }
 
-  // FormData의 value 확인
-  for (let value of formData.values()) {
-    console.log(value);
-  }
+    // FormData의 value 확인
+    for (let value of formData.values()) {
+      console.log(value);
+    }
 
-  crewApi
-    .editCrewInfo(meetingId, formData)
-    .then((res) => {
-      console.log(res);
-      dispatch(edit_crew_info(res.data.data));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+    crewApi
+      .editCrewInfo(formData)
+      .then((res) => {
+        console.log(res);
+        const status = res.status;
+        if (status === 200) {
+          alert("빈 칸을 모두 입력해주세요.");
+        }
+        if (status === 201) {
+          dispatch(edit_crew_info(res.data.data));
+          closeFunc();
+          crewInfoApi
+            .getCrewInfo(meetingId)
+            .then((res) => {
+              dispatch(
+                get_crew_info(
+                  res.data.data,
+                  meetingId,
+                  res.data.data.isMeetingJoined
+                )
+              );
+            })
+            .catch((err) => {
+              console.log("모임정보 받아오는 중 에러 발생", err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 // reducer
 export default handleActions(

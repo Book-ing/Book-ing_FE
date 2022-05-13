@@ -56,7 +56,6 @@ const CustomizedAccordions = (props) => {
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
-
   // variables
   const userId = localStorage.getItem("userId");
 
@@ -86,9 +85,15 @@ const CustomizedAccordions = (props) => {
                 onChange={handleChange(__accordionData[idx].studyId)}
                 key={idx}
               >
-                <AccordionSummaryComponent props={cur} />
+                <AccordionSummaryComponent
+                  props={cur}
+                  isJoinedCrew={props.isJoinedCrew}
+                />
 
-                <AccordionDetailsComponent props={cur} />
+                <AccordionDetailsComponent
+                  props={cur}
+                  isJoinedCrew={props.isJoinedCrew}
+                />
               </Accordion>
             );
           })
@@ -110,9 +115,15 @@ const CustomizedAccordions = (props) => {
               onChange={handleChange(__accordionData[idx].studyId)}
               key={idx}
             >
-              <AccordionSummaryComponent props={cur} />
+              <AccordionSummaryComponent
+                props={cur}
+                isJoinedCrew={__isJoinedCrew}
+              />
 
-              <AccordionDetailsComponent props={cur} />
+              <AccordionDetailsComponent
+                props={cur}
+                isJoinedCrew={__isJoinedCrew}
+              />
             </Accordion>
           );
         })
@@ -122,23 +133,22 @@ const CustomizedAccordions = (props) => {
           <br /> 새로운 스터디를 만들어 볼까요?
           <br />
           {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
+          <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+            스터디 생성하기
+          </ModalOpenBtn>
+          <Modal open={open}>
+            <Box sx={style} style={{ position: "relative" }}>
+              {/* button에 styled component 사용 불가하여 inline-style 사용 */}
 
-        <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-          스터디 생성하기
-        </ModalOpenBtn>
-
-        <Modal open={open}>
-          <Box sx={style} style={{ position: "relative" }}>
-
-            {/* button에 styled component 사용 불가하여 inline-style 사용 */}
-            
-            <button style={{position: "absolute", right:"160px", top:"30px"}} onClick={handleModalClose}>
-              <CloseIcon fontSize="large" />
-            </button>    
+              <button
+                style={{ position: "absolute", right: "160px", top: "30px" }}
+                onClick={handleModalClose}
+              >
+                <CloseIcon fontSize="large" />
+              </button>
               <ModalStudy />
-          </Box>
-        </Modal>
-
+            </Box>
+          </Modal>
         </StudyNoneNotice>
       )}
     </>

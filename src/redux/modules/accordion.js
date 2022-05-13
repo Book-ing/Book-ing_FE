@@ -2,7 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
 // api
-import { accordionApi } from "../../api/accordion";
+import { accordionApi } from "../../api/accordionApi";
 
 // action
 const GET_ACCORDION_INFO = "GET_ACCORDION_INFO";

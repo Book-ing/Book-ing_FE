@@ -18,9 +18,5 @@ export const crewApi = {
       targetId: payloadUserId,
       meetingId: payloadMeetingId,
     }),
-  editCrewInfo: (meetingId, formData) =>
-    requiredInstance.put("/api/meeting", {
-      meetingId,
-      formData,
-    }),
+  editCrewInfo: (formData) => requiredInstance.put("/api/meeting", formData),
 };

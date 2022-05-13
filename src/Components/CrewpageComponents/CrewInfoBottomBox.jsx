@@ -27,6 +27,7 @@ const CrewInfoBottomBox = (props) => {
   const __crewInfo = props.__crewInfo;
   const __MasterProfile = props.__crewInfo.meetingMasterProfile;
   const __together = props.__crewInfo.together;
+  console.log(__crewInfo);
 
   return (
     <TopWrapBottomBox>
@@ -63,9 +64,12 @@ const CrewInfoBottomBox = (props) => {
       <RightBottomBox>
         <RightBottomBoxHeader>
           <CrewMemberList type="sub_2_bold">함께하는 사람</CrewMemberList>
-          <MembersCheck shape="brown-outline" onClick={handleModalOpen}>
-            더보기 +
-          </MembersCheck>
+          {__crewInfo.isMeetingJoined ? (
+            <MembersCheck shape="brown-outline" onClick={handleModalOpen}>
+              더보기 +
+            </MembersCheck>
+          ) : null}
+
           {/*  유저리스트 모달 section start */}
           <Modal
             open={open}

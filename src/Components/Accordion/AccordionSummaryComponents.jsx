@@ -1,4 +1,10 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// Modules
+import { studyActions } from "../../redux/modules/study";
+import { actionCreators as accordionActions } from "../../redux/modules/accordion";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -40,17 +46,33 @@ const AccordionSummary = styled((props) => (
 }));
 
 const AccordionSummaryComponent = (props) => {
+  const dispatch = useDispatch();
+  console.log(props);
+
+  // Redux Store
+  const __crewId = useSelector((state) => state.crew.crewData.meetingId);
+  const loginId = localStorage.getItem("userId");
+  console.log(loginId);
+
   // variables
+  const studyId = props.props.studyId;
   const studyDate = props.props.studyDateTime;
   const [splitedStudyDate, splitedTime] = studyDate.split(" ");
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
+  const clickInOutStudyBtn = () => {
+    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+  };
+
   return (
     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
       <AccordionHeaderWrap>
-        <MenuBtn>
-          <LinearScaleIcon sx={{ fontSize: 35 }} />
-        </MenuBtn>
+        {props.isJoinedCrew === true ? (
+          <MenuBtn>
+            <LinearScaleIcon sx={{ fontSize: 35 }} />
+          </MenuBtn>
+        ) : null}
+
         <Grid container>
           <CrewInfo>
             <TitleText type="sub_2_bold">
@@ -93,8 +115,17 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
-          <JoinBtn shape="brown-fill">참가하기</JoinBtn>
-          <CancelBtn shape="brown-outline">취소하기</CancelBtn>
+          {props.isJoinedCrew === false ||
+          props.props.studyMasterProfile.userId ===
+            parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
+            <JoinBtn shape="brown-fill" onClick={clickInOutStudyBtn}>
+              취소하기
+            </JoinBtn>
+          ) : (
+            <JoinBtn shape="brown-fill" onClick={clickInOutStudyBtn}>
+              참가하기
+            </JoinBtn>
+          )}
         </RightBox>
       </AccordionHeaderWrap>
     </AccordionSummary>
@@ -137,11 +168,11 @@ const CrewInfo = styledComp.div`
   
 `;
 
-const TitleText = styled(Eltext)``;
+const TitleText = styledComp(Eltext)``;
 
-const InfoText = styled(Eltext)``;
+const InfoText = styledComp(Eltext)``;
 
-const TotalMember = styled(Eltext)`
+const TotalMember = styledComp(Eltext)`
   ${flex}
   width: 96px;
   height: 30px;
@@ -151,18 +182,14 @@ const TotalMember = styled(Eltext)`
   color: var(--point);
 `;
 
-const JoinBtn = styled(Elbutton)`
+const JoinBtn = styledComp(Elbutton)`
   width: 96px;
   height: 30px;
   margin-right: 20px;
   border-radius: 5px;
 `;
-const CancelBtn = styled(Elbutton)`
-  width: 96px;
-  height: 30px;
-  border-radius: 5px;
-`;
 
 const RightBox = styledComp.div`
-  ${flex}
+  ${flex("end", "center", true)}
+  width: 100%;
 `;
