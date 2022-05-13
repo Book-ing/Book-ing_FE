@@ -45,8 +45,8 @@ const Search = () => {
     
     const value = {
       word: searchInfo.title,
-      cate: Number(searchInfo.category),
-      loc: Number(searchInfo.region), 
+      cate: (searchInfo.category === 0) ? Number(searchInfo.category) : "",
+      loc: searchInfo.region, 
     }
     console.log(value);
     dispatch(searchActions.getSearchDB(value));
@@ -114,10 +114,6 @@ const Search = () => {
         <CrewList key={idx} {...p}/>
           );
         })}
-        <CrewList></CrewList>
-        <CrewList></CrewList>
-        <CrewList></CrewList>
-        <CrewList></CrewList>
       </TagBottom>
     </React.Fragment>
   );

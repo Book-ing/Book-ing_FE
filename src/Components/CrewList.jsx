@@ -2,14 +2,15 @@ import React, {useState} from "react";
 
 import styled from "styled-components";
 
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 import { Eltext, Elcategory, Elchip } from "../elements";
 import Ellocation from "../elements/Ellocation";
 
+
 const CrewList = (props) => {
 
-
+  const history = useHistory();
   const [checkedList, setCheckedList] = useState([]);
 
   return ( 
@@ -48,14 +49,14 @@ const CrewList = (props) => {
             </div>
 
           </StCrewInfo>
-          <StButton>
-                <Link to = {`/crew/${props.meetingId}`}>
+          <StButton onClick = {() => window.location.replace(`/crew/${props.meetingId}`)}>
+                {/* <Link to = {`/crew/${props.meetingId}`}> */}
             <Elchip shape="Fill" width="96px" height="36px">
               <Eltext type="sub_2" color="white">
                   보러가기
               </Eltext>
             </Elchip>
-                </Link>
+                {/* </Link> */}
           </StButton>
         </StCrewList>
     </React.Fragment>

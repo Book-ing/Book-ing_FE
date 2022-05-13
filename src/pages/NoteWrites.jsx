@@ -6,7 +6,7 @@ import flex from "../themes/flex";
 import Elchip from "../elements/Elchip";
 import { Elimage, Eltext } from "../elements";
 import Editor from "../components/Editor";
-// import WygiwysEditor from "../components/WygiwysEditor";
+import WygiwysEditor from "../components/WygiwysEditor.jsx";
 
 const NoteWrites = () => {
   return (
@@ -62,7 +62,7 @@ const NoteWrites = () => {
           </TitleGrid>
 
           <EditGrid>
-           {/* <WygiwysEditor /> */}
+          <WygiwysEditor></WygiwysEditor>
           </EditGrid>
 
           <BtnGrid>
@@ -79,8 +79,11 @@ const NoteWrites = () => {
 const Grids = styled.div`
   width: 1440px;
   height: 1964px;
-  border: 1px solid #815854;
+  /* border: 1px solid #815854; */
   padding: 58px 95px 58px 94px;
+  background-color: #FBF9F9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
   margin: auto;
 `;
 
@@ -115,7 +118,9 @@ const InfoBox = styled.div`
 `;
 
 const EditGrid = styled.div`
+  width: 1220px;
   margin-top: 20px;
+  /* border: 1px solid black; */
 `;
 
 const BtnGrid = styled.div`
