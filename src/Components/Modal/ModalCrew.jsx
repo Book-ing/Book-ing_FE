@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
@@ -14,8 +14,6 @@ const ModalCrew = (props) => {
   // variables
   const isEdit = props.isEdit;
   const crewInfo = props.crewInfo;
-
-  console.log(crewInfo);
 
   // state
   const [fileName, setFileName] = useState("");
@@ -80,7 +78,6 @@ const ModalCrew = (props) => {
       headCnt: addCrewInfo.headCount,
       image: file,
     };
-    console.log(newCrewInfo);
     dispatch(mainActions.addCrewDB(newCrewInfo));
   };
   const handleModalClose = props.handleModalClose;
@@ -95,14 +92,19 @@ const ModalCrew = (props) => {
       location: modifyCrewInfo.region,
       image: file,
     };
-    console.log(editCrewInfo);
-    dispatch(crewActions.editCrewDB(crewInfo.meetingId, editCrewInfo));
+    dispatch(
+      crewActions.editCrewDB(
+        crewInfo.meetingId,
+        editCrewInfo,
+        props.handleClose
+      )
+    );
   };
 
   if (isEdit === true)
     return (
       <React.Fragment>
-        <ModalWrap>
+        <ModalWrap style={{ paddingTop: "50px" }}>
           <ModalBox>
             <form onSubmit={EditProduceDB}>
               {/* 1 STEP */}
@@ -269,11 +271,8 @@ const ModalCrew = (props) => {
                   <StInput
                     required
                     name="headCount"
-                    max="300"       
-
-                    
+                    max="300"
                     // ================= min="2" 처리해야하는데 css깨짐
-
 
                     type="number"
                     placeholder="최대 300명 까지 가능합니다."

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useSelector } from "react-redux";
@@ -17,12 +17,11 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 import flex from "../../themes/flex";
 
 const StudySection = () => {
-
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
-  
+
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const loggedId = localStorage.getItem("userId");
 
@@ -38,30 +37,29 @@ const StudySection = () => {
         <StudySectionBoxRight>
           {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
 
-
-          {__isJoinedCrew === true && loggedId ? ( 
+          {__isJoinedCrew === true && loggedId ? (
             <>
-            {/* // <CreateStudyBtn shape="brown-outline">
+              {/* // <CreateStudyBtn shape="brown-outline">
             //   스터디 생성하기
             // </CreateStudyBtn> */}
-            <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-          스터디 생성하기
-        </ModalOpenBtn>
- 
-        <Modal open={open}>
-          <Box sx={style} style={{ position: "relative" }}>
-            <ModalCloseBtn onClick={handleModalClose}>
-              <CloseIcon fontSize="large" />
-            </ModalCloseBtn>
-              <ModalStudy />
-          </Box>
-        </Modal>
-        </>
+              <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+                스터디 생성하기
+              </ModalOpenBtn>
+
+              <Modal open={open}>
+                <Box sx={style} style={{ position: "relative" }}>
+                  <ModalCloseBtn onClick={handleModalClose}>
+                    <CloseIcon fontSize="large" />
+                  </ModalCloseBtn>
+                  <ModalStudy />
+                </Box>
+              </Modal>
+            </>
           ) : null}
         </StudySectionBoxRight>
       </StudySectionBox>
       <AccordionSection>
-        <CustomAccordions></CustomAccordions>
+        <CustomAccordions isJoinedCrew={__isJoinedCrew}></CustomAccordions>
       </AccordionSection>
     </StudySectionWrap>
   );

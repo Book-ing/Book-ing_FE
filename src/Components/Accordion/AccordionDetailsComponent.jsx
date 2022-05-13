@@ -51,9 +51,11 @@ const AccordionDetailsComponent = (props) => {
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
         <NoteSection>
-          <MenuBtn>
-            <LinearScaleIcon sx={{ fontSize: 35 }} />
-          </MenuBtn>
+          {props.isJoinedCrew === true ? (
+            <MenuBtn>
+              <LinearScaleIcon sx={{ fontSize: 35 }} />
+            </MenuBtn>
+          ) : null}
           <Grid>
             <NoteBookInfoTag type="sub_2_bold">스터디 책 정보</NoteBookInfoTag>
             <Grid
