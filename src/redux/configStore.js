@@ -9,6 +9,7 @@ import accordion from "./modules/accordion";
 import book from "./modules/book";
 import study from "./modules/study";
 import search from "./modules/search";
+import editor from "./modules/editor";
 
 // middlewares
 import thunk from "redux-thunk";
@@ -20,6 +21,7 @@ import postcode from "./modules/postcode";
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  editor: editor,
   search: search,
   study: study,
   postcode: postcode,

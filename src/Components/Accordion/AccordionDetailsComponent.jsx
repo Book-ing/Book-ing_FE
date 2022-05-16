@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -21,7 +22,9 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const studyNote = null;
 
+
 const AccordionDetailsComponent = (props) => {
+  const history = useHistory();
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>
@@ -112,19 +115,41 @@ const AccordionDetailsComponent = (props) => {
                     </CreateStudyNote>
                   </Grid>
                 ) : (
+                  // <Grid
+                  //   container
+                  //   direction="column"
+                  //   justifyContent="center"
+                  //   alignItems="center"
+                  //   sx={{
+                  //     width: "100%",
+                  //     minHeight: "200px",
+                  //   }}
+                  // >
+                  //   <Eltext type="head_1">
+                  //     이곳에 TOAST Editor Viewer 삽입
+                  //   </Eltext>
+                  // </Grid>
                   <Grid
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                      width: "100%",
-                      minHeight: "200px",
-                    }}
-                  >
-                    <Eltext type="head_1">
-                      이곳에 TOAST Editor Viewer 삽입
-                    </Eltext>
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  sx={{
+                    width: "100%",
+                    minHeight: "200px",
+                  }}
+                >
+                  <NoneNoteText type="sub_2">
+                      스터디 노트가 작성되지 않았습니다.
+                    </NoneNoteText>
+                    <CreateStudyNote shape="brown-outline"
+                      onClick={()=> {history.push({
+                        pathname: "/notewrites",
+                        state: {bookInfo: props}
+                      })}}
+                    >
+                      작성하기
+                    </CreateStudyNote>
                   </Grid>
                 )}
               </Grid>
