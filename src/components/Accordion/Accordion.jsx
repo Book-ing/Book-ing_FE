@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 // modules
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
@@ -47,14 +47,8 @@ const Accordion = styled((props) => (
 const CustomizedAccordions = (props) => {
   const dispatch = useDispatch();
   const paramsUserId = useParams();
-  // console.log(paramsUserId);
-  const location = useLocation();
-  // console.log(location.search);
-  const studyNum = location.search ? location.search.substring(7) : '';
-  // console.log(studyNum)
 
   const [open, setOpen] = useState(false);
-  const [checkState, setCheckState] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
@@ -62,75 +56,25 @@ const CustomizedAccordions = (props) => {
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
-  const __isJoinedStudy = useSelector((state) => state.study.isStudyJoined);
-  const __newStudyProfileUser = useSelector(
-    (state) => state.study.newStudyProfileUser
-  );
-  const __searchData = useSelector((state) => state.studySearch.searchData);
-  console.log(__isJoinedCrew);
-  console.log(props);
-
   // variables
   const userId = localStorage.getItem("userId");
 
-  const [expanded, setExpanded] = useState(Number(studyNum));
+  const [expanded, setExpanded] = React.useState("");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-  
+
   useEffect(() => {
     dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     return () => {
       dispatch(accordionActions.reset_accordion());
     };
-  }, [
-    dispatch,
-    paramsUserId.meetingId,
-    __isJoinedStudy,
-    __newStudyProfileUser,
-    checkState,
-  ]);
+  }, []);
 
   if (__accordionData === "") return <></>;
 
-  if (!__searchData.length) {
-    // searchData가 없을 때 렌더링
-    if (!userId || !__isJoinedCrew)
-      return (
-        <>
-          {__accordionData.length ? (
-            __accordionData.map((cur, idx) => {
-              return (
-                <Accordion
-                  expanded={expanded === __accordionData[idx].studyId}
-                  onChange={handleChange(__accordionData[idx].studyId)}
-                  key={idx}
-                >
-                  <AccordionSummaryComponent
-                    props={cur}
-                    checkState={checkState}
-                    setCheckState={setCheckState}
-                    isJoinedCrew={__isJoinedCrew}
-                    num={__accordionData[idx].studyId}
-                    onClick
-                  />
-
-                  <AccordionDetailsComponent
-                    props={cur}
-                    isJoinedCrew={__isJoinedCrew}
-                  />
-                </Accordion>
-              );
-            })
-          ) : (
-            <StudyNoneNotice type="sub_1">
-              생성된 스터디가 없습니다😅
-            </StudyNoneNotice>
-          )}
-        </>
-      );
-
+  if (!userId || !__isJoinedCrew)
     return (
       <>
         {__accordionData.length ? (
@@ -143,93 +87,36 @@ const CustomizedAccordions = (props) => {
               >
                 <AccordionSummaryComponent
                   props={cur}
-                  checkState={checkState}
-                  setCheckState={setCheckState}
-                  isJoinedCrew={__isJoinedCrew}
+                  isJoinedCrew={props.isJoinedCrew}
                 />
 
                 <AccordionDetailsComponent
                   props={cur}
-                  isJoinedCrew={__isJoinedCrew}
+                  isJoinedCrew={props.isJoinedCrew}
                 />
               </Accordion>
             );
           })
         ) : (
           <StudyNoneNotice type="sub_1">
-            생성된 스터디가 없습니다😅
-            <br />새로운 스터디를 만들어 볼까요?
-            <br />
-            {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
-            <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-              스터디 생성하기
-            </ModalOpenBtn>
-            <Modal open={open}>
-              <Box sx={style} style={{ position: "relative" }}>
-                {/* button에 styled component 사용 불가하여 inline-style 사용 */}
-
-                <button
-                  style={{ position: "absolute", right: "160px", top: "30px" }}
-                  onClick={handleModalClose}
-                >
-                  <CloseIcon fontSize="large" />
-                </button>
-                <ModalStudy meetingLimitCnt={props.meetingLimitCnt}/>
-              </Box>
-            </Modal>
+            생성된 스터디가 없습니다,
           </StudyNoneNotice>
         )}
       </>
     );
-  } else {
-    // searchData가 있을 때 렌더링.
-    if (!userId || !__isJoinedCrew)
-      return (
-        <>
-          {__searchData.length ? (
-            __searchData.map((cur, idx) => {
-              return (
-                <Accordion
-                  expanded={expanded === __searchData[idx].studyId}
-                  onChange={handleChange(__searchData[idx].studyId)}
-                  key={idx}
-                >
-                  <AccordionSummaryComponent
-                    props={cur}
-                    checkState={checkState}
-                    setCheckState={setCheckState}
-                    isJoinedCrew={__isJoinedCrew}
-                    onClick
-                  />
 
-                  <AccordionDetailsComponent
-                    props={cur}
-                    isJoinedCrew={__isJoinedCrew}
-                  />
-                </Accordion>
-              );
-            })
-          ) : (
-            <StudyNoneNotice type="sub_1">
-              생성된 스터디가 없습니다😅
-            </StudyNoneNotice>
-          )}
-        </>
-      );
-
-    return (
-      <>
-        {__searchData.map((cur, idx) => {
+  return (
+    <>
+      {__accordionData.length ? (
+        __accordionData.map((cur, idx) => {
           return (
             <Accordion
-              expanded={expanded === __searchData[idx].studyId}
-              onChange={handleChange(__searchData[idx].studyId)}
+              expanded={expanded === __accordionData[idx].studyId}
+              onChange={handleChange(__accordionData[idx].studyId)}
               key={idx}
             >
               <AccordionSummaryComponent
                 props={cur}
-                checkState={checkState}
-                setCheckState={setCheckState}
                 isJoinedCrew={__isJoinedCrew}
               />
 
@@ -239,15 +126,38 @@ const CustomizedAccordions = (props) => {
               />
             </Accordion>
           );
-        })}
-      </>
-    );
-  }
+        })
+      ) : (
+        <StudyNoneNotice type="sub_1">
+          생성된 스터디가 없습니다,
+          <br /> 새로운 스터디를 만들어 볼까요?
+          <br />
+          {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
+          <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+            스터디 생성하기
+          </ModalOpenBtn>
+          <Modal open={open}>
+            <Box sx={style} style={{ position: "relative" }}>
+              {/* button에 styled component 사용 불가하여 inline-style 사용 */}
+
+              <button
+                style={{ position: "absolute", right: "160px", top: "30px" }}
+                onClick={handleModalClose}
+              >
+                <CloseIcon fontSize="large" />
+              </button>
+              <ModalStudy />
+            </Box>
+          </Modal>
+        </StudyNoneNotice>
+      )}
+    </>
+  );
 };
 
 export default CustomizedAccordions;
 
-const StudyNoneNotice = styledComp(Eltext)`
+const StudyNoneNotice = styled(Eltext)`
   ${flex("center", "center", false)}
   text-align: center;
   width: 100%;
@@ -257,7 +167,7 @@ const StudyNoneNotice = styledComp(Eltext)`
   color: var(--gray);
 `;
 
-const CreateStudyBtn = styledComp(Elbutton)`
+const CreateStudyBtn = styled(Elbutton)`
   max-width: 147px;
   max-height: 35px;
   margin-top: 40px;
@@ -278,9 +188,15 @@ const style = {
   borderRadius: "5px",
 };
 
-const ModalOpenBtn = styledComp(Elbutton)`
+const ModalOpenBtn = styled(Elbutton)`
   width: 147px;
   height: 35px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 `;
+
+// const ModalCloseBtn = styled.button`
+//   position: absolute;
+//   right: 160px;
+//   top: 30px;
+// `;
