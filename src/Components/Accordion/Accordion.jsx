@@ -56,21 +56,22 @@ const CustomizedAccordions = (props) => {
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
+
   // variables
   const userId = localStorage.getItem("userId");
 
-  const [expanded, setExpanded] = React.useState("");
+  // const [expanded, setExpanded] = useState("");
 
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
+  // const handleChange = (panel) => (event, newExpanded) => {
+  //   setExpanded(newExpanded ? panel : false);
+  // };
 
   useEffect(() => {
     dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     return () => {
       dispatch(accordionActions.reset_accordion());
     };
-  }, []);
+  }, [dispatch, paramsUserId.meetingId]);
 
   if (__accordionData === "") return <></>;
 
@@ -81,13 +82,14 @@ const CustomizedAccordions = (props) => {
           __accordionData.map((cur, idx) => {
             return (
               <Accordion
-                expanded={expanded === __accordionData[idx].studyId}
-                onChange={handleChange(__accordionData[idx].studyId)}
+                // expanded={expanded === __accordionData[idx].studyId}
+                // onChange={handleChange(__accordionData[idx].studyId)}
                 key={idx}
               >
                 <AccordionSummaryComponent
                   props={cur}
                   isJoinedCrew={props.isJoinedCrew}
+                  onClick
                 />
 
                 <AccordionDetailsComponent
@@ -111,8 +113,8 @@ const CustomizedAccordions = (props) => {
         __accordionData.map((cur, idx) => {
           return (
             <Accordion
-              expanded={expanded === __accordionData[idx].studyId}
-              onChange={handleChange(__accordionData[idx].studyId)}
+              // expanded={expanded === __accordionData[idx].studyId}
+              // onChange={handleChange(__accordionData[idx].studyId)}
               key={idx}
             >
               <AccordionSummaryComponent

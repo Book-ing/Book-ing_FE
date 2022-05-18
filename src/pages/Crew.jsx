@@ -24,6 +24,8 @@ const Crew = (props) => {
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const __newProfileUser = useSelector((state) => state.crew.newProfileUser);
 
+  console.log(__crewInfo);
+
   useEffect(() => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
   }, [dispatch, meetingId, __isJoinedCrew, __newProfileUser]);

@@ -102,17 +102,28 @@ const ModalStudy = (props) => {
   };
   const handleModalClose = props.handleModalClose;
 
+  const studyInfoForModal = props.studyInfo;
+  console.log(studyInfoForModal);
+
   return (
     <React.Fragment>
       <ModalWrap>
         <ModalBox>
           <form onSubmit={ProduceDB}>
             <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
-            <StInput
-              name="title"
-              placeholder="스터디 타이틀 명을 입력해주세요."
-              onChange={onChangeInputHandler}
-            />
+            {props.isEdit === true ? (
+              <StInput
+                name="title"
+                placeholder={studyInfoForModal.studyTitle}
+                onChange={onChangeInputHandler}
+              />
+            ) : (
+              <StInput
+                name="title"
+                placeholder="스터디 타이틀 명을 입력해주세요."
+                onChange={onChangeInputHandler}
+              />
+            )}
 
             <div
               className="중간 큰 박스"
@@ -152,29 +163,58 @@ const ModalStudy = (props) => {
                   </StDateInput>
                   {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
                   <div>
+                    {props.isEdit === true ? (
+                      <StInput
+                        width="205px"
+                        marginTop="16px"
+                        name="headCount"
+                        max="300"
+                        min="2"
+                        type="number"
+                        placeholder={studyInfoForModal.studyLimitCnt}
+                        onChange={onChangeInputHandler}
+                        disabled
+                        style={{ border: "1px solid var(--notice)" }}
+                      />
+                    ) : (
+                      <StInput
+                        width="205px"
+                        marginTop="16px"
+                        name="headCount"
+                        max="300"
+                        min="2"
+                        type="number"
+                        placeholder="최대 300명까지 가능합니다."
+                        onChange={onChangeInputHandler}
+                      />
+                    )}
+                    &nbsp;&nbsp;명
+                  </div>
+                  {props.isEdit === true ? (
                     <StInput
                       width="205px"
                       marginTop="16px"
-                      name="headCount"
-                      max="300"
-                      min="2"
+                      name="price"
+                      max="50000"
+                      min="500"
+                      step="500"
                       type="number"
-                      placeholder="최대 300명까지 가능합니다."
+                      placeholder={studyInfoForModal.studyPrice}
                       onChange={onChangeInputHandler}
                     />
-                    &nbsp;&nbsp;명
-                  </div>
-                  <StInput
-                    width="205px"
-                    marginTop="16px"
-                    name="price"
-                    max="50000"
-                    min="500"
-                    step="500"
-                    type="number"
-                    placeholder="500원 단위로 설정가능합니다."
-                    onChange={onChangeInputHandler}
-                  />
+                  ) : (
+                    <StInput
+                      width="205px"
+                      marginTop="16px"
+                      name="price"
+                      max="50000"
+                      min="500"
+                      step="500"
+                      type="number"
+                      placeholder="500원 단위로 설정가능합니다."
+                      onChange={onChangeInputHandler}
+                    />
+                  )}
                   &nbsp;&nbsp;원
                 </Eltext>
               </div>
@@ -328,7 +368,11 @@ const ModalStudy = (props) => {
                 justifyContent: "center",
               }}
             >
-              <PostBtn shape="brown-outline">게시하기</PostBtn>
+              {props.isEdit === true ? (
+                <PostBtn shape="brown-outline">수정하기</PostBtn>
+              ) : (
+                <PostBtn shape="brown-outline">게시하기</PostBtn>
+              )}
             </div>
           </form>
         </ModalBox>
