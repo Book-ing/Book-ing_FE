@@ -12,6 +12,7 @@ export const studyApi = {
       studyId: studyId,
       meetingId: crewId,
     }),
+<<<<<<< HEAD
   editStudy: (payload) => requiredInstance.put("/api/study", payload),
   editOnlineStudyInfo: (payload) => requiredInstance.put("/api/study", payload),
   deleteStudy: (studyId, meetingId) =>
@@ -23,4 +24,9 @@ export const studyApi = {
       studyId,
       targetId,
     }),
+=======
+  editStudy: (payload) => requiredInstance.put("/api/study", {}),
+  deleteStudy: (studyId, meetingId) =>
+    requiredInstance.delete(`/api/study/${studyId}/${meetingId}`),
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
 };

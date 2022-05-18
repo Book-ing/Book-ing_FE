@@ -30,10 +30,13 @@ const Crew = (props) => {
 
   console.log(__crewInfo);
 
+<<<<<<< HEAD
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+=======
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
   useEffect(() => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
   }, [dispatch, meetingId, __isJoinedCrew, __newProfileUser]);

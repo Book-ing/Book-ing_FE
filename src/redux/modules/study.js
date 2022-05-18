@@ -9,11 +9,15 @@ const ADD_STUDY = "study/ADD_STUDY";
 const ADD_ONLINE_STUDY = "ADD_ONLINE_STUDY";
 const INOUT_STUDY = "INOUT_STUDY";
 const EDIT_STUDY = "EDIT_STUDY";
+<<<<<<< HEAD
 const EDIT_ONLINE_STUDY = "EDIT_ONLINE_STUDY";
 const DELETE_STUDY = "DELETE_STUDY";
 const GET_STUDY_USER_LIST = "GET_STUDY_USER_LIST";
 const RESET_STUDY_USER_LIST = "RESET_STUDY_USER_LIST";
 const KICK_STUDY_USER = "KICK_STUDY_USER";
+=======
+const DELETE_STUDY = "DELETE_STUDY";
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
 
 // ActionCreator
 const addStudy = createAction(ADD_STUDY, (data) => ({ data }));
@@ -22,6 +26,7 @@ const addOnlineStudy = createAction(ADD_ONLINE_STUDY, (payload) => ({
 }));
 const inOutStudy = createAction(INOUT_STUDY, (payload) => ({ payload }));
 const editStudy = createAction(EDIT_STUDY, (payload) => ({ payload }));
+<<<<<<< HEAD
 const editOnlineStudy = createAction(EDIT_ONLINE_STUDY, (payload) => ({
   payload,
 }));
@@ -75,6 +80,17 @@ const addOnlineStudyDB = (payload) => (dispatch, getState) => {
       alert("온라인 스터디 생성에 실패하였습니다.");
     });
 };
+=======
+const deleteStudy = createAction(DELETE_STUDY, (payload) => ({ payload }));
+
+// initialState
+const initialState = {};
+
+// thunk
+const addStudyDB = (newStudyInfo) => {
+  return function (dispatch) {
+    console.log(newStudyInfo);
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
 
 const getStudyUserListDB = (payload) => (dispatch, getState) => {
   console.log(payload);
@@ -93,6 +109,7 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
   studyApi
     .joinStudy(crewId, studyId)
     .then((res) => {
+<<<<<<< HEAD
       // dispatch(inOutStudy(res.data.isStudyJoined));
     })
     .catch((err) => {
@@ -110,12 +127,17 @@ const editStudyDB = (payload) => (dispatch, getState) => {
       window.location.replace(
         `https://www.book-ing.co.kr/crew/${payload.meetingId}`
       );
+=======
+      console.log(res.data);
+      dispatch(inOutStudy(res.data.isStudyJoined));
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
+<<<<<<< HEAD
 const editOnlineStudyInfoDB = (payload) => (dispatch, getState) => {
   studyApi
     .editOnlineStudyInfo(payload)
@@ -123,6 +145,13 @@ const editOnlineStudyInfoDB = (payload) => (dispatch, getState) => {
       window.location.replace(
         `https://www.book-ing.co.kr/crew/${payload.meetingId}`
       );
+=======
+const editStudyDB = () => (dispatch, getState) => {
+  studyApi
+    .editStudy()
+    .then((res) => {
+      console.log(res);
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
     })
     .catch((err) => {
       console.log(err);
@@ -130,6 +159,7 @@ const editOnlineStudyInfoDB = (payload) => (dispatch, getState) => {
 };
 
 const deleteStudyDB = (studyId, meetingId) => (dispatch, getState) => {
+<<<<<<< HEAD
   studyApi
     .deleteStudy(studyId, meetingId)
     .then((res) => {
@@ -144,6 +174,12 @@ const kickStudyUserDB = (studyId, targetId) => (dispatch, getState) => {
   studyApi
     .kickStudyUser(studyId, targetId)
     .then((res) => {
+=======
+  console.log(studyId, meetingId);
+  studyApi
+    .deleteStudy(studyId, meetingId)
+    .then((res) => {
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
       console.log(res);
       dispatch(kickStudyUser(targetId));
     })
@@ -162,6 +198,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.isStudyJoined = action.payload.payload;
       }),
+<<<<<<< HEAD
     [GET_STUDY_USER_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.studyProfileMy = action.payload.myProfile;
@@ -180,6 +217,8 @@ export default handleActions(
           (e) => e.userId === action.payload.userId
         );
       }),
+=======
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
   },
   initialState
 );
@@ -190,10 +229,13 @@ const studyActions = {
   inOutStudyDB,
   deleteStudyDB,
   editStudyDB,
+<<<<<<< HEAD
   getStudyUserListDB,
   resetStudyUserList,
   kickStudyUserDB,
   editOnlineStudyInfoDB,
+=======
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
 };
 
 export { studyActions };

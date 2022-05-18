@@ -9,12 +9,11 @@ import { actionCreators as accordionActions } from "../../redux/modules/accordio
 // mui
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
-
 import { Avatar, AvatarGroup, Grid } from "@mui/material";
-
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
+import { Box, Popover, Modal } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 // styled components
 import styledComp from "styled-components";
@@ -22,13 +21,15 @@ import { Eltext, Elbutton } from "../../elements";
 
 // theme
 import flex from "../../themes/flex";
+import ModalStudy from "../Modal/ModalStudy";
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
+    sx={{ pointerEvents: "none" }}
     style={{ paddingLeft: "42px", paddingRight: "42px" }}
     expandIcon={
       <ArrowForwardIosSharpIcon
-        sx={{ fontSize: "25px", color: "var(--point)" }}
+        sx={{ fontSize: "25px", color: "var(--point)", pointerEvents: "auto" }}
       />
     }
     {...props}
@@ -47,7 +48,6 @@ const AccordionSummary = styled((props) => (
 
 const AccordionSummaryComponent = (props) => {
   const dispatch = useDispatch();
-  console.log(props);
 
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
@@ -64,14 +64,85 @@ const AccordionSummaryComponent = (props) => {
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   };
 
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    event.stopPropagation();
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (event) => {
+    event.stopPropagation();
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+  const id = open ? "study-popover" : undefined;
+
+  const [editStudyModal, setEditStudyModal] = useState(false);
+
+  const handleEditStudyModalOpen = (e) => {
+    e.stopPropagation();
+    setEditStudyModal(true);
+  };
+
+  const handleEditStudyModalClose = (e) => {
+    e.stopPropagation();
+    setEditStudyModal(false);
+  };
+
+  const clickDeleteStudyBtn = () => {
+    dispatch(studyActions.deleteStudyDB(studyId, __crewId));
+  };
+
   return (
-    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+    <AccordionSummaryWrap>
+      <AccordionSummary
+      // aria-controls="panel1d-content"
+      // id="panel1d-header"
+      ></AccordionSummary>
       <AccordionHeaderWrap>
-        {props.isJoinedCrew === true ? (
-          <MenuBtn>
+        {props.isJoinedCrew === true &&
+        props.props.studyMasterProfile.userId ===
+          parseInt(localStorage.getItem("userId")) ? (
+          <MenuBtn onClick={handleClick}>
             <LinearScaleIcon sx={{ fontSize: 35 }} />
           </MenuBtn>
         ) : null}
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          PaperProps={{
+            styles: {
+              width: "100%",
+            },
+          }}
+        >
+          <Box sx={styles}>
+            <MoreBtns shape="brown-outline" onClick={handleEditStudyModalOpen}>
+              스터디 수정
+            </MoreBtns>
+            <MoreBtns shape="brown-outline" onClick={clickDeleteStudyBtn}>
+              스터디 삭제
+            </MoreBtns>
+            <Modal open={editStudyModal}>
+              <Box sx={editStudyModalstyle}>
+                <ModalCloseBtn onClick={handleEditStudyModalClose}>
+                  <CloseIcon fontSize="large" />
+                </ModalCloseBtn>
+                <ModalStudy isEdit={editStudyModal} studyInfo={props.props} />
+              </Box>
+            </Modal>
+          </Box>
+        </Popover>
 
         <Grid container>
           <CrewInfo>
@@ -118,21 +189,45 @@ const AccordionSummaryComponent = (props) => {
           {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
-            <JoinBtn shape="brown-fill" onClick={clickInOutStudyBtn}>
+            <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
               취소하기
             </JoinBtn>
           ) : (
-            <JoinBtn shape="brown-fill" onClick={clickInOutStudyBtn}>
+            <JoinBtn shape="brown-outline" onClick={clickInOutStudyBtn}>
               참가하기
             </JoinBtn>
           )}
         </RightBox>
       </AccordionHeaderWrap>
-    </AccordionSummary>
+    </AccordionSummaryWrap>
   );
 };
 
 export default AccordionSummaryComponent;
+
+const AccordionSummaryWrap = styledComp.div`
+  ${flex}
+  background-color: #fbf9f9;
+  padding: 10px 0;
+`;
+
+const styles = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  width: "150px",
+  height: "85px",
+  bgcolor: "#fbf9f9",
+  boxShadow: 24,
+  borderRadius: "5px",
+  position: "relative",
+};
+
+const MoreBtns = styledComp(Elbutton)`
+  width: 100%;
+  height: 50%;
+  border: transparent;
+`;
 
 const AccordionHeaderWrap = styledComp.div`
   position: relative;
@@ -192,4 +287,23 @@ const JoinBtn = styledComp(Elbutton)`
 const RightBox = styledComp.div`
   ${flex("end", "center", true)}
   width: 100%;
+`;
+
+const editStudyModalstyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "1300px",
+  height: "906px",
+  bgcolor: "#fbf9f9",
+  border: "1px solid var(--point)",
+  boxShadow: 24,
+  borderRadius: "5px",
+};
+
+const ModalCloseBtn = styledComp.button`
+  position: absolute;
+  right: 160px;
+  top: 30px;
 `;

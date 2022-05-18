@@ -2,13 +2,20 @@ import React, { useState } from "react";
 
 import styled from "styled-components";
 
+<<<<<<< HEAD:src/components/CrewList.jsx
 import { Link, useHistory } from "react-router-dom";
+=======
+import { Link } from "react-router-dom";
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다):src/Components/CrewList.jsx
 
 import { Eltext, Elcategory, Elchip } from "../elements";
 import Ellocation from "../elements/Ellocation";
 
 const CrewList = (props) => {
+<<<<<<< HEAD:src/components/CrewList.jsx
   const history = useHistory();
+=======
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다):src/Components/CrewList.jsx
   const [checkedList, setCheckedList] = useState([]);
 
   return (
@@ -39,6 +46,7 @@ const CrewList = (props) => {
             </Elcategory>
           </div>
         </StCrewInfo>
+<<<<<<< HEAD:src/components/CrewList.jsx
         <StButton
           onClick={() => window.location.replace(`/crew/${props.meetingId}`)}
         >
@@ -49,6 +57,16 @@ const CrewList = (props) => {
             </Eltext>
           </Elchip>
           {/* </Link> */}
+=======
+        <StButton>
+          <Link to={`/crew/${props.meetingId}`}>
+            <Elchip shape="Fill" width="96px" height="36px">
+              <Eltext type="sub_2" color="white">
+                보러가기
+              </Eltext>
+            </Elchip>
+          </Link>
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다):src/Components/CrewList.jsx
         </StButton>
       </StCrewList>
     </React.Fragment>

@@ -1,11 +1,16 @@
 import * as React from "react";
+<<<<<<< HEAD:src/components/Accordion/AccordionDetailsComponent.jsx
 import { useHistory } from "react-router-dom";
+=======
+import { useState } from "react";
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다):src/Components/Accordion/AccordionDetailsComponent.jsx
 
 // mui
 import { styled } from "@mui/material/styles";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import { Avatar, Grid } from "@mui/material";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
+import { Box, Popover } from "@mui/material";
 
 // styled components
 import styledComp from "styled-components";
@@ -24,7 +29,23 @@ const studyNote = null;
 
 
 const AccordionDetailsComponent = (props) => {
+<<<<<<< HEAD:src/components/Accordion/AccordionDetailsComponent.jsx
   const history = useHistory();
+=======
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    event.stopPropagation();
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (event) => {
+    event.stopPropagation();
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+  const id = open ? "study-popover" : undefined;
+
+>>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다):src/Components/Accordion/AccordionDetailsComponent.jsx
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>
@@ -55,10 +76,36 @@ const AccordionDetailsComponent = (props) => {
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
         <NoteSection>
           {props.isJoinedCrew === true ? (
-            <MenuBtn>
+            <MenuBtn onClick={handleClick}>
               <LinearScaleIcon sx={{ fontSize: 35 }} />
             </MenuBtn>
           ) : null}
+
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            PaperProps={{
+              styles: {
+                width: "100%",
+              },
+            }}
+          >
+            <Box sx={styles}>
+              <MoreBtns shape="brown-outline">스터디 노트 수정</MoreBtns>
+              <MoreBtns shape="brown-outline">스터디 노트 삭제</MoreBtns>
+            </Box>
+          </Popover>
+
           <Grid>
             <NoteBookInfoTag type="sub_2_bold">스터디 책 정보</NoteBookInfoTag>
             <Grid
@@ -162,6 +209,24 @@ const AccordionDetailsComponent = (props) => {
 };
 
 export default AccordionDetailsComponent;
+
+const styles = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  width: "150px",
+  height: "85px",
+  bgcolor: "#fbf9f9",
+  boxShadow: 24,
+  borderRadius: "5px",
+  position: "relative",
+};
+
+const MoreBtns = styledComp(Elbutton)`
+  width: 100%;
+  height: 50%;
+  border: transparent;
+`;
 
 const MenuBtn = styledComp.button`
   ${flex("center", "center", false)}
