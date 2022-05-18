@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -15,6 +15,10 @@ import { Eltext, Elbutton } from "../../elements";
 import flex from "../../themes/flex";
 import Location from "../Location";
 
+// tui-veiwer
+import '@toast-ui/editor/dist/toastui-editor-viewer.css'; 
+import { Viewer } from '@toast-ui/react-editor';
+
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(5),
   borderTop: "1px solid rgba(0, 0, 0, .125)",
@@ -22,9 +26,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const studyNote = null;
 
-
 const AccordionDetailsComponent = (props) => {
   const history = useHistory();
+  const params = useParams();
+
+  console.log(params)
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>
@@ -84,8 +90,8 @@ const AccordionDetailsComponent = (props) => {
                 <Eltext type="sub_2_bold">
                   책 제목 : {props.props.studyBookTitle}
                 </Eltext>
-                <Eltext type="sub_2">지은이 : 필요값{}</Eltext>
-                <Eltext type="sub_2">출판사 : 필요값{}</Eltext>
+                <Eltext type="sub_2">지은이 : {props.props.studyBookwriter}</Eltext>
+                <Eltext type="sub_2">출판사 : {props.props.studyBookPublisher}</Eltext>
                 <Eltext type="sub_2">
                   책 소개 :
                   <br />
@@ -96,52 +102,21 @@ const AccordionDetailsComponent = (props) => {
             <Grid>
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
               <Grid sx={{ minHeight: "200px" }}>
-                {studyNote !== null ? (
-                  <Grid
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                      width: "100%",
-                      minHeight: "200px",
-                    }}
-                  >
-                    <NoneNoteText type="sub_2">
-                      스터디 노트가 작성되지 않았습니다.
-                    </NoneNoteText>
-                    <CreateStudyNote shape="brown-outline">
-                      작성하기
-                    </CreateStudyNote>
-                  </Grid>
-                ) : (
-                  // <Grid
-                  //   container
-                  //   direction="column"
-                  //   justifyContent="center"
-                  //   alignItems="center"
-                  //   sx={{
-                  //     width: "100%",
-                  //     minHeight: "200px",
-                  //   }}
-                  // >
-                  //   <Eltext type="head_1">
-                  //     이곳에 TOAST Editor Viewer 삽입
-                  //   </Eltext>
-                  // </Grid>
-                  <Grid
+
+
+                {props.props.studyNote === undefined ? 
+                ( 
+                <Grid
                   container
                   direction="column"
                   justifyContent="center"
                   alignItems="center"
                   sx={{
                     width: "100%",
-                    minHeight: "200px",
-                  }}
-                >
+                    minHeight: "200px"}}>
                   <NoneNoteText type="sub_2">
                       스터디 노트가 작성되지 않았습니다.
-                    </NoneNoteText>
+                  </NoneNoteText>
                     <CreateStudyNote shape="brown-outline"
                       onClick={()=> {history.push({
                         pathname: "/notewrites",
@@ -151,6 +126,11 @@ const AccordionDetailsComponent = (props) => {
                       작성하기
                     </CreateStudyNote>
                   </Grid>
+                ) : (
+                  
+                    <Eltext type="head_1">
+                      <Viewer initialValue={props.props.studyNote}/>
+                    </Eltext>
                 )}
               </Grid>
             </Grid>
@@ -238,3 +218,16 @@ const KAKAOMAPSECTION = styledComp.div`
   width: 100%;
   min-height: 300px;
 `;
+
+// 뷰단 원래 있던 그리드 css
+// <Grid
+//   container
+//   direction="column"
+//   justifyContent="center"
+//   alignItems="center"
+//   sx={{
+//     width: "1000px",
+//     minHeight: "200px",
+//   }}
+// >
+// </Grid>

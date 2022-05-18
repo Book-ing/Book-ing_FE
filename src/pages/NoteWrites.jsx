@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -13,9 +13,14 @@ import book from "../redux/modules/book";
 const NoteWrites = () => {
   const location = useLocation();
   
+  
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
   console.log(bookInfo)
+
+  const studyInfo={
+    studyId: bookInfo.studyId,
+    masterId: bookInfo.studyMasterProfile.userId}
 
   return (
     <React.Fragment>
@@ -59,14 +64,10 @@ const NoteWrites = () => {
           </TitleGrid>
 
           <EditGrid>
-          <WygiwysEditor></WygiwysEditor>
+          <WygiwysEditor studyId={bookInfo.studyId}/>
           </EditGrid>
 
-          <BtnGrid>
-            <Elchip shape="LineBtn" width="148px" height="45px">
-              게시하기
-            </Elchip>
-          </BtnGrid>
+          
         </Container>
       </Grids>
     </React.Fragment>
@@ -122,8 +123,8 @@ const EditGrid = styled.div`
   /* border: 1px solid black; */
 `;
 
-const BtnGrid = styled.button`
-  margin-top: 150px;
-`;
+// const BtnGrid = styled.div`
+//   margin-top: 150px;
+// `;
 
 export default NoteWrites;

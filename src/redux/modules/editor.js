@@ -38,12 +38,12 @@ const initialState = {
 //   };
 // };
 
-const addStudyNoteDB = (editorInfo) => {
+const addStudyNoteDB = (studyNoteInfo) => {
   return function (dispatch) {
-    // console.log(newCrewInfo.name)
-    // console.log(newCrewInfo.image)
+    console.log(studyNoteInfo)
+    
     editorApi
-      .posting(editorInfo)
+      .posting(studyNoteInfo)
       .then((res) => {
         console.log(res);
         // dispatch(mainActions.loadCrewDB());

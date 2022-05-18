@@ -53,6 +53,7 @@ const AccordionSummaryComponent = (props) => {
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
   const loginId = localStorage.getItem("userId");
   console.log(loginId);
+  
 
   // variables
   const studyId = props.props.studyId;

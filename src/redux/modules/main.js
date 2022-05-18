@@ -2,6 +2,9 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
 import { mainApi } from "../../api/mainApi";
+import { searchActions } from "../modules/search";
+import { useHistory } from "react-router-dom";
+
 
 // Action
 
@@ -88,6 +91,37 @@ const addCrewDB = (newCrewInfo) => {
   };
 };
 
+const getSearchCrew = (value, dispatch, history) => { 
+  
+  // console.log(value)
+  mainApi
+  .searching(value)
+  .then((res) => {
+    const word = res.data.data.searchResult
+     console.log(word)
+     console.log(JSON.stringify(word) === "{}")
+     dispatch(searchActions.getSearch(word))
+    if(JSON.stringify(word) === "{}") {
+      // const values = {
+      //   word: "",
+      //   cate: "",
+      //   loc: "", 
+      // }
+      // dispatch(searchActions.getSearchDB(values))
+      return (
+      alert("원하는 모임이 검색되지 않았습니다! 검색 페이지를 이용해주세요")
+      // history.push("/search")
+      )
+    } else {
+      return history.push("/search")
+    }
+    
+    })
+    .catch((err) => console.error(err));
+ 
+};
+
+
 export default handleActions(
   {
     [LOAD_CREW]: (state, action) =>
@@ -111,6 +145,7 @@ const mainActions = {
   loadCrewDB,
   login_loadCrewDB,
   addCrewDB,
+  getSearchCrew,
 };
 
 export { mainActions };

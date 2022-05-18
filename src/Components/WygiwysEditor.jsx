@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import Prism from "prismjs";
 import styled from "styled-components";
 import Elchip from "../elements/Elchip";
+import { useDispatch } from "react-redux";
 
 import { uploadFile } from "../shared/uploadFile";
+import { editorActions } from "../redux/modules/editor"
 
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
@@ -18,23 +20,29 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import "../themes/toastEditor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr"
+import { useHistory } from "react-router-dom";
 
-const WygiwysEditor = ({ option, functions }) => {
+const WygiwysEditor = ({ option, studyId}) => {
   // 추가 가능 옵션 ref
   // functions : handleSave, handleEdit, handleCancle
-
+  const history = useHistory();
   const editorRef = useRef();
+  const dispatch = useDispatch();
 
   const  onChangeIntroFunction = () => {
     const editorInstance = editorRef.current.getInstance();
     const getContent_md = editorInstance.getMarkdown();
     console.log(getContent_md);
+    console.log(studyId)
+
+    const studyNoteInfo = {
+      studyId: studyId,
+      studyNote: getContent_md,
+    }
+
+    dispatch(editorActions.addStudyNoteDB(studyNoteInfo))
+    // history.push(`/crew/${}`)
   }
-  
-  // const onUploadImage = async (blob, callback) => {
-  //   const imgUrl = blob;
-  //   callback(imgUrl, "alr text")
-  // }
   
   const defaultOpt = {
     previewStyle: "vertical",
@@ -42,18 +50,16 @@ const WygiwysEditor = ({ option, functions }) => {
     height: "1137px",
     useCommandShortcut: true,
     previewHighlight: false,
-    hideModeSwitch: true,
+    // hideModeSwitch: true,
     language: "ko-KR",
-    // onChange:{onChangeIntroFunction},
     // colorSyntax: 글자 색 바꾸는 기능 / condeSyntaxHighlight : 언어에 따른 코드 색 변경
     plugins: [colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]],
-    initialValue: "모임이 종료 후 모임에 대한 노트 정리를 해주세요!!",
+    initialValue: "모임이 종료되었다면 모임에서 읽은 책 대한 노트 정리를 해주세요!!",
     hooks: {
       addImageBlobHook: async (blob, callback) => {
         const imgUrl = await uploadFile(blob);
         callback(imgUrl, "alt text");
       },
-      // addImageBlobHook: onUploadImage,
     },
   };
 
@@ -64,23 +70,21 @@ const WygiwysEditor = ({ option, functions }) => {
 
   return ( 
       <>
-      <Editor {...resultOpt}
-        ref={editorRef} />
-      
+      <Editor {...resultOpt} 
+        ref={editorRef}/>   
 
       <BtnGrid>
-        <Elchip shape="LineBtn" width="148px" height="45px">
+        <Elchip shape="LineBtn" width="148px" height="45px"
+          onClick={onChangeIntroFunction}>
             게시하기
         </Elchip>
       </BtnGrid>
-      
       </>
   );
 };
 
 export default WygiwysEditor;
 
-const BtnGrid = styled.button`
-  
+const BtnGrid = styled.div`
   margin-top: 150px;
 `;

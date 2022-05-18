@@ -82,7 +82,9 @@ const Main = (props) => {
             </StSearchBtn>
           </StInputLine>
         </StSearchBox> */}
-        <CrewSearch/>
+        <StSearchBtn onClick={() => {mainActions.getSearchCrew("", dispatch, history)}} >
+          <CrewSearch />
+        </StSearchBtn>
 
         <ModalBtnGrid>
           <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
@@ -127,8 +129,8 @@ const Main = (props) => {
         <GoSearchBtnGrid>
           <GoSearchBtn
             shape="brown-outline"
-            onClick={() => {
-              history.push("/search");
+            onClick={() => {mainActions.getSearchCrew("", dispatch, history)
+             
             }}
           >
             전체 보기

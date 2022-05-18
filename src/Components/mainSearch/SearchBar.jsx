@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import styled from 'styled-components';
 import SearchIcon from "@mui/icons-material/Search";
 
 const SearchBar = ({ getSearchCrew }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  
   // 검색항목 관리 State
   const [searchCrew, setSearchCrew] = useState('');
   
@@ -13,7 +17,7 @@ const SearchBar = ({ getSearchCrew }) => {
       e.preventDefault();
       if (!e.currentTarget.value || e.currentTarget.value === '') 
       // console.log(searchCrew);
-      getSearchCrew(searchCrew);
+      getSearchCrew(searchCrew, dispatch, history);
       // history.push("/search");
       else alert('검색어를 입력해주세요');
   }
@@ -40,12 +44,12 @@ const SearchBar = ({ getSearchCrew }) => {
           onChange={e => setSearchCrew(e.currentTarget.value)}
           // onKeyPress={handleKeyPress}
         />
-        <StSearchBtn onClick={sendSearchCrew}>
+        {/* <StSearchBtn onClick={sendSearchCrew}> */}
         <Link to="/search">
             <SearchIcon fontSize="large" />
           {/* <SearchIcon fontSize="large" /> */}
           </Link>
-        </StSearchBtn>
+        {/* </StSearchBtn> */}
       </StInputLine>
       </StSearchBox>
       </form>
