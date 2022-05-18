@@ -8,6 +8,7 @@ import Eltext from "../elements/Eltext";
 import Logo from "../assets/bookingLogo.svg";
 import MainImg from "../assets/mainImgs/mainImg1.jpg";
 import KakaoBtnImg from "../assets/kakao_login_medium_wide.png";
+import { history } from "../redux/configStore";
 
 const Login = () => {
   return (
@@ -25,6 +26,10 @@ const Login = () => {
               height: "59px",
               marginBottom: "47px",
               marginTop: "-10px",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              history.push("/");
             }}
           />
           <KaKaoBtn href={KAKAO_AUTH_URL}>

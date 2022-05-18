@@ -47,7 +47,7 @@ const StudySection = () => {
               </ModalOpenBtn>
 
               <Modal open={open}>
-                <Box sx={style} style={{ position: "relative" }}>
+                <Box sx={style}>
                   <ModalCloseBtn onClick={handleModalClose}>
                     <CloseIcon fontSize="large" />
                   </ModalCloseBtn>
