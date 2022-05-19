@@ -60,11 +60,11 @@ const CustomizedAccordions = (props) => {
   // variables
   const userId = localStorage.getItem("userId");
 
-  // const [expanded, setExpanded] = useState("");
+  const [expanded, setExpanded] = useState("");
 
-  // const handleChange = (panel) => (event, newExpanded) => {
-  //   setExpanded(newExpanded ? panel : false);
-  // };
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   useEffect(() => {
     dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
@@ -82,8 +82,8 @@ const CustomizedAccordions = (props) => {
           __accordionData.map((cur, idx) => {
             return (
               <Accordion
-                // expanded={expanded === __accordionData[idx].studyId}
-                // onChange={handleChange(__accordionData[idx].studyId)}
+                expanded={expanded === __accordionData[idx].studyId}
+                onChange={handleChange(__accordionData[idx].studyId)}
                 key={idx}
               >
                 <AccordionSummaryComponent
@@ -113,8 +113,8 @@ const CustomizedAccordions = (props) => {
         __accordionData.map((cur, idx) => {
           return (
             <Accordion
-              // expanded={expanded === __accordionData[idx].studyId}
-              // onChange={handleChange(__accordionData[idx].studyId)}
+              expanded={expanded === __accordionData[idx].studyId}
+              onChange={handleChange(__accordionData[idx].studyId)}
               key={idx}
             >
               <AccordionSummaryComponent
@@ -159,7 +159,7 @@ const CustomizedAccordions = (props) => {
 
 export default CustomizedAccordions;
 
-const StudyNoneNotice = styled(Eltext)`
+const StudyNoneNotice = styledComp(Eltext)`
   ${flex("center", "center", false)}
   text-align: center;
   width: 100%;
@@ -169,7 +169,7 @@ const StudyNoneNotice = styled(Eltext)`
   color: var(--gray);
 `;
 
-const CreateStudyBtn = styled(Elbutton)`
+const CreateStudyBtn = styledComp(Elbutton)`
   max-width: 147px;
   max-height: 35px;
   margin-top: 40px;
@@ -190,7 +190,7 @@ const style = {
   borderRadius: "5px",
 };
 
-const ModalOpenBtn = styled(Elbutton)`
+const ModalOpenBtn = styledComp(Elbutton)`
   width: 147px;
   height: 35px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);

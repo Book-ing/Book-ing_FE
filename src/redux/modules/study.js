@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
 import { studyApi } from "../../api/studyApi";
+import { history } from "../configStore";
 
 // Action
 const ADD_STUDY = "study/ADD_STUDY";
@@ -49,11 +50,14 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
     });
 };
 
-const editStudyDB = () => (dispatch, getState) => {
+const editStudyDB = (payload) => (dispatch, getState) => {
   studyApi
-    .editStudy()
+    .editStudy(payload)
     .then((res) => {
       console.log(res);
+      window.location.replace(
+        `http://localhost:3000/crew/${payload.meetingId}`
+      );
     })
     .catch((err) => {
       console.log(err);
@@ -66,6 +70,7 @@ const deleteStudyDB = (studyId, meetingId) => (dispatch, getState) => {
     .deleteStudy(studyId, meetingId)
     .then((res) => {
       console.log(res);
+      window.location.replace(`http://localhost:3000/crew/${meetingId}`);
     })
     .catch((err) => {
       console.log(err);

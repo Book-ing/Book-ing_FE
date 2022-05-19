@@ -39,7 +39,7 @@ const Crew = (props) => {
         <CrewInfoBottomBox __crewInfo={__crewInfo} />
       </TopWrap>
       <BottomWrap>
-        <StudySection />
+        <StudySection crewInfo={__crewInfo} />
       </BottomWrap>
     </CrewWrap>
   );

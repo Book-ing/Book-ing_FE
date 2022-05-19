@@ -16,12 +16,13 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 // themes
 import flex from "../../themes/flex";
 
-const StudySection = () => {
+const StudySection = (props) => {
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 
+  // redux store
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const loggedId = localStorage.getItem("userId");
 
@@ -30,7 +31,7 @@ const StudySection = () => {
       <StudySectionBox>
         <StudySectionBoxLeft>
           <StudysectionTag type="sub_2_bold">
-            스터디 목록(817{})
+            스터디 목록({props.crewInfo.meetingStudyCnt})
           </StudysectionTag>
           <StudysectionSearchInput placeholder="원하는 스터디를 검색해주세요." />
         </StudySectionBoxLeft>

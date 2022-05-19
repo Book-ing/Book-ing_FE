@@ -12,7 +12,7 @@ export const studyApi = {
       studyId: studyId,
       meetingId: crewId,
     }),
-  editStudy: (payload) => requiredInstance.put("/api/study", {}),
+  editStudy: (payload) => requiredInstance.put("/api/study", payload),
   deleteStudy: (studyId, meetingId) =>
     requiredInstance.delete(`/api/study/${studyId}/${meetingId}`),
 };
