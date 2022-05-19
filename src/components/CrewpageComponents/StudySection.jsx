@@ -20,8 +20,11 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 import flex from "../../themes/flex";
 
 const StudySection = (props) => {
+<<<<<<< HEAD
   console.log();
   const dispatch = useDispatch();
+=======
+>>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);

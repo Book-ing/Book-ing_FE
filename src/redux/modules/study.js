@@ -138,6 +138,7 @@ const editStudyDB = (payload) => (dispatch, getState) => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const editOnlineStudyInfoDB = (payload) => (dispatch, getState) => {
   studyApi
     .editOnlineStudyInfo(payload)
@@ -147,11 +148,20 @@ const editOnlineStudyInfoDB = (payload) => (dispatch, getState) => {
       );
 =======
 const editStudyDB = () => (dispatch, getState) => {
+=======
+const editStudyDB = (payload) => (dispatch, getState) => {
+>>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
   studyApi
-    .editStudy()
+    .editStudy(payload)
     .then((res) => {
       console.log(res);
+<<<<<<< HEAD
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
+=======
+      window.location.replace(
+        `http://localhost:3000/crew/${payload.meetingId}`
+      );
+>>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
     })
     .catch((err) => {
       console.log(err);
@@ -181,7 +191,11 @@ const kickStudyUserDB = (studyId, targetId) => (dispatch, getState) => {
     .then((res) => {
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
       console.log(res);
+<<<<<<< HEAD
       dispatch(kickStudyUser(targetId));
+=======
+      window.location.replace(`http://localhost:3000/crew/${meetingId}`);
+>>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
     })
     .catch((err) => {
       console.log(err);

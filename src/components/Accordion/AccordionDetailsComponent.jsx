@@ -102,7 +102,6 @@ const AccordionDetailsComponent = (props) => {
           >
             <Box sx={styles}>
               <MoreBtns shape="brown-outline">스터디 노트 수정</MoreBtns>
-              <MoreBtns shape="brown-outline">스터디 노트 삭제</MoreBtns>
             </Box>
           </Popover>
 
@@ -241,7 +240,7 @@ const MenuBtn = styledComp.button`
   }
 `;
 
-const StudysectionTag = styled(Eltext)`
+const StudysectionTag = styledComp(Eltext)`
   ${flex}
   width: 96px;
   height: 35px;
@@ -252,7 +251,7 @@ const StudysectionTag = styled(Eltext)`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const StudyNoticeText = styled(Eltext)`
+const StudyNoticeText = styledComp(Eltext)`
   width: 80%;
   margin: 20px 0 0 10px;
 `;
@@ -264,7 +263,7 @@ const NoteSection = styledComp.div`
   padding: 30px 90px;
 `;
 
-const NoteBookInfoTag = styled(Eltext)`
+const NoteBookInfoTag = styledComp(Eltext)`
   ${flex}
   width: 148px;
   height: 35px;
@@ -275,7 +274,7 @@ const NoteBookInfoTag = styled(Eltext)`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const StudyNoteTag = styled(Eltext)`
+const StudyNoteTag = styledComp(Eltext)`
   ${flex}
   width: 120px;
   height: 35px;
@@ -286,11 +285,11 @@ const StudyNoteTag = styled(Eltext)`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const NoneNoteText = styled(Eltext)`
+const NoneNoteText = styledComp(Eltext)`
   color: var(--point);
 `;
 
-const CreateStudyNote = styled(Elbutton)`
+const CreateStudyNote = styledComp(Elbutton)`
   width: 96px;
   height: 30px;
   border-radius: 5px;

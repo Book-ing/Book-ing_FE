@@ -16,6 +16,7 @@ import { Elbutton, Eltext } from "../../../elements";
 import flex from "../../../themes/flex";
 
 const UserList = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
 
   // redux store
@@ -43,76 +44,171 @@ const UserList = (props) => {
     }
   };
 
-  return (
-    <UserListModalWrap>
-      <Header>
-        <Members>
-          <Avatar style={style} src={__profileMine.profileImage} />
-          {__profileMine.userId === __profileMaster.userId ? null : (
-            <Avatar style={style} src={__profileMaster.profileImage} />
-          )}
-        </Members>
-        <Title type="sub_1_bold">{__crewInfo.meetingName}</Title>
-        <UserCnt type="sub_2">{__crewInfo.meetingUserCnt}명</UserCnt>
-      </Header>
-      <UserlistBox>
-        {/* 나 영역 시작 */}
-        <EachUser>
-          <EachUserLeftBox>
-            <Avatar
-              sx={{ marginRight: "10px" }}
-              src={__profileMine.profileImage}
-            />
-            <UserName type="sub_2_bold">{__profileMine.username}</UserName>
-            <TagMe type="body_4_bold">나</TagMe>
-            {__profileMaster.userId === __profileMine.userId ? (
-              <TagMaster type="body_4_bold">모임장</TagMaster>
+  if (props.isStudyUserList === true) {
+    const filterdStudyUserList = props.eachStudyData.together.filter(
+      (e) =>
+        e.userId !== __profileMine.userId &&
+        e.userId !== props.eachStudyData.studyMasterProfile.userId
+    );
+    return (
+      <UserListModalWrap>
+        <Header>
+          <Members>
+            {props.eachStudyData.isStudyJoined === true ? (
+              <Avatar style={style} src={__profileMine.profileImage} />
             ) : null}
-          </EachUserLeftBox>
-        </EachUser>
-        {/* 나 영역 끝 */}
 
-        {/* 모임장 영역 시작 */}
-        {__profileMaster.userId === __profileMine.userId ? null : (
+            {__profileMine.userId ===
+            props.eachStudyData.studyMasterProfile.userId ? null : (
+              <Avatar
+                style={style}
+                src={props.eachStudyData.studyMasterProfile.profileImage}
+              />
+            )}
+          </Members>
+          <Title type="sub_1_bold">{props.eachStudyData.studyTitle}</Title>
+          <UserCnt type="sub_2">{props.eachStudyData.studyUserCnt}명</UserCnt>
+        </Header>
+        <UserlistBox>
+          {/* 나 영역 시작 */}
+          {props.eachStudyData.isStudyJoined === true ? (
+            <EachUser>
+              <EachUserLeftBox>
+                <Avatar
+                  sx={{ marginRight: "10px" }}
+                  src={__profileMine.profileImage}
+                />
+                <UserName type="sub_2_bold">{__profileMine.username}</UserName>
+                <TagMe type="body_4_bold">나</TagMe>
+                {props.eachStudyData.studyMasterProfile.userId ===
+                __profileMine.userId ? (
+                  <TagMaster type="body_4_bold">스터디장</TagMaster>
+                ) : null}
+              </EachUserLeftBox>
+            </EachUser>
+          ) : null}
+
+          {/* 나 영역 끝 */}
+
+          {/* 모임장 영역 시작 */}
+          {props.eachStudyData.studyMasterProfile.userId ===
+          __profileMine.userId ? null : (
+            <EachUser>
+              <EachUserLeftBox>
+                <Avatar
+                  sx={{ marginRight: "10px" }}
+                  src={props.eachStudyData.studyMasterProfile.profileImage}
+                />
+                <UserName type="sub_2_bold">
+                  {props.eachStudyData.studyMasterProfile.username}
+                </UserName>
+                <TagMaster type="body_4_bold">스터디장</TagMaster>
+              </EachUserLeftBox>
+            </EachUser>
+          )}
+          {/* 모임장 영역 끝 */}
+
+          {/* 일반 유저 영역 시작 */}
+          {filterdStudyUserList.map((cur, idx) => {
+            return (
+              <EachUser key={idx}>
+                <EachUserLeftBox>
+                  <Avatar sx={{ marginRight: "10px" }} />
+                  <UserName type="sub_2_bold">
+                    {filterdStudyUserList[idx].username}
+                  </UserName>
+                </EachUserLeftBox>
+                {/* 모임장이 아니라면 보이지 않게 해야함 */}
+                {__profileMine.userId ===
+                props.eachStudyData.studyMasterProfile.userId ? (
+                  <KickBtn
+                    shape="red-outline"
+                    onClick={() => kickUserBtnHandler(cur.username, cur.userId)}
+                  >
+                    내보내기
+                  </KickBtn>
+                ) : null}
+              </EachUser>
+            );
+          })}
+          {/* 일반 유저 영역 끝 */}
+        </UserlistBox>
+      </UserListModalWrap>
+    );
+  } else {
+    return (
+      <UserListModalWrap>
+        <Header>
+          <Members>
+            <Avatar style={style} src={__profileMine.profileImage} />
+            {__profileMine.userId === __profileMaster.userId ? null : (
+              <Avatar style={style} src={__profileMaster.profileImage} />
+            )}
+          </Members>
+          <Title type="sub_1_bold">{__crewInfo.meetingName}</Title>
+          <UserCnt type="sub_2">{__crewInfo.meetingUserCnt}명</UserCnt>
+        </Header>
+        <UserlistBox>
+          {/* 나 영역 시작 */}
           <EachUser>
             <EachUserLeftBox>
               <Avatar
                 sx={{ marginRight: "10px" }}
-                src={__profileMaster.profileImage}
+                src={__profileMine.profileImage}
               />
-              <UserName type="sub_2_bold">{__profileMaster.username}</UserName>
-              <TagMaster type="body_4_bold">모임장</TagMaster>
+              <UserName type="sub_2_bold">{__profileMine.username}</UserName>
+              <TagMe type="body_4_bold">나</TagMe>
+              {__profileMaster.userId === __profileMine.userId ? (
+                <TagMaster type="body_4_bold">모임장</TagMaster>
+              ) : null}
             </EachUserLeftBox>
           </EachUser>
-        )}
-        {/* 모임장 영역 끝 */}
+          {/* 나 영역 끝 */}
 
-        {/* 일반 유저 영역 시작 */}
-        {filterdUserList.map((cur, idx) => {
-          return (
-            <EachUser key={idx}>
+          {/* 모임장 영역 시작 */}
+          {__profileMaster.userId === __profileMine.userId ? null : (
+            <EachUser>
               <EachUserLeftBox>
-                <Avatar sx={{ marginRight: "10px" }} />
+                <Avatar
+                  sx={{ marginRight: "10px" }}
+                  src={__profileMaster.profileImage}
+                />
                 <UserName type="sub_2_bold">
-                  {filterdUserList[idx].username}
+                  {__profileMaster.username}
                 </UserName>
+                <TagMaster type="body_4_bold">모임장</TagMaster>
               </EachUserLeftBox>
-              {/* 모임장이 아니라면 보이지 않게 해야함 */}
-              {__profileMine.userId === __profileMaster.userId ? (
-                <KickBtn
-                  shape="red-outline"
-                  onClick={() => kickUserBtnHandler(cur.username, cur.userId)}
-                >
-                  내보내기
-                </KickBtn>
-              ) : null}
             </EachUser>
-          );
-        })}
-        {/* 일반 유저 영역 끝 */}
-      </UserlistBox>
-    </UserListModalWrap>
-  );
+          )}
+          {/* 모임장 영역 끝 */}
+
+          {/* 일반 유저 영역 시작 */}
+          {filterdUserList.map((cur, idx) => {
+            return (
+              <EachUser key={idx}>
+                <EachUserLeftBox>
+                  <Avatar sx={{ marginRight: "10px" }} />
+                  <UserName type="sub_2_bold">
+                    {filterdUserList[idx].username}
+                  </UserName>
+                </EachUserLeftBox>
+                {/* 모임장이 아니라면 보이지 않게 해야함 */}
+                {__profileMine.userId === __profileMaster.userId ? (
+                  <KickBtn
+                    shape="red-outline"
+                    onClick={() => kickUserBtnHandler(cur.username, cur.userId)}
+                  >
+                    내보내기
+                  </KickBtn>
+                ) : null}
+              </EachUser>
+            );
+          })}
+          {/* 일반 유저 영역 끝 */}
+        </UserlistBox>
+      </UserListModalWrap>
+    );
+  }
 };
 
 export default UserList;

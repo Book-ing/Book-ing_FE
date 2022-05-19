@@ -19,6 +19,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import styledComp from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
 
+// components
+import UserListModal from "../Modal/UserListModal/UserListModal";
+
 // theme
 import flex from "../../themes/flex";
 import ModalStudy from "../Modal/ModalStudy";
@@ -93,6 +96,10 @@ const AccordionSummaryComponent = (props) => {
     dispatch(studyActions.deleteStudyDB(studyId, __crewId));
   };
 
+  const [studyUserListOpen, setStudyUserListOpen] = useState(false);
+  const handlestudyUserListModalOpen = () => setStudyUserListOpen(true);
+  const handlestudyUserListModalClose = () => setStudyUserListOpen(false);
+
   return (
     <AccordionSummaryWrap>
       <AccordionSummary
@@ -162,27 +169,47 @@ const AccordionSummaryComponent = (props) => {
         <Grid
           container
           direction="row"
-          justifyContent="center"
+          justifyContent="start"
           alignItems="center"
         >
-          <TotalMember type="sub_2">
-            {props.props.studyUserCnt}명 /{props.props.studyLimitCnt}명
-          </TotalMember>
-          <Avatar
-            style={{
-              marginRight: "10px",
-              border: "2px solid var(--point)",
-            }}
-            src={props.props.studyMasterProfile.profileImage}
-          />
-          <AvatarGroup max={4}>
-            {props.props.together.map((cur, idx) => (
-              <Avatar
-                key={idx}
-                src={props.props.together[idx].profileImage}
-              ></Avatar>
-            ))}
-          </AvatarGroup>
+          <MemberSection onClick={handlestudyUserListModalOpen}>
+            <TotalMember type="sub_2">
+              {props.props.studyUserCnt}명 /{props.props.studyLimitCnt}명
+            </TotalMember>
+            <Avatar
+              style={{
+                marginRight: "10px",
+                border: "2px solid var(--point)",
+              }}
+              src={props.props.studyMasterProfile.profileImage}
+            />
+            <AvatarGroup max={4}>
+              {props.props.together.map((cur, idx) => (
+                <Avatar
+                  key={idx}
+                  src={props.props.together[idx].profileImage}
+                ></Avatar>
+              ))}
+            </AvatarGroup>
+          </MemberSection>
+          {/*  유저리스트 모달 section start */}
+          <Modal
+            open={studyUserListOpen}
+            disableScrollLock={true}
+            onBackdropClick={handlestudyUserListModalClose}
+            BackdropProps={{ style: { opacity: 0 } }}
+          >
+            <Box sx={studyUserListstyle}>
+              <StudyModalCloseBtn onClick={handlestudyUserListModalClose}>
+                <CloseIcon fontSize="large" />
+              </StudyModalCloseBtn>
+              <UserListModal
+                isStudyUserList={studyUserListOpen}
+                eachStudyData={props.props}
+              />
+            </Box>
+          </Modal>
+          {/*  유저리스트 모달 section start */}
         </Grid>
 
         <RightBox>
@@ -266,6 +293,33 @@ const CrewInfo = styledComp.div`
 const TitleText = styledComp(Eltext)``;
 
 const InfoText = styledComp(Eltext)``;
+
+const MemberSection = styledComp.div`
+  ${flex}
+  cursor: pointer
+`;
+
+const studyUserListstyle = {
+  position: "absolute",
+  width: "300px",
+  height: "600px",
+  right: "1%",
+  top: "1%",
+  bgcolor: "#fbf9f9",
+  border: "1px solid var(--point)",
+  boxShadow: 24,
+};
+
+const StudyModalCloseBtn = styledComp.button`
+  z-index: 20;
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  color: var(--point);
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const TotalMember = styledComp(Eltext)`
   ${flex}
