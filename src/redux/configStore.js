@@ -10,6 +10,7 @@ import book from "./modules/book";
 import study from "./modules/study";
 import search from "./modules/search";
 import editor from "./modules/editor";
+import studySearch from "./modules/studySearch";
 
 // middlewares
 import thunk from "redux-thunk";
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   crew: crew,
   accordion: accordion,
   router: connectRouter(history),
+  studySearch: studySearch,
 });
 
 const env = process.env.NODE_ENV;

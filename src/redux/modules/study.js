@@ -9,40 +9,66 @@ const ADD_STUDY = "study/ADD_STUDY";
 const INOUT_STUDY = "INOUT_STUDY";
 const EDIT_STUDY = "EDIT_STUDY";
 const DELETE_STUDY = "DELETE_STUDY";
+const GET_STUDY_USER_LIST = "GET_STUDY_USER_LIST";
+const RESET_STUDY_USER_LIST = "RESET_STUDY_USER_LIST";
+const KICK_STUDY_USER = "KICK_STUDY_USER";
 
 // ActionCreator
 const addStudy = createAction(ADD_STUDY, (data) => ({ data }));
 const inOutStudy = createAction(INOUT_STUDY, (payload) => ({ payload }));
 const editStudy = createAction(EDIT_STUDY, (payload) => ({ payload }));
 const deleteStudy = createAction(DELETE_STUDY, (payload) => ({ payload }));
+const getStudyUserList = createAction(
+  GET_STUDY_USER_LIST,
+  (myProfile, studyMasterProfile, studyUsers) => ({
+    myProfile,
+    studyMasterProfile,
+    studyUsers,
+  })
+);
+const resetStudyUserList = createAction(RESET_STUDY_USER_LIST, () => ({}));
+const kickStudyUser = createAction(KICK_STUDY_USER, (payload) => ({ payload }));
 
 // initialState
-const initialState = {};
+const initialState = {
+  studyProfileMy: "",
+  studyProfileMaster: "",
+  studyProfileUser: [],
+  newStudyProfileUser: [],
+  isStudyJoined: "",
+};
 
 // thunk
-const addStudyDB = (newStudyInfo) => {
-  return function (dispatch) {
-    console.log(newStudyInfo);
+const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
+  studyApi
+    .posting(newStudyInfo)
+    .then((res) => {
+      window.location.replace(
+        `http://localhost:3000/crew/${newStudyInfo.meetingId}`
+      );
+    })
+    .catch((err) => {
+      console.log(`모임 정보 로드에러!`);
+    });
+};
 
-    studyApi
-      .posting(newStudyInfo)
-      .then((res) => {
-        console.log(res);
-        window.location.replace(
-          `http://localhost:3000/crew/${newStudyInfo.meetingId}`
-        );
-      })
-      .catch((err) => {
-        console.log(`모임 정보 로드에러!`);
-      });
-  };
+const getStudyUserListDB = (payload) => (dispatch, getState) => {
+  console.log(payload);
+  studyApi
+    .getStudyUserList(payload)
+    .then((res) => {
+      const { myProfile, studyMasterProfile, studyUsers } = res.data;
+      dispatch(getStudyUserList(myProfile, studyMasterProfile, studyUsers));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
   studyApi
     .joinStudy(crewId, studyId)
     .then((res) => {
-      console.log(res.data);
       dispatch(inOutStudy(res.data.isStudyJoined));
     })
     .catch((err) => {
@@ -54,7 +80,6 @@ const editStudyDB = (payload) => (dispatch, getState) => {
   studyApi
     .editStudy(payload)
     .then((res) => {
-      console.log(res);
       window.location.replace(
         `http://localhost:3000/crew/${payload.meetingId}`
       );
@@ -65,12 +90,22 @@ const editStudyDB = (payload) => (dispatch, getState) => {
 };
 
 const deleteStudyDB = (studyId, meetingId) => (dispatch, getState) => {
-  console.log(studyId, meetingId);
   studyApi
     .deleteStudy(studyId, meetingId)
     .then((res) => {
-      console.log(res);
       window.location.replace(`http://localhost:3000/crew/${meetingId}`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const kickStudyUserDB = (studyId, targetId) => (dispatch, getState) => {
+  studyApi
+    .kickStudyUser(studyId, targetId)
+    .then((res) => {
+      console.log(res);
+      dispatch(kickStudyUser(targetId));
     })
     .catch((err) => {
       console.log(err);
@@ -87,6 +122,24 @@ export default handleActions(
       produce(state, (draft) => {
         draft.isStudyJoined = action.payload.payload;
       }),
+    [GET_STUDY_USER_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.studyProfileMy = action.payload.myProfile;
+        draft.studyProfileMaster = action.payload.studyMasterProfile;
+        draft.studyProfileUser = action.payload.studyUsers;
+      }),
+    [RESET_STUDY_USER_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.studyProfileMy = "";
+        draft.studyProfileMaster = "";
+        draft.studyProfileUser = [];
+      }),
+    [KICK_STUDY_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.newStudyProfileUser = draft.studyProfileUser.filter(
+          (e) => e.userId === action.payload.userId
+        );
+      }),
   },
   initialState
 );
@@ -96,6 +149,9 @@ const studyActions = {
   inOutStudyDB,
   deleteStudyDB,
   editStudyDB,
+  getStudyUserListDB,
+  resetStudyUserList,
+  kickStudyUserDB,
 };
 
 export { studyActions };

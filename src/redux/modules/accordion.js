@@ -12,6 +12,7 @@ const RESET_ACCORDION = "RESET_ACCORDION";
 const get_accordion_info = createAction(GET_ACCORDION_INFO, (payload) => ({
   payload,
 }));
+
 const reset_accordion = createAction(RESET_ACCORDION, () => ({}));
 
 // initialState

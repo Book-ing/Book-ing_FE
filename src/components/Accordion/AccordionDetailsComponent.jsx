@@ -32,7 +32,6 @@ const AccordionDetailsComponent = (props) => {
   const history = useHistory();
   const params = useParams();
 
-  console.log(params);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
