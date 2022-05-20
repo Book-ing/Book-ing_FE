@@ -21,6 +21,7 @@ const Search = () => {
 
   const info = useSelector((state)=> state.search.result);
   const ab = useSelector((state)=>state.search)
+<<<<<<< HEAD
   // console.log(ab)
   // console.log(info.length)
   
@@ -29,6 +30,11 @@ const Search = () => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
    // ==================== 민우님이 요청한 loginCheckDB ========================
+=======
+  console.log(ab)
+  console.log(info.length)
+
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 
   const [searchInfo, setSearchInfo] = useState({
     title: "",
@@ -36,7 +42,11 @@ const Search = () => {
     region: "",
   });
 
+<<<<<<< HEAD
   const [category, setCategory] = useState("")
+=======
+  
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;
@@ -48,13 +58,19 @@ const Search = () => {
     });
   };
 
+  console.log(searchInfo.category)
+
   const ProduceValue = (e) => {
     e.preventDefault();
     
     const value = {
       word: searchInfo.title,
+<<<<<<< HEAD
       cate: (JSON.stringify(category) === "[]" ? "" : category.toString()
       ),
+=======
+      cate: (searchInfo.category === "" ? "" : Number(searchInfo.category)),
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
       loc: searchInfo.region, 
     }
     console.log(value);
@@ -118,7 +134,11 @@ const Search = () => {
         <StCategoryBox>
           <StInputName type="sub_2_bold">Category</StInputName>
 
+<<<<<<< HEAD
           <ElcategoryCheckbox onChange={setCategory}/>
+=======
+          <ElcategoryCheckbox onChange={onChangeInputHandler}/>
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 
         </StCategoryBox>
         </form>
@@ -133,10 +153,23 @@ const Search = () => {
         </TagBottom>
       :
       <TagBottom>
+<<<<<<< HEAD
         <div style={{marginLeft: "500px", width:"500px", height:"500px", marginTop: "100px", marginBottom:"100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
         </div>
       </TagBottom>
       }
+=======
+        검색결과가 없습니다..
+      </TagBottom>
+      }
+      {/* <TagBottom>
+        {info.map((p, idx) => {
+          return (
+        <CrewList key={idx} {...p}/>
+          );
+        })}
+      </TagBottom> */}
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
     </React.Fragment>
   );
 };

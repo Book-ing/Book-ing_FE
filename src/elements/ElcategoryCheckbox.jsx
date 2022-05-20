@@ -30,6 +30,7 @@ const ElcategoryCheckbox = (props) => {
         { name: '역사', hex: '#FF6445', code:223 },
       ];
 
+<<<<<<< HEAD
       
         const[checkedList, setCheckedList] =useState([]);
 
@@ -44,6 +45,19 @@ const ElcategoryCheckbox = (props) => {
 
 
         props.onChange(checkedList);
+=======
+      // function ProdBasicInfo() {
+      //   const[checkedList, setCheckedList] =useState([]);
+
+      //   const onCheckedElement = (checked, item) => {
+      //     if (checked) {
+      //       setCheckedList([...checkedList, item]);
+      //     } else if (!checked) {
+      //       setCheckedList(checkedList.filter(el => el !== item));
+      //     };
+      //   }
+      
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
     return (
         <React.Fragment>
           <RadioCategoryWrap>
@@ -51,12 +65,20 @@ const ElcategoryCheckbox = (props) => {
               <div key={item.name}>
                 <StInputCheck
                   id={item.name}
+<<<<<<< HEAD
                   type="checkbox"
                   name="category"
                   value={item.code}
                   color={item.hex}
                   onChange={e => {
                     onCheckedElement(e.target.checked, e.target.value)}}
+=======
+                  type="radio"
+                  name="category"
+                  value={item.code}
+                  color={item.hex}
+                  onChange={props.onChange}
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
                 />
                 <StRadioLabel htmlFor={item.name} color={item.hex}>{item.name}</StRadioLabel>
               </div>
@@ -66,7 +88,10 @@ const ElcategoryCheckbox = (props) => {
       );
     }
   
+<<<<<<< HEAD
   
+=======
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 
 
 export default ElcategoryCheckbox;

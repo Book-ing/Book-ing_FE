@@ -29,15 +29,25 @@ const NoteWrites = () => {
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
   const meetingId = location.state.meetingId.meetingId;
+<<<<<<< HEAD
   console.log(bookInfo);
   console.log(meetingId);
+=======
+  console.log(bookInfo)
+  console.log(meetingId)
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 
   const studyInfo = {
     studyId: bookInfo.studyId,
     masterId: bookInfo.studyMasterProfile.userId,
     studyValue: bookInfo.studyNote,
+<<<<<<< HEAD
     meetingId: meetingId,
   };
+=======
+    meetingId: meetingId
+  }
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 
   return (
     <React.Fragment>
@@ -80,7 +90,11 @@ const NoteWrites = () => {
           </TitleGrid>
 
           <EditGrid>
+<<<<<<< HEAD
             <WygiwysEditor studyInfo={studyInfo} />
+=======
+          <WygiwysEditor studyInfo={studyInfo}/>
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
           </EditGrid>
         </Container>
       </Grids>

@@ -22,7 +22,11 @@ import "../themes/toastEditor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import { useHistory } from "react-router-dom";
 
+<<<<<<< HEAD
 const WygiwysEditor = ({ option, studyInfo }) => {
+=======
+const WygiwysEditor = ({ option, studyInfo}) => {
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
   // 추가 가능 옵션 ref
   // functions : handleSave, handleEdit, handleCancle
   const history = useHistory();
@@ -33,7 +37,11 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     const editorInstance = editorRef.current.getInstance();
     const getContent_md = editorInstance.getMarkdown();
     console.log(getContent_md);
+<<<<<<< HEAD
     console.log(studyInfo);
+=======
+    console.log(studyInfo)
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 
     const studyNoteInfo = {
       studyId: studyInfo.studyId,
@@ -48,7 +56,19 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     );
   };
 
+<<<<<<< HEAD
+=======
+     
+    studyInfo.studyNote === undefined ? 
+    dispatch(editorActions.addStudyNoteDB(studyNoteInfo)) 
+    :
+    dispatch(editorActions.modifyStudyNoteDB(studyNoteInfo))
+    window.location.replace(`http://localhost:3000/crew/${studyInfo.meetingId}`)
+  }
+
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
   const defaultOpt = {
+    
     previewStyle: "vertical",
     initialEditType: "wysiwyg",
     height: "1137px",
@@ -58,9 +78,13 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     language: "ko-KR",
     // colorSyntax: 글자 색 바꾸는 기능 / condeSyntaxHighlight : 언어에 따른 코드 색 변경
     plugins: [colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]],
+<<<<<<< HEAD
     initialValue: `${
       studyInfo.studyValue ? studyInfo.studyValue : ""
     }`,
+=======
+    initialValue: `${studyInfo.studyValue ? studyInfo.studyValue : "새글을 작석하세요"}`,
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
     hooks: {
       addImageBlobHook: async (blob, callback) => {
         const imgUrl = await uploadFile(blob);
@@ -74,6 +98,7 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     ...option,
   };
 
+<<<<<<< HEAD
   return (
     <>
       <Editor {...resultOpt} ref={editorRef} />
@@ -101,6 +126,28 @@ const WygiwysEditor = ({ option, studyInfo }) => {
         </BtnGrid>
       )}
     </>
+=======
+  return ( 
+      <>
+      <Editor {...resultOpt} 
+        ref={editorRef}/>   
+      {studyInfo.studyValue === undefined ?  
+      <BtnGrid>
+        <Elchip shape="LineBtn" width="148px" height="45px"
+        onClick={onChangeIntroFunction}>
+          게시하기
+        </Elchip>
+      </BtnGrid>
+      :
+      <BtnGrid>
+        <Elchip shape="LineBtn" width="148px" height="45px"
+          onClick={onChangeIntroFunction}>
+          수정하기
+        </Elchip>
+      </BtnGrid>
+      }
+      </>
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
   );
 };
 
@@ -109,4 +156,8 @@ export default WygiwysEditor;
 const BtnGrid = styled.div`
   margin-left: 500px;
   margin-top: 100px;
+<<<<<<< HEAD
 `;
+=======
+`;
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)

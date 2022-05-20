@@ -25,13 +25,21 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-const studyNote = null;
 
 
 const AccordionDetailsComponent = (props) => {
 <<<<<<< HEAD:src/components/Accordion/AccordionDetailsComponent.jsx
   const history = useHistory();
+<<<<<<< HEAD
 =======
+=======
+  const params = useParams();
+  const userId = localStorage.getItem("userId");
+  const studyMasterId = String(props.props.studyMasterProfile.userId);
+ 
+
+  console.log(params);
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -45,7 +53,12 @@ const AccordionDetailsComponent = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? "study-popover" : undefined;
 
+<<<<<<< HEAD
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다):src/Components/Accordion/AccordionDetailsComponent.jsx
+=======
+  const btnStatus = props.props.studyStatus;
+
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>
@@ -101,7 +114,13 @@ const AccordionDetailsComponent = (props) => {
             }}
           >
             <Box sx={styles}>
-              <MoreBtns shape="brown-outline">스터디 노트 수정</MoreBtns>
+              <MoreBtns onClick={() => {
+                        history.push({
+                          pathname: "/notewrites",
+                          state: { bookInfo: props,
+                                  meetingId: params },
+                        });
+                      }} shape="brown-outline">스터디 노트 수정</MoreBtns>
             </Box>
           </Popover>
 
@@ -142,6 +161,7 @@ const AccordionDetailsComponent = (props) => {
             <Grid>
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
               <Grid sx={{ minHeight: "200px" }}>
+<<<<<<< HEAD
                 {studyNote !== null ? (
                   <Grid
                     container
@@ -160,6 +180,50 @@ const AccordionDetailsComponent = (props) => {
                       작성하기
                     </CreateStudyNote>
                   </Grid>
+=======
+                
+                {props.props.studyNote === undefined ? (
+        
+                  btnStatus === "A"
+                      ? (studyMasterId === userId ? 
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{
+                            width: "100%",
+                            minHeight: "200px",
+                          }}
+                        >
+                          <NoneNoteText type="sub_2">
+                            스터디 노트가 작성되지 않았습니다.
+                          </NoneNoteText>
+                          <CreateStudyNote
+                            shape="brown-outline"
+                            onClick={() => {
+                              history.push({
+                                pathname: "/notewrites",
+                                state: { bookInfo: props,
+                                        meetingId: params },
+                              });
+                            }}
+                          >
+                            작성하기
+                          </CreateStudyNote>
+                        </Grid>
+                        :
+                        <NoneNoteText type="sub_2">
+                          <p>스터디 노트가 작성되지 않았습니다.</p>
+                          <p>스터디장은 24시간 이내에 노트를 작성할 수 있습니다.</p>
+                        </NoneNoteText>
+                        )
+                      : 
+                      <div>
+                        <p>스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.</p>
+                      </div>
+                    
+>>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
                 ) : (
                   // <Grid
                   //   container
