@@ -34,7 +34,6 @@ const AccordionDetailsComponent = (props) => {
   const studyMasterId = String(props.props.studyMasterProfile.userId);
  
 
-  console.log(params);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {

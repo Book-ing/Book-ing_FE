@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+// modules
+import { actionCreators as studySearchActinos } from "../../redux/modules/studySearch";
 
 // styled components
 import styled from "styled-components";
@@ -17,6 +20,7 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 import flex from "../../themes/flex";
 
 const StudySection = (props) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
@@ -26,6 +30,19 @@ const StudySection = (props) => {
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const loggedId = localStorage.getItem("userId");
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+    dispatch(
+      studySearchActinos.searchStudyDB(props.crewInfo.meetingId, searchValue)
+    );
+  };
+
   return (
     <StudySectionWrap>
       <StudySectionBox>
@@ -33,7 +50,15 @@ const StudySection = (props) => {
           <StudysectionTag type="sub_2_bold">
             스터디 목록({props.crewInfo.meetingStudyCnt})
           </StudysectionTag>
-          <StudysectionSearchInput placeholder="원하는 스터디를 검색해주세요." />
+
+          <SearchForm onSubmit={handleSubmitSearch}>
+            <StudysectionSearchInput
+              value={searchValue}
+              onChange={handleSearchChange}
+              placeholder="원하는 스터디를 검색해주세요."
+            />
+            <SearchSubmitBtn shape="brown-outline">검색</SearchSubmitBtn>
+          </SearchForm>
         </StudySectionBoxLeft>
         <StudySectionBoxRight>
           {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
@@ -145,4 +170,14 @@ const ModalCloseBtn = styled.button`
   position: absolute;
   right: 160px;
   top: 30px;
+`;
+
+const SearchForm = styled.form`
+  ${flex}
+`;
+
+const SearchSubmitBtn = styled(Elbutton)`
+  width: 80px;
+  height: 35px;
+  border-radius: 3px;
 `;
