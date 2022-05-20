@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { searchActions } from "../../redux/modules/search";
 
 const CrewSearch = (props) => {
+<<<<<<< HEAD
  const dispatch = useDispatch();
 // 검색어를 관리할 State
 const [searchValue, setSearchValue] = useState('');
@@ -36,6 +37,14 @@ return (
     <SearchBar getSearchCrew={getSearchCrew}></SearchBar>
   </React.Fragment>
   )
+=======
+  const dispatch = useDispatch();
+  return (
+    <React.Fragment>
+      <SearchBar getSearchCrew={mainActions.getSearchCrew}></SearchBar>
+    </React.Fragment>
+  );
+>>>>>>> ef4e324 (chore(setenv): env 파일 수정커밋입니다.)
 };
 
-export default CrewSearch
+export default CrewSearch;

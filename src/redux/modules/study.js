@@ -61,6 +61,7 @@ const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
     .then((res) => {
       window.location.replace(
         `https://www.book-ing.co.kr/crew/${newStudyInfo.meetingId}`
+<<<<<<< HEAD
       );
     })
     .catch((err) => {
@@ -118,6 +119,8 @@ const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
     .then((res) => {
       window.location.replace(
         `http://localhost:3000/crew/${newStudyInfo.meetingId}`
+=======
+>>>>>>> ef4e324 (chore(setenv): env 파일 수정커밋입니다.)
       );
     })
     .catch((err) => {
@@ -199,7 +202,7 @@ const editStudyDB = (payload) => (dispatch, getState) => {
 =======
 >>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
       window.location.replace(
-        `http://localhost:3000/crew/${payload.meetingId}`
+        `https://www.book-ing.co.kr/crew/${payload.meetingId}`
       );
 >>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
     })
@@ -215,6 +218,7 @@ const deleteStudyDB = (studyId, meetingId) => (dispatch, getState) => {
     .deleteStudy(studyId, meetingId)
     .then((res) => {
       window.location.replace(`https://www.book-ing.co.kr/crew/${meetingId}`);
+<<<<<<< HEAD
     })
     .catch((err) => {
       console.log(err);
@@ -242,6 +246,8 @@ const kickStudyUserDB = (studyId, targetId) => (dispatch, getState) => {
 >>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
       window.location.replace(`http://localhost:3000/crew/${meetingId}`);
 >>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
+=======
+>>>>>>> ef4e324 (chore(setenv): env 파일 수정커밋입니다.)
     })
     .catch((err) => {
       console.log(err);

@@ -96,8 +96,13 @@ const getSearchCrew = (value, dispatch, history) => {
     .searching(value)
     .then((res) => {
       const word = res.data.data.searchResult;
+<<<<<<< HEAD
       // console.log(word);
       // console.log(JSON.stringify(word) === "{}");
+=======
+      console.log(word);
+      console.log(JSON.stringify(word) === "{}");
+>>>>>>> ef4e324 (chore(setenv): env 파일 수정커밋입니다.)
       dispatch(searchActions.getSearch(word));
       if (JSON.stringify(word) === "{}") {
         // const values = {
