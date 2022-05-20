@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import flex from "../themes/flex";
 
-const ElcategoryRadio = (props) => {
+const ElcategoryCheckbox = (props) => {
 
     const Categorys = [
         { name: '소설', hex: '#594157', code:201},
@@ -30,28 +30,41 @@ const ElcategoryRadio = (props) => {
         { name: '역사', hex: '#FF6445', code:223 },
       ];
 
+      // function ProdBasicInfo() {
+      //   const[checkedList, setCheckedList] =useState([]);
+
+      //   const onCheckedElement = (checked, item) => {
+      //     if (checked) {
+      //       setCheckedList([...checkedList, item]);
+      //     } else if (!checked) {
+      //       setCheckedList(checkedList.filter(el => el !== item));
+      //     };
+      //   }
+      
     return (
         <React.Fragment>
           <RadioCategoryWrap>
-            {Categorys.map((category) => (
-              <div key={category.name}>
+            {Categorys.map((item) => (
+              <div key={item.name}>
                 <StInputCheck
-                  id={category.name}
-                  type="checkbox"
+                  id={item.name}
+                  type="radio"
                   name="category"
-                  value={category.code}
-                  color={category.hex}
+                  value={item.code}
+                  color={item.hex}
                   onChange={props.onChange}
                 />
-                <StRadioLabel htmlFor={category.name} color={category.hex}>{category.name}</StRadioLabel>
+                <StRadioLabel htmlFor={item.name} color={item.hex}>{item.name}</StRadioLabel>
               </div>
             ))}
           </RadioCategoryWrap>
         </React.Fragment>
       );
     }
+  
 
-export default ElcategoryRadio;
+
+export default ElcategoryCheckbox;
 
 const RadioCategoryWrap = styled.div`
     display: inline-block;

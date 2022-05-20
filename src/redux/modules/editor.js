@@ -7,11 +7,13 @@ import { editorApi } from "../../api/editorApi";
 
 // const LOAD_CREW = "main/LOAD_CREW";
 const ADD_STUDY_NOTE = "editor/ADD_STUDY_NOTE";
+const MODIFY_STUDY_NOTE = "editor/MODIFY_STUDY_NOTE"
 
 // ActionCreator
 
 // const loadCrew = createAction(LOAD_CREW, (list) => list);
 const addStudyNote = createAction(ADD_STUDY_NOTE, (data) => ({ data }));
+const modifyStudyNote = createAction(MODIFY_STUDY_NOTE, (data) => ({data}));
 
 //initialState
 
@@ -55,6 +57,24 @@ const addStudyNoteDB = (studyNoteInfo) => {
   };
 };
 
+const modifyStudyNoteDB = (studyNoteInfo) => {
+  return function (dispatch) {
+    console.log(studyNoteInfo)
+    
+    editorApi
+      .modifying(studyNoteInfo)
+      .then((res) => {
+        console.log(res);
+        // dispatch(mainActions.loadCrewDB());
+        // window.location.replace("http://localhost:3000/");
+      })
+      .catch((error) => {
+        console.log("게시글 등록 에러!");
+      });
+  };
+};
+
+
 export default handleActions(
   {
     // [LOAD_CREW]: (state, action) =>
@@ -66,12 +86,17 @@ export default handleActions(
       produce(state, (draft) => {
         // draft.list.unshift(action.payload.data);
       }),
+    [MODIFY_STUDY_NOTE]: (state, action) =>
+      produce(state, (draft) => {
+
+      }),
   },
   initialState
 );
 
 const editorActions = {
   addStudyNoteDB,
+  modifyStudyNoteDB,
 };
 
 export { editorActions };

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import flex from "../themes/flex";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ElcategoryCheckbox from "../elements/ElcategoryCheckbox";
@@ -17,18 +18,18 @@ const Search = () => {
   const dispatch = useDispatch();
 
   const info = useSelector((state)=> state.search.result);
-  
-  console.log(info)
+  const ab = useSelector((state)=>state.search)
+  console.log(ab)
+  console.log(info.length)
 
-  useEffect = () => {
-
-  }
 
   const [searchInfo, setSearchInfo] = useState({
     title: "",
     category: "",
     region: "",
   });
+
+  
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;
@@ -40,17 +41,20 @@ const Search = () => {
     });
   };
 
+  console.log(searchInfo.category)
+
   const ProduceValue = (e) => {
     e.preventDefault();
     
     const value = {
       word: searchInfo.title,
-      cate: (searchInfo.category === 0) ? Number(searchInfo.category) : "",
+      cate: (searchInfo.category === "" ? "" : Number(searchInfo.category)),
       loc: searchInfo.region, 
     }
     console.log(value);
     dispatch(searchActions.getSearchDB(value));
   };
+  
 
   const SelectList = [
     { name:"지역을 선택해주세요", code:""},
@@ -72,9 +76,10 @@ const Search = () => {
     { name:"경남", code: 116 },
     { name:"제주", code: 117 },
   ];
-  if (info === ""
+  if (ab === ""
   )
     return <></>;
+
 
   return (
     <React.Fragment>
@@ -95,26 +100,40 @@ const Search = () => {
             onChange={onChangeInputHandler}
           />
           <StSearchBtn >
-          {/* <Link to="/search"> */}
+
             <SearchIcon fontSize="large" />
-          {/* </Link> */}
-          {/* <SearchIcon fontSize="large" /> */}
+
         </StSearchBtn>
         </StInputLine>
         </StSearchBox>
         <StCategoryBox>
           <StInputName type="sub_2_bold">Category</StInputName>
+
           <ElcategoryCheckbox onChange={onChangeInputHandler}/>
+
         </StCategoryBox>
         </form>
       </TagTop>
-      <TagBottom>
+      {info.length ? 
+        <TagBottom>
         {info.map((p, idx) => {
           return (
         <CrewList key={idx} {...p}/>
           );
         })}
+        </TagBottom>
+      :
+      <TagBottom>
+        검색결과가 없습니다..
       </TagBottom>
+      }
+      {/* <TagBottom>
+        {info.map((p, idx) => {
+          return (
+        <CrewList key={idx} {...p}/>
+          );
+        })}
+      </TagBottom> */}
     </React.Fragment>
   );
 };
@@ -179,3 +198,37 @@ const StInputLine = styled.div`
 const StSearchBtn = styled.button`
   vertical-align: middle;
 `;
+
+const RadioCategoryWrap = styled.div`
+    display: inline-block;
+    width: 900px;
+    height: 135px;
+    margin-top: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+`;
+
+const StRadioLabel = styled.label`
+    ${flex("center", "center", false)}
+    float: left;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    letter-spacing: -0.015rem;
+    color: black;
+    width: 96px;
+    height: 30px;
+    border: 1px solid ${(props) => props.color};
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin-right: 6px;
+    margin-bottom: 10px;
+`;
+
+const StInputCheck = styled.input`
+    
+    display: none;
+    &:checked + ${StRadioLabel} {
+        background-color: ${(props) => props.color};
+        color: white;
+    }
+    `;

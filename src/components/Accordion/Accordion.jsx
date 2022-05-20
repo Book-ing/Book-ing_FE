@@ -74,6 +74,8 @@ const CustomizedAccordions = (props) => {
   }, [dispatch, paramsUserId.meetingId]);
 
   if (__accordionData === "") return <></>;
+  
+  console.log(__accordionData);
 
   if (!userId || !__isJoinedCrew)
     return (

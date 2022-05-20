@@ -26,11 +26,13 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-const studyNote = null;
 
 const AccordionDetailsComponent = (props) => {
   const history = useHistory();
   const params = useParams();
+  const userId = localStorage.getItem("userId");
+  const studyMasterId = String(props.props.studyMasterProfile.userId);
+ 
 
   console.log(params);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -45,6 +47,8 @@ const AccordionDetailsComponent = (props) => {
   };
   const open = Boolean(anchorEl);
   const id = open ? "study-popover" : undefined;
+
+  const btnStatus = props.props.studyStatus;
 
   return (
     <AccordionDetails>
@@ -101,7 +105,13 @@ const AccordionDetailsComponent = (props) => {
             }}
           >
             <Box sx={styles}>
-              <MoreBtns shape="brown-outline">스터디 노트 수정</MoreBtns>
+              <MoreBtns onClick={() => {
+                        history.push({
+                          pathname: "/notewrites",
+                          state: { bookInfo: props,
+                                  meetingId: params },
+                        });
+                      }} shape="brown-outline">스터디 노트 수정</MoreBtns>
             </Box>
           </Popover>
 
@@ -146,32 +156,48 @@ const AccordionDetailsComponent = (props) => {
             <Grid>
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
               <Grid sx={{ minHeight: "200px" }}>
+                
                 {props.props.studyNote === undefined ? (
-                  <Grid
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                      width: "100%",
-                      minHeight: "200px",
-                    }}
-                  >
-                    <NoneNoteText type="sub_2">
-                      스터디 노트가 작성되지 않았습니다.
-                    </NoneNoteText>
-                    <CreateStudyNote
-                      shape="brown-outline"
-                      onClick={() => {
-                        history.push({
-                          pathname: "/notewrites",
-                          state: { bookInfo: props },
-                        });
-                      }}
-                    >
-                      작성하기
-                    </CreateStudyNote>
-                  </Grid>
+        
+                  btnStatus === "A"
+                      ? (studyMasterId === userId ? 
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{
+                            width: "100%",
+                            minHeight: "200px",
+                          }}
+                        >
+                          <NoneNoteText type="sub_2">
+                            스터디 노트가 작성되지 않았습니다.
+                          </NoneNoteText>
+                          <CreateStudyNote
+                            shape="brown-outline"
+                            onClick={() => {
+                              history.push({
+                                pathname: "/notewrites",
+                                state: { bookInfo: props,
+                                        meetingId: params },
+                              });
+                            }}
+                          >
+                            작성하기
+                          </CreateStudyNote>
+                        </Grid>
+                        :
+                        <NoneNoteText type="sub_2">
+                          <p>스터디 노트가 작성되지 않았습니다.</p>
+                          <p>스터디장은 24시간 이내에 노트를 작성할 수 있습니다.</p>
+                        </NoneNoteText>
+                        )
+                      : 
+                      <div>
+                        <p>스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.</p>
+                      </div>
+                    
                 ) : (
                   <Eltext type="head_1">
                     <Viewer initialValue={props.props.studyNote} />

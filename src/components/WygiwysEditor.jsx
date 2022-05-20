@@ -22,7 +22,7 @@ import "../themes/toastEditor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr"
 import { useHistory } from "react-router-dom";
 
-const WygiwysEditor = ({ option, studyId}) => {
+const WygiwysEditor = ({ option, studyInfo}) => {
   // 추가 가능 옵션 ref
   // functions : handleSave, handleEdit, handleCancle
   const history = useHistory();
@@ -33,18 +33,23 @@ const WygiwysEditor = ({ option, studyId}) => {
     const editorInstance = editorRef.current.getInstance();
     const getContent_md = editorInstance.getMarkdown();
     console.log(getContent_md);
-    console.log(studyId)
+    console.log(studyInfo)
 
     const studyNoteInfo = {
-      studyId: studyId,
+      studyId: studyInfo.studyId,
       studyNote: getContent_md,
     }
 
-    dispatch(editorActions.addStudyNoteDB(studyNoteInfo))
-    // history.push(`/crew/${}`)
+     
+    studyInfo.studyNote === undefined ? 
+    dispatch(editorActions.addStudyNoteDB(studyNoteInfo)) 
+    :
+    dispatch(editorActions.modifyStudyNoteDB(studyNoteInfo))
+    window.location.replace(`http://localhost:3000/crew/${studyInfo.meetingId}`)
   }
-  
+
   const defaultOpt = {
+    
     previewStyle: "vertical",
     initialEditType: "wysiwyg",
     height: "1137px",
@@ -54,7 +59,7 @@ const WygiwysEditor = ({ option, studyId}) => {
     language: "ko-KR",
     // colorSyntax: 글자 색 바꾸는 기능 / condeSyntaxHighlight : 언어에 따른 코드 색 변경
     plugins: [colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]],
-    initialValue: "모임이 종료되었다면 모임에서 읽은 책 대한 노트 정리를 해주세요!!",
+    initialValue: `${studyInfo.studyValue ? studyInfo.studyValue : "새글을 작석하세요"}`,
     hooks: {
       addImageBlobHook: async (blob, callback) => {
         const imgUrl = await uploadFile(blob);
@@ -72,13 +77,21 @@ const WygiwysEditor = ({ option, studyId}) => {
       <>
       <Editor {...resultOpt} 
         ref={editorRef}/>   
-
+      {studyInfo.studyValue === undefined ?  
+      <BtnGrid>
+        <Elchip shape="LineBtn" width="148px" height="45px"
+        onClick={onChangeIntroFunction}>
+          게시하기
+        </Elchip>
+      </BtnGrid>
+      :
       <BtnGrid>
         <Elchip shape="LineBtn" width="148px" height="45px"
           onClick={onChangeIntroFunction}>
-            게시하기
+          수정하기
         </Elchip>
       </BtnGrid>
+      }
       </>
   );
 };
@@ -86,5 +99,6 @@ const WygiwysEditor = ({ option, studyId}) => {
 export default WygiwysEditor;
 
 const BtnGrid = styled.div`
-  margin-top: 150px;
+  margin-left: 500px;
+  margin-top: 100px;
 `;

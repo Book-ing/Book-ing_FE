@@ -16,11 +16,16 @@ const NoteWrites = () => {
   
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
+  const meetingId = location.state.meetingId.meetingId;
   console.log(bookInfo)
+  console.log(meetingId)
 
   const studyInfo={
     studyId: bookInfo.studyId,
-    masterId: bookInfo.studyMasterProfile.userId}
+    masterId: bookInfo.studyMasterProfile.userId,
+    studyValue: bookInfo.studyNote,
+    meetingId: meetingId
+  }
 
   return (
     <React.Fragment>
@@ -64,7 +69,7 @@ const NoteWrites = () => {
           </TitleGrid>
 
           <EditGrid>
-          <WygiwysEditor studyId={bookInfo.studyId}/>
+          <WygiwysEditor studyInfo={studyInfo}/>
           </EditGrid>
 
           
@@ -76,7 +81,7 @@ const NoteWrites = () => {
 
 const Grids = styled.div`
   width: 1440px;
-  height: 1964px;
+  height: 1914px;
   /* border: 1px solid #815854; */
   padding: 58px 95px 58px 94px;
   background-color: #FBF9F9;
