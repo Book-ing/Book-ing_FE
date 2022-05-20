@@ -38,8 +38,11 @@ const AccordionDetailsComponent = (props) => {
   const studyMasterId = String(props.props.studyMasterProfile.userId);
  
 
+<<<<<<< HEAD
   console.log(params);
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {

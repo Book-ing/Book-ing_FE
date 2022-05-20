@@ -15,9 +15,12 @@ const DELETE_STUDY = "DELETE_STUDY";
 const GET_STUDY_USER_LIST = "GET_STUDY_USER_LIST";
 const RESET_STUDY_USER_LIST = "RESET_STUDY_USER_LIST";
 const KICK_STUDY_USER = "KICK_STUDY_USER";
+<<<<<<< HEAD
 =======
 const DELETE_STUDY = "DELETE_STUDY";
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
 
 // ActionCreator
 const addStudy = createAction(ADD_STUDY, (data) => ({ data }));
@@ -82,15 +85,46 @@ const addOnlineStudyDB = (payload) => (dispatch, getState) => {
 };
 =======
 const deleteStudy = createAction(DELETE_STUDY, (payload) => ({ payload }));
+const getStudyUserList = createAction(
+  GET_STUDY_USER_LIST,
+  (myProfile, studyMasterProfile, studyUsers) => ({
+    myProfile,
+    studyMasterProfile,
+    studyUsers,
+  })
+);
+const resetStudyUserList = createAction(RESET_STUDY_USER_LIST, () => ({}));
+const kickStudyUser = createAction(KICK_STUDY_USER, (payload) => ({ payload }));
 
 // initialState
-const initialState = {};
+const initialState = {
+  studyProfileMy: "",
+  studyProfileMaster: "",
+  studyProfileUser: [],
+  newStudyProfileUser: [],
+  isStudyJoined: "",
+};
 
 // thunk
+<<<<<<< HEAD
 const addStudyDB = (newStudyInfo) => {
   return function (dispatch) {
     console.log(newStudyInfo);
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
+=======
+const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
+  studyApi
+    .posting(newStudyInfo)
+    .then((res) => {
+      window.location.replace(
+        `http://localhost:3000/crew/${newStudyInfo.meetingId}`
+      );
+    })
+    .catch((err) => {
+      console.log(`모임 정보 로드에러!`);
+    });
+};
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
 
 const getStudyUserListDB = (payload) => (dispatch, getState) => {
   console.log(payload);
@@ -109,6 +143,7 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
   studyApi
     .joinStudy(crewId, studyId)
     .then((res) => {
+<<<<<<< HEAD
 <<<<<<< HEAD
       // dispatch(inOutStudy(res.data.isStudyJoined));
     })
@@ -129,6 +164,8 @@ const editStudyDB = (payload) => (dispatch, getState) => {
       );
 =======
       console.log(res.data);
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
       dispatch(inOutStudy(res.data.isStudyJoined));
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
     })
@@ -154,10 +191,13 @@ const editStudyDB = (payload) => (dispatch, getState) => {
   studyApi
     .editStudy(payload)
     .then((res) => {
+<<<<<<< HEAD
       console.log(res);
 <<<<<<< HEAD
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
 =======
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
       window.location.replace(
         `http://localhost:3000/crew/${payload.meetingId}`
       );
@@ -169,6 +209,7 @@ const editStudyDB = (payload) => (dispatch, getState) => {
 };
 
 const deleteStudyDB = (studyId, meetingId) => (dispatch, getState) => {
+<<<<<<< HEAD
 <<<<<<< HEAD
   studyApi
     .deleteStudy(studyId, meetingId)
@@ -194,8 +235,25 @@ const kickStudyUserDB = (studyId, targetId) => (dispatch, getState) => {
 <<<<<<< HEAD
       dispatch(kickStudyUser(targetId));
 =======
+=======
+  studyApi
+    .deleteStudy(studyId, meetingId)
+    .then((res) => {
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
       window.location.replace(`http://localhost:3000/crew/${meetingId}`);
 >>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const kickStudyUserDB = (studyId, targetId) => (dispatch, getState) => {
+  studyApi
+    .kickStudyUser(studyId, targetId)
+    .then((res) => {
+      console.log(res);
+      dispatch(kickStudyUser(targetId));
     })
     .catch((err) => {
       console.log(err);
@@ -213,6 +271,9 @@ export default handleActions(
         draft.isStudyJoined = action.payload.payload;
       }),
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
     [GET_STUDY_USER_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.studyProfileMy = action.payload.myProfile;
@@ -231,8 +292,11 @@ export default handleActions(
           (e) => e.userId === action.payload.userId
         );
       }),
+<<<<<<< HEAD
 =======
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
   },
   initialState
 );
@@ -244,12 +308,18 @@ const studyActions = {
   deleteStudyDB,
   editStudyDB,
 <<<<<<< HEAD
+<<<<<<< HEAD
   getStudyUserListDB,
   resetStudyUserList,
   kickStudyUserDB,
   editOnlineStudyInfoDB,
 =======
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
+=======
+  getStudyUserListDB,
+  resetStudyUserList,
+  kickStudyUserDB,
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
 };
 
 export { studyActions };

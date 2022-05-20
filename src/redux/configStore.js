@@ -11,7 +11,10 @@ import study from "./modules/study";
 import search from "./modules/search";
 import editor from "./modules/editor";
 import studySearch from "./modules/studySearch";
+<<<<<<< HEAD
 import chat from "./modules/chat";
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
 
 // middlewares
 import thunk from "redux-thunk";
@@ -35,7 +38,10 @@ const rootReducer = combineReducers({
   accordion: accordion,
   router: connectRouter(history),
   studySearch: studySearch,
+<<<<<<< HEAD
   chat: chat,
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
 });
 
 const env = process.env.NODE_ENV;

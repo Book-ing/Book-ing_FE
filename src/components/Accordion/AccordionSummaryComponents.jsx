@@ -21,6 +21,7 @@ import { Eltext, Elbutton } from "../../elements";
 
 // components
 import UserListModal from "../Modal/UserListModal/UserListModal";
+import StudyUserListModal from "../Modal/UserListModal/StudyUserListModal";
 
 // theme
 import flex from "../../themes/flex";
@@ -55,7 +56,6 @@ const AccordionSummaryComponent = (props) => {
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
   const loginId = localStorage.getItem("userId");
-  console.log(loginId);
 
   // variables
   const studyId = props.props.studyId;
@@ -203,7 +203,7 @@ const AccordionSummaryComponent = (props) => {
               <StudyModalCloseBtn onClick={handlestudyUserListModalClose}>
                 <CloseIcon fontSize="large" />
               </StudyModalCloseBtn>
-              <UserListModal
+              <StudyUserListModal
                 isStudyUserList={studyUserListOpen}
                 eachStudyData={props.props}
               />

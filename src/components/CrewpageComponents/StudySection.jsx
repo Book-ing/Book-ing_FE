@@ -21,10 +21,14 @@ import flex from "../../themes/flex";
 
 const StudySection = (props) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   console.log();
   const dispatch = useDispatch();
 =======
 >>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
+=======
+  const dispatch = useDispatch();
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);

@@ -56,8 +56,11 @@ const UserList = (props) => {
       }
     };
 
+<<<<<<< HEAD
     console.log(props.eachStudyData);
 
+=======
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
     return (
       <UserListModalWrap>
         <Header>
@@ -115,6 +118,7 @@ const UserList = (props) => {
 
           {/* 일반 유저 영역 시작 */}
           {filterdStudyUserList.map((cur, idx) => {
+<<<<<<< HEAD
             console.log(cur);
             return (
               <EachUser key={idx}>
@@ -123,6 +127,12 @@ const UserList = (props) => {
                     src={filterdStudyUserList[idx].profileImage}
                     sx={{ marginRight: "10px" }}
                   />
+=======
+            return (
+              <EachUser key={idx}>
+                <EachUserLeftBox>
+                  <Avatar sx={{ marginRight: "10px" }} />
+>>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
                   <UserName type="sub_2_bold">
                     {filterdStudyUserList[idx].username}
                   </UserName>
