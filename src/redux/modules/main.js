@@ -5,7 +5,6 @@ import { mainApi } from "../../api/mainApi";
 import { searchActions } from "../modules/search";
 import { useHistory } from "react-router-dom";
 
-
 // Action
 
 const LOAD_CREW = "main/LOAD_CREW";
@@ -83,7 +82,7 @@ const addCrewDB = (newCrewInfo) => {
       .then((res) => {
         console.log(res);
         // dispatch(mainActions.loadCrewDB());
-        window.location.replace("http://localhost:3000/");
+        window.location.replace("https://www.book-ing.co.kr/");
       })
       .catch((error) => {
         console.log("게시글 등록 에러!");
@@ -91,36 +90,32 @@ const addCrewDB = (newCrewInfo) => {
   };
 };
 
-const getSearchCrew = (value, dispatch, history) => { 
-  
+const getSearchCrew = (value, dispatch, history) => {
   // console.log(value)
   mainApi
-  .searching(value)
-  .then((res) => {
-    const word = res.data.data.searchResult
-     console.log(word)
-     console.log(JSON.stringify(word) === "{}")
-     dispatch(searchActions.getSearch(word))
-    if(JSON.stringify(word) === "{}") {
-      // const values = {
-      //   word: "",
-      //   cate: "",
-      //   loc: "", 
-      // }
-      // dispatch(searchActions.getSearchDB(values))
-      return (
-      alert("원하는 모임이 검색되지 않았습니다! 검색 페이지를 이용해주세요")
-      // history.push("/search")
-      )
-    } else {
-      return history.push("/search")
-    }
-    
+    .searching(value)
+    .then((res) => {
+      const word = res.data.data.searchResult;
+      console.log(word);
+      console.log(JSON.stringify(word) === "{}");
+      dispatch(searchActions.getSearch(word));
+      if (JSON.stringify(word) === "{}") {
+        // const values = {
+        //   word: "",
+        //   cate: "",
+        //   loc: "",
+        // }
+        // dispatch(searchActions.getSearchDB(values))
+        return alert(
+          "원하는 모임이 검색되지 않았습니다! 검색 페이지를 이용해주세요"
+        );
+        // history.push("/search")
+      } else {
+        return history.push("/search");
+      }
     })
     .catch((err) => console.error(err));
- 
 };
-
 
 export default handleActions(
   {

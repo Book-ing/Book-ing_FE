@@ -5,7 +5,7 @@ import Elchip from "../elements/Elchip";
 import { useDispatch } from "react-redux";
 
 import { uploadFile } from "../shared/uploadFile";
-import { editorActions } from "../redux/modules/editor"
+import { editorActions } from "../redux/modules/editor";
 
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
@@ -19,37 +19,36 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import "../themes/toastEditor.css";
-import "@toast-ui/editor/dist/i18n/ko-kr"
+import "@toast-ui/editor/dist/i18n/ko-kr";
 import { useHistory } from "react-router-dom";
 
-const WygiwysEditor = ({ option, studyInfo}) => {
+const WygiwysEditor = ({ option, studyInfo }) => {
   // 추가 가능 옵션 ref
   // functions : handleSave, handleEdit, handleCancle
   const history = useHistory();
   const editorRef = useRef();
   const dispatch = useDispatch();
 
-  const  onChangeIntroFunction = () => {
+  const onChangeIntroFunction = () => {
     const editorInstance = editorRef.current.getInstance();
     const getContent_md = editorInstance.getMarkdown();
     console.log(getContent_md);
-    console.log(studyInfo)
+    console.log(studyInfo);
 
     const studyNoteInfo = {
       studyId: studyInfo.studyId,
       studyNote: getContent_md,
-    }
+    };
 
-     
-    studyInfo.studyNote === undefined ? 
-    dispatch(editorActions.addStudyNoteDB(studyNoteInfo)) 
-    :
-    dispatch(editorActions.modifyStudyNoteDB(studyNoteInfo))
-    window.location.replace(`http://localhost:3000/crew/${studyInfo.meetingId}`)
-  }
+    studyInfo.studyNote === undefined
+      ? dispatch(editorActions.addStudyNoteDB(studyNoteInfo))
+      : dispatch(editorActions.modifyStudyNoteDB(studyNoteInfo));
+    window.location.replace(
+      `https://www.book-ing.co.kr/crew/${studyInfo.meetingId}`
+    );
+  };
 
   const defaultOpt = {
-    
     previewStyle: "vertical",
     initialEditType: "wysiwyg",
     height: "1137px",
@@ -59,7 +58,9 @@ const WygiwysEditor = ({ option, studyInfo}) => {
     language: "ko-KR",
     // colorSyntax: 글자 색 바꾸는 기능 / condeSyntaxHighlight : 언어에 따른 코드 색 변경
     plugins: [colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]],
-    initialValue: `${studyInfo.studyValue ? studyInfo.studyValue : "새글을 작석하세요"}`,
+    initialValue: `${
+      studyInfo.studyValue ? studyInfo.studyValue : "새글을 작석하세요"
+    }`,
     hooks: {
       addImageBlobHook: async (blob, callback) => {
         const imgUrl = await uploadFile(blob);
@@ -73,26 +74,33 @@ const WygiwysEditor = ({ option, studyInfo}) => {
     ...option,
   };
 
-  return ( 
-      <>
-      <Editor {...resultOpt} 
-        ref={editorRef}/>   
-      {studyInfo.studyValue === undefined ?  
-      <BtnGrid>
-        <Elchip shape="LineBtn" width="148px" height="45px"
-        onClick={onChangeIntroFunction}>
-          게시하기
-        </Elchip>
-      </BtnGrid>
-      :
-      <BtnGrid>
-        <Elchip shape="LineBtn" width="148px" height="45px"
-          onClick={onChangeIntroFunction}>
-          수정하기
-        </Elchip>
-      </BtnGrid>
-      }
-      </>
+  return (
+    <>
+      <Editor {...resultOpt} ref={editorRef} />
+      {studyInfo.studyValue === undefined ? (
+        <BtnGrid>
+          <Elchip
+            shape="LineBtn"
+            width="148px"
+            height="45px"
+            onClick={onChangeIntroFunction}
+          >
+            게시하기
+          </Elchip>
+        </BtnGrid>
+      ) : (
+        <BtnGrid>
+          <Elchip
+            shape="LineBtn"
+            width="148px"
+            height="45px"
+            onClick={onChangeIntroFunction}
+          >
+            수정하기
+          </Elchip>
+        </BtnGrid>
+      )}
+    </>
   );
 };
 
