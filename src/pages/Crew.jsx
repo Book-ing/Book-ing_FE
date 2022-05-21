@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { actionCreators as CrewActions } from "../redux/modules/crew";
 import { actionCreators as userActions } from "../redux/modules/crew";
+<<<<<<< HEAD
 
 // mui
 import { Popper, Box } from "@mui/material";
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
 // styled components
 import styled from "styled-components";
@@ -46,6 +49,7 @@ const Crew = (props) => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
+<<<<<<< HEAD
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -53,6 +57,8 @@ const Crew = (props) => {
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
   if (__crewInfo === "") return <></>;
 

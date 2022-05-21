@@ -14,9 +14,12 @@ const PUT_STATUS_MESSAGE = "PUT_STATUS_MESSAGE";
 
 const GET_MYSTUDY = "GET_MYSTUDY";
 const RESET_MYSTUDY = "RESET_MYSTUDY";
+<<<<<<< HEAD
 
 const GET_JOINED_MYSTUDY = "GET_JOINED_MYSTUDY";
 const RESET_JOINED_MYSTUDY = "RESET_JOINED_MYSTUDY";
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
 // action creators
 const get_my_profile = createAction(GET_MY_PROFILE, (payload) => ({ payload }));
@@ -30,9 +33,12 @@ const put_status_message = createAction(PUT_STATUS_MESSAGE, (payload) => ({
 
 const get_mystudy = createAction(GET_MYSTUDY, (payload) => ({ payload }));
 const reset_mystudy = createAction(RESET_MYSTUDY, () => ({}));
+<<<<<<< HEAD
 
 const get_joined_mystudy = createAction(GET_JOINED_MYSTUDY, (payload) => ({ payload }));
 const reset_joined_mystudy = createAction(RESET_JOINED_MYSTUDY, () => ({}));
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
 // initialState
 const initialState = {
@@ -40,9 +46,13 @@ const initialState = {
   joinedMyCrew: {data: {joinedMeeting:""}},
   myProfile: {},
   myStudy: "",
+<<<<<<< HEAD
   myStudyData:"",
   myJoinedStudy:"",
   myJoinedStudyData:"",
+=======
+  accordionData:"",
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
   isLoading: true
 };
 
@@ -123,8 +133,14 @@ const getJoinedStudyDB = () => (dispatch, getState) => {
   mypageApi
     .getJoinedStudy()
     .then((res) => {
+<<<<<<< HEAD
       console.log(res.data.myJoinedStudy);
       dispatch(get_joined_mystudy(res.data.myJoinedStudy));
+=======
+      console.log(res.data);
+      const data = res.data;
+      dispatch(get_mystudy(data));
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
     })
     .catch((error) => {
       console.log("내가만든 스터디 GET 요청중 에러 발생", error);
@@ -155,6 +171,7 @@ export default handleActions(
       }),
     [RESET_MYSTUDY]: (state, action) =>
       produce(state, (draft) => {
+<<<<<<< HEAD
         draft.myStudyData = "";
         console.log(draft.myStudyData);
       }),
@@ -168,6 +185,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.myJoinedStudyData = "";
         console.log(draft.myJoinedStudyData);
+=======
+        draft.accordionData = "";
+        console.log(draft.accordionData);
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
       }),
   },
   initialState
@@ -181,7 +202,10 @@ const actionCreators = {
   getMyStudyDB,
   getJoinedStudyDB,
   reset_mystudy,
+<<<<<<< HEAD
   reset_joined_mystudy,
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 };
 
 export { actionCreators };

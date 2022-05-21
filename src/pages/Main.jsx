@@ -46,6 +46,7 @@ const Main = (props) => {
   console.log(__listMyMeetingStudy);
   // ========================================================================
   const userId = localStorage.getItem("userId");
+<<<<<<< HEAD
 
 
   // ==================== 민우님이 요청한 loginCheckDB ========================
@@ -55,6 +56,15 @@ const Main = (props) => {
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
     
+=======
+  // console.log(userId)
+
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+  // React.useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+   // ==================== 민우님이 요청한 loginCheckDB ========================
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
   React.useEffect(() => {
     userId === null

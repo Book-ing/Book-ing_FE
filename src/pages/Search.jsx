@@ -13,7 +13,10 @@ import { getSearch } from "../redux/modules/search";
 import SearchIcon from "@mui/icons-material/Search";
 import { searchActions } from "../redux/modules/search";
 import { actionCreators as userActions } from "../redux/modules/crew";
+<<<<<<< HEAD
 import noSearch from "../assets/search/noSearch.png"
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
 
 const Search = () => {
@@ -33,8 +36,17 @@ const Search = () => {
 =======
   console.log(ab)
   console.log(info.length)
+<<<<<<< HEAD
 
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+  
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+  // React.useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+   // ==================== 민우님이 요청한 loginCheckDB ========================
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
   const [searchInfo, setSearchInfo] = useState({
     title: "",
@@ -43,10 +55,13 @@ const Search = () => {
   });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [category, setCategory] = useState("")
 =======
   
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;

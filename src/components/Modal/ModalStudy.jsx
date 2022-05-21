@@ -324,7 +324,7 @@ const ModalStudy = (props) => {
                         style={{
                           width: "73px",
                           height: "107px",
-                          border: "1px solid black",
+                          // border: "1px solid black",
                           backgroundImage: `url(${bookInfo.imgURL})`,
                           backgroundSize: "contain",
                         }}
@@ -343,9 +343,9 @@ const ModalStudy = (props) => {
                         <div style={{ fontWeight: "bold" }}>
                           {bookInfo.name}
                         </div>
-                        <div>지은이: {bookInfo.writer}</div>
-                        <div>출판사: {bookInfo.publisher}</div>
-                        <div>{bookInfo.desc}...</div>
+                        <div>{bookInfo.writer}</div>
+                        <div>{bookInfo.publisher}</div>
+                        <div>{bookInfo.desc}</div>
                       </div>
                     </div>
                   </Eltext>
@@ -564,7 +564,7 @@ const ModalStudy = (props) => {
                         style={{
                           width: "73px",
                           height: "107px",
-                          border: "1px solid black",
+                          // border: "1px solid black",
                           backgroundImage: `url(${bookInfo.imgURL})`,
                           backgroundSize: "contain",
                         }}
@@ -576,16 +576,16 @@ const ModalStudy = (props) => {
                           width: "391px",
                           height: "108px",
                           marginLeft: "13px",
-                          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                          // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                           overflow: "scroll",
                         }}
                       >
                         <div style={{ fontWeight: "bold" }}>
                           {bookInfo.name}
                         </div>
-                        <div>지은이: {bookInfo.writer}</div>
-                        <div>출판사: {bookInfo.publisher}</div>
-                        <div>{bookInfo.desc}...</div>
+                        <div>{bookInfo.writer}</div>
+                        <div>{bookInfo.publisher}</div>
+                        <div>{bookInfo.desc}</div>
                       </div>
                     </div>
                   </Eltext>

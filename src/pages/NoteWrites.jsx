@@ -16,16 +16,23 @@ const NoteWrites = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+<<<<<<< HEAD
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+=======
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
   const meetingId = location.state.meetingId.meetingId;

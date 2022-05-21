@@ -10,7 +10,11 @@ import { Elimage, Eltext } from "../elements";
 import flex from "../themes/flex";
 
 const MypageCard = (props) => {
+<<<<<<< HEAD
   // console.log(props)
+=======
+  console.log(props)
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
   return (
     <React.Fragment>
       <CardsWrap>

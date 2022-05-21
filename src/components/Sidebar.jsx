@@ -32,6 +32,7 @@ const Sidebar = (props) => {
   // variables
   const userId = localStorage.getItem("userId");
 
+
   useEffect(() => {
     dispatch(mypageActions.getMyProfileDB(userId));
   }, [__myProfileData.statusMessage]);
@@ -53,11 +54,18 @@ const Sidebar = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const userInfo = {
+<<<<<<< HEAD
       userId: userId,
       statusMessage: statusMsg,
     };
     dispatch(mypageActions.changeStatusMsgDB(userInfo));
     alert("상태메세지가 변경되었습니다!");
+=======
+      userId:userId,
+      statusMessage: statusMsg,
+    }
+    dispatch(mypageActions.changeStatusMsgDB(userInfo));
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
   };
 
   const loginUserName = localStorage.getItem("username");

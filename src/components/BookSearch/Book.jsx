@@ -16,7 +16,11 @@ const Book = ({ imgURL="", name='도서명', desc='도서 설명', writer='작�
                 <BookInfo>
                     <BookName>{ name }</BookName>
                     <BookDesc>{ desc }...</BookDesc>
+<<<<<<< HEAD
                     <span>지은이: {writer} | 출판사: {publisher}</span>
+=======
+                    <span>{writer} | {publisher}</span>
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
                     <div> 가격:{price}원</div>
                     <StBtn onClick={ () => {dispatch(postBook({imgURL, name, desc,writer, publisher})); popupClose();}}>선택하기</StBtn>
                 </BookInfo>

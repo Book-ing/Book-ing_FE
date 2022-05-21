@@ -58,10 +58,10 @@ const PopupBookSearch = (props) => {
               imgURL={book.thumbnail}
               name={book.title}
               price={book.price}
-              writer={book.authors.join(", ")}
-              publisher={book.publisher}
+              writer={"지은이 : " + book.authors.join(", ")}
+              publisher={"출판사 : " + book.publisher}
               salePrice={book.sale_price}
-              desc={book.contents}
+              desc={book.contents + "..."}
               popupClose={props.onClose}
             />
           </div>
@@ -80,9 +80,10 @@ const SearchContainer = styled.div`
 const ResultContainer = styled.div`
   display: block;
   position: absolute;
-  background-color: white;
+  background-color: #FBF9F9;
   width: 478px;
   height: 600px;
-  border: 1px solid black;
+  border: 1px solid var(--point);
+  border-radius: 5px;
   overflow: scroll;
 `;

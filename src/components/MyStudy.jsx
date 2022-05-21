@@ -6,15 +6,23 @@ import { actionCreators as mypageActions } from "../redux/modules/mypage";
 import { Eltext } from "../elements";
 
 // components
+<<<<<<< HEAD
 import MyStudyAccordions from "./MyStudyAccordion/Accordion";
 import MyJoinedAccordions from "./MyJoinedAccordion/Accordion";
+=======
+import MypageAccordions from "../components/MypageAccordion/Accordion";
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
 // style
 import styled from "styled-components";
 
 // theme
 import flex from "../themes/flex";
+<<<<<<< HEAD
 import { hiddenScroll } from "../themes/hiddenScroll";
+=======
+
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
 const MyStudy = () => {
   const dispatch = useDispatch();
@@ -22,8 +30,28 @@ const MyStudy = () => {
   // variables
   const userId = localStorage.getItem("userId");
 
+
   // redux store
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
+<<<<<<< HEAD
+=======
+
+  // const __myStudy = useSelector((state) => state.mypage.myStudy);
+
+  // const __joinedMyStudy = useSelector((state) => state.mypage.joinedMyCrew);
+
+  // console.log(__myStudy)
+
+  // useEffect(() => {
+  //   dispatch(mypageActions.getMyStudyDB());
+  // }, []);
+
+  useEffect(() => {
+    dispatch(mypageActions.getJoinedStudyDB());
+  }, []);
+
+  // if (__myStudy === "" || __joinedMyStudy === "") return <></>;
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
   return (
     <React.Fragment>
@@ -32,11 +60,29 @@ const MyStudy = () => {
           <MyStudyTopBox>
             <TitleText type="sub_1_bold">내가 만든 스터디</TitleText>
             <MyStudyItem>
+<<<<<<< HEAD
               <AccordionSection>
                 <MyStudyAccordions
                   isJoinedCrew={__isJoinedCrew}
                 ></MyStudyAccordions>
               </AccordionSection>
+=======
+              {/* {__myStudy.map((cur, idx) => (
+                <MypageAccordions {...cur} key={idx} />
+              ))} */}
+              {/* <MypageAccordions /> */}
+              
+              
+              <AccordionSection>
+                <MypageAccordions 
+                  isJoinedCrew={__isJoinedCrew}>
+
+                </MypageAccordions>
+              </AccordionSection>
+
+
+
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
             </MyStudyItem>
           </MyStudyTopBox>
           <MyStudyBottomBox>
@@ -85,10 +131,16 @@ const MyStudyTopBox = styled.div`
 `;
 
 const MyStudyItem = styled.div`
+<<<<<<< HEAD
   width: 920px;
   max-height: 545px;
   overflow-y: auto;
   /* box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5); */
+=======
+  width: 100%;
+  max-height: 800px;
+  overflow-y: scroll;
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 `;
 
 const MyStudyBottomBox = styled.div`
@@ -106,5 +158,10 @@ const JoinedItem = styled.div`
 
 const AccordionSection = styled.div`
   width: 900px;
+  margin: auto;
+`;
+
+const AccordionSection = styled.div`
+  width: 90%;
   margin: auto;
 `;

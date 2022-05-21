@@ -29,9 +29,17 @@ const Mypage = () => {
 
   const [isMyCrew, setIsMyCrew] = useState(true);
 
+<<<<<<< HEAD
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+=======
+// ==================== 민우님이 요청한 loginCheckDB ========================
+  // useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+// ==================== 민우님이 요청한 loginCheckDB ========================
+>>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
   useEffect(() => {
     status === undefined ?
