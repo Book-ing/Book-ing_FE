@@ -24,7 +24,6 @@ const initialstate = {
 
 // thunk
 const kakaoLogin = (payload) => (dispatch, getState) => {
-  
   userApi
     .login(payload)
     .then((res) => {
@@ -98,9 +97,11 @@ const loginCheckDB = () => (dispatch, getState) => {
           const refreshToken = getCookie("refreshToken");
           removeCookie("accessToken", accessToken, {
             path: "/",
+            maxAge: 7200, // 20분
           });
           removeCookie("refreshToken", refreshToken, {
             path: "/",
+            maxAge: 64800, // 2시간
           });
           localStorage.removeItem("userId");
           localStorage.removeItem("username");

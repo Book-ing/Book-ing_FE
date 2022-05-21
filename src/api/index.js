@@ -119,9 +119,11 @@ instance.interceptors.response.use(
             const newRefreshToken = res.data.data.refreshToken;
             setCookie("accessToken", newAccessToken, {
               path: "/",
+              maxAge: 7200, // 20분
             });
             setCookie("refreshToken", newRefreshToken, {
               path: "/",
+              maxAge: 64800, // 2시간
             });
           })
           .catch((err) => {
@@ -197,9 +199,11 @@ requiredInstance.interceptors.response.use(
             const newRefreshToken = res.data.data.refreshToken;
             setCookie("accessToken", newAccessToken, {
               path: "/",
+              maxAge: 7200, // 20분
             });
             setCookie("refreshToken", newRefreshToken, {
               path: "/",
+              maxAge: 64800, // 2시간
             });
           })
           .catch((err) => {
@@ -275,9 +279,11 @@ formDataInstance.interceptors.response.use(
             const newRefreshToken = res.data.data.refreshToken;
             setCookie("accessToken", newAccessToken, {
               path: "/",
+              maxAge: 7200, // 20분
             });
             setCookie("refreshToken", newRefreshToken, {
               path: "/",
+              maxAge: 64800, // 2시간
             });
           })
           .catch((err) => {
