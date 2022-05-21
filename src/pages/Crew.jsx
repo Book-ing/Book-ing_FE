@@ -10,6 +10,9 @@ import { Popper, Box } from "@mui/material";
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
+// mui
+import { Popper, Box } from "@mui/material";
+
 // styled components
 import styled from "styled-components";
 
@@ -17,6 +20,11 @@ import styled from "styled-components";
 import CrewInfoTopBox from "../components/CrewpageComponents/CrewInfoTopBox";
 import CrewInfoBottomBox from "../components/CrewpageComponents/CrewInfoBottomBox";
 import StudySection from "../components/CrewpageComponents/StudySection";
+<<<<<<< HEAD
+=======
+import Spinner from "../components/Spinner";
+import ChattingBox from "../components/Chat/ChattingBox";
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
 
 // themes
 import flex from "../themes/flex";
@@ -44,12 +52,15 @@ const Crew = (props) => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
   }, [dispatch, meetingId, __isJoinedCrew, __newProfileUser]);
 
+<<<<<<< HEAD
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
 <<<<<<< HEAD
+=======
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -57,8 +68,11 @@ const Crew = (props) => {
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
+<<<<<<< HEAD
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
 
   if (__crewInfo === "") return <></>;
 
@@ -71,6 +85,7 @@ const Crew = (props) => {
       <BottomWrap>
         <StudySection crewInfo={__crewInfo} />
       </BottomWrap>
+<<<<<<< HEAD
       {__isJoinedCrew === true ? (
         <>
           <CrewChatOpenBtn
@@ -87,6 +102,21 @@ const Crew = (props) => {
           </Popper>
         </>
       ) : null}
+=======
+      <CrewChatOpenBtn
+        aria-describedby={id}
+        type="button"
+        onClick={handleClick}
+      >
+        Chat
+      </CrewChatOpenBtn>
+      <Popper id={id} open={open} anchorEl={anchorEl}>
+        <ChatWrap>
+          {/* <ChattingBox meetingId={meetingId}></ChattingBox> */}
+          <Chat />
+        </ChatWrap>
+      </Popper>
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
     </CrewWrap>
   );
 };
@@ -133,9 +163,15 @@ const ChatWrap = styled.div`
 const CrewChatOpenBtn = styled.button`
   width: 100px;
   height: 50px;
+<<<<<<< HEAD
   position: fixed;
   right: 50px;
   bottom: 50px;
+=======
+  position: absolute;
+  right: 50px;
+  bottom: 0;
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
   background-color: var(--point);
   color: #fff;
   border-radius: 30px;

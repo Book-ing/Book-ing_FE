@@ -12,9 +12,13 @@ import search from "./modules/search";
 import editor from "./modules/editor";
 import studySearch from "./modules/studySearch";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import chat from "./modules/chat";
 =======
 >>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
+=======
+import chat from "./modules/chat";
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
 
 // middlewares
 import thunk from "redux-thunk";
@@ -39,9 +43,13 @@ const rootReducer = combineReducers({
   router: connectRouter(history),
   studySearch: studySearch,
 <<<<<<< HEAD
+<<<<<<< HEAD
   chat: chat,
 =======
 >>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
+=======
+  chat: chat,
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
 });
 
 const env = process.env.NODE_ENV;

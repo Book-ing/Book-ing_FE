@@ -1,5 +1,10 @@
 import io from "socket.io-client";
 
+<<<<<<< HEAD
+=======
+const targetServer = "https://sparta-hs.shop/";
+
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
 let socket;
 
 // 모임페이지에 들어올 때 소켓 연결

@@ -54,6 +54,7 @@ const CustomizedAccordions = (props) => {
 
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
+  console.log(__accordionData);
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const __isJoinedStudy = useSelector((state) => state.study.isStudyJoined);
   const __newStudyProfileUser = useSelector(
@@ -83,7 +84,7 @@ const CustomizedAccordions = (props) => {
   ]);
 
   if (__accordionData === "") return <></>;
-  
+
   console.log(__accordionData);
 
   if (!__searchData.length) {

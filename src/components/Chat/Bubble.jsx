@@ -15,7 +15,13 @@ const Bubble = ({ message, type }) => {
     return (
       <MyChat>
         <MyBubble>
+<<<<<<< HEAD
           <MessageText type="body_4">{message.message}</MessageText>
+=======
+          <MessageText type="body_4" color="white">
+            {message.message}
+          </MessageText>
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
         </MyBubble>
       </MyChat>
     );
@@ -67,9 +73,13 @@ const MyBubble = styled.div`
   background-color: var(--main);
 `;
 
+<<<<<<< HEAD
 const MessageText = styled(Eltext)`
   color: var(--black);
 `;
+=======
+const MessageText = styled(Eltext)``;
+>>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
 
 const CommonBubble = styled.div`
   ${BubbleStyle};
