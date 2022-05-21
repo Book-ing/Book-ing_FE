@@ -44,7 +44,7 @@ const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
     .posting(newStudyInfo)
     .then((res) => {
       window.location.replace(
-        `http://localhost:3000/crew/${newStudyInfo.meetingId}`
+        `https://www.book-ing.co.kr/crew/${newStudyInfo.meetingId}`
       );
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ const editStudyDB = (payload) => (dispatch, getState) => {
     .editStudy(payload)
     .then((res) => {
       window.location.replace(
-        `http://localhost:3000/crew/${payload.meetingId}`
+        `https://www.book-ing.co.kr/crew/${payload.meetingId}`
       );
     })
     .catch((err) => {
@@ -93,7 +93,7 @@ const deleteStudyDB = (studyId, meetingId) => (dispatch, getState) => {
   studyApi
     .deleteStudy(studyId, meetingId)
     .then((res) => {
-      window.location.replace(`http://localhost:3000/crew/${meetingId}`);
+      window.location.replace(`https://www.book-ing.co.kr/crew/${meetingId}`);
     })
     .catch((err) => {
       console.log(err);

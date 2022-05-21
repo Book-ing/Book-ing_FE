@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { actionCreators as CrewActions } from "../redux/modules/crew";
 import { actionCreators as userActions } from "../redux/modules/crew";
 
+// mui
+import { Popper, Box } from "@mui/material";
+
 // styled components
 import styled from "styled-components";
 
@@ -12,9 +15,11 @@ import CrewInfoTopBox from "../components/CrewpageComponents/CrewInfoTopBox";
 import CrewInfoBottomBox from "../components/CrewpageComponents/CrewInfoBottomBox";
 import StudySection from "../components/CrewpageComponents/StudySection";
 import Spinner from "../components/Spinner";
+import ChattingBox from "../components/Chat/ChattingBox";
 
 // themes
 import flex from "../themes/flex";
+import Chat from "../components/Chat/Chat";
 
 const Crew = (props) => {
   const { meetingId } = useParams();
@@ -36,6 +41,13 @@ const Crew = (props) => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
 
   if (__crewInfo === "") return <></>;
 
@@ -48,6 +60,19 @@ const Crew = (props) => {
       <BottomWrap>
         <StudySection crewInfo={__crewInfo} />
       </BottomWrap>
+      <CrewChatOpenBtn
+        aria-describedby={id}
+        type="button"
+        onClick={handleClick}
+      >
+        Chat
+      </CrewChatOpenBtn>
+      <Popper id={id} open={open} anchorEl={anchorEl}>
+        <ChatWrap>
+          {/* <ChattingBox meetingId={meetingId}></ChattingBox> */}
+          <Chat />
+        </ChatWrap>
+      </Popper>
     </CrewWrap>
   );
 };
@@ -58,6 +83,7 @@ const CrewWrap = styled.div`
   ${flex("center", "center", false)}
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 const TopWrap = styled.div`
@@ -78,4 +104,25 @@ const BottomWrap = styled.div`
   max-width: 1440px;
   width: 100%;
   height: 100%;
+`;
+
+const ChatWrap = styled.div`
+  width: 350px;
+  height: 600px;
+  overflow: hidden;
+  border: 1px solid var(--point);
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+`;
+
+const CrewChatOpenBtn = styled.button`
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  right: 50px;
+  bottom: 0;
+  background-color: var(--point);
+  color: #fff;
+  border-radius: 30px;
 `;
