@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { getSearch } from "../redux/modules/search";
 import SearchIcon from "@mui/icons-material/Search";
 import { searchActions } from "../redux/modules/search";
+import { actionCreators as userActions } from "../redux/modules/crew";
 
 
 const Search = () => {
@@ -21,7 +22,12 @@ const Search = () => {
   const ab = useSelector((state)=>state.search)
   console.log(ab)
   console.log(info.length)
-
+  
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+  // React.useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+   // ==================== 민우님이 요청한 loginCheckDB ========================
 
   const [searchInfo, setSearchInfo] = useState({
     title: "",
@@ -29,7 +35,6 @@ const Search = () => {
     region: "",
   });
 
-  
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;

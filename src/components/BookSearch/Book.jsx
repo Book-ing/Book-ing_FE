@@ -16,7 +16,7 @@ const Book = ({ imgURL="", name='도서명', desc='도서 설명', writer='작�
                 <BookInfo>
                     <BookName>{ name }</BookName>
                     <BookDesc>{ desc }...</BookDesc>
-                    <span>지은이:{writer} | 출판사:{publisher}</span>
+                    <span>{writer} | {publisher}</span>
                     <div> 가격:{price}원</div>
                     <StBtn onClick={ () => {dispatch(postBook({imgURL, name, desc,writer, publisher})); popupClose();}}>선택하기</StBtn>
                 </BookInfo>
@@ -38,7 +38,7 @@ export default Book;
 const BookItem = styled.li`
     list-style: none;
     display: flex;
-    margin: 10px 0;
+    margin: 5px 0;
 `;
 
 const BookInfo = styled.div`
@@ -49,6 +49,7 @@ const BookInfo = styled.div`
 `;
 
 const BookName = styled.span`
+    margin-top: -13px;
     font-size: 18px;
     font-weight: bold;
 `;
@@ -66,6 +67,8 @@ const BookDesc = styled.p`
 const StBtn = styled.button`
     width: 100px;
     border: 1px solid var(--point);
+    border-radius: 5px;
+    margin-top: 5px;
     &:hover {
         color: var(--white);
         background-color: var(--point);

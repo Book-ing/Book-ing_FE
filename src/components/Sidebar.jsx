@@ -32,6 +32,7 @@ const Sidebar = (props) => {
   // variables
   const userId = localStorage.getItem("userId");
 
+
   useEffect(() => {
     dispatch(mypageActions.getMyProfileDB(userId));
   }, [__myProfileData.statusMessage]);
@@ -46,8 +47,11 @@ const Sidebar = (props) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(statusMsg);
-    dispatch(mypageActions.changeStatusMsgDB(userId, statusMsg));
+    const userInfo = {
+      userId:userId,
+      statusMessage: statusMsg,
+    }
+    dispatch(mypageActions.changeStatusMsgDB(userInfo));
   };
 
   const loginUserName = localStorage.getItem("username");

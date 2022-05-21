@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { actionCreators as CrewActions } from "../redux/modules/crew";
+import { actionCreators as userActions } from "../redux/modules/crew";
 
 // styled components
 import styled from "styled-components";
@@ -29,6 +30,12 @@ const Crew = (props) => {
   useEffect(() => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
   }, [dispatch, meetingId, __isJoinedCrew, __newProfileUser]);
+
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+  // React.useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+  // ==================== 민우님이 요청한 loginCheckDB ========================
 
   if (__crewInfo === "") return <></>;
 

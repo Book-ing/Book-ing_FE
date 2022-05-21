@@ -15,6 +15,7 @@ import flex from "../themes/flex";
 import { Elbutton, Eltext, Elchip } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { mainActions } from "../redux/modules/main";
+import { actionCreators as userActions } from "../redux/modules/crew";
 import { useHistory } from "react-router-dom";
 import CrewSearch from "../components/mainSearch/CrewSearch";
 
@@ -40,6 +41,13 @@ const Main = (props) => {
   // ========================================================================
   const userId = localStorage.getItem("userId");
   // console.log(userId)
+
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+  // React.useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+   // ==================== 민우님이 요청한 loginCheckDB ========================
+
   React.useEffect(() => {
     userId === null
       ? dispatch(mainActions.loadCrewDB())

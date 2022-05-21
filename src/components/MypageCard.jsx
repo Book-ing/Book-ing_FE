@@ -10,6 +10,7 @@ import { Elimage, Eltext } from "../elements";
 import flex from "../themes/flex";
 
 const MypageCard = (props) => {
+  console.log(props)
   return (
     <React.Fragment>
       <CardsWrap>

@@ -9,10 +9,19 @@ import { Elimage, Eltext } from "../elements";
 import Editor from "../components/Editor";
 import WygiwysEditor from "../components/WygiwysEditor.jsx";
 import book from "../redux/modules/book";
+import { actionCreators as userActions } from "../redux/modules/crew";
+import { useDispatch } from "react-redux";
 
 const NoteWrites = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
-  
+
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+  // React.useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+
   
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;

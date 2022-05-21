@@ -21,9 +21,11 @@ const Mypage = () => {
   const dispatch = useDispatch();
   const [isMyCrew, setIsMyCrew] = useState(true);
 
-  useEffect(() => {
-    dispatch(userActions.loginCheckDB());
-  }, []);
+// ==================== 민우님이 요청한 loginCheckDB ========================
+  // useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+// ==================== 민우님이 요청한 loginCheckDB ========================
 
   return (
     <React.Fragment>

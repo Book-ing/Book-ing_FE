@@ -14,18 +14,24 @@ import MypageCard from "./MypageCard";
 
 const MyCrew = () => {
   const dispatch = useDispatch();
+  const userId = localStorage.getItem("userId")
 
   // redux store
-  const __myCrew = useSelector((state) => state.mypage.myCrew);
-  const __joinedMyCrew = useSelector((state) => state.mypage.joinedMyCrew);
+  const __myCrew = useSelector((state) => state.mypage.myCrew.data.myMeeting);
+  const __joinedMyCrew = useSelector((state) => state.mypage.joinedMyCrew.data.joinedMeeting);
 
+  console.log(__myCrew)
+  console.log(__joinedMyCrew)
+  
   useEffect(() => {
-    dispatch(mypageActions.getCrewDB());
+    dispatch(mypageActions.getCrewDB(userId));
   }, []);
 
   useEffect(() => {
-    dispatch(mypageActions.getJoinedCrewDB());
+    dispatch(mypageActions.getJoinedCrewDB(userId));
   }, []);
+
+
 
   if (__myCrew === "" || __joinedMyCrew === "") return <></>;
 

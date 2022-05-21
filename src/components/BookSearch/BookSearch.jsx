@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import styled from 'styled-components'
+import SearchIcon from "@mui/icons-material/Search";
 
 //  searchValue(상태값)와 함수를 전달받음
 const BookSearch = ({ getSearchValue }) => {
@@ -17,8 +18,14 @@ const BookSearch = ({ getSearchValue }) => {
 
   return (
       <SearchWindowContainer>
-          <input style={{border:"1px solid black"}} value={searchValue} onChange={e => setSearchValue(e.currentTarget.value)} />
-          <button onClick={sendSearchValue}>검색</button>
+          <input style={{marginLeft:"20px",border:"1px solid var(--point)", width:"400px"}} value={searchValue} onChange={e => setSearchValue(e.currentTarget.value)} />
+
+        <StSearchBtn onClick={sendSearchValue}>
+
+            <SearchIcon fontSize="large" />
+
+        </StSearchBtn>
+          {/* <button onClick={sendSearchValue}>검색</button> */}
       </SearchWindowContainer>
   );
 };
@@ -26,11 +33,17 @@ const BookSearch = ({ getSearchValue }) => {
 export default BookSearch;
 
 const SearchWindowContainer = styled.div`
-    border: 1px solid black;
+    border: 1px solid var(--point);
+    border-radius: 5px;
     width: 100%;
     padding: 10px 5px;
     > button {
         cursor: pointer;
         margin-left: 5px;
     }
+`;
+
+const StSearchBtn = styled.button`
+    vertical-align: middle;
+    color: var(--point);
 `;
