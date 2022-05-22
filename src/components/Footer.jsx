@@ -15,7 +15,17 @@ const Footer = () => {
     <React.Fragment>
       <FooterWrap>
         <FooterBox>
-          <FooterSpanBox>
+          <FooterInnerBox>
+            <FooterInnerLeftBox>
+              <FooterInnerLeftTopBox>
+                <FooterLogo></FooterLogo>
+                <FooterInfo></FooterInfo>
+              </FooterInnerLeftTopBox>
+              <FooterInnerLeftBottomBox></FooterInnerLeftBottomBox>
+            </FooterInnerLeftBox>
+            <FooterInnerRightBox></FooterInnerRightBox>
+          </FooterInnerBox>
+          {/* <FooterSpanBox>
             <StSpan type="sub_2_bold">Team</StSpan>
             <StSpan type="sub_2_bold">Github</StSpan>
             <StSpan type="sub_2_bold">Company</StSpan>
@@ -25,7 +35,7 @@ const Footer = () => {
             <StSpan type="sub_2_bold">Help desk</StSpan>
             <StSpan type="sub_2_bold">Blog</StSpan>
             <StSpan type="sub_2_bold">Resources</StSpan>
-          </FooterSpanBox>
+          </FooterSpanBox> */}
         </FooterBox>
       </FooterWrap>
     </React.Fragment>
@@ -42,23 +52,62 @@ const FooterWrap = styled.div`
 `;
 
 const FooterBox = styled.div`
-  width: 1440px;
-  height: 64px;
+  width: 1200px;
+  height: 620px;
+  border: 1px solid red;
 
-  ${flex("between", "center", true)}
+  ${flex("center", "center")}
 `;
 
-const Logo = styled.img`
-  width: 122px;
-  height: 47px;
+const FooterInnerBox = styled.div`
+  ${flex("between", "center")}
+  width: 1000px;
+  height: 500px;
 `;
 
-const FooterSpanBox = styled.div`
-  ${flex("center", "center", true)}
+const FooterInnerLeftBox = styled.div`
+  ${flex("start", "start", false)}
+  width: 35%;
+  height: 100%;
+  border: 1px solid blue;
 `;
 
-const StSpan = styled(Eltext)`
-  padding: 10px 40px;
-  margin: 0 10px;
-  cursor: pointer;
+const FooterInnerLeftTopBox = styled.div`
+  ${flex("start", "start", false)}
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
 `;
+
+const FooterLogo = styled.img``;
+
+const FooterInfo = styled(Eltext)``;
+
+const FooterInnerLeftBottomBox = styled.div`
+  ${flex("start", "start", false)}
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+`;
+
+const FooterInnerRightBox = styled.div`
+  ${flex("start", "start", false)}
+  width: 65%;
+  height: 100%;
+  border: 1px solid turquoise;
+`;
+
+// const Logo = styled.img`
+//   width: 122px;
+//   height: 47px;
+// `;
+
+// const FooterSpanBox = styled.div`
+//   ${flex("center", "center", true)}
+// `;
+
+// const StSpan = styled(Eltext)`
+//   padding: 10px 40px;
+//   margin: 0 10px;
+//   cursor: pointer;
+// `;
