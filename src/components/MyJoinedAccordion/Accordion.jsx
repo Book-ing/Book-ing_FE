@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { useParams, useHistory, useLocation } from "react-router-dom";
 
 // modules
@@ -11,6 +12,24 @@ import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 import { styled } from "@mui/material/styles";
 import MuiAccordion from "@mui/material/Accordion";
 
+=======
+import { useParams, useHistory } from "react-router-dom";
+
+// modules
+import { actionCreators as accordionActions } from "../../redux/modules/accordion";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
+import { mainActions } from "../../redux/modules/main";
+
+// mui
+import { styled } from "@mui/material/styles";
+import { Modal, Box } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import MuiAccordion from "@mui/material/Accordion";
+import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import MuiAccordionDetails from "@mui/material/AccordionDetails";
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 // styled components
 import { Eltext, Elbutton } from "../../elements";
@@ -42,6 +61,7 @@ const Accordion = styled((props) => (
 const MyJoinedAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+<<<<<<< HEAD
   const location = useLocation();
   console.log(location.state);
 
@@ -49,6 +69,14 @@ const MyJoinedAccordions = (props) => {
   const [checkState, setCheckState] = useState(false);
   // const hadleModalOpen = () => setOpen(true);
   // const handleModalClose = () => setOpen(false);
+=======
+  
+
+  const [open, setOpen] = useState(false);
+
+  const hadleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myJoinedStudy);
@@ -57,6 +85,7 @@ const MyJoinedAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
+<<<<<<< HEAD
   const fuck = useSelector((state) => state.mypage.myJoinedStudy);
   console.log(fuck)
  
@@ -68,6 +97,16 @@ const MyJoinedAccordions = (props) => {
 
   const [status, setStatus] = useState(true);
 
+=======
+
+  console.log(__accordionData)
+ 
+  // variables
+  const userId = localStorage.getItem("userId");
+
+  const [expanded, setExpanded] = useState("");
+
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
@@ -75,16 +114,22 @@ const MyJoinedAccordions = (props) => {
   useEffect(() => {
     dispatch(mypageActions.getJoinedStudyDB());
     return () => {
+<<<<<<< HEAD
       status === undefined ?
     setStatus(true) : setStatus(false);
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
       dispatch(mypageActions.reset_joined_mystudy());
     };
   }, [
     dispatch,
     __isJoinedStudy,
     __newStudyProfileUser,
+<<<<<<< HEAD
     checkState,
     status,
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   ]);
 
   if (__accordionData === "") return <></>;
@@ -103,8 +148,11 @@ const MyJoinedAccordions = (props) => {
               >
                 <AccordionSummaryComponent
                   props={cur}
+<<<<<<< HEAD
                   checkState={checkState}
                   setCheckState={setCheckState}
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                   isJoinedCrew={__isJoinedCrew}
                 />
 
@@ -120,9 +168,15 @@ const MyJoinedAccordions = (props) => {
             내가 참여한 스터디가 없습니다.
             <br /> 스터디에 참가하러 가 볼까요?
             <br />
+<<<<<<< HEAD
             <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
             }}>
               모임 찾아보기
+=======
+            <GoSearchBtn shape="brown-outline" onClick={() => {mainActions.getSearchCrew("", dispatch, history)
+            }}>
+              스터디 찾아보기
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
             </GoSearchBtn>
           </StudyNoneNotice>
         )}

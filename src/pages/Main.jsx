@@ -3,7 +3,10 @@ import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Card from "../components/Card";
 import Cards from "../components/Cards";
+<<<<<<< HEAD
 import MyCrewCard from "../components/MyCrewCard";
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -280,6 +283,74 @@ const Main = (props) => {
           </CrewListNewest>
         </CrewGroupGrid>
       </Container>
+<<<<<<< HEAD
+=======
+      <CrewGroupGrid>
+        <GoSearchBtnGrid>
+          <GoSearchBtn
+            shape="brown-outline"
+            onClick={() => {mainActions.getSearchCrew("", dispatch, history)
+            }}
+          >
+            전체 보기
+          </GoSearchBtn>
+        </GoSearchBtnGrid>
+        <TitleGridA>
+          <Elchip shape="Fill" width="170px" height="35px">
+            <Eltext type="sub_2_bold" color="white">
+              오늘 스터디하는 모임
+            </Eltext>
+          </Elchip>
+        </TitleGridA>
+        <GroupGrid>
+          <CardGrid>
+            {__listTodayMeeting.map((p, idx) => {
+              return (
+                <CardGrid key={idx}>
+                  <Cards {...p} />
+                </CardGrid>
+              );
+            })}
+          </CardGrid>
+        </GroupGrid>
+        <StCrewTitle>
+          <Elchip shape="Fill" width="120px" height="35px">
+            <Eltext type="sub_2_bold" color="white">
+              추천 모임
+            </Eltext>
+          </Elchip>
+        </StCrewTitle>
+        <GroupGrid>
+          <CardGrid>
+            {__listRecommendMeeting.map((p, idx) => {
+              return (
+                <CardGrid key={idx}>
+                  <Cards {...p} />
+                </CardGrid>
+              );
+            })}
+          </CardGrid>
+        </GroupGrid>
+        <StCrewTitle>
+          <Elchip shape="Fill" width="120px" height="35px">
+            <Eltext type="sub_2_bold" color="white">
+              딱-끈한 모임
+            </Eltext>
+          </Elchip>
+        </StCrewTitle>
+        <GroupGrid>
+          <CardGrid>
+            {__listNewMeeting.map((p, idx) => {
+              return (
+                <CardGrid key={idx}>
+                  <Cards {...p} />
+                </CardGrid>
+              );
+            })}
+          </CardGrid>
+        </GroupGrid>
+      </CrewGroupGrid>
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
     </>
   );
 };

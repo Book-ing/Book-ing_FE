@@ -2,12 +2,18 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+<<<<<<< HEAD
 // react-icons
 import { FaEllipsisH } from "react-icons/fa";
 
 // Modules
 import { studyActions } from "../../redux/modules/study";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
+=======
+// Modules
+import { studyActions } from "../../redux/modules/study";
+import { actionCreators as accordionActions } from "../../redux/modules/accordion";
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -29,12 +35,19 @@ import StudyUserListModal from "../Modal/UserListModal/StudyUserListModal";
 // theme
 import flex from "../../themes/flex";
 import ModalStudy from "../Modal/ModalStudy";
+<<<<<<< HEAD
 import { useHistory } from "react-router-dom";
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
     sx={{ pointerEvents: "none" }}
+<<<<<<< HEAD
     style={{ paddingLeft: "40px" }}
+=======
+    style={{ paddingLeft: "42px", paddingRight: "42px" }}
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
     expandIcon={
       <ArrowForwardIosSharpIcon
         sx={{ fontSize: "25px", color: "var(--point)", pointerEvents: "auto" }}
@@ -56,7 +69,10 @@ const AccordionSummary = styled((props) => (
 
 const AccordionSummaryComponent = (props) => {
   const dispatch = useDispatch();
+<<<<<<< HEAD
   const history = useHistory();
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
@@ -68,12 +84,18 @@ const AccordionSummaryComponent = (props) => {
   const [splitedStudyDate, splitedTime] = studyDate.split(" ");
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
+<<<<<<< HEAD
   // const clickInOutStudyBtn = () => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
   console.log(props.props);
 
   console.log(props.props.studyMasterProfile.profileImage);
+=======
+  const clickInOutStudyBtn = () => {
+    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+  };
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -91,6 +113,7 @@ const AccordionSummaryComponent = (props) => {
   const [editStudyModal, setEditStudyModal] = useState(false);
 
   const handleEditStudyModalOpen = (e) => {
+<<<<<<< HEAD
     if (props.props.isStudyEnd === true) {
       alert("이미 종료된 스터디는 수정할 수 없습니다.");
       return;
@@ -98,6 +121,10 @@ const AccordionSummaryComponent = (props) => {
       e.stopPropagation();
       setEditStudyModal(true);
     }
+=======
+    e.stopPropagation();
+    setEditStudyModal(true);
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   };
 
   const handleEditStudyModalClose = (e) => {
@@ -107,7 +134,10 @@ const AccordionSummaryComponent = (props) => {
 
   const clickDeleteStudyBtn = () => {
     dispatch(studyActions.deleteStudyDB(studyId, __crewId));
+<<<<<<< HEAD
     // dispatch(mypageActions.getMyStudyDB());
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   };
 
   const [studyUserListOpen, setStudyUserListOpen] = useState(false);
@@ -121,11 +151,19 @@ const AccordionSummaryComponent = (props) => {
       // id="panel1d-header"
       ></AccordionSummary>
       <AccordionHeaderWrap>
+<<<<<<< HEAD
         {/* {props.isJoinedCrew === true && */}
         {props.props.studyMasterProfile.userId ===
         parseInt(localStorage.getItem("userId")) ? (
           <MenuBtn onClick={handleClick}>
             <FaEllipsisH />
+=======
+        {props.isJoinedCrew === true &&
+        props.props.studyMasterProfile.userId ===
+          parseInt(localStorage.getItem("userId")) ? (
+          <MenuBtn onClick={handleClick}>
+            <LinearScaleIcon sx={{ fontSize: 35 }} />
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
           </MenuBtn>
         ) : null}
         <Popover
@@ -167,6 +205,7 @@ const AccordionSummaryComponent = (props) => {
 
         <Grid container>
           <CrewInfo>
+<<<<<<< HEAD
             <div title={props.props.studyTitle}>
               <TitleText type="sub_2_bold">
                 {props.props.studyType === "online" ? (
@@ -200,6 +239,18 @@ const AccordionSummaryComponent = (props) => {
                 </div>
               </InfoText>
             )}
+=======
+            <TitleText type="sub_2_bold">
+              스터디명 :{props.props.studyTitle}
+            </TitleText>
+            <InfoText type="sub_2">금액 : {props.props.studyPrice}원</InfoText>
+            <InfoText type="sub_2">
+              일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
+            </InfoText>
+            <InfoText type="sub_2">
+              위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
+            </InfoText>
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
           </CrewInfo>
         </Grid>
 
@@ -250,6 +301,7 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
+<<<<<<< HEAD
           {props.props.isStudyEnd === true ? null : props.props.studyType ===
             "online" ? (
             <JoinOnlineStudyRoom
@@ -265,6 +317,9 @@ const AccordionSummaryComponent = (props) => {
           ) : null}
 
           {/* {props.isJoinedCrew === false ||
+=======
+          {props.isJoinedCrew === false ||
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
             <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
@@ -274,6 +329,7 @@ const AccordionSummaryComponent = (props) => {
             <JoinBtn shape="brown-outline" onClick={clickInOutStudyBtn}>
               참가하기
             </JoinBtn>
+<<<<<<< HEAD
           )} */}
         </RightBox>
       </AccordionHeaderWrap>
@@ -282,6 +338,11 @@ const AccordionSummaryComponent = (props) => {
       ) : (
         <NoticeTag style={{ backgroundColor: "#A2D16E" }}></NoticeTag>
       )}
+=======
+          )}
+        </RightBox>
+      </AccordionHeaderWrap>
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
     </AccordionSummaryWrap>
   );
 };
@@ -290,8 +351,11 @@ export default AccordionSummaryComponent;
 
 const AccordionSummaryWrap = styledComp.div`
   ${flex}
+<<<<<<< HEAD
   width:900px;
   height:130px;
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   background-color: #fbf9f9;
   padding: 10px 0;
 `;
@@ -316,10 +380,16 @@ const MoreBtns = styledComp(Elbutton)`
 
 const AccordionHeaderWrap = styledComp.div`
   position: relative;
+<<<<<<< HEAD
   display:inline-block;
   ${flex("between", "center")}
   width: 800px;
   
+=======
+  ${flex("between", "center")}
+  width: 100%;
+
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   @media screen and (max-width: 1260px) {
     ${flex("start", "center", false)}
   }
@@ -332,7 +402,11 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 0;
   color: var(--point);
+<<<<<<< HEAD
   font-size: 35px;
+=======
+
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   &:hover {
     color: var(--notice)
   }
@@ -351,6 +425,7 @@ const CrewInfo = styledComp.div`
 
 const TitleText = styledComp(Eltext)``;
 
+<<<<<<< HEAD
 const TitleSection = styledComp.div`
 // border: 1px solid black;
   width: 400px;
@@ -368,6 +443,10 @@ const LocationSection = styledComp.div`
   white-space: nowrap;
 `;
 
+=======
+const InfoText = styledComp(Eltext)``;
+
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 const MemberSection = styledComp.div`
   ${flex}
   cursor: pointer
@@ -405,13 +484,19 @@ const TotalMember = styledComp(Eltext)`
   color: var(--point);
 `;
 
+<<<<<<< HEAD
 const JoinOnlineStudyRoom = styledComp(Elbutton)`
   width: 160px;
+=======
+const JoinBtn = styledComp(Elbutton)`
+  width: 96px;
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   height: 30px;
   margin-right: 20px;
   border-radius: 5px;
 `;
 
+<<<<<<< HEAD
 // const JoinBtn = styledComp(Elbutton)`
 //   width: 96px;
 //   height: 30px;
@@ -428,6 +513,11 @@ const RightBox = styledComp.div`
   right: 180px;
   ${flex("end", "center", true)}
   width: 300px;
+=======
+const RightBox = styledComp.div`
+  ${flex("end", "center", true)}
+  width: 100%;
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 `;
 
 const editStudyModalstyle = {
@@ -448,6 +538,7 @@ const ModalCloseBtn = styledComp.button`
   right: 160px;
   top: 30px;
 `;
+<<<<<<< HEAD
 
 const StudyTypeOnlineTag = styledComp(Eltext)`
   ${flex}
@@ -472,3 +563,5 @@ const NoticeTag = styledComp.div`
   width: 10px;
   height: 100%;
 `;
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)

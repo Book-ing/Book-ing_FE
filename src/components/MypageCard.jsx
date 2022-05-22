@@ -11,10 +11,14 @@ import flex from "../themes/flex";
 
 const MypageCard = (props) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   // console.log(props)
 =======
   console.log(props)
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+  // console.log(props)
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   return (
     <React.Fragment>
       <CardsWrap>

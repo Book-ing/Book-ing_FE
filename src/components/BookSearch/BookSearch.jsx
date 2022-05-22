@@ -22,6 +22,7 @@ const BookSearch = ({ getSearchValue }) => {
 
         <StSearchBtn onClick={sendSearchValue}>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <SearchIcon sx={{ color: "var(--white)" }} fontSize="large" />
         </StSearchBtn>
           
@@ -32,6 +33,11 @@ const BookSearch = ({ getSearchValue }) => {
         </StSearchBtn>
           {/* <button onClick={sendSearchValue}>검색</button> */}
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+            <SearchIcon sx={{ color: "var(--white)" }} fontSize="large" />
+        </StSearchBtn>
+          
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
       </SearchWindowContainer>
   );
 };

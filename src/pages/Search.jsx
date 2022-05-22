@@ -14,9 +14,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import { searchActions } from "../redux/modules/search";
 import { actionCreators as userActions } from "../redux/modules/crew";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import noSearch from "../assets/search/noSearch.png"
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+import noSearch from "../assets/search/noSearch.png"
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 
 const Search = () => {
@@ -169,6 +173,7 @@ const Search = () => {
       :
       <TagBottom>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div style={{marginLeft: "500px", width:"500px", height:"500px", marginTop: "100px", marginBottom:"100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
         </div>
       </TagBottom>
@@ -185,6 +190,12 @@ const Search = () => {
         })}
       </TagBottom> */}
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+        <div style={{marginLeft: "185px", width:"1020px", height:"325px", marginTop: "100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
+        </div>
+      </TagBottom>
+      }
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
     </React.Fragment>
   );
 };

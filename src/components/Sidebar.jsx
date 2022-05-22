@@ -65,7 +65,11 @@ const Sidebar = (props) => {
       statusMessage: statusMsg,
     }
     dispatch(mypageActions.changeStatusMsgDB(userInfo));
+<<<<<<< HEAD
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+    alert("상태메세지가 변경되었습니다!");
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   };
 
   const loginUserName = localStorage.getItem("username");
@@ -74,12 +78,21 @@ const Sidebar = (props) => {
       <SidebarWrap>
         <Greeting type="head_6_bold">안녕하세요, {loginUserName}님!</Greeting>
         <ImgBox>
+<<<<<<< HEAD
           <Elimage
             width="190px"
             height="190px"
             shape="profile"
             src={__myProfileData.profileImage}
           />
+=======
+        <Elimage
+          width="190px"
+          height="190px"
+          shape="profile"
+          src={__myProfileData.profileImage}
+        />
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
         </ImgBox>
         <StatusMessage>
           <form onSubmit={onSubmitHandler}>
@@ -138,11 +151,18 @@ const SidebarWrap = styled.div`
 `;
 
 const ImgBox = styled.div`
+<<<<<<< HEAD
   overflow: hidden;
   border-radius: 30px;
   border: 4px solid var(--point);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
+=======
+  border-radius: 20px;
+  border: 4px solid var(--point);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 const Greeting = styled(Eltext)`
   margin-bottom: 25px;

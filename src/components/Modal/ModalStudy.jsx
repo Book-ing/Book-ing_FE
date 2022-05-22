@@ -27,9 +27,17 @@ const ModalStudy = (props) => {
   // console.log(postInfo)
 
   // react datepicker 상태관리
-
   const [startDate, setStartDate] = useState(new Date());
   // console.log(startDate)
+
+  // datepicker 현재시간 이전 시간 제한하기
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
+  
 
   const day = moment(startDate).format("YYYY-MM-DD HH:mm");
   // console.log(day)
@@ -173,6 +181,8 @@ const ModalStudy = (props) => {
                       <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
+                        minDate={new Date()}
+                        filterTime={filterPassedTime}
                         locale={ko}
                         showTimeSelect
                         timeFormat="p"
@@ -415,6 +425,8 @@ const ModalStudy = (props) => {
                       <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
+                        minDate={new Date()}
+                        filterTime={filterPassedTime}
                         locale={ko}
                         showTimeSelect
                         timeFormat="p"

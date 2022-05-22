@@ -21,6 +21,9 @@ const RESET_JOINED_MYSTUDY = "RESET_JOINED_MYSTUDY";
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
+const GET_JOINED_MYSTUDY = "GET_JOINED_MYSTUDY";
+const RESET_JOINED_MYSTUDY = "RESET_JOINED_MYSTUDY";
+
 // action creators
 const get_my_profile = createAction(GET_MY_PROFILE, (payload) => ({ payload }));
 const get_mycrew = createAction(GET_MYCREW, (payload) => ({ payload }));
@@ -40,6 +43,9 @@ const reset_joined_mystudy = createAction(RESET_JOINED_MYSTUDY, () => ({}));
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
+const get_joined_mystudy = createAction(GET_JOINED_MYSTUDY, (payload) => ({ payload }));
+const reset_joined_mystudy = createAction(RESET_JOINED_MYSTUDY, () => ({}));
+
 // initialState
 const initialState = {
   myCrew: {data: {myMeeting: ""}},
@@ -47,12 +53,18 @@ const initialState = {
   myProfile: {},
   myStudy: "",
 <<<<<<< HEAD
+<<<<<<< HEAD
   myStudyData:"",
   myJoinedStudy:"",
   myJoinedStudyData:"",
 =======
   accordionData:"",
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+  myStudyData:"",
+  myJoinedStudy:"",
+  myJoinedStudyData:"",
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   isLoading: true
 };
 
@@ -134,6 +146,7 @@ const getJoinedStudyDB = () => (dispatch, getState) => {
     .getJoinedStudy()
     .then((res) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
       console.log(res.data.myJoinedStudy);
       dispatch(get_joined_mystudy(res.data.myJoinedStudy));
 =======
@@ -141,6 +154,10 @@ const getJoinedStudyDB = () => (dispatch, getState) => {
       const data = res.data;
       dispatch(get_mystudy(data));
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+      console.log(res.data.myJoinedStudy);
+      dispatch(get_joined_mystudy(res.data.myJoinedStudy));
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
     })
     .catch((error) => {
       console.log("내가만든 스터디 GET 요청중 에러 발생", error);
@@ -172,6 +189,9 @@ export default handleActions(
     [RESET_MYSTUDY]: (state, action) =>
       produce(state, (draft) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
         draft.myStudyData = "";
         console.log(draft.myStudyData);
       }),
@@ -185,10 +205,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.myJoinedStudyData = "";
         console.log(draft.myJoinedStudyData);
+<<<<<<< HEAD
 =======
         draft.accordionData = "";
         console.log(draft.accordionData);
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
       }),
   },
   initialState
@@ -203,9 +226,13 @@ const actionCreators = {
   getJoinedStudyDB,
   reset_mystudy,
 <<<<<<< HEAD
+<<<<<<< HEAD
   reset_joined_mystudy,
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+  reset_joined_mystudy,
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 };
 
 export { actionCreators };

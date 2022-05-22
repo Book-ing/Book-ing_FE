@@ -101,6 +101,7 @@ const RadioCategoryWrap = styled.div`
     width: 1020px;
     height: 135px;
     margin-top: 8px;
+    /* margin-left: 20px; */
     padding-top: 10px;
     padding-bottom: 10px;
 `;

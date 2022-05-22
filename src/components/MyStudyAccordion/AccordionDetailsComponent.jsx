@@ -9,9 +9,12 @@ import { Avatar, Grid } from "@mui/material";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Box, Popover } from "@mui/material";
 
+<<<<<<< HEAD
 // react-icons
 import { FaEllipsisH } from "react-icons/fa";
 
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 // styled components
 import styledComp from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
@@ -63,6 +66,7 @@ const AccordionDetailsComponent = (props) => {
           </StudyNoticeText>
         </Grid>
 
+<<<<<<< HEAD
         {props.props.studyType === "online" ? null : (
           <Grid item xs={6}>
             <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
@@ -72,6 +76,15 @@ const AccordionDetailsComponent = (props) => {
             </KAKAOMAPSECTION>
           </Grid>
         )}
+=======
+        <Grid item xs={6}>
+          <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
+          {/* Markered 지도 삽입 */}
+          <KAKAOMAPSECTION style={{ marginTop: "20px" }}>
+            <Location props={props.props} />
+          </KAKAOMAPSECTION>
+        </Grid>
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
       </Grid>
 
       {/* NoteSection */}
@@ -82,6 +95,7 @@ const AccordionDetailsComponent = (props) => {
         alignItems="flex-start"
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
+<<<<<<< HEAD
         
         <NoteSection>
           {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
@@ -89,6 +103,14 @@ const AccordionDetailsComponent = (props) => {
               <FaEllipsisH />
             </MenuBtn>
           )}
+=======
+        <NoteSection>
+          {props.isJoinedCrew === true ? (
+            <MenuBtn onClick={handleClick}>
+              <LinearScaleIcon sx={{ fontSize: 35 }} />
+            </MenuBtn>
+          ) : null}
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
           <Popover
             id={id}
@@ -110,6 +132,7 @@ const AccordionDetailsComponent = (props) => {
             }}
           >
             <Box sx={styles}>
+<<<<<<< HEAD
               <MoreBtns 
                 onClick={() => {
                   history.push({
@@ -121,6 +144,15 @@ const AccordionDetailsComponent = (props) => {
               >
                 스터디 노트 수정
               </MoreBtns>
+=======
+              <MoreBtns onClick={() => {
+                        history.push({
+                          pathname: "/notewrites",
+                          state: { bookInfo: props,
+                                  meetingId: params },
+                        });
+                      }} shape="brown-outline">스터디 노트 수정</MoreBtns>
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
             </Box>
           </Popover>
 
@@ -150,13 +182,23 @@ const AccordionDetailsComponent = (props) => {
                   책 제목 : {props.props.studyBookTitle}
                 </Eltext>
                 <Eltext type="sub_2">
+<<<<<<< HEAD
                   지은이 : {props.props.studyBookWriter}
+=======
+                  지은이 : {props.props.studyBookwriter}
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                 </Eltext>
                 <Eltext type="sub_2">
                   출판사 : {props.props.studyBookPublisher}
                 </Eltext>
                 <Eltext type="sub_2">
+<<<<<<< HEAD
                   책 소개 :  {props.props.studyBookInfo}...
+=======
+                  책 소개 :
+                  <br />
+                  {props.props.studyBookInfo}...
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                 </Eltext>
               </Grid>
             </Grid>
@@ -166,8 +208,13 @@ const AccordionDetailsComponent = (props) => {
                 
                 {props.props.studyNote === undefined ? (
         
+<<<<<<< HEAD
                   btnStatus === "A" ? (
                     studyMasterId === userId ? (
+=======
+                  btnStatus === "A"
+                      ? (studyMasterId === userId ? 
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                         <Grid
                           container
                           direction="column"
@@ -179,24 +226,35 @@ const AccordionDetailsComponent = (props) => {
                           }}
                         >
                           <NoneNoteText type="sub_2">
+<<<<<<< HEAD
                             <div style={{textAlign:"center"}}>
                             스터디 노트📖가 작성되지 않았습니다.
                               <br /> 
                             스터디 시작 일시로부터 24시간 이내에 작성해주세요🙂✏️
                             </div>
+=======
+                            스터디 노트가 작성되지 않았습니다.
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                           </NoneNoteText>
                           <CreateStudyNote
                             shape="brown-outline"
                             onClick={() => {
                               history.push({
+<<<<<<< HEAD
                                 pathname: "/notewrite",
                                 state: { bookInfo: props },
+=======
+                                pathname: "/notewrites",
+                                state: { bookInfo: props,
+                                        meetingId: params },
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                               });
                             }}
                           >
                             작성하기
                           </CreateStudyNote>
                         </Grid>
+<<<<<<< HEAD
                       ) : (
                         <Grid
                           container
@@ -237,6 +295,19 @@ const AccordionDetailsComponent = (props) => {
                       </NoneNoteText>
                     </Grid>
                   )
+=======
+                        :
+                        <NoneNoteText type="sub_2">
+                          <p>스터디 노트가 작성되지 않았습니다.</p>
+                          <p>스터디장은 24시간 이내에 노트를 작성할 수 있습니다.</p>
+                        </NoneNoteText>
+                        )
+                      : 
+                      <div>
+                        <p>스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.</p>
+                      </div>
+                    
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                 ) : (
                   <Eltext type="head_1">
                     <Viewer initialValue={props.props.studyNote} />
@@ -278,7 +349,11 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 10px;
   color: var(--point);
+<<<<<<< HEAD
   font-size: 35px;
+=======
+
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   &:hover {
     color: var(--notice)
   }

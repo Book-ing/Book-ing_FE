@@ -9,9 +9,12 @@ import { Avatar, Grid } from "@mui/material";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Box, Popover } from "@mui/material";
 
+<<<<<<< HEAD
 // react-icons
 import { FaEllipsisH } from "react-icons/fa";
 
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 // styled components
 import styledComp from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
@@ -63,6 +66,7 @@ const AccordionDetailsComponent = (props) => {
           </StudyNoticeText>
         </Grid>
 
+<<<<<<< HEAD
         {props.props.studyType === "online" ? null : (
           <Grid item xs={6}>
             <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
@@ -72,6 +76,15 @@ const AccordionDetailsComponent = (props) => {
             </KAKAOMAPSECTION>
           </Grid>
         )}
+=======
+        <Grid item xs={6}>
+          <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
+          {/* Markered 지도 삽입 */}
+          <KAKAOMAPSECTION style={{ marginTop: "20px" }}>
+            <Location props={props.props} />
+          </KAKAOMAPSECTION>
+        </Grid>
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
       </Grid>
 
       {/* NoteSection */}
@@ -83,11 +96,19 @@ const AccordionDetailsComponent = (props) => {
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
         <NoteSection>
+<<<<<<< HEAD
           {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
               <FaEllipsisH />
             </MenuBtn>
           )}
+=======
+          {props.isJoinedCrew === true ? (
+            <MenuBtn onClick={handleClick}>
+              <LinearScaleIcon sx={{ fontSize: 35 }} />
+            </MenuBtn>
+          ) : null}
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
           <Popover
             id={id}
@@ -141,17 +162,31 @@ const AccordionDetailsComponent = (props) => {
                 />
               </Grid>
               <Grid item xs style={{ marginLeft: "40px" }}>
+<<<<<<< HEAD
               <Eltext type="sub_2_bold">
                   책 제목 : {props.props.studyBookTitle}
                 </Eltext>
                 <Eltext type="sub_2">
                   지은이 : {props.props.studyBookWriter}
+=======
+                <Eltext type="sub_2_bold">
+                  책 제목 : {props.props.studyBookTitle}
+                </Eltext>
+                <Eltext type="sub_2">
+                  지은이 : {props.props.studyBookwriter}
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                 </Eltext>
                 <Eltext type="sub_2">
                   출판사 : {props.props.studyBookPublisher}
                 </Eltext>
                 <Eltext type="sub_2">
+<<<<<<< HEAD
                   책 소개 :  {props.props.studyBookInfo}...
+=======
+                  책 소개 :
+                  <br />
+                  {props.props.studyBookInfo}...
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                 </Eltext>
               </Grid>
             </Grid>
@@ -159,6 +194,7 @@ const AccordionDetailsComponent = (props) => {
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
               <Grid sx={{ minHeight: "200px" }}>
                 
+<<<<<<< HEAD
               {props.props.studyNote === undefined ? (
         
         btnStatus === "A" ? (
@@ -237,6 +273,54 @@ const AccordionDetailsComponent = (props) => {
           <Viewer initialValue={props.props.studyNote} />
         </Eltext>
       )}
+=======
+                {props.props.studyNote === undefined ? (
+        
+                  btnStatus === "A"
+                      ? (studyMasterId === userId ? 
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{
+                            width: "100%",
+                            minHeight: "200px",
+                          }}
+                        >
+                          <NoneNoteText type="sub_2">
+                            스터디 노트가 작성되지 않았습니다.
+                          </NoneNoteText>
+                          <CreateStudyNote
+                            shape="brown-outline"
+                            onClick={() => {
+                              history.push({
+                                pathname: "/notewrites",
+                                state: { bookInfo: props,
+                                        meetingId: params },
+                              });
+                            }}
+                          >
+                            작성하기
+                          </CreateStudyNote>
+                        </Grid>
+                        :
+                        <NoneNoteText type="sub_2">
+                          <p>스터디 노트가 작성되지 않았습니다.</p>
+                          <p>스터디장은 24시간 이내에 노트를 작성할 수 있습니다.</p>
+                        </NoneNoteText>
+                        )
+                      : 
+                      <div>
+                        <p>스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.</p>
+                      </div>
+                    
+                ) : (
+                  <Eltext type="head_1">
+                    <Viewer initialValue={props.props.studyNote} />
+                  </Eltext>
+                )}
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
               </Grid>
             </Grid>
           </Grid>
@@ -273,7 +357,11 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 10px;
   color: var(--point);
+<<<<<<< HEAD
   font-size: 35px;
+=======
+
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   &:hover {
     color: var(--notice)
   }

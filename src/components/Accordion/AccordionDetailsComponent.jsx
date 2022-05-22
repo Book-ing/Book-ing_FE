@@ -216,17 +216,47 @@ const AccordionDetailsComponent = (props) => {
                           </CreateStudyNote>
                         </Grid>
                         :
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          textAlign="center"
+                          sx={{
+                            width: "100%",
+                            minHeight: "200px",
+                          }}
+                        >
                         <NoneNoteText type="sub_2">
-                          <p>스터디 노트가 작성되지 않았습니다.</p>
-                          <p>스터디장은 24시간 이내에 노트를 작성할 수 있습니다.</p>
+                          스터디 노트가 작성되지 않았습니다.
+                          <br />
+                          스터디장이라면 모임 시작 후 24시간 이내에 노트를 작성할 수 있습니다.
                         </NoneNoteText>
+                        </Grid>
                         )
                       : 
+<<<<<<< HEAD
                       <div>
                         <p>스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.</p>
                       </div>
                     
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+                      <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          sx={{
+                            width: "100%",
+                            minHeight: "200px",
+                          }}
+                        >
+                        <NoneNoteText type="sub_2">
+                        스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.
+                        </NoneNoteText>
+                        </Grid>
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
                 ) : (
                   // <Grid
                   //   container

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { useHistory, useLocation } from "react-router-dom";
 
 // modules
@@ -10,12 +11,34 @@ import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 // mui
 import { styled } from "@mui/material/styles";
 import MuiAccordion from "@mui/material/Accordion";
+=======
+import { useHistory } from "react-router-dom";
+
+// modules
+import { actionCreators as accordionActions } from "../../redux/modules/accordion";
+import { actionCreators as crewActions } from "../../redux/modules/crew";
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
+import { mainActions } from "../../redux/modules/main";
+
+// mui
+import { styled } from "@mui/material/styles";
+import { Modal, Box } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import MuiAccordion from "@mui/material/Accordion";
+import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import MuiAccordionDetails from "@mui/material/AccordionDetails";
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 // styled components
 import { Eltext, Elbutton } from "../../elements";
 
 // components
 import AccordionSummaryComponent from "./AccordionSummaryComponents";
+<<<<<<< HEAD
+=======
+import ModalStudy from "../Modal/ModalStudy";
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
 // styled components
 import styledComp from "styled-components";
@@ -40,9 +63,18 @@ const Accordion = styled((props) => (
 const MyStudyAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+<<<<<<< HEAD
   const location = useLocation();
   
   const studyNum = location.search ? location.search.substring(7) : '';
+=======
+  
+
+  const [open, setOpen] = useState(false);
+
+  const hadleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myStudy);
@@ -51,9 +83,19 @@ const MyStudyAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
+<<<<<<< HEAD
   
   // variables
   const [expanded, setExpanded] = useState(Number(studyNum));
+=======
+
+  console.log(__accordionData)
+ 
+  // variables
+  const userId = localStorage.getItem("userId");
+
+  const [expanded, setExpanded] = useState("");
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -69,17 +111,27 @@ const MyStudyAccordions = (props) => {
     __isJoinedStudy,
     __newStudyProfileUser,
   ]);
+<<<<<<< HEAD
   console.log(props);
 
   if (__accordionData === "") return <></>;
   
+=======
+
+  if (__accordionData === "") return <></>;
+  
+  console.log(__accordionData);
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 
     return (
       <>
         {__accordionData.length ? (
           __accordionData.map((cur, idx) => {
             return (
+<<<<<<< HEAD
               
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
               <Accordion
                 expanded={expanded === __accordionData[idx].studyId}
                 onChange={handleChange(__accordionData[idx].studyId)}
@@ -95,7 +147,10 @@ const MyStudyAccordions = (props) => {
                   isJoinedCrew={__isJoinedCrew}
                 />
               </Accordion>
+<<<<<<< HEAD
               
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
             );
           })
         ) : (
@@ -122,7 +177,10 @@ const StudyNoneNotice = styledComp(Eltext)`
   height: 450px;
   line-height: 50px;
   margin: auto;
+<<<<<<< HEAD
   border: 5px solid black;
+=======
+>>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
   color: var(--gray);
 `;
 

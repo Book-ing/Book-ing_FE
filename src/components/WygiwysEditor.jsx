@@ -98,7 +98,7 @@ const WygiwysEditor = ({ option, studyInfo }) => {
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 =======
     initialValue: `${
-      studyInfo.studyValue ? studyInfo.studyValue : "새글을 작석하세요"
+      studyInfo.studyValue ? studyInfo.studyValue : ""
     }`,
 >>>>>>> ef4e324 (chore(setenv): env 파일 수정커밋입니다.)
     hooks: {
