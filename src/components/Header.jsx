@@ -100,6 +100,7 @@ const HeaderWrap = styled.div`
   padding: 20px 0;
   background-color: #fff;
   ${flex("center", "center", true)}
+  border: 1px solid red;
 `;
 
 const HeaderBox = styled.div`

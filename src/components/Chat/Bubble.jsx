@@ -16,12 +16,16 @@ const Bubble = ({ message, type }) => {
       <MyChat>
         <MyBubble>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <MessageText type="body_4">{message.message}</MessageText>
 =======
           <MessageText type="body_4" color="white">
             {message.message}
           </MessageText>
 >>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
+=======
+          <MessageText type="body_4">{message.message}</MessageText>
+>>>>>>> 96600fc (fix(footerdesign): footer design 변경중 중간 병합)
         </MyBubble>
       </MyChat>
     );
@@ -74,12 +78,18 @@ const MyBubble = styled.div`
 `;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const MessageText = styled(Eltext)`
   color: var(--black);
 `;
 =======
 const MessageText = styled(Eltext)``;
 >>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
+=======
+const MessageText = styled(Eltext)`
+  color: var(--black);
+`;
+>>>>>>> 96600fc (fix(footerdesign): footer design 변경중 중간 병합)
 
 const CommonBubble = styled.div`
   ${BubbleStyle};
