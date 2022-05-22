@@ -13,6 +13,7 @@ import { getSearch } from "../redux/modules/search";
 import SearchIcon from "@mui/icons-material/Search";
 import { searchActions } from "../redux/modules/search";
 import { actionCreators as userActions } from "../redux/modules/crew";
+import noSearch from "../assets/search/noSearch.png"
 
 
 const Search = () => {
@@ -129,16 +130,10 @@ const Search = () => {
         </TagBottom>
       :
       <TagBottom>
-        검색결과가 없습니다..
+        <div style={{marginLeft: "185px", width:"1020px", height:"325px", marginTop: "100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
+        </div>
       </TagBottom>
       }
-      {/* <TagBottom>
-        {info.map((p, idx) => {
-          return (
-        <CrewList key={idx} {...p}/>
-          );
-        })}
-      </TagBottom> */}
     </React.Fragment>
   );
 };

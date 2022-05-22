@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { actionCreators as mypageActions } from "../redux/modules/mypage";
 
 // elements
@@ -14,6 +15,7 @@ import MypageCard from "./MypageCard";
 
 const MyCrew = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userId = localStorage.getItem("userId")
 
   // redux store
@@ -45,7 +47,9 @@ const MyCrew = () => {
               {JSON.stringify(__myCrew) === "{}" ? (
                 <DataNull type="sub_2">내가 생성한 모임이 없습니다.</DataNull>
               ) : (
-                <MypageCard {...__myCrew} />
+                <StCardBtn onClick = {()=>{history.push(`/crew/${__myCrew.meetingId}`)}}>
+                  <MypageCard {...__myCrew} />
+                </StCardBtn>
               )}
             </MyCrewItem>
           </MyCrewTopBox>
@@ -53,7 +57,9 @@ const MyCrew = () => {
             <TitleText type="sub_1_bold">가입 된 모임</TitleText>
             <JoinedItem>
               {__joinedMyCrew.map((cur, idx) => (
+              <StCardBtn key={idx} onClick = {()=>{history.push(`/crew/${cur.meetingId}`)}}>
                 <MypageCard {...cur} key={idx} />
+                </StCardBtn>
               ))}
             </JoinedItem>
           </MyCrewBottomBox>
@@ -106,7 +112,11 @@ const MyCrewBottomBox = styled.div`
 `;
 
 const JoinedItem = styled.div`
-  width: 100%;
-  max-height: 500px;
+  width: 890px;
+  max-height: 790px;
   overflow-y: scroll;
 `;
+
+const StCardBtn = styled.button`
+  text-align: left;
+`

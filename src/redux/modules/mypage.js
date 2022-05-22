@@ -15,6 +15,9 @@ const PUT_STATUS_MESSAGE = "PUT_STATUS_MESSAGE";
 const GET_MYSTUDY = "GET_MYSTUDY";
 const RESET_MYSTUDY = "RESET_MYSTUDY";
 
+const GET_JOINED_MYSTUDY = "GET_JOINED_MYSTUDY";
+const RESET_JOINED_MYSTUDY = "RESET_JOINED_MYSTUDY";
+
 // action creators
 const get_my_profile = createAction(GET_MY_PROFILE, (payload) => ({ payload }));
 const get_mycrew = createAction(GET_MYCREW, (payload) => ({ payload }));
@@ -28,13 +31,18 @@ const put_status_message = createAction(PUT_STATUS_MESSAGE, (payload) => ({
 const get_mystudy = createAction(GET_MYSTUDY, (payload) => ({ payload }));
 const reset_mystudy = createAction(RESET_MYSTUDY, () => ({}));
 
+const get_joined_mystudy = createAction(GET_JOINED_MYSTUDY, (payload) => ({ payload }));
+const reset_joined_mystudy = createAction(RESET_JOINED_MYSTUDY, () => ({}));
+
 // initialState
 const initialState = {
   myCrew: {data: {myMeeting: ""}},
   joinedMyCrew: {data: {joinedMeeting:""}},
   myProfile: {},
   myStudy: "",
-  accordionData:"",
+  myStudyData:"",
+  myJoinedStudy:"",
+  myJoinedStudyData:"",
   isLoading: true
 };
 
@@ -114,15 +122,15 @@ const getJoinedStudyDB = () => (dispatch, getState) => {
   mypageApi
     .getJoinedStudy()
     .then((res) => {
-      console.log(res.data);
-      const data = res.data;
-      dispatch(get_mystudy(data));
+      console.log(res.data.myJoinedStudy);
+      dispatch(get_joined_mystudy(res.data.myJoinedStudy));
     })
     .catch((error) => {
       console.log("내가만든 스터디 GET 요청중 에러 발생", error);
       alert("내 스터디 목록 데이터를 불러오는데에 실패하였습니다.");
     });
 };
+
 
 // reducer
 export default handleActions(
@@ -146,8 +154,19 @@ export default handleActions(
       }),
     [RESET_MYSTUDY]: (state, action) =>
       produce(state, (draft) => {
-        draft.accordionData = "";
-        console.log(draft.accordionData);
+        draft.myStudyData = "";
+        console.log(draft.myStudyData);
+      }),
+
+    [GET_JOINED_MYSTUDY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.myJoinedStudy = action.payload.payload;
+        draft.isLoading = false;
+      }),
+    [RESET_JOINED_MYSTUDY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.myJoinedStudyData = "";
+        console.log(draft.myJoinedStudyData);
       }),
   },
   initialState
@@ -161,6 +180,7 @@ const actionCreators = {
   getMyStudyDB,
   getJoinedStudyDB,
   reset_mystudy,
+  reset_joined_mystudy,
 };
 
 export { actionCreators };

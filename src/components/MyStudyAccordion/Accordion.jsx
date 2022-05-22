@@ -1,12 +1,13 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // modules
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
 import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
+import { mainActions } from "../../redux/modules/main";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -44,8 +45,9 @@ const Accordion = styled((props) => (
   },
 }));
 
-const MypageAccordions = (props) => {
+const MyStudyAccordions = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   
 
   const [open, setOpen] = useState(false);
@@ -111,33 +113,20 @@ const MypageAccordions = (props) => {
           })
         ) : (
           <StudyNoneNotice type="sub_1">
-            생성된 스터디가 없습니다,
-            <br /> 새로운 스터디를 만들어 볼까요?
-            <br />
-            {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
-            <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-              스터디 생성하기
-            </ModalOpenBtn>
-            <Modal open={open}>
-              <Box sx={style} style={{ position: "relative" }}>
-                {/* button에 styled component 사용 불가하여 inline-style 사용 */}
-
-                <button
-                  style={{ position: "absolute", right: "160px", top: "30px" }}
-                  onClick={handleModalClose}
-                >
-                  <CloseIcon fontSize="large" />
-                </button>
-                <ModalStudy />
-              </Box>
-            </Modal>
-          </StudyNoneNotice>
+          내가 만든 스터디가 없습니다.
+          <br /> 스터디를 위해 모임을 찾아 볼까요?
+          <br />
+          <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
+          }}>
+            모임 찾아보기
+          </GoSearchBtn>
+        </StudyNoneNotice>
         )}
       </>
     );
 };
 
-export default MypageAccordions;
+export default MyStudyAccordions;
 
 const StudyNoneNotice = styledComp(Eltext)`
   ${flex("center", "center", false)}
@@ -149,36 +138,9 @@ const StudyNoneNotice = styledComp(Eltext)`
   color: var(--gray);
 `;
 
-const CreateStudyBtn = styledComp(Elbutton)`
-  max-width: 147px;
-  max-height: 35px;
-  margin-top: 40px;
-  border-radius: 7px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "1300px",
-  height: "906px",
-  bgcolor: "#fbf9f9",
-  border: "1px solid var(--point)",
-  boxShadow: 24,
-  borderRadius: "5px",
-};
-
-const ModalOpenBtn = styledComp(Elbutton)`
+const GoSearchBtn = styledComp(Elbutton)`
   width: 147px;
   height: 35px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 `;
-
-// const ModalCloseBtn = styled.button`
-//   position: absolute;
-//   right: 160px;
-//   top: 30px;
-// `;

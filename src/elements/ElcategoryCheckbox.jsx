@@ -68,9 +68,10 @@ export default ElcategoryCheckbox;
 
 const RadioCategoryWrap = styled.div`
     display: inline-block;
-    width: 900px;
+    width: 1020px;
     height: 135px;
     margin-top: 8px;
+    /* margin-left: 20px; */
     padding-top: 10px;
     padding-bottom: 10px;
 `;

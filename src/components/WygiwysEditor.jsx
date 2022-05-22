@@ -59,7 +59,7 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     // colorSyntax: 글자 색 바꾸는 기능 / condeSyntaxHighlight : 언어에 따른 코드 색 변경
     plugins: [colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]],
     initialValue: `${
-      studyInfo.studyValue ? studyInfo.studyValue : "새글을 작석하세요"
+      studyInfo.studyValue ? studyInfo.studyValue : ""
     }`,
     hooks: {
       addImageBlobHook: async (blob, callback) => {

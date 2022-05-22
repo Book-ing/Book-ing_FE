@@ -10,7 +10,7 @@ import { Elimage, Eltext } from "../elements";
 import flex from "../themes/flex";
 
 const MypageCard = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <React.Fragment>
       <CardsWrap>
@@ -18,8 +18,8 @@ const MypageCard = (props) => {
           <Elimage
             shape="profile"
             src={props.meetingImage}
-            minWidth="140px"
-            minHeight="140px"
+            minWidth="94px"
+            minHeight="92px"
           />
         </ImgBox>
         <InfoBox>
@@ -42,26 +42,34 @@ export default MypageCard;
 
 const CardsWrap = styled.div`
   ${flex("start")}
-  width: 100%;
+  width: 840px;
   height: 182px;
   padding: 22px 24px;
-  border-radius: 24px;
+  border-radius: 10px;
+  margin-top: 13px;
+  margin-left: 30px;
   border: 1px solid var(--point);
+  background-color: var(--white);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 const ImgBox = styled.div`
   width: 140px;
   height: 140px;
-  border-radius: 24px;
+  border-radius: 38px;
   overflow: hidden;
+  border: 1px solid var(--white);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
 `;
 
 const InfoBox = styled.div`
   ${flex("between", "start", false)}
-  max-width: 600px;
+  width: 600px;
   height: 130px;
-  margin-left: 34px;
+  margin-left: 40px;
   text-overflow: ellipsis;
+  /* box-shadow: 0.5px 3px 5px rgba(0, 0, 0, 0.25); */
+  background-color: var(--white);
 `;
 
 const Title = styled(Eltext)`

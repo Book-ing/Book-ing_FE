@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Cards from "../components/Cards";
-import SearchBar from "../components/mainSearch/SearchBar";
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
-import SearchIcon from "@mui/icons-material/Search";
 
 import flex from "../themes/flex";
 import { Elbutton, Eltext, Elchip } from "../elements";
@@ -138,7 +134,6 @@ const Main = (props) => {
           <GoSearchBtn
             shape="brown-outline"
             onClick={() => {mainActions.getSearchCrew("", dispatch, history)
-             
             }}
           >
             전체 보기

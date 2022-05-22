@@ -21,11 +21,9 @@ const BookSearch = ({ getSearchValue }) => {
           <input style={{marginLeft:"20px",border:"1px solid var(--point)", width:"400px"}} value={searchValue} onChange={e => setSearchValue(e.currentTarget.value)} />
 
         <StSearchBtn onClick={sendSearchValue}>
-
-            <SearchIcon fontSize="large" />
-
+            <SearchIcon sx={{ color: "var(--white)" }} fontSize="large" />
         </StSearchBtn>
-          {/* <button onClick={sendSearchValue}>검색</button> */}
+          
       </SearchWindowContainer>
   );
 };

@@ -75,6 +75,7 @@ export default PopupBookSearch;
 const SearchContainer = styled.div`
   width: 478px;
   margin-bottom: 10px;
+  background-color: var(--point);
 `;
 
 const ResultContainer = styled.div`

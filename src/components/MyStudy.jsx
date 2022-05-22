@@ -6,7 +6,8 @@ import { actionCreators as mypageActions } from "../redux/modules/mypage";
 import { Eltext } from "../elements";
 
 // components
-import MypageAccordions from "../components/MypageAccordion/Accordion";
+import MyStudyAccordions from "./MyStudyAccordion/Accordion";
+import MyJoinedAccordions from "./MyJoinedAccordion/Accordion";
 
 // style
 import styled from "styled-components";
@@ -25,21 +26,6 @@ const MyStudy = () => {
   // redux store
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
 
-  // const __myStudy = useSelector((state) => state.mypage.myStudy);
-
-  // const __joinedMyStudy = useSelector((state) => state.mypage.joinedMyCrew);
-
-  // console.log(__myStudy)
-
-  // useEffect(() => {
-  //   dispatch(mypageActions.getMyStudyDB());
-  // }, []);
-
-  useEffect(() => {
-    dispatch(mypageActions.getJoinedStudyDB());
-  }, []);
-
-  // if (__myStudy === "" || __joinedMyStudy === "") return <></>;
 
   return (
     <React.Fragment>
@@ -48,17 +34,14 @@ const MyStudy = () => {
           <MyStudyTopBox>
             <TitleText type="sub_1_bold">내가 만든 스터디</TitleText>
             <MyStudyItem>
-              {/* {__myStudy.map((cur, idx) => (
-                <MypageAccordions {...cur} key={idx} />
-              ))} */}
-              {/* <MypageAccordions /> */}
+          
               
               
               <AccordionSection>
-                <MypageAccordions 
+                <MyStudyAccordions 
                   isJoinedCrew={__isJoinedCrew}>
 
-                </MypageAccordions>
+                </MyStudyAccordions>
               </AccordionSection>
 
 
@@ -68,9 +51,18 @@ const MyStudy = () => {
           <MyStudyBottomBox>
             <TitleText type="sub_1_bold">참여한 스터디</TitleText>
             <JoinedItem>
-              {/* {__joinedMyStudy.map((cur, idx) => (
-                <MypageAccordions {...cur} key={idx} />
-              ))} */}
+
+
+
+              <AccordionSection>
+                <MyJoinedAccordions 
+                  isJoinedCrew={__isJoinedCrew}>
+
+                </MyJoinedAccordions>
+              </AccordionSection>
+
+
+
             </JoinedItem>
           </MyStudyBottomBox>
         </MyStudyBox>
@@ -107,8 +99,9 @@ const MyStudyTopBox = styled.div`
 
 const MyStudyItem = styled.div`
   width: 100%;
-  max-height: 800px;
+  max-height: 500px;
   overflow-y: scroll;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 const MyStudyBottomBox = styled.div`
@@ -118,9 +111,12 @@ const MyStudyBottomBox = styled.div`
 
 const JoinedItem = styled.div`
   width: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 const AccordionSection = styled.div`
-  width: 90%;
+  width: 100%;
   margin: auto;
 `;

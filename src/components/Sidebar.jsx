@@ -52,6 +52,7 @@ const Sidebar = (props) => {
       statusMessage: statusMsg,
     }
     dispatch(mypageActions.changeStatusMsgDB(userInfo));
+    alert("상태메세지가 변경되었습니다!");
   };
 
   const loginUserName = localStorage.getItem("username");
@@ -59,12 +60,14 @@ const Sidebar = (props) => {
     <React.Fragment>
       <SidebarWrap>
         <Greeting type="head_6_bold">안녕하세요, {loginUserName}님!</Greeting>
+        <ImgBox>
         <Elimage
           width="190px"
           height="190px"
           shape="profile"
           src={__myProfileData.profileImage}
         />
+        </ImgBox>
         <StatusMessage>
           <form onSubmit={onSubmitHandler}>
             {__myProfileData.isStatusMessage === true ? (
@@ -122,6 +125,12 @@ const SidebarWrap = styled.div`
   padding-top: 83px;
   padding-left: 60px;
 `;
+
+const ImgBox = styled.div`
+  border-radius: 20px;
+  border: 4px solid var(--point);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
 
 const Greeting = styled(Eltext)`
   margin-bottom: 25px;

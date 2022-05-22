@@ -47,7 +47,8 @@ const MypageWrap = styled.div`
   ${flex("center", "center", false)}
 
   max-width: 1440px;
-  height: 100vh;
+  height: 1240px;
+  //height: 100vh;
   margin: auto;
 `;
 
