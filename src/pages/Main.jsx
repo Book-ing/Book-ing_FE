@@ -188,21 +188,14 @@ const Main = (props) => {
           </Modal>
         </ModalBtnGrid>
 
-        <StCrewTitle>
-          <Elchip shape="Fill" width="96px" height="35px">
-            <Eltext type="sub_2_bold" color="white">
-              내 모임
-            </Eltext>
-          </Elchip>
-        </StCrewTitle>
-
         {/* <MyCrewGrid> */}
-        <CardGrid>
-          {JSON.stringify(__listMyMeeting) === "{}" ? (
-            <StMyCrew>
-              <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
-                마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
+        <MyCrewSection>
+          <StCrewTitle>
+            <Elchip shape="Fill" width="96px" height="35px">
+              <Eltext type="sub_2_bold" color="white">
+                내 모임
               </Eltext>
+<<<<<<< HEAD
             </StMyCrew>
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
           ) : (
@@ -500,6 +493,124 @@ const Main = (props) => {
         </GroupGrid>
       </CrewGroupGrid>
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+            </Elchip>
+          </StCrewTitle>
+          <CardGrid>
+            {JSON.stringify(__listMyMeeting) === "{}" ? (
+              <StMyCrew>
+                <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
+                  마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
+                </Eltext>
+              </StMyCrew>
+            ) : (
+              __listMyMeeting.map((p, idx) => {
+                return <Cards key={idx} {...p} />;
+              })
+            )}
+          </CardGrid>
+        </MyCrewSection>
+
+        {/* </MyCrewGrid> */}
+
+        <CrewGroupGrid>
+          <GoSearchBtnGrid>
+            <GoSearchBtn
+              shape="brown-outline"
+              onClick={() => {
+                mainActions.getSearchCrew("", dispatch, history);
+              }}
+            >
+              전체 보기
+            </GoSearchBtn>
+          </GoSearchBtnGrid>
+          <CrewListToday>
+            <StCrewTitle>
+              <Elchip shape="Fill" width="170px" height="35px">
+                <Eltext type="sub_2_bold" color="white">
+                  오늘 스터디하는 모임
+                </Eltext>
+              </Elchip>
+            </StCrewTitle>
+            <GroupGrid>
+              <CardGrid>
+                {__listTodayMeeting.map((p, idx) => {
+                  return (
+                    <CardGrid key={idx}>
+                      <Cards {...p} />
+                    </CardGrid>
+                  );
+                })}
+              </CardGrid>
+            </GroupGrid>
+          </CrewListToday>
+          <CrewListRecommend>
+            <StCrewTitle>
+              <Elchip shape="Fill" width="120px" height="35px">
+                <Eltext type="sub_2_bold" color="white">
+                  추천 모임
+                </Eltext>
+              </Elchip>
+            </StCrewTitle>
+            <GroupGrid>
+              <CardGrid>
+                <Swiper
+                  slidesPerView={3}
+                  spaceBetween={10}
+                  slidesPerGroup={3}
+                  loop={true}
+                  loopFillGroupWithBlank={true}
+                  navigation={true}
+                  autoplay={{ delay: 7000 }}
+                  modules={[Navigation, Autoplay]}
+                  className="mySwiper"
+                >
+                  {__listRecommendMeeting.map((p, idx) => {
+                    return (
+                      <SwiperSlide key={idx}>
+                        <Card key={idx} {...p} />
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
+              </CardGrid>
+            </GroupGrid>
+          </CrewListRecommend>
+          <CrewListNewest>
+            <StCrewTitle>
+              <Elchip shape="Fill" width="120px" height="35px">
+                <Eltext type="sub_2_bold" color="white">
+                  딱-끈한 모임
+                </Eltext>
+              </Elchip>
+            </StCrewTitle>
+            <GroupGrid>
+              <CardGrid>
+                <Swiper
+                  slidesPerView={3}
+                  spaceBetween={10}
+                  slidesPerGroup={3}
+                  loop={true}
+                  loopFillGroupWithBlank={true}
+                  navigation={true}
+                  autoplay={{ delay: 7000 }}
+                  modules={[Navigation, Autoplay]}
+                  className="mySwiper"
+                >
+                  {__listNewMeeting.map((p, idx) => {
+                    return (
+                      <SwiperSlide key={idx}>
+                        <Card key={idx} {...p} />
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
+              </CardGrid>
+            </GroupGrid>
+          </CrewListNewest>
+        </CrewGroupGrid>
+      </Container>
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
     </>
   );
 };
@@ -533,9 +644,15 @@ const ModalCloseBtn = styled.button`
 `;
 
 const ModalBtnGrid = styled.div`
+<<<<<<< HEAD
   ${flex("center")}
   max-width: 1000px;
   margin: 10px auto;
+=======
+  ${flex("end")}
+  max-width: 1000px;
+  margin: 80px auto;
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 `;
 
 const GoSearchBtn = styled(Elbutton)`
@@ -548,8 +665,13 @@ const GoSearchBtn = styled(Elbutton)`
 const GoSearchBtnGrid = styled.div`
   ${flex("end")}
   max-width: 1000px;
+<<<<<<< HEAD
   margin-left: 150px;
   padding: 50px 0 30px 0;
+=======
+  margin: auto;
+  padding: 40px 0 20px 0;
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 `;
 
 const StCrewTitle = styled.div`
@@ -557,6 +679,7 @@ const StCrewTitle = styled.div`
   height: 45px;
   margin: auto;
   padding: 0 65px;
+<<<<<<< HEAD
   margin-top: 30px;
 `;
 
@@ -564,6 +687,23 @@ const Container = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: auto;
+=======
+  margin-bottom: 40px;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+`;
+
+const MyCrewSection = styled.div`
+  ${flex("start", "center", false)}
+  width: 100%;
+  max-height: 600px;
+  padding: 20px 0;
+  background-color: var(--main);
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 `;
 
 <<<<<<< HEAD
@@ -573,14 +713,18 @@ const CardGrid = styled.div`
   display: flex;
   width: 1200px;
   height: 610px;
+<<<<<<< HEAD
   /* margin: 10px 30px 0 0px; */
   border: 1px solid black;
+=======
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 `;
 
 const StMyCrew = styled.div`
   ${flex("center", "center", true)}
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
   width: 100%;
+<<<<<<< HEAD
   height: 150px;
   padding-top: 25px;
   background-color: var(--main);
@@ -597,10 +741,19 @@ const MyCrewSection = styled.div`
   height: 600px;
   padding: 20px 0;
   background-color: var(--main);
+=======
+  color: rgba(40, 34, 36, 0.5);
+`;
+
+const CrewGroupGrid = styled.div`
+  width: 100%;
+  height: 100%;
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 `;
 
 const CardGrid = styled.div`
   display: flex;
+<<<<<<< HEAD
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
@@ -614,11 +767,17 @@ const CrewGroupGrid = styled.div`
 
 const StSearchBtn = styled.button`
   margin: 60px 0 30px 0;
+=======
+`;
+
+const StSearchBtn = styled.button`
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
   width: 100%;
 `;
 
 const CrewListToday = styled.div`
   width: 100%;
+<<<<<<< HEAD
   height: 635px;
   padding: 5px 0;
   margin-top: 10px;
@@ -652,6 +811,23 @@ const CrewListNewest = styled.div`
     var(--white) 75%,
     #ede1d3 75%
   );
+=======
+  max-height: 610px;
+  margin-top: 120px;
+  background: linear-gradient(to top, #839893, var(--white));
+`;
+const CrewListRecommend = styled.div`
+  width: 100%;
+  max-height: 610px;
+  margin-top: 120px;
+  background: linear-gradient(to top, #c9998d, var(--white));
+`;
+const CrewListNewest = styled.div`
+  width: 100%;
+  max-height: 610px;
+  margin: 120px 0 100px 0;
+  background: linear-gradient(to top, #ede1d3, var(--white));
+>>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 `;
 <<<<<<< HEAD
 
