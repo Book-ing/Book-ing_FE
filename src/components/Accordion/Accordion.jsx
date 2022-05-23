@@ -206,21 +206,24 @@ const CustomizedAccordions = (props) => {
     return (
       <>
         {__searchData.map((cur, idx) => {
+
           return (
             <Accordion
               expanded={expanded === __searchData[idx].studyId}
               onChange={handleChange(__searchData[idx].studyId)}
               key={idx}
             >
-              <AccordionSummaryComponent
-                props={cur}
-                isJoinedCrew={__isJoinedCrew}
-              />
 
-              <AccordionDetailsComponent
-                props={cur}
-                isJoinedCrew={__isJoinedCrew}
-              />
+            <AccordionSummaryComponent
+              props={cur}
+              isJoinedCrew={__isJoinedCrew}
+            />
+
+            <AccordionDetailsComponent
+              props={cur}
+              isJoinedCrew={__isJoinedCrew}
+            />
+
             </Accordion>
           );
         })}
@@ -269,8 +272,3 @@ const ModalOpenBtn = styledComp(Elbutton)`
   border-radius: 5px;
 `;
 
-// const ModalCloseBtn = styled.button`
-//   position: absolute;
-//   right: 160px;
-//   top: 30px;
-// `;

@@ -36,14 +36,12 @@ const MyStudy = () => {
             <MyStudyItem>
           
               
-              
-              <AccordionSection>
+            <AccordionSection>
                 <MyStudyAccordions 
                   isJoinedCrew={__isJoinedCrew}>
 
                 </MyStudyAccordions>
               </AccordionSection>
-
 
 
             </MyStudyItem>
@@ -53,14 +51,12 @@ const MyStudy = () => {
             <JoinedItem>
 
 
-
-              <AccordionSection>
+            <AccordionSection>
                 <MyJoinedAccordions 
                   isJoinedCrew={__isJoinedCrew}>
 
                 </MyJoinedAccordions>
               </AccordionSection>
-
 
 
             </JoinedItem>

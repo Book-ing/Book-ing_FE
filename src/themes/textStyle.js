@@ -80,11 +80,23 @@ export const head_7_bold = css`
   font-weight: bold !important;
 `;
 
+export const head_8 = css`
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+`;
+
+export const head_8_bold = css`
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+`;
+
 export const sub_1 = css`
   font-size: 2rem;
   line-height: 2.6rem;
   letter-spacing: 0.02rem;
 `;
+
 export const sub_1_bold = css`
   font-size: 2rem;
   line-height: 2.6rem;
@@ -109,6 +121,7 @@ export const body_1 = css`
   line-height: 2.4rem;
   letter-spacing: -0.02rem;
 `;
+
 export const body_1_bold = css`
   font-size: 1.8rem;
   line-height: 2.4rem;
@@ -121,6 +134,7 @@ export const body_2 = css`
   line-height: 2.2rem;
   font-weight: 700;
 `;
+
 export const body_2_bold = css`
   font-size: 1.4rem;
   line-height: 2.2rem;
@@ -133,6 +147,7 @@ export const body_3 = css`
   line-height: 2.2rem;
   letter-spacing: -0.02rem;
 `;
+
 export const body_3_bold = css`
   font-size: 1.4rem;
   line-height: 2.2rem;
@@ -154,6 +169,7 @@ export const button = css`
   font-size: 1.6rem;
   line-height: 2.2rem;
 `;
+
 export const button_bold = css`
   font-size: 1.6rem;
   line-height: 2.2rem;

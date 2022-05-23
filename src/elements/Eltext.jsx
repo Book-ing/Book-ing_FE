@@ -15,6 +15,8 @@ import {
   head_6_bold,
   head_7,
   head_7_bold,
+  head_8,
+  head_8_bold,
   sub_1,
   sub_1_bold,
   sub_2,
@@ -70,6 +72,10 @@ const Wrapper = styled.div`
         return `${head_7}`;
       case "head_7_bold":
         return `${head_7_bold}`;
+      case "head_8":
+        return `${head_8}`;
+      case "head_8_bold":
+        return `${head_8_bold}`;
       case "sub_1":
         return `${sub_1}`;
       case "sub_1_bold":

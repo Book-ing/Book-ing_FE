@@ -86,6 +86,10 @@ const Elcategory = ({ children, ...rest }) => {
   }}
   color: ${(props) =>
     props.color ? `var(--${props.color})` : `var(--fontColor)`};
+  width: ${(props) =>
+    props.width ? `${props.width}` : ""};
+  height: ${(props) =>
+    props.height ? `${props.height}` : ""};
 `;
 
 
