@@ -4,7 +4,10 @@ import Slide from "../components/Slide";
 import Footer from "../components/Footer";
 import ModalStudy from "../components/Modal/ModalStudy";
 import Card from "../components/Card";
+<<<<<<< HEAD
 import ModalCrew from "../components/Modal/ModalCrew";
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,7 +18,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
+<<<<<<< HEAD
 import flex from "../themes/flex";
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -25,11 +31,14 @@ import "../themes/main.css";
 
 const Test = (props) => {
 
+<<<<<<< HEAD
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
   return (
     <>
       <Header />
@@ -38,7 +47,11 @@ const Test = (props) => {
       <div style={{width:"700px", height:"700px", marginLeft:"800px", border:"1px solid black"}}>
       </div>
       <Card />
+<<<<<<< HEAD
       <div style={{width:"1200px",border:"1px solid black", padding: "0 80px"}}>
+=======
+    <div style={{width:"1200px"}}>
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
       <Swiper
         slidesPerView={3}
         spaceBetween={10}
@@ -50,17 +63,25 @@ const Test = (props) => {
         modules={[Navigation, Autoplay]}
         className="mySwiper"
       >
+<<<<<<< HEAD
         <div style={{width:"1000px", border:"1px solid black"}}>
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
+<<<<<<< HEAD
         </div>
+=======
+     
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 
         
       </Swiper>
       </div>
+<<<<<<< HEAD
       <NotMyCrewSection>
           <div>
             모임이 없습니다 모임을 생성하러 가볼까요?
@@ -79,6 +100,9 @@ const Test = (props) => {
             </Modal>
           </ModalBtnGrid>
         </NotMyCrewSection>
+=======
+      
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
       
 
 
@@ -88,6 +112,7 @@ const Test = (props) => {
 };
 
 export default Test;
+<<<<<<< HEAD
 const style = {
   position: "absolute",
   top: "50%",
@@ -218,3 +243,5 @@ const StMyCrewStudyList = styled.div`
   padding-top: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)

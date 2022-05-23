@@ -84,8 +84,7 @@ const MyStudy = () => {
           
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
               
-              
-              <AccordionSection>
+            <AccordionSection>
                 <MyStudyAccordions 
                   isJoinedCrew={__isJoinedCrew}>
 
@@ -93,8 +92,11 @@ const MyStudy = () => {
               </AccordionSection>
 
 
+<<<<<<< HEAD
 
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
             </MyStudyItem>
           </MyStudyTopBox>
           <MyStudyBottomBox>
@@ -109,8 +111,7 @@ const MyStudy = () => {
 =======
 
 
-
-              <AccordionSection>
+            <AccordionSection>
                 <MyJoinedAccordions 
                   isJoinedCrew={__isJoinedCrew}>
 
@@ -118,8 +119,11 @@ const MyStudy = () => {
               </AccordionSection>
 
 
+<<<<<<< HEAD
 
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
             </JoinedItem>
           </MyStudyBottomBox>
         </MyStudyBox>

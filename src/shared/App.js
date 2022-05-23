@@ -13,6 +13,7 @@ import styled from "styled-components";
 
 // import pages
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   Login,
   Crew,
@@ -26,6 +27,9 @@ import {
 =======
 import { Login, Crew, Main, MyPage, Search, NoteWrites } from "../pages/index";
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+import { Login, Crew, Main, MyPage, Search, NoteWrites, Test } from "../pages/index";
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 import OAuth2RedirectHandler from "../pages/OAuth2RedirectHandler";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -45,8 +49,13 @@ function App() {
           <Route path="/room/:studyId" exact component={Room} />
           <Wraper>
             <Header />
+<<<<<<< HEAD
             <Route path="/test" exact component={Test} />
             <Route path="/" exact component={Main} />
+=======
+            <Route path="/" exact component={Test} />
+            <Route path="/main" exact component={Main} />
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
             <Route path="/crew/:meetingId" exact component={Crew} />
             <Route path="/mypage" exact component={MyPage} />
 <<<<<<< HEAD

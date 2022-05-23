@@ -1,12 +1,19 @@
 /* swiper css */
 
 .swiper-button-next { 
+<<<<<<< HEAD
   position: absolute;
   border-radius: 50%;
   margin-left: 50px;
   right: 0;
   width: 60px;
   height: 60px;
+=======
+  border: 1px solid gray;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
   background-image: url("../assets/swiper/next.svg");
   background-size: cover;
   background-position: 50% 60%;
@@ -18,11 +25,18 @@
 }
 
 .swiper-button-prev { 
+<<<<<<< HEAD
   position: absolute;
   border-radius: 50%;
   left: 0;
   width: 60px;
   height: 60px;
+=======
+  border: 1px solid gray;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
   background-image: url("../assets/swiper/prev.svg");
   background-size: cover;
   background-position: 50% 60%;
@@ -31,6 +45,10 @@
 
  .swiper-button-prev::after {
   display: none;
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)

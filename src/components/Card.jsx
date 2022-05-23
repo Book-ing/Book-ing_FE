@@ -33,9 +33,13 @@ const Cards = (props) => {
 
                 <Elcategory 
                 shape={props.meetingCategory} color="white" width="85px" height="25px">
+<<<<<<< HEAD
                   <div style={{paddingBottom:"2px"}}>
                   {props.meetingCategory}
                   </div>
+=======
+                  {props.meetingCategory}
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
                 </Elcategory>
 
               </TagGrid>
@@ -54,18 +58,28 @@ const Cards = (props) => {
           <div style={{ display: "flex", width: "265px",
            justifyContent:"space-between"}}>
             <Elchip width="125px" shape="Fill" height="25px">
+<<<<<<< HEAD
               <Eltext type="sub_2_bold" color="white">
                 <div style={{paddingBottom:"1px"}}>
                   현재인원 : {props.meetingPeopleCnt}명
                 </div>
+=======
+             <Eltext type="sub_2_bold" color="white">
+              현재인원 : 13명
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
               </Eltext>
             </Elchip>
 
             <Elchip width="125px" shape="Fill" height="25px">
+<<<<<<< HEAD
               <Eltext type="sub_2_bold" color="white">
                 <div style={{paddingBottom:"1px"}}>
                   스터디 : {props.meetingStudyCnt}개
                 </div>
+=======
+             <Eltext type="sub_2_bold" color="white">
+              스터디 : 3개
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
               </Eltext>
             </Elchip>
           </div>
@@ -84,9 +98,13 @@ const Cards = (props) => {
                 최근 스터디
               </Eltext>
               <Eltext type="body_3">
+<<<<<<< HEAD
                 <div style={{marginTop:"-5px"}}>
                 {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
                 </div>
+=======
+                모집 중 &nbsp;|&nbsp; 2022.06.03 &#40;금&#41; PM 06:00
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
               </Eltext>
 
               </div>
@@ -121,7 +139,11 @@ const CardGrid = styled.div`
 `;
 const ImgGrid = styled.div`
   position: relative;
+<<<<<<< HEAD
   margin: 9px 17px 0px 20px;
+=======
+  margin: 9px 17px 0px 17px;
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
   top:-35px;
   width: 285px;
   height: 285px;
@@ -139,7 +161,11 @@ const TitleGrid = styled.div`
 const TagGrid = styled.div`
   position: relative;
   top: 20px;
+<<<<<<< HEAD
   left: 23px;
+=======
+  left: 20px;
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
   z-index: 2;
   display: flex;
   justify-content: space-between;

@@ -90,8 +90,11 @@ const Elcategory = ({ children, ...rest }) => {
     props.width ? `${props.width}` : ""};
   height: ${(props) =>
     props.height ? `${props.height}` : ""};
+<<<<<<< HEAD
   font-weight: ${(props) =>
     props.fontWeight ? `${props.fontWeight}` : ""};
+=======
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 `;
 
 

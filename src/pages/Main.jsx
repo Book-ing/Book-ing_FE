@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Card from "../components/Card";
+<<<<<<< HEAD
 import Cards from "../components/Cards";
 <<<<<<< HEAD
 import MyCrewCard from "../components/MyCrewCard";
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+import Cards from "../components/Cards"
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,7 +30,15 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+<<<<<<< HEAD
 import MyCrewList from "../components/MyCrewList";
+=======
+import {IoIosArrowDropleft} from 'react-icons/fa';
+import {IoIosArrowDropright} from 'react-icons/fa';
+
+
+
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 
 const Main = (props) => {
   const history = useHistory();
@@ -96,6 +108,7 @@ const Main = (props) => {
   return (
     <>
       <Slide />
+<<<<<<< HEAD
 
       <Container>
         <StSearchBtn
@@ -130,6 +143,45 @@ const Main = (props) => {
                 </Modal>
               </ModalBtnGrid>
             </StNothingMyCrewSection>
+=======
+      
+      <Container>
+      
+        <StSearchBtn onClick={() => {mainActions.getSearchCrew("", dispatch, history)}} >
+          <CrewSearch />
+        </StSearchBtn>
+        
+        <ModalBtnGrid>
+          <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+            모임 생성하기
+          </ModalOpenBtn>
+          <Modal open={open}>
+            <Box sx={style} style={{ position: "relative" }}>
+              <ModalCloseBtn onClick={handleModalClose}>
+                <CloseIcon fontSize="large" />
+              </ModalCloseBtn>
+              <ModalCrew />
+            </Box>
+          </Modal>
+        </ModalBtnGrid>
+
+        <StCrewTitle>
+          <Elchip shape="Fill" width="96px" height="35px">
+            <Eltext type="sub_2_bold" color="white">
+              내 모임
+            </Eltext>
+          </Elchip>
+        </StCrewTitle>
+
+        {/* <MyCrewGrid> */}
+        <CardGrid>
+          {JSON.stringify(__listMyMeeting) === "{}" ? (
+            <StMyCrew>
+              <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
+                마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
+              </Eltext>
+            </StMyCrew>
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
           ) : (
             <MyCrewSection>
               <StCrewTitle>
@@ -322,13 +374,28 @@ const Main = (props) => {
         </StCrewTitle>
         <GroupGrid>
           <CardGrid>
+          
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={10}
+            slidesPerGroup={3}
+            loop={true}
+            loopFillGroupWithBlank={true}
+            navigation={true}
+            autoplay={{delay:7000}}
+            modules={[Navigation, Autoplay]}
+            className="mySwiper"
+          >
             {__listRecommendMeeting.map((p, idx) => {
-              return (
-                <CardGrid key={idx}>
-                  <Cards {...p} />
-                </CardGrid>
-              );
+                  return (
+                    <SwiperSlide key={idx}>
+                      <Card key={idx} {...p} />
+                    </SwiperSlide>
+                  );
             })}
+  
+          </Swiper>
+          
           </CardGrid>
         </GroupGrid>
         <StCrewTitle>
@@ -340,13 +407,25 @@ const Main = (props) => {
         </StCrewTitle>
         <GroupGrid>
           <CardGrid>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={10}
+            slidesPerGroup={3}
+            loop={true}
+            loopFillGroupWithBlank={true}
+            navigation={true}
+            autoplay={{delay:7000}}
+            modules={[Navigation, Autoplay]}
+            className="mySwiper"
+          >
             {__listNewMeeting.map((p, idx) => {
               return (
-                <CardGrid key={idx}>
-                  <Cards {...p} />
-                </CardGrid>
+                <SwiperSlide key={idx}>
+                  <Card key={idx} {...p} />
+                </SwiperSlide>
               );
             })}
+            </Swiper>
           </CardGrid>
         </GroupGrid>
       </CrewGroupGrid>
@@ -417,7 +496,20 @@ const Container = styled.div`
   margin: auto;
 `;
 
+<<<<<<< HEAD
 const StNothingMyCrewSection = styled.div`
+=======
+const CardGrid = styled.div`
+  display: flex;
+  width: 1200px;
+  height: 610px;
+  margin: 10px 30px 0 0px;
+  /* border: 1px solid black; */
+`;
+
+const StMyCrew = styled.div`
+  ${flex("center", "center", true)}
+>>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
   width: 100%;
   height: 150px;
   padding-top: 25px;
@@ -491,3 +583,4 @@ const CrewListNewest = styled.div`
     #ede1d3 75%
   );
 `;
+
