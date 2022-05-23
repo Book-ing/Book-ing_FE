@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Card from "../components/Card";
-import Cards from "../components/Cards"
+import Cards from "../components/Cards";
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,11 +22,8 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {IoIosArrowDropleft} from 'react-icons/fa';
-import {IoIosArrowDropright} from 'react-icons/fa';
-
-
-
+import { IoIosArrowDropleft } from "react-icons/fa";
+import { IoIosArrowDropright } from "react-icons/fa";
 
 const Main = (props) => {
   const history = useHistory();
@@ -55,7 +52,7 @@ const Main = (props) => {
   // React.useEffect(() => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
-   // ==================== 민우님이 요청한 loginCheckDB ========================
+  // ==================== 민우님이 요청한 loginCheckDB ========================
 
   React.useEffect(() => {
     userId === null
@@ -84,13 +81,16 @@ const Main = (props) => {
   return (
     <>
       <Slide />
-      
+
       <Container>
-      
-        <StSearchBtn onClick={() => {mainActions.getSearchCrew("", dispatch, history)}} >
+        <StSearchBtn
+          onClick={() => {
+            mainActions.getSearchCrew("", dispatch, history);
+          }}
+        >
           <CrewSearch />
         </StSearchBtn>
-        
+
         <ModalBtnGrid>
           <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
             모임 생성하기
@@ -134,7 +134,8 @@ const Main = (props) => {
         <GoSearchBtnGrid>
           <GoSearchBtn
             shape="brown-outline"
-            onClick={() => {mainActions.getSearchCrew("", dispatch, history)
+            onClick={() => {
+              mainActions.getSearchCrew("", dispatch, history);
             }}
           >
             전체 보기
@@ -167,28 +168,25 @@ const Main = (props) => {
         </StCrewTitle>
         <GroupGrid>
           <CardGrid>
-          
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={10}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={true}
-            navigation={true}
-            autoplay={{delay:7000}}
-            modules={[Navigation, Autoplay]}
-            className="mySwiper"
-          >
-            {__listRecommendMeeting.map((p, idx) => {
-                  return (
-                    <SwiperSlide key={idx}>
-                      <Card key={idx} {...p} />
-                    </SwiperSlide>
-                  );
-            })}
-  
-          </Swiper>
-          
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={10}
+              slidesPerGroup={3}
+              loop={true}
+              loopFillGroupWithBlank={true}
+              navigation={true}
+              autoplay={{ delay: 7000 }}
+              modules={[Navigation, Autoplay]}
+              className="mySwiper"
+            >
+              {__listRecommendMeeting.map((p, idx) => {
+                return (
+                  <SwiperSlide key={idx}>
+                    <Card key={idx} {...p} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </CardGrid>
         </GroupGrid>
         <StCrewTitle>
@@ -200,24 +198,24 @@ const Main = (props) => {
         </StCrewTitle>
         <GroupGrid>
           <CardGrid>
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={10}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={true}
-            navigation={true}
-            autoplay={{delay:7000}}
-            modules={[Navigation, Autoplay]}
-            className="mySwiper"
-          >
-            {__listNewMeeting.map((p, idx) => {
-              return (
-                <SwiperSlide key={idx}>
-                  <Card key={idx} {...p} />
-                </SwiperSlide>
-              );
-            })}
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={10}
+              slidesPerGroup={3}
+              loop={true}
+              loopFillGroupWithBlank={true}
+              navigation={true}
+              autoplay={{ delay: 7000 }}
+              modules={[Navigation, Autoplay]}
+              className="mySwiper"
+            >
+              {__listNewMeeting.map((p, idx) => {
+                return (
+                  <SwiperSlide key={idx}>
+                    <Card key={idx} {...p} />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </CardGrid>
         </GroupGrid>
@@ -354,4 +352,3 @@ const StInput = styled.input`
   /* border-radius: 5px; */
   /* border: 1px solid var(--point); */
 `;
-
