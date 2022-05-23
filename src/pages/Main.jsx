@@ -3,6 +3,7 @@ import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Card from "../components/Card";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Cards from "../components/Cards";
 <<<<<<< HEAD
 import MyCrewCard from "../components/MyCrewCard";
@@ -11,6 +12,9 @@ import MyCrewCard from "../components/MyCrewCard";
 =======
 import Cards from "../components/Cards"
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+import Cards from "../components/Cards";
+>>>>>>> 251b95c (메인페이지 수정 시작)
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -32,6 +36,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import MyCrewList from "../components/MyCrewList";
 =======
 import {IoIosArrowDropleft} from 'react-icons/fa';
@@ -42,6 +47,10 @@ import {IoIosArrowDropright} from 'react-icons/fa';
 
 
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+import { IoIosArrowDropleft } from "react-icons/fa";
+import { IoIosArrowDropright } from "react-icons/fa";
+>>>>>>> 251b95c (메인페이지 수정 시작)
 
 const Main = (props) => {
   const history = useHistory();
@@ -81,8 +90,12 @@ const Main = (props) => {
   // React.useEffect(() => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
+<<<<<<< HEAD
    // ==================== 민우님이 요청한 loginCheckDB ========================
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+>>>>>>> 251b95c (메인페이지 수정 시작)
 
   React.useEffect(() => {
     userId === null
@@ -111,6 +124,7 @@ const Main = (props) => {
   return (
     <>
       <Slide />
+<<<<<<< HEAD
 <<<<<<< HEAD
 
       <Container>
@@ -148,12 +162,18 @@ const Main = (props) => {
             </StNothingMyCrewSection>
 =======
       
+=======
+
+>>>>>>> 251b95c (메인페이지 수정 시작)
       <Container>
-      
-        <StSearchBtn onClick={() => {mainActions.getSearchCrew("", dispatch, history)}} >
+        <StSearchBtn
+          onClick={() => {
+            mainActions.getSearchCrew("", dispatch, history);
+          }}
+        >
           <CrewSearch />
         </StSearchBtn>
-        
+
         <ModalBtnGrid>
           <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
             모임 생성하기
@@ -344,7 +364,8 @@ const Main = (props) => {
         <GoSearchBtnGrid>
           <GoSearchBtn
             shape="brown-outline"
-            onClick={() => {mainActions.getSearchCrew("", dispatch, history)
+            onClick={() => {
+              mainActions.getSearchCrew("", dispatch, history);
             }}
           >
             전체 보기
@@ -377,6 +398,7 @@ const Main = (props) => {
         </StCrewTitle>
         <GroupGrid>
           <CardGrid>
+<<<<<<< HEAD
           
           <Swiper
             slidesPerView={3}
@@ -403,6 +425,27 @@ const Main = (props) => {
   
           </Swiper>
           
+=======
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={10}
+              slidesPerGroup={3}
+              loop={true}
+              loopFillGroupWithBlank={true}
+              navigation={true}
+              autoplay={{ delay: 7000 }}
+              modules={[Navigation, Autoplay]}
+              className="mySwiper"
+            >
+              {__listRecommendMeeting.map((p, idx) => {
+                return (
+                  <SwiperSlide key={idx}>
+                    <Card key={idx} {...p} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+>>>>>>> 251b95c (메인페이지 수정 시작)
           </CardGrid>
         </GroupGrid>
         <StCrewTitle>
@@ -414,6 +457,7 @@ const Main = (props) => {
         </StCrewTitle>
         <GroupGrid>
           <CardGrid>
+<<<<<<< HEAD
           <Swiper
             slidesPerView={3}
             spaceBetween={10}
@@ -431,6 +475,26 @@ const Main = (props) => {
                 </SwiperSlide>
               );
             })}
+=======
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={10}
+              slidesPerGroup={3}
+              loop={true}
+              loopFillGroupWithBlank={true}
+              navigation={true}
+              autoplay={{ delay: 7000 }}
+              modules={[Navigation, Autoplay]}
+              className="mySwiper"
+            >
+              {__listNewMeeting.map((p, idx) => {
+                return (
+                  <SwiperSlide key={idx}>
+                    <Card key={idx} {...p} />
+                  </SwiperSlide>
+                );
+              })}
+>>>>>>> 251b95c (메인페이지 수정 시작)
             </Swiper>
           </CardGrid>
         </GroupGrid>
@@ -589,8 +653,11 @@ const CrewListNewest = styled.div`
     #ede1d3 75%
   );
 `;
+<<<<<<< HEAD
 
 const StSwiperWrapper = styled.div`
   border: 1px solid black;
   padding: 100px 100px;
 `
+=======
+>>>>>>> 251b95c (메인페이지 수정 시작)
