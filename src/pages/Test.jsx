@@ -31,7 +31,7 @@ const Test = (props) => {
       <div style={{width:"700px", height:"700px", marginLeft:"800px", border:"1px solid black"}}>
       </div>
       <Card />
-    <div style={{width:"1200px"}}>
+    <div style={{width:"1200px",border:"1px solid black", padding: "0 80px"}}>
       <Swiper
         slidesPerView={3}
         spaceBetween={10}
@@ -43,12 +43,13 @@ const Test = (props) => {
         modules={[Navigation, Autoplay]}
         className="mySwiper"
       >
+        <div style={{width:"1000px", border:"1px solid black"}}>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
-     
+        </div>
 
         
       </Swiper>
