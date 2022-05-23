@@ -48,10 +48,14 @@ const Test = (props) => {
       </div>
       <Card />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div style={{width:"1200px",border:"1px solid black", padding: "0 80px"}}>
 =======
     <div style={{width:"1200px"}}>
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+    <div style={{width:"1200px",border:"1px solid black", padding: "0 80px"}}>
+>>>>>>> 180d649 (develop 브랜치에서 components(Card) 작업 중 커밋)
       <Swiper
         slidesPerView={3}
         spaceBetween={10}
@@ -64,19 +68,27 @@ const Test = (props) => {
         className="mySwiper"
       >
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div style={{width:"1000px", border:"1px solid black"}}>
 =======
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+        <div style={{width:"1000px", border:"1px solid black"}}>
+>>>>>>> 180d649 (develop 브랜치에서 components(Card) 작업 중 커밋)
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
         <SwiperSlide><Card /></SwiperSlide>
 <<<<<<< HEAD
+<<<<<<< HEAD
         </div>
 =======
      
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+        </div>
+>>>>>>> 180d649 (develop 브랜치에서 components(Card) 작업 중 커밋)
 
         
       </Swiper>

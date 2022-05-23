@@ -31,10 +31,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import MyCrewList from "../components/MyCrewList";
 =======
 import {IoIosArrowDropleft} from 'react-icons/fa';
 import {IoIosArrowDropright} from 'react-icons/fa';
+=======
+>>>>>>> 180d649 (develop 브랜치에서 components(Card) 작업 중 커밋)
 
 
 
@@ -378,19 +381,23 @@ const Main = (props) => {
           <Swiper
             slidesPerView={3}
             spaceBetween={10}
-            slidesPerGroup={3}
             loop={true}
             loopFillGroupWithBlank={true}
             navigation={true}
-            autoplay={{delay:7000}}
+            autoplay={{delay:4000}}
             modules={[Navigation, Autoplay]}
             className="mySwiper"
           >
             {__listRecommendMeeting.map((p, idx) => {
                   return (
+                    <>
+                  <StSwiperWrapper>
                     <SwiperSlide key={idx}>
                       <Card key={idx} {...p} />
                     </SwiperSlide>
+                  </StSwiperWrapper>
+                  
+                  </>
                   );
             })}
   
@@ -410,11 +417,10 @@ const Main = (props) => {
           <Swiper
             slidesPerView={3}
             spaceBetween={10}
-            slidesPerGroup={3}
             loop={true}
             loopFillGroupWithBlank={true}
             navigation={true}
-            autoplay={{delay:7000}}
+            autoplay={{delay:4000}}
             modules={[Navigation, Autoplay]}
             className="mySwiper"
           >
@@ -503,8 +509,8 @@ const CardGrid = styled.div`
   display: flex;
   width: 1200px;
   height: 610px;
-  margin: 10px 30px 0 0px;
-  /* border: 1px solid black; */
+  /* margin: 10px 30px 0 0px; */
+  border: 1px solid black;
 `;
 
 const StMyCrew = styled.div`
@@ -584,3 +590,7 @@ const CrewListNewest = styled.div`
   );
 `;
 
+const StSwiperWrapper = styled.div`
+  border: 1px solid black;
+  padding: 100px 100px;
+`
