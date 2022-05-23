@@ -38,6 +38,6 @@ const Slide = () => {
 export default Slide;
 
 const StDiv = styled.div`
-  max-width: 1440px;
+  max-width: 1200px;
   margin: auto;
 `;
