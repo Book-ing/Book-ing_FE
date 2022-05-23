@@ -15,9 +15,7 @@ const Bubble = ({ message, type }) => {
     return (
       <MyChat>
         <MyBubble>
-          <MessageText type="body_4" color="white">
-            {message.message}
-          </MessageText>
+          <MessageText type="body_4">{message.message}</MessageText>
         </MyBubble>
       </MyChat>
     );
@@ -69,7 +67,9 @@ const MyBubble = styled.div`
   background-color: var(--main);
 `;
 
-const MessageText = styled(Eltext)``;
+const MessageText = styled(Eltext)`
+  color: var(--black);
+`;
 
 const CommonBubble = styled.div`
   ${BubbleStyle};

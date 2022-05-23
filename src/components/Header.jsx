@@ -93,7 +93,7 @@ const HeaderWrap = styled.div`
 `;
 
 const HeaderBox = styled.div`
-  width: 1440px;
+  width: 1200px;
   height: 64px;
   ${flex("between", "center", true)}
 `;
