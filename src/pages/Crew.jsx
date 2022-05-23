@@ -164,6 +164,7 @@ const CrewChatOpenBtn = styled.button`
   width: 100px;
   height: 50px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   position: fixed;
   right: 50px;
   bottom: 50px;
@@ -172,6 +173,11 @@ const CrewChatOpenBtn = styled.button`
   right: 50px;
   bottom: 0;
 >>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
+=======
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+>>>>>>> 587f043 (fix(chat): from now on chat has fixed position)
   background-color: var(--point);
   color: #fff;
   border-radius: 30px;
