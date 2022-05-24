@@ -1,7 +1,7 @@
 import { requiredInstance } from "./index";
 
 export const studyApi = {
-  posting: (newStudyInfo) => requiredInstance.post(`/api/study`, newStudyInfo),
+  posting: (payload) => requiredInstance.post(`/api/study`, payload),
   joinStudy: (crewId, studyId) =>
     requiredInstance.post("/api/study/inout", {
       studyId: studyId,
