@@ -12,10 +12,19 @@ import GlobalStyle from "./GlobalStyles";
 import styled from "styled-components";
 
 // import pages
-import { Login, Crew, Main, MyPage, Search, NoteWrites, Test} from "../pages/index";
+import {
+  Login,
+  Crew,
+  Main,
+  MyPage,
+  Search,
+  NoteWrites,
+  Test,
+} from "../pages/index";
 import OAuth2RedirectHandler from "../pages/OAuth2RedirectHandler";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Room from "../pages/Room";
 
 function App() {
   return (
@@ -28,13 +37,14 @@ function App() {
             path="/api/auth/kakao/callback"
             component={OAuth2RedirectHandler}
           />
+          <Route path="/room/:studyId" exact component={Room} />
           <Wraper>
             <Header />
             <Route path="/test" exact component={Test} />
             <Route path="/" exact component={Main} />
             <Route path="/crew/:meetingId" exact component={Crew} />
             <Route path="/mypage" exact component={MyPage} />
-            <Route path="/notewrite" exact component={NoteWrites} />
+            <Route path="/notewrites" exact component={NoteWrites} />
             <Route path="/search" exact component={Search} />
             <Footer />
           </Wraper>

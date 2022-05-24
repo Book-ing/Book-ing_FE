@@ -13,6 +13,7 @@ export const studyApi = {
       meetingId: crewId,
     }),
   editStudy: (payload) => requiredInstance.put("/api/study", payload),
+  editOnlineStudyInfo: (payload) => requiredInstance.put("/api/study", payload),
   deleteStudy: (studyId, meetingId) =>
     requiredInstance.delete(`/api/study/${studyId}/${meetingId}`),
   getStudyUserList: (payload) =>
