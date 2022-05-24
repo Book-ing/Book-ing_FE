@@ -351,7 +351,6 @@ const CardGrid = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   height: 560px;
-  /* border: 1px solid black; */
 `;
 
 const StMyCrew = styled.div`
@@ -374,8 +373,8 @@ const StSearchBtn = styled.button`
 const CrewListToday = styled.div`
   width: 100%;
   height: 635px;
+  padding: 5px 0;
   margin-top: 10px;
-  border: 1px solid black;
   background-image: linear-gradient(
     #839893 35%,
     var(--white) 35%,
@@ -386,8 +385,8 @@ const CrewListToday = styled.div`
 const CrewListRecommend = styled.div`
   width: 100%;
   height: 635px;
+  padding: 5px 0;
   margin-top: 120px;
-  border: 1px solid black;
   background-image: linear-gradient(
     #c9998d 35%,
     var(--white) 35%,
@@ -397,7 +396,8 @@ const CrewListRecommend = styled.div`
 `;
 const CrewListNewest = styled.div`
   width: 100%;
-  max-height: 610px;
+  height: 635px;
+  padding: 5px 0;
   margin: 120px 0 100px 0;
   background-image: linear-gradient(
     #ede1d3 35%,
