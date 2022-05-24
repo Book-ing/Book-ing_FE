@@ -119,9 +119,9 @@ const ChatWrap = styled.div`
 const CrewChatOpenBtn = styled.button`
   width: 100px;
   height: 50px;
-  position: absolute;
+  position: fixed;
   right: 50px;
-  bottom: 0;
+  bottom: 50px;
   background-color: var(--point);
   color: #fff;
   border-radius: 30px;

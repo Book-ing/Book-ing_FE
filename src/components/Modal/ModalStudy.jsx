@@ -37,7 +37,6 @@ const ModalStudy = (props) => {
 
     return currentDate.getTime() < selectedDate.getTime();
   };
-  
 
   const day = moment(startDate).format("YYYY-MM-DD HH:mm");
   // console.log(day)
@@ -386,6 +385,7 @@ const ModalStudy = (props) => {
           ) : (
             <form onSubmit={ProduceDB}>
               <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
+
               <StInput
                 name="title"
                 placeholder="스터디 타이틀 명을 입력해주세요."
