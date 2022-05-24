@@ -60,19 +60,23 @@ const Crew = (props) => {
       <BottomWrap>
         <StudySection crewInfo={__crewInfo} />
       </BottomWrap>
-      <CrewChatOpenBtn
-        aria-describedby={id}
-        type="button"
-        onClick={handleClick}
-      >
-        Chat
-      </CrewChatOpenBtn>
-      <Popper id={id} open={open} anchorEl={anchorEl}>
-        <ChatWrap>
-          {/* <ChattingBox meetingId={meetingId}></ChattingBox> */}
-          <Chat />
-        </ChatWrap>
-      </Popper>
+      {__isJoinedCrew === true ? (
+        <>
+          <CrewChatOpenBtn
+            aria-describedby={id}
+            type="button"
+            onClick={handleClick}
+          >
+            Chat
+          </CrewChatOpenBtn>
+          <Popper id={id} open={open} anchorEl={anchorEl}>
+            <ChatWrap>
+              {/* <ChattingBox meetingId={meetingId}></ChattingBox> */}
+              <Chat />
+            </ChatWrap>
+          </Popper>
+        </>
+      ) : null}
     </CrewWrap>
   );
 };
