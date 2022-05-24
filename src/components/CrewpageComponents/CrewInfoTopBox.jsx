@@ -57,8 +57,9 @@ const CrewInfoTopBox = (props) => {
   };
 
   const clickQuitBtn = () => {
-    alert("모임에서 나가시겠습니까?");
-    dispatch(CrewActions.quitCrewDB(params.meetingId));
+    if (window.confirm("모임에서 나가시겠습니까?")) {
+      dispatch(CrewActions.quitCrewDB(params.meetingId));
+    }
   };
 
   const __crewInfo = props.__crewInfo;
