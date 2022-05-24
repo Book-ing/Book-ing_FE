@@ -78,6 +78,7 @@ const addOnlineStudyDB = (payload) => (dispatch, getState) => {
       window.location.replace(
         `https://www.book-ing.co.kr/crew/${payload.meetingId}`
       );
+<<<<<<< HEAD
     })
     .catch((err) => {
       console.log(err);
@@ -138,6 +139,8 @@ const addOnlineStudyDB = (payload) => (dispatch, getState) => {
       // window.location.replace(
       //   `https://www.book-ing.co.kr/crew/${payload.meetingId}`
       // );
+=======
+>>>>>>> 3126241 (chore(modalStudy): modalStudy 온라인, 오프라인 생성테스트 완료)
     })
     .catch((err) => {
       console.log(err);
