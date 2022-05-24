@@ -3,6 +3,7 @@ import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Card from "../components/Card";
 import Cards from "../components/Cards";
+import MyCrewCard from "../components/MyCrewCard";
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,8 +23,7 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { IoIosArrowDropleft } from "react-icons/fa";
-import { IoIosArrowDropright } from "react-icons/fa";
+import MyCrewList from "../components/MyCrewList";
 
 const Main = (props) => {
   const history = useHistory();
@@ -31,26 +31,29 @@ const Main = (props) => {
 
   // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정
 
-  const __isMaster = useSelector((state) => state.main.isMeetingMaster);
+  // const __isMaster = useSelector((state) => state.main.isMeetingMaster);
   const __listMyMeeting = useSelector((state) => state.main.myMeeting);
   const __listTodayMeeting = useSelector((state) => state.main.todayMeeting);
   const __listRecommendMeeting = useSelector(
     (state) => state.main.recommendMeeting
   );
   const __listNewMeeting = useSelector((state) => state.main.newMeeting);
+  const __listMyMeetingStudy = useSelector((state) => state.main.studyList);
 
   // const isMaster = useSelector((state) => state);
   // console.log(isMaster)
   console.log(__listMyMeeting);
   console.log(__listTodayMeeting);
   console.log(__listRecommendMeeting);
+  console.log(__listMyMeetingStudy);
   // ========================================================================
   const userId = localStorage.getItem("userId");
   // console.log(userId)
 
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
-  //   dispatch(userActions.loginCheckDB());
+  //   dispatch(mainActions.login_loadCrewDB(userId)
+  //   );
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
 
@@ -68,11 +71,11 @@ const Main = (props) => {
   // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정
 
   if (
-    __isMaster === "" &&
     __listMyMeeting === "" &&
     __listTodayMeeting === "" &&
     __listRecommendMeeting === "" &&
-    __listNewMeeting === ""
+    __listNewMeeting === "" &&
+    __listMyMeetingStudy === ""
   )
     return <></>;
 
@@ -90,46 +93,73 @@ const Main = (props) => {
         >
           <CrewSearch />
         </StSearchBtn>
+        {/* <MyCrewCard myCrewInfo={__listMyMeeting}/> */}
+        {userId ? (
+          JSON.stringify(__listMyMeeting) === "{}" ? (
+            <NotMyCrewSection>
+              <div>모임이 없습니다 모임을 생성하러 가볼까요?</div>
+              <ModalBtnGrid>
+                <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+                  모임 생성하기
+                </ModalOpenBtn>
+                <Modal open={open}>
+                  <Box sx={style} style={{ position: "relative" }}>
+                    <ModalCloseBtn onClick={handleModalClose}>
+                      <CloseIcon fontSize="large" />
+                    </ModalCloseBtn>
+                    <ModalCrew />
+                  </Box>
+                </Modal>
+              </ModalBtnGrid>
+            </NotMyCrewSection>
+          ) : (
+            <MyCrewSection>
+              <StCrewTitle>
+                <Elchip shape="Fill" width="96px" height="35px">
+                  <Eltext type="sub_2_bold" color="white">
+                    내 모임
+                  </Eltext>
+                </Elchip>
+              </StCrewTitle>
+              <CardGrid>
+                <div style={{ display: "flex" }}>
+                  <MyCrewCard myCrewInfo={__listMyMeeting} />
 
-        <ModalBtnGrid>
-          <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-            모임 생성하기
-          </ModalOpenBtn>
-          <Modal open={open}>
-            <Box sx={style} style={{ position: "relative" }}>
-              <ModalCloseBtn onClick={handleModalClose}>
-                <CloseIcon fontSize="large" />
-              </ModalCloseBtn>
-              <ModalCrew />
-            </Box>
-          </Modal>
-        </ModalBtnGrid>
-
-        {/* <MyCrewGrid> */}
-        <MyCrewSection>
-          <StCrewTitle>
-            <Elchip shape="Fill" width="96px" height="35px">
-              <Eltext type="sub_2_bold" color="white">
-                내 모임
-              </Eltext>
-            </Elchip>
-          </StCrewTitle>
-          <CardGrid>
-            {JSON.stringify(__listMyMeeting) === "{}" ? (
-              <StMyCrew>
-                <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
-                  마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
-                </Eltext>
-              </StMyCrew>
-            ) : (
-              __listMyMeeting.map((p, idx) => {
-                return <Cards key={idx} {...p} />;
-              })
-            )}
-          </CardGrid>
-        </MyCrewSection>
-
-        {/* </MyCrewGrid> */}
+                  <div
+                    style={{
+                      margin: "20px 0 0 30px",
+                      width: "690px",
+                      height: "460px",
+                    }}
+                  >
+                    {JSON.stringify(__listMyMeetingStudy) === "[]" ? (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "400px",
+                        }}
+                      >
+                        <Eltext type="head_6_bold" color="point">
+                          <div>생성된 스터디가 없습니다.</div>
+                          <div>내 모임에서 스터디를 만들어주세요😋</div>
+                        </Eltext>
+                      </div>
+                    ) : (
+                      __listMyMeetingStudy.map((p, idx) => {
+                        return <MyCrewList {...p} key={idx} />;
+                      })
+                    )}
+                  </div>
+                </div>
+              </CardGrid>
+            </MyCrewSection>
+          )
+        ) : (
+          <></>
+        )}
 
         <CrewGroupGrid>
           <GoSearchBtnGrid>
@@ -150,17 +180,27 @@ const Main = (props) => {
                 </Eltext>
               </Elchip>
             </StCrewTitle>
-            <GroupGrid>
-              <CardGrid>
+
+            <CardGrid>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={1}
+                loop={true}
+                loopFillGroupWithBlank={true}
+                navigation={true}
+                autoplay={{ delay: 4000 }}
+                modules={[Navigation, Autoplay]}
+                className="mySwiper1"
+              >
                 {__listTodayMeeting.map((p, idx) => {
                   return (
-                    <CardGrid key={idx}>
-                      <Cards {...p} />
-                    </CardGrid>
+                    <SwiperSlide key={idx}>
+                      <Card {...p} />
+                    </SwiperSlide>
                   );
                 })}
-              </CardGrid>
-            </GroupGrid>
+              </Swiper>
+            </CardGrid>
           </CrewListToday>
           <CrewListRecommend>
             <StCrewTitle>
@@ -170,30 +210,29 @@ const Main = (props) => {
                 </Eltext>
               </Elchip>
             </StCrewTitle>
-            <GroupGrid>
-              <CardGrid>
-                <Swiper
-                  slidesPerView={3}
-                  spaceBetween={10}
-                  slidesPerGroup={3}
-                  loop={true}
-                  loopFillGroupWithBlank={true}
-                  navigation={true}
-                  autoplay={{ delay: 7000 }}
-                  modules={[Navigation, Autoplay]}
-                  className="mySwiper"
-                >
-                  {__listRecommendMeeting.map((p, idx) => {
-                    return (
-                      <SwiperSlide key={idx}>
-                        <Card key={idx} {...p} />
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-              </CardGrid>
-            </GroupGrid>
+
+            <CardGrid>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={1}
+                loop={true}
+                loopFillGroupWithBlank={true}
+                navigation={true}
+                autoplay={{ delay: 4000 }}
+                modules={[Navigation, Autoplay]}
+                className="mySwiper2"
+              >
+                {__listRecommendMeeting.map((p, idx) => {
+                  return (
+                    <SwiperSlide key={idx}>
+                      <Card key={idx} {...p} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </CardGrid>
           </CrewListRecommend>
+
           <CrewListNewest>
             <StCrewTitle>
               <Elchip shape="Fill" width="120px" height="35px">
@@ -202,29 +241,27 @@ const Main = (props) => {
                 </Eltext>
               </Elchip>
             </StCrewTitle>
-            <GroupGrid>
-              <CardGrid>
-                <Swiper
-                  slidesPerView={3}
-                  spaceBetween={10}
-                  slidesPerGroup={3}
-                  loop={true}
-                  loopFillGroupWithBlank={true}
-                  navigation={true}
-                  autoplay={{ delay: 7000 }}
-                  modules={[Navigation, Autoplay]}
-                  className="mySwiper"
-                >
-                  {__listNewMeeting.map((p, idx) => {
-                    return (
-                      <SwiperSlide key={idx}>
-                        <Card key={idx} {...p} />
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-              </CardGrid>
-            </GroupGrid>
+
+            <CardGrid>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={1}
+                loop={true}
+                loopFillGroupWithBlank={true}
+                navigation={true}
+                autoplay={{ delay: 4000 }}
+                modules={[Navigation, Autoplay]}
+                className="mySwiper3"
+              >
+                {__listNewMeeting.map((p, idx) => {
+                  return (
+                    <SwiperSlide key={idx}>
+                      <Card key={idx} {...p} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </CardGrid>
           </CrewListNewest>
         </CrewGroupGrid>
       </Container>
@@ -267,7 +304,7 @@ const ModalBtnGrid = styled.div`
 `;
 
 const GoSearchBtn = styled(Elbutton)`
-  width: 147px;
+  width: 100px;
   height: 35px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -276,8 +313,8 @@ const GoSearchBtn = styled(Elbutton)`
 const GoSearchBtnGrid = styled.div`
   ${flex("end")}
   max-width: 1000px;
-  margin: auto;
-  padding: 40px 0 20px 0;
+  margin-left: 150px;
+  padding: 50px 0 30px 0;
 `;
 
 const StCrewTitle = styled.div`
@@ -285,7 +322,7 @@ const StCrewTitle = styled.div`
   height: 45px;
   margin: auto;
   padding: 0 65px;
-  margin-bottom: 40px;
+  margin-top: 30px;
 `;
 
 const Container = styled.div`
@@ -294,18 +331,26 @@ const Container = styled.div`
   margin: auto;
 `;
 
+const NotMyCrewSection = styled.div`
+  width: 100%;
+  height: 200px;
+  background-color: var(--main);
+`;
+
 const MyCrewSection = styled.div`
   ${flex("start", "center", false)}
   width: 100%;
-  max-height: 600px;
+  height: 600px;
   padding: 20px 0;
   background-color: var(--main);
 `;
 
 const CardGrid = styled.div`
   display: flex;
-  width: 1200px;
-  height: 610px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 560px;
 `;
 
 const StMyCrew = styled.div`
@@ -317,31 +362,56 @@ const StMyCrew = styled.div`
 const CrewGroupGrid = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const GroupGrid = styled.div`
-  display: flex;
+  /* margin-top: 40px; */
 `;
 
 const StSearchBtn = styled.button`
+  margin: 60px 0 30px 0;
   width: 100%;
 `;
 
 const CrewListToday = styled.div`
   width: 100%;
-  max-height: 610px;
-  margin-top: 120px;
-  background: linear-gradient(to top, #839893, var(--white));
+  height: 635px;
+  padding: 5px 0;
+  margin-top: 10px;
+  background-image: linear-gradient(
+    #839893 35%,
+    var(--white) 35%,
+    var(--white) 75%,
+    #839893 75%
+  );
 `;
 const CrewListRecommend = styled.div`
   width: 100%;
-  max-height: 610px;
+  height: 635px;
+  padding: 5px 0;
   margin-top: 120px;
-  background: linear-gradient(to top, #c9998d, var(--white));
+  background-image: linear-gradient(
+    #c9998d 35%,
+    var(--white) 35%,
+    var(--white) 75%,
+    #c9998d 75%
+  );
 `;
 const CrewListNewest = styled.div`
   width: 100%;
-  max-height: 610px;
+  height: 635px;
+  padding: 5px 0;
   margin: 120px 0 100px 0;
-  background: linear-gradient(to top, #ede1d3, var(--white));
+  background-image: linear-gradient(
+    #ede1d3 35%,
+    var(--white) 35%,
+    var(--white) 75%,
+    #ede1d3 75%
+  );
+`;
+// linear-gradient
+const StMyCrewStudyList = styled.div`
+  width: 690px;
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: #fbf9f9;
+  padding-top: 12px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;

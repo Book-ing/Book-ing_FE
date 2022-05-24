@@ -67,6 +67,7 @@ const getCrewDB = (userId) => (dispatch, getState) => {
     .getCrew(userId)
     .then((res) => {
       const { data } = res;
+      console.log(data);
       dispatch(get_mycrew(data));
     })
     .catch((error) => {

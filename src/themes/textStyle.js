@@ -165,6 +165,12 @@ export const body_4_bold = css`
   font-weight: bold !important;
 `;
 
+export const body_5 = css`
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  letter-spacing: -0.02rem;
+`;
+
 export const button = css`
   font-size: 1.6rem;
   line-height: 2.2rem;

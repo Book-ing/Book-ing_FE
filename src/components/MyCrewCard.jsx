@@ -8,18 +8,21 @@ import Elcategory from "../elements/Elcategory";
 import Ellocation from "../elements/Ellocation";
 import { history } from "../redux/configStore";
 
-const Cards = (props) => {
-  // console.log(props.image_url);
+const MyCrewCard = (myCrewInfo) => {
+  
+  console.log(myCrewInfo);
+  const info = myCrewInfo.myCrewInfo;
+  
   return (
     <React.Fragment>
       <StButton>
         <Card
           onClick={() => {
-            history.push(`/crew/${props.meetingId}`);
+            history.push(`/crew/${info.meetingId}`);
           }}
-          style={{ border: "none", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px", margin: "10px 0px 0px 35px" }}
+          style={{ border: "none", boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px", margin: "10px 0px 0px 70px" }}
           variant="outlined"
-          sx={{ maxWidth: 325, height: 520 }}
+          sx={{ maxWidth: 325, height: 460 }}
         
         >
           <CardGrid>
@@ -28,63 +31,48 @@ const Cards = (props) => {
               <TagGrid>
 
                 <Ellocation width="85px" height="25px">
-                  {props.meetingLocation}
+                  {info.meetingLocation}
                 </Ellocation>
 
                 <Elcategory 
-                shape={props.meetingCategory} color="white" width="85px" height="25px">
-                  {props.meetingCategory}
+                shape={info.meetingCategory} color="white" width="85px" height="25px">
+                  {info.meetingCategory}
                 </Elcategory>
 
               </TagGrid>
             </Eltext>
             
             <ImgGrid>
-              <Elimage shape="cardImg" src={props.meetingImage} />
+              <Elimage shape="cardImg" src={info.meetingImage} />
             </ImgGrid>
            
           <div style={{marginLeft:"17px", width:"290px", height:"145px", marginTop:"-15px"}}>
 
             <Eltext type="head_8_bold">
-              <TitleGrid>{props.meetingName}</TitleGrid>
+              <TitleGrid>{info.meetingName}</TitleGrid>
             </Eltext>
 
           <div style={{ display: "flex", width: "265px",
            justifyContent:"space-between"}}>
             <Elchip width="125px" shape="Fill" height="25px">
              <Eltext type="sub_2_bold" color="white">
-              현재인원 : {props.meetingPeopleCnt}명
+              현재인원 : {info.meetingPeopleCnt}명
               </Eltext>
             </Elchip>
 
             <Elchip width="125px" shape="Fill" height="25px">
              <Eltext type="sub_2_bold" color="white">
-              스터디 : {props.meetingStudyCnt}개
+              스터디 : {info.meetingStudyCnt}개
               </Eltext>
             </Elchip>
           </div>
 
             <Eltext type="body_3">
-              <SubGird>{props.meetingIntro}</SubGird>
+              <SubGird>{info.meetingIntro}</SubGird>
             </Eltext>
             
           </div> 
 
-          <div style={{ marginTop:"6px", width:"325px", height:"50px", boxShadow: "inset 0px 4px 4px rgba(0, 0, 0, 0.1)", border:"1px solid white" }}>
-
-             <div style={{width:"290px", height:"40px", 
-             marginTop:"6px", marginLeft:"17px", }}>
-              <Eltext type="body_2_bold" color="point">
-                최근 스터디
-              </Eltext>
-              <Eltext type="body_3">
-                {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
-              </Eltext>
-
-              </div>
-
-             </div>
-          {/* </div> */}
           </CardGrid>
         </Card>
       </StButton>
@@ -92,7 +80,7 @@ const Cards = (props) => {
   );
 };
 
-Cards.defaultProps = {
+MyCrewCard.defaultProps = {
   meetingName: "The Alchemist study",
   meetingCategory: "에세이",
   meetingLocation: "경기",
@@ -103,11 +91,11 @@ Cards.defaultProps = {
   categoryId: "construction",
 };
 
-export default Cards;
+export default MyCrewCard;
 
 const CardGrid = styled.div`
   width: 325px;
-  height: 520px;
+  height: 460px;
   /* border: 1px solid black; */
   background-color: var(--white);
 `;
