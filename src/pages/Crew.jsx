@@ -86,6 +86,9 @@ const Crew = (props) => {
         <StudySection crewInfo={__crewInfo} />
       </BottomWrap>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7741ba9 (chore(chat_render): fix chat render when doesn't login or join crew)
       {__isJoinedCrew === true ? (
         <>
           <CrewChatOpenBtn
@@ -97,11 +100,16 @@ const Crew = (props) => {
           </CrewChatOpenBtn>
           <Popper id={id} open={open} anchorEl={anchorEl}>
             <ChatWrap>
+<<<<<<< HEAD
+=======
+              {/* <ChattingBox meetingId={meetingId}></ChattingBox> */}
+>>>>>>> 7741ba9 (chore(chat_render): fix chat render when doesn't login or join crew)
               <Chat />
             </ChatWrap>
           </Popper>
         </>
       ) : null}
+<<<<<<< HEAD
 =======
       <CrewChatOpenBtn
         aria-describedby={id}
@@ -117,6 +125,8 @@ const Crew = (props) => {
         </ChatWrap>
       </Popper>
 >>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
+=======
+>>>>>>> 7741ba9 (chore(chat_render): fix chat render when doesn't login or join crew)
     </CrewWrap>
   );
 };
