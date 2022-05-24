@@ -18,7 +18,7 @@ const addCrew = createAction(ADD_CREW, (data) => ({ data }));
 //initialState
 
 const initialState = {
-  isMeetingMaster: "",
+  studyList: "",
   myMeeting: "",
   todayMeeting: "",
   recommendMeeting: "",
@@ -121,8 +121,8 @@ export default handleActions(
   {
     [LOAD_CREW]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.data);
-        draft.isMeetingMaster = action.payload.data.isMeetingMaster;
+        console.log(action.payload.data.studylist);
+        draft.studyList = action.payload.data.studylist;
         draft.myMeeting = action.payload.data.response.myMeeting;
         draft.todayMeeting = action.payload.data.response.todayMeeting;
         draft.recommendMeeting = action.payload.data.response.recommendMeeting;

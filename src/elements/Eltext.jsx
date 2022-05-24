@@ -29,6 +29,7 @@ import {
   body_3_bold,
   body_4,
   body_4_bold,
+  body_5,
   button,
   button_bold,
 } from "../themes/textStyle";
@@ -100,6 +101,8 @@ const Wrapper = styled.div`
         return `${body_4}`;
       case "body_4_bold":
         return `${body_4_bold}`;
+      case "body_5":
+        return `${body_5}`;
       case "button":
         return `${button}`;
       case "button_bold":

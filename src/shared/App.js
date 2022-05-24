@@ -12,7 +12,7 @@ import GlobalStyle from "./GlobalStyles";
 import styled from "styled-components";
 
 // import pages
-import { Login, Crew, Main, MyPage, Search, NoteWrites, Test } from "../pages/index";
+import { Login, Crew, Main, MyPage, Search, NoteWrites, Test} from "../pages/index";
 import OAuth2RedirectHandler from "../pages/OAuth2RedirectHandler";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -30,8 +30,8 @@ function App() {
           />
           <Wraper>
             <Header />
-            <Route path="/" exact component={Test} />
-            <Route path="/main" exact component={Main} />
+            <Route path="/test" exact component={Test} />
+            <Route path="/" exact component={Main} />
             <Route path="/crew/:meetingId" exact component={Crew} />
             <Route path="/mypage" exact component={MyPage} />
             <Route path="/notewrite" exact component={NoteWrites} />
