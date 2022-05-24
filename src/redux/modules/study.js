@@ -62,9 +62,9 @@ const addOnlineStudyDB = (payload) => (dispatch, getState) => {
     .posting(payload)
     .then((res) => {
       console.log(res);
-      // window.location.replace(
-      //   `https://www.book-ing.co.kr/crew/${payload.meetingId}`
-      // );
+      window.location.replace(
+        `https://www.book-ing.co.kr/crew/${payload.meetingId}`
+      );
     })
     .catch((err) => {
       console.log(err);
