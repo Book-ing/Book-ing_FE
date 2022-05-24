@@ -154,15 +154,27 @@ const AccordionSummaryComponent = (props) => {
         <Grid container>
           <CrewInfo>
             <TitleText type="sub_2_bold">
+              {props.props.studyType === "online" ? (
+                <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
+              ) : (
+                <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
+              )}
               스터디명 :{props.props.studyTitle}
             </TitleText>
-            <InfoText type="sub_2">금액 : {props.props.studyPrice}원</InfoText>
+            {props.props.studyType === "online" ? null : (
+              <InfoText type="sub_2">
+                금액 : {props.props.studyPrice}원
+              </InfoText>
+            )}
+
             <InfoText type="sub_2">
               일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
             </InfoText>
-            <InfoText type="sub_2">
-              위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
-            </InfoText>
+            {props.props.studyType === "online" ? null : (
+              <InfoText type="sub_2">
+                위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
+              </InfoText>
+            )}
           </CrewInfo>
         </Grid>
 
@@ -213,6 +225,10 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
+          {props.props.isStudyJoined === true &&
+          props.props.studyType === "online" ? (
+            <JoinOnlineStudyRoom>온라인 스터디룸 입장</JoinOnlineStudyRoom>
+          ) : null}
           {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
@@ -290,6 +306,22 @@ const CrewInfo = styledComp.div`
   
 `;
 
+const StudyTypeOnlineTag = styledComp(Eltext)`
+  ${flex}
+  width: 80px;
+  border-radius: 4px;
+  background-color: #c9998d;
+  color: white;
+`;
+
+const StudyTypeOfflineTag = styledComp(Eltext)`
+  ${flex}
+  width: 80px;
+  border-radius: 4px;
+  background-color: #839893;
+  color: white;
+`;
+
 const TitleText = styledComp(Eltext)``;
 
 const InfoText = styledComp(Eltext)``;
@@ -329,6 +361,13 @@ const TotalMember = styledComp(Eltext)`
   border-radius: 7px;
   border: 1px solid var(--point);
   color: var(--point);
+`;
+
+const JoinOnlineStudyRoom = styledComp(Elbutton)`
+  width: 160px;
+  height: 30px;
+  margin-right: 20px;
+  border-radius: 5px;
 `;
 
 const JoinBtn = styledComp(Elbutton)`

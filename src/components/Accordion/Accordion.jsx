@@ -54,7 +54,7 @@ const CustomizedAccordions = (props) => {
 
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
-  console.log(__accordionData);
+  // console.log(__accordionData);
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const __isJoinedStudy = useSelector((state) => state.study.isStudyJoined);
   const __newStudyProfileUser = useSelector(
@@ -84,8 +84,6 @@ const CustomizedAccordions = (props) => {
   ]);
 
   if (__accordionData === "") return <></>;
-
-  console.log(__accordionData);
 
   if (!__searchData.length) {
     // searchData가 없을 때 렌더링
@@ -206,24 +204,21 @@ const CustomizedAccordions = (props) => {
     return (
       <>
         {__searchData.map((cur, idx) => {
-
           return (
             <Accordion
               expanded={expanded === __searchData[idx].studyId}
               onChange={handleChange(__searchData[idx].studyId)}
               key={idx}
             >
+              <AccordionSummaryComponent
+                props={cur}
+                isJoinedCrew={__isJoinedCrew}
+              />
 
-            <AccordionSummaryComponent
-              props={cur}
-              isJoinedCrew={__isJoinedCrew}
-            />
-
-            <AccordionDetailsComponent
-              props={cur}
-              isJoinedCrew={__isJoinedCrew}
-            />
-
+              <AccordionDetailsComponent
+                props={cur}
+                isJoinedCrew={__isJoinedCrew}
+              />
             </Accordion>
           );
         })}
@@ -271,4 +266,3 @@ const ModalOpenBtn = styledComp(Elbutton)`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 `;
-
