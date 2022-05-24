@@ -25,8 +25,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> dc26428 (fix(accordion): from now on accordion rendering with studyType)
 const AccordionDetailsComponent = (props) => {
 <<<<<<< HEAD:src/components/Accordion/AccordionDetailsComponent.jsx
   const history = useHistory();
@@ -36,7 +39,6 @@ const AccordionDetailsComponent = (props) => {
   const params = useParams();
   const userId = localStorage.getItem("userId");
   const studyMasterId = String(props.props.studyMasterProfile.userId);
- 
 
 <<<<<<< HEAD
   console.log(params);
@@ -73,13 +75,15 @@ const AccordionDetailsComponent = (props) => {
           </StudyNoticeText>
         </Grid>
 
-        <Grid item xs={6}>
-          <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
-          {/* Markered 지도 삽입 */}
-          <KAKAOMAPSECTION style={{ marginTop: "20px" }}>
-            <Location props={props.props} />
-          </KAKAOMAPSECTION>
-        </Grid>
+        {props.props.studyType === "online" ? null : (
+          <Grid item xs={6}>
+            <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
+            {/* Markered 지도 삽입 */}
+            <KAKAOMAPSECTION style={{ marginTop: "20px" }}>
+              <Location props={props.props} />
+            </KAKAOMAPSECTION>
+          </Grid>
+        )}
       </Grid>
 
       {/* NoteSection */}
@@ -117,13 +121,17 @@ const AccordionDetailsComponent = (props) => {
             }}
           >
             <Box sx={styles}>
-              <MoreBtns onClick={() => {
-                        history.push({
-                          pathname: "/notewrites",
-                          state: { bookInfo: props,
-                                  meetingId: params },
-                        });
-                      }} shape="brown-outline">스터디 노트 수정</MoreBtns>
+              <MoreBtns
+                onClick={() => {
+                  history.push({
+                    pathname: "/notewrites",
+                    state: { bookInfo: props, meetingId: params },
+                  });
+                }}
+                shape="brown-outline"
+              >
+                스터디 노트 수정
+              </MoreBtns>
             </Box>
           </Popover>
 
@@ -165,6 +173,7 @@ const AccordionDetailsComponent = (props) => {
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
               <Grid sx={{ minHeight: "200px" }}>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 {studyNote !== null ? (
                   <Grid
                     container
@@ -185,53 +194,25 @@ const AccordionDetailsComponent = (props) => {
                   </Grid>
 =======
                 
+=======
+>>>>>>> dc26428 (fix(accordion): from now on accordion rendering with studyType)
                 {props.props.studyNote === undefined ? (
-        
-                  btnStatus === "A"
-                      ? (studyMasterId === userId ? 
-                        <Grid
-                          container
-                          direction="column"
-                          justifyContent="center"
-                          alignItems="center"
-                          sx={{
-                            width: "100%",
-                            minHeight: "200px",
-                          }}
-                        >
-                          <NoneNoteText type="sub_2">
-                            스터디 노트가 작성되지 않았습니다.
-                          </NoneNoteText>
-                          <CreateStudyNote
-                            shape="brown-outline"
-                            onClick={() => {
-                              history.push({
-                                pathname: "/notewrites",
-                                state: { bookInfo: props,
-                                        meetingId: params },
-                              });
-                            }}
-                          >
-                            작성하기
-                          </CreateStudyNote>
-                        </Grid>
-                        :
-                        <Grid
-                          container
-                          direction="column"
-                          justifyContent="center"
-                          alignItems="center"
-                          textAlign="center"
-                          sx={{
-                            width: "100%",
-                            minHeight: "200px",
-                          }}
-                        >
+                  btnStatus === "A" ? (
+                    studyMasterId === userId ? (
+                      <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{
+                          width: "100%",
+                          minHeight: "200px",
+                        }}
+                      >
                         <NoneNoteText type="sub_2">
                           스터디 노트가 작성되지 않았습니다.
-                          <br />
-                          스터디장이라면 모임 시작 후 24시간 이내에 노트를 작성할 수 있습니다.
                         </NoneNoteText>
+<<<<<<< HEAD
                         </Grid>
                         )
                       : 
@@ -250,13 +231,62 @@ const AccordionDetailsComponent = (props) => {
                           sx={{
                             width: "100%",
                             minHeight: "200px",
+=======
+                        <CreateStudyNote
+                          shape="brown-outline"
+                          onClick={() => {
+                            history.push({
+                              pathname: "/notewrites",
+                              state: { bookInfo: props, meetingId: params },
+                            });
+>>>>>>> dc26428 (fix(accordion): from now on accordion rendering with studyType)
                           }}
                         >
+                          작성하기
+                        </CreateStudyNote>
+                      </Grid>
+                    ) : (
+                      <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        textAlign="center"
+                        sx={{
+                          width: "100%",
+                          minHeight: "200px",
+                        }}
+                      >
                         <NoneNoteText type="sub_2">
-                        스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.
+                          스터디 노트가 작성되지 않았습니다.
+                          <br />
+                          스터디장이라면 모임 시작 후 24시간 이내에 노트를
+                          작성할 수 있습니다.
                         </NoneNoteText>
+<<<<<<< HEAD
                         </Grid>
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                      </Grid>
+                    )
+                  ) : (
+                    <Grid
+                      container
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="center"
+                      sx={{
+                        width: "100%",
+                        minHeight: "200px",
+                      }}
+                    >
+                      <NoneNoteText type="sub_2">
+                        스터디 시간으로부터 24시간이지나 노트 작성이
+                        불가능합니다.
+                      </NoneNoteText>
+                    </Grid>
+                  )
+>>>>>>> dc26428 (fix(accordion): from now on accordion rendering with studyType)
                 ) : (
                   // <Grid
                   //   container
