@@ -65,8 +65,12 @@ const Cards = (props) => {
                 </div>
 =======
              <Eltext type="sub_2_bold" color="white">
+<<<<<<< HEAD
               현재인원 : 13명
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+              현재인원 : {props.meetingPeopleCnt}명
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
               </Eltext>
             </Elchip>
 
@@ -78,8 +82,12 @@ const Cards = (props) => {
                 </div>
 =======
              <Eltext type="sub_2_bold" color="white">
+<<<<<<< HEAD
               스터디 : 3개
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+              스터디 : {props.meetingStudyCnt}개
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
               </Eltext>
             </Elchip>
           </div>
@@ -99,12 +107,16 @@ const Cards = (props) => {
               </Eltext>
               <Eltext type="body_3">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div style={{marginTop:"-5px"}}>
                 {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
                 </div>
 =======
                 모집 중 &nbsp;|&nbsp; 2022.06.03 &#40;금&#41; PM 06:00
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+                {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
               </Eltext>
 
               </div>

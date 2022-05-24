@@ -126,7 +126,11 @@ export default handleActions(
   {
     [LOAD_CREW]: (state, action) =>
       produce(state, (draft) => {
+<<<<<<< HEAD
         // console.log(action.payload.data.studylist);
+=======
+        console.log(action.payload.data.studylist);
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
         draft.studyList = action.payload.data.studylist;
         draft.myMeeting = action.payload.data.response.myMeeting;
         draft.todayMeeting = action.payload.data.response.todayMeeting;

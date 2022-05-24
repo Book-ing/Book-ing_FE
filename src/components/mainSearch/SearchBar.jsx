@@ -70,7 +70,7 @@ const SearchBar = ({ getSearchCrew }) => {
           <StInputLine>
             <StInput
               name="title"
-              placeholder="원하는 모임을 검색해주세요."
+              placeholder="&nbsp;&nbsp;&nbsp;원하는 모임을 검색해주세요."
               value={searchCrew}
               onChange={(e) => setSearchCrew(e.currentTarget.value)}
               // onKeyPress={handleKeyPress}
@@ -97,11 +97,6 @@ const StSearchBox = styled.div`
   ${flex("center", "center", false)}
   max-width: 1000px;
   margin: auto;
-  margin-top: 40px;
-`;
-
-const StSearchBtn = styled.button`
-  vertical-align: middle;
 `;
 
 const StInputLine = styled.div`
@@ -114,7 +109,7 @@ const StInputLine = styled.div`
 `;
 
 const StInput = styled.input`
-  min-width: 200px;
+  min-width: 900px;
   height: 35px;
   background-color: transparent;
 `;

@@ -44,8 +44,11 @@ const MyCrew = () => {
           <MyCrewTopBox>
             <TitleText type="sub_1_bold">내가 만든 모임</TitleText>
             <MyCrewItem>
-              {JSON.stringify(__myCrew) === "{}" ? (
-                <DataNull type="sub_2">내가 생성한 모임이 없습니다.</DataNull>
+              {JSON.stringify(__myCrew) === undefined ? (
+                <>
+                <br />
+                <DataNull type="body_1_bold">내가 만든 모임이 없습니다😋</DataNull>
+                </>
               ) : (
                 <StCardBtn onClick = {()=>{history.push(`/crew/${__myCrew.meetingId}`)}}>
                   <MypageCard {...__myCrew} />

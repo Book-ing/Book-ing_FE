@@ -10,7 +10,11 @@ import { history } from "../redux/configStore";
 
 const MyCrewCard = (myCrewInfo) => {
   
+<<<<<<< HEAD
   // console.log(myCrewInfo);
+=======
+  console.log(myCrewInfo);
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
   const info = myCrewInfo.myCrewInfo;
   
   return (
@@ -33,6 +37,7 @@ const MyCrewCard = (myCrewInfo) => {
                 <Ellocation width="85px" height="25px">
                   {info.meetingLocation}
                 </Ellocation>
+<<<<<<< HEAD
               
                 <Elcategory 
                 shape={info.meetingCategory} color="white" width="85px" height="25px">
@@ -41,6 +46,14 @@ const MyCrewCard = (myCrewInfo) => {
                   </div>
                 </Elcategory>
              
+=======
+
+                <Elcategory 
+                shape={info.meetingCategory} color="white" width="85px" height="25px">
+                  {info.meetingCategory}
+                </Elcategory>
+
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
               </TagGrid>
             </Eltext>
             
@@ -54,6 +67,7 @@ const MyCrewCard = (myCrewInfo) => {
               <TitleGrid>{info.meetingName}</TitleGrid>
             </Eltext>
 
+<<<<<<< HEAD
             <div style={{ display: "flex", width: "265px",
             justifyContent:"space-between"}}>
               <Elchip width="125px" shape="Fill" height="25px">
@@ -72,6 +86,22 @@ const MyCrewCard = (myCrewInfo) => {
                 </Eltext>
               </Elchip>
             </div>
+=======
+          <div style={{ display: "flex", width: "265px",
+           justifyContent:"space-between"}}>
+            <Elchip width="125px" shape="Fill" height="25px">
+             <Eltext type="sub_2_bold" color="white">
+              현재인원 : {info.meetingPeopleCnt}명
+              </Eltext>
+            </Elchip>
+
+            <Elchip width="125px" shape="Fill" height="25px">
+             <Eltext type="sub_2_bold" color="white">
+              스터디 : {info.meetingStudyCnt}개
+              </Eltext>
+            </Elchip>
+          </div>
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 
             <Eltext type="body_3">
               <SubGird>{info.meetingIntro}</SubGird>
@@ -107,10 +137,18 @@ const CardGrid = styled.div`
 `;
 const ImgGrid = styled.div`
   position: relative;
+<<<<<<< HEAD
   margin: 9px 17px 0px 20px;
   top:-35px;
   width: 285px;
   height: 285px;
+=======
+  margin: 9px 17px 0px 17px;
+  top:-35px;
+  width: 285px;
+  height: 285px;
+  /* border: 1px solid black; */
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 `;
 const TitleGrid = styled.div`
   width: 290px;
@@ -124,7 +162,11 @@ const TitleGrid = styled.div`
 const TagGrid = styled.div`
   position: relative;
   top: 20px;
+<<<<<<< HEAD
   left: 23px;
+=======
+  left: 20px;
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
   z-index: 2;
   display: flex;
   justify-content: space-between;

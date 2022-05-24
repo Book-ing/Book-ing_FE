@@ -5,9 +5,13 @@ import Footer from "../components/Footer";
 import ModalStudy from "../components/Modal/ModalStudy";
 import Card from "../components/Card";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ModalCrew from "../components/Modal/ModalCrew";
 =======
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+import ModalCrew from "../components/Modal/ModalCrew";
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -19,9 +23,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import flex from "../themes/flex";
 =======
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+import flex from "../themes/flex";
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -32,13 +40,19 @@ import "../themes/main.css";
 const Test = (props) => {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 
+<<<<<<< HEAD
 =======
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
   return (
     <>
       <Header />
@@ -49,6 +63,7 @@ const Test = (props) => {
       <Card />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div style={{width:"1200px",border:"1px solid black", padding: "0 80px"}}>
 =======
     <div style={{width:"1200px"}}>
@@ -56,6 +71,9 @@ const Test = (props) => {
 =======
     <div style={{width:"1200px",border:"1px solid black", padding: "0 80px"}}>
 >>>>>>> 180d649 (develop 브랜치에서 components(Card) 작업 중 커밋)
+=======
+      <div style={{width:"1200px",border:"1px solid black", padding: "0 80px"}}>
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
       <Swiper
         slidesPerView={3}
         spaceBetween={10}
@@ -94,6 +112,9 @@ const Test = (props) => {
       </Swiper>
       </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
       <NotMyCrewSection>
           <div>
             모임이 없습니다 모임을 생성하러 가볼까요?
@@ -112,9 +133,12 @@ const Test = (props) => {
             </Modal>
           </ModalBtnGrid>
         </NotMyCrewSection>
+<<<<<<< HEAD
 =======
       
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
       
 
 
@@ -125,6 +149,9 @@ const Test = (props) => {
 
 export default Test;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 const style = {
   position: "absolute",
   top: "50%",
@@ -254,6 +281,10 @@ const StMyCrewStudyList = styled.div`
   background-color: #FBF9F9;
   padding-top: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+<<<<<<< HEAD
 `
 =======
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+`
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)

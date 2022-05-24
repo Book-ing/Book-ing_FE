@@ -6,6 +6,7 @@ import Card from "../components/Card";
 <<<<<<< HEAD
 import Cards from "../components/Cards";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import MyCrewCard from "../components/MyCrewCard";
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
@@ -15,6 +16,9 @@ import Cards from "../components/Cards"
 =======
 import Cards from "../components/Cards";
 >>>>>>> 251b95c (메인페이지 수정 시작)
+=======
+import MyCrewCard from "../components/MyCrewCard";
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 
 import { Modal, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -37,12 +41,16 @@ import "swiper/css/navigation";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import MyCrewList from "../components/MyCrewList";
 =======
 import {IoIosArrowDropleft} from 'react-icons/fa';
 import {IoIosArrowDropright} from 'react-icons/fa';
 =======
 >>>>>>> 180d649 (develop 브랜치에서 components(Card) 작업 중 커밋)
+=======
+import MyCrewList from "../components/MyCrewList";
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 
 
 
@@ -56,8 +64,13 @@ const Main = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+
   // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정
 
+<<<<<<< HEAD
+=======
+  // const __isMaster = useSelector((state) => state.main.isMeetingMaster);
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
   const __listMyMeeting = useSelector((state) => state.main.myMeeting);
   const __listTodayMeeting = useSelector((state) => state.main.todayMeeting);
   const __listRecommendMeeting = useSelector(
@@ -88,7 +101,8 @@ const Main = (props) => {
 
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
-  //   dispatch(userActions.loginCheckDB());
+  //   dispatch(mainActions.login_loadCrewDB(userId)
+  //   );
   // }, []);
 <<<<<<< HEAD
    // ==================== 민우님이 요청한 loginCheckDB ========================
@@ -115,7 +129,11 @@ const Main = (props) => {
     __listTodayMeeting === "" &&
     __listRecommendMeeting === "" &&
     __listNewMeeting === "" &&
+<<<<<<< HEAD
     __listMyMeetingStudy === ""
+=======
+    __listMyMeetingStudy === "" 
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
   )
     return <></>;
 
@@ -136,6 +154,7 @@ const Main = (props) => {
           <CrewSearch />
         </StSearchBtn>
         {/* <MyCrewCard myCrewInfo={__listMyMeeting}/> */}
+<<<<<<< HEAD
         {userId ? (
           JSON.stringify(__listMyMeeting) === "{}" ? (
             <StNothingMyCrewSection>
@@ -190,6 +209,32 @@ const Main = (props) => {
 
         {/* <MyCrewGrid> */}
         <MyCrewSection>
+=======
+        {userId ? 
+        ( JSON.stringify(__listMyMeeting) === "{}" ? 
+        (
+        <NotMyCrewSection>
+          <div>
+            모임이 없습니다 모임을 생성하러 가볼까요?
+          </div>
+            <ModalBtnGrid>
+            <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+              모임 생성하기
+            </ModalOpenBtn>
+            <Modal open={open}>
+              <Box sx={style} style={{ position: "relative" }}>
+                <ModalCloseBtn onClick={handleModalClose}>
+                  <CloseIcon fontSize="large" />
+                </ModalCloseBtn>
+                <ModalCrew />
+              </Box>
+            </Modal>
+          </ModalBtnGrid>
+        </NotMyCrewSection>
+        ) 
+        : 
+        (<MyCrewSection>
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
           <StCrewTitle>
             <Elchip shape="Fill" width="96px" height="35px">
               <Eltext type="sub_2_bold" color="white">
@@ -497,21 +542,39 @@ const Main = (props) => {
             </Elchip>
           </StCrewTitle>
           <CardGrid>
-            {JSON.stringify(__listMyMeeting) === "{}" ? (
-              <StMyCrew>
-                <Eltext type="head_6_bold" color="rgba(40, 34, 36, 0.5)">
-                  마음의 양식을 쌓고 싶다면 모임 생성 / 참가를 해 볼까요?
-                </Eltext>
-              </StMyCrew>
-            ) : (
-              __listMyMeeting.map((p, idx) => {
-                return <Cards key={idx} {...p} />;
-              })
-            )}
-          </CardGrid>
-        </MyCrewSection>
+          <div style={{display:"flex"}}>
+          <MyCrewCard myCrewInfo={__listMyMeeting}/>
 
-        {/* </MyCrewGrid> */}
+            <div style={{margin:"20px 0 0 30px", width:"690px" , height:"460px"}}>
+
+
+            {JSON.stringify(__listMyMeetingStudy) === "[]" ? 
+            (
+              <div style={{textAlign:"center", display:"flex", justifyContent:"center", alignItems:"center", height:"400px"}}>
+              <Eltext type="head_6_bold" color="point">
+              <div>생성된 스터디가 없습니다.</div>
+              <div>내 모임에서 스터디를 만들어주세요😋</div>
+              </Eltext>
+              </div>
+            ):(
+              __listMyMeetingStudy.map((p, idx) => {
+                return (
+                        <MyCrewList {...p} key={idx} />
+                      );
+              }))       
+            }
+
+
+            </div>
+          </div>
+          </CardGrid>
+          </MyCrewSection>
+
+            )) : (
+              <></>
+            )}
+
+
 
         <CrewGroupGrid>
           <GoSearchBtnGrid>
@@ -532,17 +595,28 @@ const Main = (props) => {
                 </Eltext>
               </Elchip>
             </StCrewTitle>
-            <GroupGrid>
+
               <CardGrid>
-                {__listTodayMeeting.map((p, idx) => {
-                  return (
-                    <CardGrid key={idx}>
-                      <Cards {...p} />
-                    </CardGrid>
-                  );
-                })}
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={1}
+                    loop={true}
+                    loopFillGroupWithBlank={true}
+                    navigation={true}
+                    autoplay={{ delay: 4000 }}
+                    modules={[Navigation, Autoplay]}
+                    className="mySwiper1"
+                  >
+                  {__listTodayMeeting.map((p, idx) => {
+                    return (
+                      <SwiperSlide key={idx}>
+                        <Card {...p} />
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
               </CardGrid>
-            </GroupGrid>
+
           </CrewListToday>
           <CrewListRecommend>
             <StCrewTitle>
@@ -552,18 +626,17 @@ const Main = (props) => {
                 </Eltext>
               </Elchip>
             </StCrewTitle>
-            <GroupGrid>
+
               <CardGrid>
                 <Swiper
                   slidesPerView={3}
-                  spaceBetween={10}
-                  slidesPerGroup={3}
+                  spaceBetween={1}
                   loop={true}
                   loopFillGroupWithBlank={true}
                   navigation={true}
-                  autoplay={{ delay: 7000 }}
+                  autoplay={{ delay: 4000 }}
                   modules={[Navigation, Autoplay]}
-                  className="mySwiper"
+                  className="mySwiper2"
                 >
                   {__listRecommendMeeting.map((p, idx) => {
                     return (
@@ -574,9 +647,11 @@ const Main = (props) => {
                   })}
                 </Swiper>
               </CardGrid>
-            </GroupGrid>
+
           </CrewListRecommend>
+
           <CrewListNewest>
+
             <StCrewTitle>
               <Elchip shape="Fill" width="120px" height="35px">
                 <Eltext type="sub_2_bold" color="white">
@@ -584,18 +659,17 @@ const Main = (props) => {
                 </Eltext>
               </Elchip>
             </StCrewTitle>
-            <GroupGrid>
+
               <CardGrid>
                 <Swiper
                   slidesPerView={3}
-                  spaceBetween={10}
-                  slidesPerGroup={3}
+                  spaceBetween={1}
                   loop={true}
                   loopFillGroupWithBlank={true}
                   navigation={true}
-                  autoplay={{ delay: 7000 }}
+                  autoplay={{ delay: 4000 }}
                   modules={[Navigation, Autoplay]}
-                  className="mySwiper"
+                  className="mySwiper3"
                 >
                   {__listNewMeeting.map((p, idx) => {
                     return (
@@ -606,7 +680,6 @@ const Main = (props) => {
                   })}
                 </Swiper>
               </CardGrid>
-            </GroupGrid>
           </CrewListNewest>
         </CrewGroupGrid>
       </Container>
@@ -666,12 +739,17 @@ const GoSearchBtnGrid = styled.div`
   ${flex("end")}
   max-width: 1000px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   margin-left: 150px;
   padding: 50px 0 30px 0;
 =======
   margin: auto;
   padding: 40px 0 20px 0;
 >>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
+=======
+  margin-left: 150px;
+  padding: 50px 0 30px 0;
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 `;
 
 const StCrewTitle = styled.div`
@@ -679,6 +757,7 @@ const StCrewTitle = styled.div`
   height: 45px;
   margin: auto;
   padding: 0 65px;
+<<<<<<< HEAD
 <<<<<<< HEAD
   margin-top: 30px;
 `;
@@ -689,6 +768,9 @@ const Container = styled.div`
   margin: auto;
 =======
   margin-bottom: 40px;
+=======
+  margin-top: 30px;
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 `;
 
 const Container = styled.div`
@@ -697,10 +779,16 @@ const Container = styled.div`
   margin: auto;
 `;
 
+const NotMyCrewSection = styled.div`
+  width: 100%;
+  height: 200px;
+  background-color: var(--main);
+`
+
 const MyCrewSection = styled.div`
   ${flex("start", "center", false)}
   width: 100%;
-  max-height: 600px;
+  height: 600px;
   padding: 20px 0;
   background-color: var(--main);
 >>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
@@ -711,6 +799,7 @@ const StNothingMyCrewSection = styled.div`
 =======
 const CardGrid = styled.div`
   display: flex;
+<<<<<<< HEAD
   width: 1200px;
   height: 610px;
 <<<<<<< HEAD
@@ -718,6 +807,13 @@ const CardGrid = styled.div`
   border: 1px solid black;
 =======
 >>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
+=======
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 560px;
+  /* border: 1px solid black; */
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 `;
 
 const StMyCrew = styled.div`
@@ -748,6 +844,7 @@ const MyCrewSection = styled.div`
 const CrewGroupGrid = styled.div`
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
 >>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 `;
 
@@ -772,11 +869,19 @@ const StSearchBtn = styled.button`
 
 const StSearchBtn = styled.button`
 >>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
+=======
+  /* margin-top: 40px; */
+`;
+
+const StSearchBtn = styled.button`
+  margin: 60px 0 30px 0;
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
   width: 100%;
 `;
 
 const CrewListToday = styled.div`
   width: 100%;
+<<<<<<< HEAD
 <<<<<<< HEAD
   height: 635px;
   padding: 5px 0;
@@ -815,14 +920,23 @@ const CrewListNewest = styled.div`
   max-height: 610px;
   margin-top: 120px;
   background: linear-gradient(to top, #839893, var(--white));
+=======
+  height: 635px;
+  margin-top: 10px;
+  border: 1px solid black;
+  background-image: linear-gradient(#839893 35%, var(--white) 35%, var(--white) 75%, #839893 75%);
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 `;
 const CrewListRecommend = styled.div`
   width: 100%;
-  max-height: 610px;
+  height: 635px;
   margin-top: 120px;
-  background: linear-gradient(to top, #c9998d, var(--white));
-`;
+  border: 1px solid black;
+  background-image: linear-gradient(#C9998D 35%, var(--white) 35%, var(--white) 75%, #C9998D 75%);
+
+`
 const CrewListNewest = styled.div`
+<<<<<<< HEAD
   width: 100%;
   max-height: 610px;
   margin: 120px 0 100px 0;
@@ -837,3 +951,19 @@ const StSwiperWrapper = styled.div`
 `
 =======
 >>>>>>> 251b95c (메인페이지 수정 시작)
+=======
+  width: 100%; 
+  max-height: 610px; 
+  margin: 120px 0 100px 0; 
+  background-image: linear-gradient(#EDE1D3 35%, var(--white) 35%, var(--white) 75%, #EDE1D3 75%);
+`
+// linear-gradient
+const StMyCrewStudyList = styled.div`
+  width: 690px;
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: #FBF9F9;
+  padding-top: 12px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)

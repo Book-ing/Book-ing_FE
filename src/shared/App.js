@@ -14,6 +14,7 @@ import styled from "styled-components";
 // import pages
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   Login,
   Crew,
@@ -30,6 +31,9 @@ import { Login, Crew, Main, MyPage, Search, NoteWrites } from "../pages/index";
 =======
 import { Login, Crew, Main, MyPage, Search, NoteWrites, Test } from "../pages/index";
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+import { Login, Crew, Main, MyPage, Search, NoteWrites, Test} from "../pages/index";
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 import OAuth2RedirectHandler from "../pages/OAuth2RedirectHandler";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -50,12 +54,17 @@ function App() {
           <Wraper>
             <Header />
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Route path="/test" exact component={Test} />
             <Route path="/" exact component={Main} />
 =======
             <Route path="/" exact component={Test} />
             <Route path="/main" exact component={Main} />
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+            <Route path="/test" exact component={Test} />
+            <Route path="/" exact component={Main} />
+>>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
             <Route path="/crew/:meetingId" exact component={Crew} />
             <Route path="/mypage" exact component={MyPage} />
 <<<<<<< HEAD
