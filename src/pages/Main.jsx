@@ -833,8 +833,11 @@ const CardGrid = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   height: 560px;
+<<<<<<< HEAD
   /* border: 1px solid black; */
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+>>>>>>> b6e403f (chore(mainpage): fix some padding in mainpage)
 `;
 
 const StMyCrew = styled.div`
@@ -943,12 +946,16 @@ const CrewListNewest = styled.div`
   background: linear-gradient(to top, #839893, var(--white));
 =======
   height: 635px;
+  padding: 5px 0;
   margin-top: 10px;
+<<<<<<< HEAD
 <<<<<<< HEAD
   background-image: linear-gradient(#839893 35%, var(--white) 35%, var(--white) 75%, #839893 75%);
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 =======
   border: 1px solid black;
+=======
+>>>>>>> b6e403f (chore(mainpage): fix some padding in mainpage)
   background-image: linear-gradient(
     #839893 35%,
     var(--white) 35%,
@@ -960,7 +967,9 @@ const CrewListNewest = styled.div`
 const CrewListRecommend = styled.div`
   width: 100%;
   height: 635px;
+  padding: 5px 0;
   margin-top: 120px;
+<<<<<<< HEAD
 <<<<<<< HEAD
   border: 1px;
   background-image: linear-gradient(#C9998D 35%, var(--white) 35%, var(--white) 75%, #C9998D 75%);
@@ -994,6 +1003,8 @@ const StSwiperWrapper = styled.div`
 `
 =======
   border: 1px solid black;
+=======
+>>>>>>> b6e403f (chore(mainpage): fix some padding in mainpage)
   background-image: linear-gradient(
     #c9998d 35%,
     var(--white) 35%,
@@ -1003,7 +1014,8 @@ const StSwiperWrapper = styled.div`
 `;
 const CrewListNewest = styled.div`
   width: 100%;
-  max-height: 610px;
+  height: 635px;
+  padding: 5px 0;
   margin: 120px 0 100px 0;
   background-image: linear-gradient(
     #ede1d3 35%,
