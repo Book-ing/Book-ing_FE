@@ -129,6 +129,22 @@ const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
 };
 >>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
 
+const addOnlineStudyDB = (payload) => (dispatch, getState) => {
+  console.log(payload);
+  studyApi
+    .posting(payload)
+    .then((res) => {
+      console.log(res);
+      // window.location.replace(
+      //   `https://www.book-ing.co.kr/crew/${payload.meetingId}`
+      // );
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("온라인 스터디 생성에 실패하였습니다.");
+    });
+};
+
 const getStudyUserListDB = (payload) => (dispatch, getState) => {
   console.log(payload);
   studyApi
