@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configStore";
@@ -187,3 +188,12 @@ const Btn = styled.div`
 `;
 
 export default React.memo(Room);
+=======
+import React from "react";
+
+const Room = () => {
+  return <div>Room</div>;
+};
+
+export default Room;
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)

@@ -26,6 +26,7 @@ import StudyUserListModal from "../Modal/UserListModal/StudyUserListModal";
 // theme
 import flex from "../../themes/flex";
 import ModalStudy from "../Modal/ModalStudy";
+import { history } from "../../redux/configStore";
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
@@ -227,7 +228,13 @@ const AccordionSummaryComponent = (props) => {
         <RightBox>
           {props.props.isStudyJoined === true &&
           props.props.studyType === "online" ? (
-            <JoinOnlineStudyRoom>온라인 스터디룸 입장</JoinOnlineStudyRoom>
+            <JoinOnlineStudyRoom
+              onClick={() => {
+                history.push(`/room/${studyId}`);
+              }}
+            >
+              온라인 스터디룸 입장
+            </JoinOnlineStudyRoom>
           ) : null}
           {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===

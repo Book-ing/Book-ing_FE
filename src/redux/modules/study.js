@@ -10,6 +10,9 @@ const ADD_ONLINE_STUDY = "ADD_ONLINE_STUDY";
 const INOUT_STUDY = "INOUT_STUDY";
 const EDIT_STUDY = "EDIT_STUDY";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
 const EDIT_ONLINE_STUDY = "EDIT_ONLINE_STUDY";
 const DELETE_STUDY = "DELETE_STUDY";
 const GET_STUDY_USER_LIST = "GET_STUDY_USER_LIST";
@@ -30,6 +33,9 @@ const addOnlineStudy = createAction(ADD_ONLINE_STUDY, (payload) => ({
 const inOutStudy = createAction(INOUT_STUDY, (payload) => ({ payload }));
 const editStudy = createAction(EDIT_STUDY, (payload) => ({ payload }));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
 const editOnlineStudy = createAction(EDIT_ONLINE_STUDY, (payload) => ({
   payload,
 }));
@@ -230,6 +236,19 @@ const editStudyDB = (payload) => (dispatch, getState) => {
     });
 };
 
+const editOnlineStudyInfoDB = (payload) => (dispatch, getState) => {
+  studyApi
+    .editOnlineStudyInfo(payload)
+    .then((res) => {
+      window.location.replace(
+        `https://www.book-ing.co.kr/crew/${payload.meetingId}`
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const deleteStudyDB = (studyId, meetingId) => (dispatch, getState) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -344,7 +363,11 @@ const studyActions = {
   getStudyUserListDB,
   resetStudyUserList,
   kickStudyUserDB,
+<<<<<<< HEAD
 >>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
+=======
+  editOnlineStudyInfoDB,
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
 };
 
 export { studyActions };

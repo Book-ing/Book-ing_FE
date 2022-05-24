@@ -15,12 +15,16 @@ import styled from "styled-components";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
 import {
   Login,
   Crew,
   Main,
   MyPage,
   Search,
+<<<<<<< HEAD
   NoteWrite,
   NoteWrites,
   Test,
@@ -34,6 +38,11 @@ import { Login, Crew, Main, MyPage, Search, NoteWrites, Test } from "../pages/in
 =======
 import { Login, Crew, Main, MyPage, Search, NoteWrites, Test} from "../pages/index";
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+  NoteWrites,
+  Test,
+} from "../pages/index";
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
 import OAuth2RedirectHandler from "../pages/OAuth2RedirectHandler";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -68,11 +77,15 @@ function App() {
             <Route path="/crew/:meetingId" exact component={Crew} />
             <Route path="/mypage" exact component={MyPage} />
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Route path="/notewrites" exact component={NoteWrites} />
             <Route path="/notewrite" exact component={NoteWrite} />
 =======
             <Route path="/notewrite" exact component={NoteWrites} />
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+            <Route path="/notewrites" exact component={NoteWrites} />
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
             <Route path="/search" exact component={Search} />
             <Footer />
           </Wraper>

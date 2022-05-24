@@ -21,10 +21,13 @@ import CrewInfoTopBox from "../components/CrewpageComponents/CrewInfoTopBox";
 import CrewInfoBottomBox from "../components/CrewpageComponents/CrewInfoBottomBox";
 import StudySection from "../components/CrewpageComponents/StudySection";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import Spinner from "../components/Spinner";
 import ChattingBox from "../components/Chat/ChattingBox";
 >>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
+=======
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
 
 // themes
 import flex from "../themes/flex";
@@ -48,6 +51,10 @@ const Crew = (props) => {
 
 =======
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
   }, [dispatch, meetingId, __isJoinedCrew, __newProfileUser]);
@@ -101,9 +108,12 @@ const Crew = (props) => {
           <Popper id={id} open={open} anchorEl={anchorEl}>
             <ChatWrap>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
               {/* <ChattingBox meetingId={meetingId}></ChattingBox> */}
 >>>>>>> 7741ba9 (chore(chat_render): fix chat render when doesn't login or join crew)
+=======
+>>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
               <Chat />
             </ChatWrap>
           </Popper>
