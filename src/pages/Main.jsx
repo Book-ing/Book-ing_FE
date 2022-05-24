@@ -25,13 +25,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import MyCrewList from "../components/MyCrewList";
 
-
-
-
 const Main = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-
 
   // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정
 
@@ -79,7 +75,7 @@ const Main = (props) => {
     __listTodayMeeting === "" &&
     __listRecommendMeeting === "" &&
     __listNewMeeting === "" &&
-    __listMyMeetingStudy === "" 
+    __listMyMeetingStudy === ""
   )
     return <></>;
 
@@ -98,71 +94,72 @@ const Main = (props) => {
           <CrewSearch />
         </StSearchBtn>
         {/* <MyCrewCard myCrewInfo={__listMyMeeting}/> */}
-        {userId ? 
-        ( JSON.stringify(__listMyMeeting) === "{}" ? 
-        (
-        <NotMyCrewSection>
-          <div>
-            모임이 없습니다 모임을 생성하러 가볼까요?
-          </div>
-            <ModalBtnGrid>
-            <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
-              모임 생성하기
-            </ModalOpenBtn>
-            <Modal open={open}>
-              <Box sx={style} style={{ position: "relative" }}>
-                <ModalCloseBtn onClick={handleModalClose}>
-                  <CloseIcon fontSize="large" />
-                </ModalCloseBtn>
-                <ModalCrew />
-              </Box>
-            </Modal>
-          </ModalBtnGrid>
-        </NotMyCrewSection>
-        ) 
-        : 
-        (<MyCrewSection>
-          <StCrewTitle>
-            <Elchip shape="Fill" width="96px" height="35px">
-              <Eltext type="sub_2_bold" color="white">
-                내 모임
-              </Eltext>
-            </Elchip>
-          </StCrewTitle>
-          <CardGrid>
-          <div style={{display:"flex"}}>
-          <MyCrewCard myCrewInfo={__listMyMeeting}/>
+        {userId ? (
+          JSON.stringify(__listMyMeeting) === "{}" ? (
+            <NotMyCrewSection>
+              <div>모임이 없습니다 모임을 생성하러 가볼까요?</div>
+              <ModalBtnGrid>
+                <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
+                  모임 생성하기
+                </ModalOpenBtn>
+                <Modal open={open}>
+                  <Box sx={style} style={{ position: "relative" }}>
+                    <ModalCloseBtn onClick={handleModalClose}>
+                      <CloseIcon fontSize="large" />
+                    </ModalCloseBtn>
+                    <ModalCrew />
+                  </Box>
+                </Modal>
+              </ModalBtnGrid>
+            </NotMyCrewSection>
+          ) : (
+            <MyCrewSection>
+              <StCrewTitle>
+                <Elchip shape="Fill" width="96px" height="35px">
+                  <Eltext type="sub_2_bold" color="white">
+                    내 모임
+                  </Eltext>
+                </Elchip>
+              </StCrewTitle>
+              <CardGrid>
+                <div style={{ display: "flex" }}>
+                  <MyCrewCard myCrewInfo={__listMyMeeting} />
 
-            <div style={{margin:"20px 0 0 30px", width:"690px" , height:"460px"}}>
-
-
-            {JSON.stringify(__listMyMeetingStudy) === "[]" ? 
-            (
-              <div style={{textAlign:"center", display:"flex", justifyContent:"center", alignItems:"center", height:"400px"}}>
-              <Eltext type="head_6_bold" color="point">
-              <div>생성된 스터디가 없습니다.</div>
-              <div>내 모임에서 스터디를 만들어주세요😋</div>
-              </Eltext>
-              </div>
-            ):(
-              __listMyMeetingStudy.map((p, idx) => {
-                return (
-                        <MyCrewList {...p} key={idx} />
-                      );
-              }))       
-            }
-
-
-            </div>
-          </div>
-          </CardGrid>
-          </MyCrewSection>
-
-            )) : (
-              <></>
-            )}
-
-
+                  <div
+                    style={{
+                      margin: "20px 0 0 30px",
+                      width: "690px",
+                      height: "460px",
+                    }}
+                  >
+                    {JSON.stringify(__listMyMeetingStudy) === "[]" ? (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "400px",
+                        }}
+                      >
+                        <Eltext type="head_6_bold" color="point">
+                          <div>생성된 스터디가 없습니다.</div>
+                          <div>내 모임에서 스터디를 만들어주세요😋</div>
+                        </Eltext>
+                      </div>
+                    ) : (
+                      __listMyMeetingStudy.map((p, idx) => {
+                        return <MyCrewList {...p} key={idx} />;
+                      })
+                    )}
+                  </div>
+                </div>
+              </CardGrid>
+            </MyCrewSection>
+          )
+        ) : (
+          <></>
+        )}
 
         <CrewGroupGrid>
           <GoSearchBtnGrid>
@@ -184,27 +181,26 @@ const Main = (props) => {
               </Elchip>
             </StCrewTitle>
 
-              <CardGrid>
-                <Swiper
-                    slidesPerView={3}
-                    spaceBetween={1}
-                    loop={true}
-                    loopFillGroupWithBlank={true}
-                    navigation={true}
-                    autoplay={{ delay: 4000 }}
-                    modules={[Navigation, Autoplay]}
-                    className="mySwiper1"
-                  >
-                  {__listTodayMeeting.map((p, idx) => {
-                    return (
-                      <SwiperSlide key={idx}>
-                        <Card {...p} />
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-              </CardGrid>
-
+            <CardGrid>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={1}
+                loop={true}
+                loopFillGroupWithBlank={true}
+                navigation={true}
+                autoplay={{ delay: 4000 }}
+                modules={[Navigation, Autoplay]}
+                className="mySwiper1"
+              >
+                {__listTodayMeeting.map((p, idx) => {
+                  return (
+                    <SwiperSlide key={idx}>
+                      <Card {...p} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </CardGrid>
           </CrewListToday>
           <CrewListRecommend>
             <StCrewTitle>
@@ -215,31 +211,29 @@ const Main = (props) => {
               </Elchip>
             </StCrewTitle>
 
-              <CardGrid>
-                <Swiper
-                  slidesPerView={3}
-                  spaceBetween={1}
-                  loop={true}
-                  loopFillGroupWithBlank={true}
-                  navigation={true}
-                  autoplay={{ delay: 4000 }}
-                  modules={[Navigation, Autoplay]}
-                  className="mySwiper2"
-                >
-                  {__listRecommendMeeting.map((p, idx) => {
-                    return (
-                      <SwiperSlide key={idx}>
-                        <Card key={idx} {...p} />
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-              </CardGrid>
-
+            <CardGrid>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={1}
+                loop={true}
+                loopFillGroupWithBlank={true}
+                navigation={true}
+                autoplay={{ delay: 4000 }}
+                modules={[Navigation, Autoplay]}
+                className="mySwiper2"
+              >
+                {__listRecommendMeeting.map((p, idx) => {
+                  return (
+                    <SwiperSlide key={idx}>
+                      <Card key={idx} {...p} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </CardGrid>
           </CrewListRecommend>
 
           <CrewListNewest>
-
             <StCrewTitle>
               <Elchip shape="Fill" width="120px" height="35px">
                 <Eltext type="sub_2_bold" color="white">
@@ -248,26 +242,26 @@ const Main = (props) => {
               </Elchip>
             </StCrewTitle>
 
-              <CardGrid>
-                <Swiper
-                  slidesPerView={3}
-                  spaceBetween={1}
-                  loop={true}
-                  loopFillGroupWithBlank={true}
-                  navigation={true}
-                  autoplay={{ delay: 4000 }}
-                  modules={[Navigation, Autoplay]}
-                  className="mySwiper3"
-                >
-                  {__listNewMeeting.map((p, idx) => {
-                    return (
-                      <SwiperSlide key={idx}>
-                        <Card key={idx} {...p} />
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-              </CardGrid>
+            <CardGrid>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={1}
+                loop={true}
+                loopFillGroupWithBlank={true}
+                navigation={true}
+                autoplay={{ delay: 4000 }}
+                modules={[Navigation, Autoplay]}
+                className="mySwiper3"
+              >
+                {__listNewMeeting.map((p, idx) => {
+                  return (
+                    <SwiperSlide key={idx}>
+                      <Card key={idx} {...p} />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </CardGrid>
           </CrewListNewest>
         </CrewGroupGrid>
       </Container>
@@ -341,7 +335,7 @@ const NotMyCrewSection = styled.div`
   width: 100%;
   height: 200px;
   background-color: var(--main);
-`
+`;
 
 const MyCrewSection = styled.div`
   ${flex("start", "center", false)}
@@ -382,28 +376,42 @@ const CrewListToday = styled.div`
   height: 635px;
   margin-top: 10px;
   border: 1px solid black;
-  background-image: linear-gradient(#839893 35%, var(--white) 35%, var(--white) 75%, #839893 75%);
+  background-image: linear-gradient(
+    #839893 35%,
+    var(--white) 35%,
+    var(--white) 75%,
+    #839893 75%
+  );
 `;
 const CrewListRecommend = styled.div`
   width: 100%;
   height: 635px;
   margin-top: 120px;
   border: 1px solid black;
-  background-image: linear-gradient(#C9998D 35%, var(--white) 35%, var(--white) 75%, #C9998D 75%);
-
-`
+  background-image: linear-gradient(
+    #c9998d 35%,
+    var(--white) 35%,
+    var(--white) 75%,
+    #c9998d 75%
+  );
+`;
 const CrewListNewest = styled.div`
-  width: 100%; 
-  max-height: 610px; 
-  margin: 120px 0 100px 0; 
-  background-image: linear-gradient(#EDE1D3 35%, var(--white) 35%, var(--white) 75%, #EDE1D3 75%);
-`
+  width: 100%;
+  max-height: 610px;
+  margin: 120px 0 100px 0;
+  background-image: linear-gradient(
+    #ede1d3 35%,
+    var(--white) 35%,
+    var(--white) 75%,
+    #ede1d3 75%
+  );
+`;
 // linear-gradient
 const StMyCrewStudyList = styled.div`
   width: 690px;
   height: 100px;
   margin-bottom: 20px;
-  background-color: #FBF9F9;
+  background-color: #fbf9f9;
   padding-top: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`
+`;
