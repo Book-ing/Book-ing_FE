@@ -60,13 +60,14 @@ const Main = (props) => {
   //   );
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
+    
 
   React.useEffect(() => {
     userId === null
       ? dispatch(mainActions.loadCrewDB())
       : dispatch(mainActions.login_loadCrewDB(userId));
   }, []);
-
+  
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
@@ -381,20 +382,20 @@ const CrewListToday = styled.div`
   width: 100%;
   height: 635px;
   margin-top: 10px;
-  border: 1px solid black;
   background-image: linear-gradient(#839893 35%, var(--white) 35%, var(--white) 75%, #839893 75%);
 `;
 const CrewListRecommend = styled.div`
   width: 100%;
   height: 635px;
   margin-top: 120px;
-  border: 1px solid black;
+  border: 1px;
   background-image: linear-gradient(#C9998D 35%, var(--white) 35%, var(--white) 75%, #C9998D 75%);
 
 `
 const CrewListNewest = styled.div`
+  padding-top: 5px;
   width: 100%; 
-  max-height: 610px; 
+  height: 635px; 
   margin: 120px 0 100px 0; 
   background-image: linear-gradient(#EDE1D3 35%, var(--white) 35%, var(--white) 75%, #EDE1D3 75%);
 `
