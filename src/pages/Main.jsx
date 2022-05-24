@@ -109,7 +109,11 @@ const Main = (props) => {
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 =======
   // ==================== 민우님이 요청한 loginCheckDB ========================
+<<<<<<< HEAD
 >>>>>>> 251b95c (메인페이지 수정 시작)
+=======
+    
+>>>>>>> e432dfc (page(Main):merge를 위한 중간 커밋)
 
   React.useEffect(() => {
     userId === null
@@ -923,7 +927,6 @@ const CrewListNewest = styled.div`
 =======
   height: 635px;
   margin-top: 10px;
-  border: 1px solid black;
   background-image: linear-gradient(#839893 35%, var(--white) 35%, var(--white) 75%, #839893 75%);
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
 `;
@@ -931,11 +934,12 @@ const CrewListRecommend = styled.div`
   width: 100%;
   height: 635px;
   margin-top: 120px;
-  border: 1px solid black;
+  border: 1px;
   background-image: linear-gradient(#C9998D 35%, var(--white) 35%, var(--white) 75%, #C9998D 75%);
 
 `
 const CrewListNewest = styled.div`
+<<<<<<< HEAD
 <<<<<<< HEAD
   width: 100%;
   max-height: 610px;
@@ -952,8 +956,11 @@ const StSwiperWrapper = styled.div`
 =======
 >>>>>>> 251b95c (메인페이지 수정 시작)
 =======
+=======
+  padding-top: 5px;
+>>>>>>> e432dfc (page(Main):merge를 위한 중간 커밋)
   width: 100%; 
-  max-height: 610px; 
+  height: 635px; 
   margin: 120px 0 100px 0; 
   background-image: linear-gradient(#EDE1D3 35%, var(--white) 35%, var(--white) 75%, #EDE1D3 75%);
 `
