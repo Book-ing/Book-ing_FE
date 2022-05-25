@@ -1,10 +1,13 @@
 import io from "socket.io-client";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 const targetServer = "https://sparta-hs.shop/";
 
 >>>>>>> 95a460a (feature(CrewChat): Crewpage Chat feature v1 done)
+=======
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 let socket;
 
 // 모임페이지에 들어올 때 소켓 연결

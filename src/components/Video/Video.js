@@ -9,17 +9,23 @@ import styled from "styled-components";
 // theme
 import flex from "../../themes/flex";
 
+<<<<<<< HEAD
 // img
 import BookingKorLogo from "../../assets/bookingkorlogo.png";
 import { cookies } from "../../shared/cookie";
 import { Grid } from "@mui/material";
 
+=======
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 const Videoplayer = React.forwardRef((props, ref) => {
   const params = useParams();
   const studyId = params.studyId;
   const [muted, setMuted] = useState(false);
   const [cameraOff, setCameraOff] = useState(false);
+<<<<<<< HEAD
   const [shareOff, setShareOff] = useState(false);
+=======
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
   const [Audio, setAudio] = useState([]);
   const [Video, setVideo] = useState([]);
   const [socketID, setSocketID] = useState("");
@@ -30,7 +36,10 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const changeNumberOfUsers = props.changeNumberOfUsers;
   const myvideo = useRef();
   const mystream = useRef();
+<<<<<<< HEAD
   const testBtn = useRef();
+=======
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
   // const urlcopybox = useRef();
   let nickname = props.nickname;
 
@@ -38,7 +47,10 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let myStream;
   let pcObj = {};
   let peopleInRoom = 1;
+<<<<<<< HEAD
   let screenStream;
+=======
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
   const [socket, setSocket] = useState(null);
 
@@ -49,6 +61,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
     setSocket(socket);
 
     //서버로부터 accept_join 받음
+<<<<<<< HEAD
     socket.on(
       "joinStudyRoom",
       async (userObjArr, socketIdformserver, videoType) => {
@@ -79,6 +92,35 @@ const Videoplayer = React.forwardRef((props, ref) => {
         }
       }
     );
+=======
+    socket.on("joinStudyRoom", async (userObjArr, socketIdformserver) => {
+      const length = userObjArr.length;
+      //카메라, 마이크 가져오기
+      await getMedia();
+      setSocketID(socketIdformserver);
+      changeNumberOfUsers(`${peopleInRoom} / 10`);
+
+      if (length === 1) {
+        return;
+      }
+
+      for (let i = 0; i < length - 1; i++) {
+        //가장 최근 들어온 브라우저 제외
+        try {
+          const newPC = makeConnection(
+            //RTCPeerconnection 생성
+            userObjArr[i].socketId,
+            userObjArr[i].nickname
+          );
+          const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
+          await newPC.setLocalDescription(offer);
+          socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
     socket.on("checkCurStatus", (object) => {
       checkEnterStatus.current = object;
@@ -152,6 +194,16 @@ const Videoplayer = React.forwardRef((props, ref) => {
       removeVideo(leavedSocketId);
       peopleInRoom--;
       changeNumberOfUsers(`${peopleInRoom} / 10`);
+<<<<<<< HEAD
+=======
+      // for (let i = 0; i < peopleInRoom; i++) {
+      //   if (peopleInRoom <= 4) {
+      //     urlcopybox.current.style.display = "block";
+      //   } else if (peopleInRoom === 5) {
+      //     urlcopybox.current.style.display = "none";
+      //   }
+      // }
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
     });
 
     //사용자의 stream 가져오는 함수
@@ -213,16 +265,31 @@ const Videoplayer = React.forwardRef((props, ref) => {
       myStream
         .getTracks()
         .forEach((track) => myPeerConnection.addTrack(track, myStream));
+<<<<<<< HEAD
       if (screenStream) {
         screenStream
           .getTracks()
           .forEach((track) => myPeerConnection.addTrack(track, screenStream));
       }
+=======
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
       pcObj[remoteSocketId] = myPeerConnection;
 
       peopleInRoom++;
+<<<<<<< HEAD
+=======
+      console.log(peopleInRoom);
+
+      // for (let i = 0; i < peopleInRoom; i++) {
+      //   if (peopleInRoom <= 4) {
+      //     urlcopybox.current.style.display = "block";
+      //   } else if (peopleInRoom === 5) {
+      //     urlcopybox.current.style.display = "none";
+      //   }
+      // }
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
       changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
@@ -356,6 +423,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       }
     },
 
+<<<<<<< HEAD
     shareScreen: () => {
       const sharedScreenSection = document.getElementById(
         "sharedScreenSection"
@@ -371,6 +439,17 @@ const Videoplayer = React.forwardRef((props, ref) => {
         setShareOff(false);
         const video = sharedScreenSection.querySelector(".shareVideo");
         sharedScreenSection.removeChild(video);
+=======
+    handleAllMute: () => {
+      Audio.forEach((track) => (track.enabled = false));
+      const nickNameContainer = document.querySelector("#nickNameContainer");
+      if (muted === false) {
+        setMuted(true);
+        const muteIcon = document.createElement("div");
+        muteIcon.className = "muteIcon";
+        nickNameContainer.prepend(muteIcon);
+        socket.emit("mic_check", studyId, socketID, true);
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
       }
     },
   }));
@@ -401,6 +480,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
 });
 
 const DIV = styled.div`
+<<<<<<< HEAD
   /* ${flex("center", "center", false)} */
   position: "relative";
   max-width: 100%;
@@ -408,6 +488,11 @@ const DIV = styled.div`
   flex-flow: wrap;
   text-align: center;
   padding: 5px;
+=======
+  width: 202;
+  ${flex("start", "center", false)}
+  position: "relative";
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
   /* @media screen and (max-width: 1440px) {
     position: absolute;
     right: 0px;
@@ -416,6 +501,7 @@ const DIV = styled.div`
 `;
 
 const MemberWrap = styled.div`
+<<<<<<< HEAD
   display: flex;
   max-width: 100%;
   flex-flow: wrap;
@@ -426,13 +512,25 @@ const MemberWrap = styled.div`
     width: 100%;
     min-height: 112px;
     height: 100%;
+=======
+  max-height: 616px;
+  ${flex("center", "center", false)}
+  .memberVideo {
+    margin-bottom: 10px; //화상채팅간 영상간격
+    width: 200px;
+    height: 112px;
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
     border-radius: 8px;
     position: relative;
     object-fit: cover;
     @media screen and (max-width: 1440px) {
       width: 202px;
       height: 113px;
+<<<<<<< HEAD
       margin: auto;
+=======
+      margin-bottom: 10px;
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
     }
   }
   .nickNameContainer {
@@ -449,6 +547,7 @@ const MemberWrap = styled.div`
     align-items: center;
   }
   .videoBox {
+<<<<<<< HEAD
     display: block;
     flex-grow: 1;
     min-width: 200px;
@@ -458,10 +557,24 @@ const MemberWrap = styled.div`
   }
   .myVideo {
     margin: auto;
+=======
+    position: relative;
+  }
+  .emojiBox {
+    position: absolute;
+    z-index: 2;
+    width: 77px;
+    height: 60px;
+    left: -77px;
+    top: 31px;
+  }
+  .myVideo {
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
     // 사파리
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
+<<<<<<< HEAD
   .screensaver {
     display: flex;
     position: absolute;
@@ -475,4 +588,27 @@ const MemberWrap = styled.div`
   }
 `;
 
+=======
+`;
+
+// const URLCopyBox = styled.div`
+//   width: 202px;
+//   position: "relative";
+//   z-index: 10;
+// `;
+
+// const BubbleWrap = styled.div`
+//   font-size: 13px;
+//   width: 202px;
+//   height: 40px;
+//   color: #f8f9fa;
+//   background-color: #0028fa;
+//   border-radius: 4px;
+//   display: inline-flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 10px;
+// `;
+
+>>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 export default React.memo(Videoplayer);

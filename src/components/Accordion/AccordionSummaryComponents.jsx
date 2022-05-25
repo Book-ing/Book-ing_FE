@@ -230,7 +230,10 @@ const AccordionSummaryComponent = (props) => {
           props.props.studyType === "online" ? (
             <JoinOnlineStudyRoom
               onClick={() => {
-                history.push(`/room/${studyId}`);
+                history.push({
+                  pathname: `/room/${studyId}`,
+                  state: { meetingId: __crewId },
+                });
               }}
             >
               온라인 스터디룸 입장
