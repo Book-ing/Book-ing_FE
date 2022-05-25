@@ -1,23 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
-import { history } from "../../redux/configureStore";
-import HiFive from "./Images/VideoPlayer_Emoji.svg";
-import Screensaver from "./Images/VideoPlayer_Screensaver.svg";
-import Mute from "./Images/VideoPlayer_Mute.svg";
+import { history } from "../../redux/configStore";
+import { useParams } from "react-router-dom";
 
 //Style
 import styled from "styled-components";
-import invite from "./Images/VideoPlayer_Invite.svg";
+
+// theme
+import flex from "../../themes/flex";
 
 const Videoplayer = React.forwardRef((props, ref) => {
-  // console.log('영상통화');
-  const roomName = props.roomId;
+  const params = useParams();
+  const studyId = params.studyId;
   const [muted, setMuted] = useState(false);
   const [cameraOff, setCameraOff] = useState(false);
   const [Audio, setAudio] = useState([]);
   const [Video, setVideo] = useState([]);
   const [socketID, setSocketID] = useState("");
-  const [UrlCopied, setUrlCopied] = React.useState(false);
 
   const checkEnterStatus = useRef();
   const videoGrid = useRef();
@@ -25,7 +24,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const changeNumberOfUsers = props.changeNumberOfUsers;
   const myvideo = useRef();
   const mystream = useRef();
-  const urlcopybox = useRef();
+  // const urlcopybox = useRef();
   let nickname = props.nickname;
 
   let myPeerConnection;
@@ -33,38 +32,21 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let pcObj = {};
   let peopleInRoom = 1;
 
-  // const { Kakao } = window; urlcopybox.current.style.display = "none";
-
-  const copyLink = () => {
-    let url;
-    let textarea = document.createElement("textarea");
-    document.body.appendChild(textarea);
-    url = window.document.location.href;
-    textarea.value = url;
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
-    setUrlCopied(!UrlCopied);
-    setTimeout(() => {
-      setUrlCopied(false);
-    }, 4000);
-  };
-
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = io("https://test.kimjeongho-server.com", {
+    const socket = io("https://sparta-hs.shop/", {
       cors: { origin: "*" },
-    }); //Server adress
+    });
     setSocket(socket);
 
     //서버로부터 accept_join 받음
-    socket.on("accept_join", async (userObjArr, socketIdformserver) => {
+    socket.on("joinStudyRoom", async (userObjArr, socketIdformserver) => {
       const length = userObjArr.length;
       //카메라, 마이크 가져오기
       await getMedia();
       setSocketID(socketIdformserver);
-      changeNumberOfUsers(`${peopleInRoom} / 5`);
+      changeNumberOfUsers(`${peopleInRoom} / 10`);
 
       if (length === 1) {
         return;
@@ -91,7 +73,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       checkEnterStatus.current = object;
     });
 
-    // 두명이상이 들어올때부터 실행이 되는데, 누가 들어올 때마다 처음 사람빼고 실행되는 듯
+    // 두명이상이 들어올때부터 실행이 되는데, 누가 들어올 때마다 처음 사람빼고 실행
     socket.on("offer", async (offer, remoteSocketId, remoteNickname) => {
       try {
         const newPC = makeConnection(remoteSocketId, remoteNickname);
@@ -123,22 +105,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
 
     socket.on("exception", () => {
       peopleInRoom++;
-      changeNumberOfUsers(`5 / 5`);
-    });
-
-    // 여긴 다른 사람들에게 띄우는 부분
-    socket.on("emoji", (remoteSocketId) => {
-      const remoteDiv = document.getElementById(`${remoteSocketId}`);
-      const emojiBox = document.createElement("img");
-      emojiBox.src = HiFive;
-
-      emojiBox.className = "emojiBox";
-      if (remoteDiv) {
-        remoteDiv.appendChild(emojiBox);
-        setTimeout(() => {
-          remoteDiv.removeChild(emojiBox);
-        }, 2000);
-      }
+      changeNumberOfUsers(`10 / 10`);
     });
 
     // 여긴 다른 사람들에게 띄우는 부분
@@ -173,14 +140,14 @@ const Videoplayer = React.forwardRef((props, ref) => {
     socket.on("leave_room", (leavedSocketId) => {
       removeVideo(leavedSocketId);
       peopleInRoom--;
-      changeNumberOfUsers(`${peopleInRoom} / 5`);
-      for (let i = 0; i < peopleInRoom; i++) {
-        if (peopleInRoom <= 4) {
-          urlcopybox.current.style.display = "block";
-        } else if (peopleInRoom === 5) {
-          urlcopybox.current.style.display = "none";
-        }
-      }
+      changeNumberOfUsers(`${peopleInRoom} / 10`);
+      // for (let i = 0; i < peopleInRoom; i++) {
+      //   if (peopleInRoom <= 4) {
+      //     urlcopybox.current.style.display = "block";
+      //   } else if (peopleInRoom === 5) {
+      //     urlcopybox.current.style.display = "none";
+      //   }
+      // }
     });
 
     //사용자의 stream 가져오는 함수
@@ -220,14 +187,11 @@ const Videoplayer = React.forwardRef((props, ref) => {
     function makeConnection(remoteSocketId, remoteNickname) {
       myPeerConnection = new RTCPeerConnection({
         iceServers: [
+          { urls: "stun:stunserver.example.org" },
           {
-            urls: [
-              "stun:stun.l.google.com:19302",
-              "stun:stun1.l.google.com:19302",
-              "stun:stun2.l.google.com:19302",
-              "stun:stun3.l.google.com:19302",
-              "stun:stun4.l.google.com:19302",
-            ],
+            urls: "turn:52.79.93.143",
+            username: "booking",
+            credential: "booking1234",
           },
         ],
       });
@@ -252,15 +216,15 @@ const Videoplayer = React.forwardRef((props, ref) => {
       peopleInRoom++;
       console.log(peopleInRoom);
 
-      for (let i = 0; i < peopleInRoom; i++) {
-        if (peopleInRoom <= 4) {
-          urlcopybox.current.style.display = "block";
-        } else if (peopleInRoom === 5) {
-          urlcopybox.current.style.display = "none";
-        }
-      }
+      // for (let i = 0; i < peopleInRoom; i++) {
+      //   if (peopleInRoom <= 4) {
+      //     urlcopybox.current.style.display = "block";
+      //   } else if (peopleInRoom === 5) {
+      //     urlcopybox.current.style.display = "none";
+      //   }
+      // }
 
-      changeNumberOfUsers(`${peopleInRoom} / 5`);
+      changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
     }
 
@@ -337,11 +301,11 @@ const Videoplayer = React.forwardRef((props, ref) => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then(() => {
-        socket.emit("join_room", roomName, nickname);
+        socket.emit("joinRoom", studyId, nickname);
       })
       .catch(() => {
         window.alert("카메라 또는 마이크 장치를 확인 후 다시 입장해주세요");
-        history.push("/");
+        history.push(`/crew/${props.meetingId}`);
         window.location.reload();
       });
   }, [socket]);
@@ -365,14 +329,14 @@ const Videoplayer = React.forwardRef((props, ref) => {
         // 카메라 오프가 false이면 켜진상태
         setCameraOff(true);
         // 스크린 세이버 온 오프
-        socket.emit("screensaver", roomName, socketID, true);
+        socket.emit("screensaver", studyId, socketID, true);
         let screensaver = document.querySelector("#myscreensaver");
         screensaver.style.display = "flex";
       } else if (cameraOff === true) {
         setCameraOff(false);
         let screensaver = document.querySelector("#myscreensaver");
         screensaver.style.display = "none";
-        socket.emit("screensaver", roomName, socketID, false);
+        socket.emit("screensaver", studyId, socketID, false);
       }
     },
     handleMuteClick: () => {
@@ -383,12 +347,12 @@ const Videoplayer = React.forwardRef((props, ref) => {
         const muteIcon = document.createElement("div");
         muteIcon.className = "muteIcon";
         nickNameContainer.prepend(muteIcon);
-        socket.emit("mic_check", roomName, socketID, true);
+        socket.emit("mic_check", studyId, socketID, true);
       } else if (muted === true) {
         setMuted(false);
         const muteIcon = nickNameContainer.querySelector(".muteIcon");
         nickNameContainer.removeChild(muteIcon);
-        socket.emit("mic_check", roomName, socketID, false);
+        socket.emit("mic_check", studyId, socketID, false);
       }
     },
 
@@ -400,20 +364,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
         const muteIcon = document.createElement("div");
         muteIcon.className = "muteIcon";
         nickNameContainer.prepend(muteIcon);
-        socket.emit("mic_check", roomName, socketID, true);
+        socket.emit("mic_check", studyId, socketID, true);
       }
-    },
-
-    showEmoji: () => {
-      const myArea = document.querySelector("#mystream");
-      const emojiBox = document.createElement("img");
-      emojiBox.src = HiFive;
-      myArea.appendChild(emojiBox);
-      setTimeout(() => {
-        myArea.removeChild(emojiBox);
-      }, 2000);
-      emojiBox.className = "emojiBox";
-      socket.emit("emoji", roomName, socketID);
     },
   }));
 
@@ -438,46 +390,24 @@ const Videoplayer = React.forwardRef((props, ref) => {
           ></div>
         </div>
       </MemberWrap>
-      <URLCopyBox>
-        <img
-          ref={urlcopybox}
-          src={invite}
-          onClick={copyLink}
-          alt="링크복사"
-          style={{
-            width: 202,
-            height: 113,
-            cursor: "pointer",
-          }}
-        ></img>
-
-        {UrlCopied && (
-          <BubbleWrap>
-            <div>URL이 클립보드에 복사되었습니다.</div>
-          </BubbleWrap>
-        )}
-      </URLCopyBox>
     </DIV>
   );
 });
 
 const DIV = styled.div`
   width: 202;
-  display: "flex";
-  flexdirection: "column";
-  justifycontent: "flex-start";
+  ${flex("start", "center", false)}
   position: "relative";
-  @media screen and (max-width: 1440px) {
+  /* @media screen and (max-width: 1440px) {
     position: absolute;
     right: 0px;
     top: -76px;
-  }
+  } */
 `;
 
 const MemberWrap = styled.div`
   max-height: 616px;
-  display: flex;
-  flex-direction: column;
+  ${flex("center", "center", false)}
   .memberVideo {
     margin-bottom: 10px; //화상채팅간 영상간격
     width: 200px;
@@ -520,41 +450,25 @@ const MemberWrap = styled.div`
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
-  .screensaver {
-    display: flex;
-    position: absolute;
-    background-image: url(${Screensaver});
-    width: 200px;
-    height: 112px;
-    z-index: 2;
-    top: 0px;
-  }
-  .muteIcon {
-    background-image: url(${Mute});
-    z-index: 3;
-    width: 12px;
-    height: 12px;
-    margin-right: 4px;
-  }
 `;
 
-const URLCopyBox = styled.div`
-  width: 202px;
-  position: "relative";
-  z-index: 10;
-`;
+// const URLCopyBox = styled.div`
+//   width: 202px;
+//   position: "relative";
+//   z-index: 10;
+// `;
 
-const BubbleWrap = styled.div`
-  font-size: 13px;
-  width: 202px;
-  height: 40px;
-  color: #f8f9fa;
-  background-color: #0028fa;
-  border-radius: 4px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-`;
+// const BubbleWrap = styled.div`
+//   font-size: 13px;
+//   width: 202px;
+//   height: 40px;
+//   color: #f8f9fa;
+//   background-color: #0028fa;
+//   border-radius: 4px;
+//   display: inline-flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 10px;
+// `;
 
 export default React.memo(Videoplayer);
