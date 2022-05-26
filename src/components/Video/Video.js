@@ -29,9 +29,13 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const [muted, setMuted] = useState(false);
   const [cameraOff, setCameraOff] = useState(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [shareOff, setShareOff] = useState(false);
 =======
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+  const [shareOff, setShareOff] = useState(false);
+>>>>>>> 3dfbd8b (chore(webRTC): made function of shared screen section)
   const [Audio, setAudio] = useState([]);
   const [Video, setVideo] = useState([]);
   const [socketID, setSocketID] = useState("");
@@ -461,6 +465,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
     },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3dfbd8b (chore(webRTC): made function of shared screen section)
     shareScreen: () => {
       const sharedScreenSection = document.getElementById(
         "sharedScreenSection"
@@ -476,6 +483,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
         setShareOff(false);
         const video = sharedScreenSection.querySelector(".shareVideo");
         sharedScreenSection.removeChild(video);
+<<<<<<< HEAD
 =======
     handleAllMute: () => {
       Audio.forEach((track) => (track.enabled = false));
@@ -487,8 +495,22 @@ const Videoplayer = React.forwardRef((props, ref) => {
         nickNameContainer.prepend(muteIcon);
         socket.emit("mic_check", studyId, socketID, true);
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+>>>>>>> 3dfbd8b (chore(webRTC): made function of shared screen section)
       }
     },
+
+    // handleAllMute: () => {
+    //   Audio.forEach((track) => (track.enabled = false));
+    //   const nickNameContainer = document.querySelector("#nickNameContainer");
+    //   if (muted === false) {
+    //     setMuted(true);
+    //     const muteIcon = document.createElement("div");
+    //     muteIcon.className = "muteIcon";
+    //     nickNameContainer.prepend(muteIcon);
+    //     socket.emit("mic_check", studyId, socketID, true);
+    //   }
+    // },
   }));
 
   return (

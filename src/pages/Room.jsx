@@ -209,6 +209,7 @@ import {
   BsFillCameraVideoFill,
   BsFillCameraVideoOffFill,
 } from "react-icons/bs";
+import { MdScreenShare, MdStopScreenShare } from "react-icons/md";
 import flex from "../themes/flex";
 
 const Room = (props) => {
@@ -217,6 +218,7 @@ const Room = (props) => {
   const nickname = localStorage.getItem("username");
   const [soundOn, setSoundOn] = useState(false);
   const [videoOn, setVideoOn] = useState(false);
+  const [shared, setShared] = useState(false);
   const [numberOfUsers, setNumberOfUsers] = React.useState("1/10");
 
   const childRef = React.useRef();
@@ -234,6 +236,11 @@ const Room = (props) => {
     childRef.current.handleCameraClick();
   };
 
+  const setShareScreen = () => {
+    setShared(!shared);
+    childRef.current.shareScreen();
+  };
+
   return (
     <RoomWrap>
       <VideoHeader
@@ -248,7 +255,7 @@ const Room = (props) => {
             ref={childRef}
             meetingId={location.state.meetingId}
           ></Video>
-          <SharedVideoSection></SharedVideoSection>
+          <SharedVideoSection id="sharedScreenSection"></SharedVideoSection>
         </VideoWrap>
 
         <SoundBtn>
@@ -272,6 +279,17 @@ const Room = (props) => {
               ) : (
                 <>
                   <BsFillCameraVideoOffFill />
+                </>
+              )}
+            </Btn>
+            <Btn onClick={setShareScreen}>
+              {shared ? (
+                <>
+                  <MdScreenShare />
+                </>
+              ) : (
+                <>
+                  <MdStopScreenShare />
                 </>
               )}
             </Btn>
@@ -351,8 +369,14 @@ const VideoWrap = styled.div`
 const SharedVideoSection = styled.div`
   width: 100%;
   height: 80%;
+  padding: 10px;
   border-radius: 10px;
   border: 1px solid #c9998d;
+  .shareVideo {
+    width: 960px;
+    height: 540px;
+    border: 2px solid var(--point);
+  }
 `;
 
 const SoundBtn = styled.div`
