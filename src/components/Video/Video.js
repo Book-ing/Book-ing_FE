@@ -17,6 +17,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const studyId = params.studyId;
   const [muted, setMuted] = useState(false);
   const [cameraOff, setCameraOff] = useState(false);
+  const [shareOff, setShareOff] = useState(false);
   const [Audio, setAudio] = useState([]);
   const [Video, setVideo] = useState([]);
   const [socketID, setSocketID] = useState("");
@@ -358,17 +359,35 @@ const Videoplayer = React.forwardRef((props, ref) => {
       }
     },
 
-    handleAllMute: () => {
-      Audio.forEach((track) => (track.enabled = false));
-      const nickNameContainer = document.querySelector("#nickNameContainer");
-      if (muted === false) {
-        setMuted(true);
-        const muteIcon = document.createElement("div");
-        muteIcon.className = "muteIcon";
-        nickNameContainer.prepend(muteIcon);
-        socket.emit("mic_check", studyId, socketID, true);
+    shareScreen: () => {
+      const sharedScreenSection = document.getElementById(
+        "sharedScreenSection"
+      );
+      if (shareOff === false) {
+        setShareOff(true);
+        const video = document.createElement("video");
+        video.autoplay = true;
+        video.playsInline = true;
+        sharedScreenSection.appendChild(video);
+        video.className = "shareVideo";
+      } else if (shareOff === true) {
+        setShareOff(false);
+        const video = sharedScreenSection.querySelector(".shareVideo");
+        sharedScreenSection.removeChild(video);
       }
     },
+
+    // handleAllMute: () => {
+    //   Audio.forEach((track) => (track.enabled = false));
+    //   const nickNameContainer = document.querySelector("#nickNameContainer");
+    //   if (muted === false) {
+    //     setMuted(true);
+    //     const muteIcon = document.createElement("div");
+    //     muteIcon.className = "muteIcon";
+    //     nickNameContainer.prepend(muteIcon);
+    //     socket.emit("mic_check", studyId, socketID, true);
+    //   }
+    // },
   }));
 
   return (
