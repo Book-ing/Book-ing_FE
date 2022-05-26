@@ -152,10 +152,14 @@ const CardGrid = styled.div`
 const ImgGrid = styled.div`
   position: relative;
 <<<<<<< HEAD
+<<<<<<< HEAD
   margin: 9px 17px 0px 20px;
 =======
   margin: 9px 17px 0px 17px;
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+  margin: 9px 17px 0px 20px;
+>>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
   top:-35px;
   width: 285px;
   height: 285px;
@@ -174,10 +178,14 @@ const TagGrid = styled.div`
   position: relative;
   top: 20px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   left: 23px;
 =======
   left: 20px;
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+  left: 23px;
+>>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
   z-index: 2;
   display: flex;
   justify-content: space-between;

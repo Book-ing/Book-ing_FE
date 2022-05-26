@@ -49,7 +49,7 @@ const MyCrewCard = (myCrewInfo) => {
 =======
 
                 <Elcategory 
-                shape={info.meetingCategory} color="white" width="85px" height="25px">
+                shape={info.meetingCategory} color="white" width="85px" height="25px" paddingBottom="2px">
                   {info.meetingCategory}
                 </Elcategory>
 
@@ -138,6 +138,7 @@ const CardGrid = styled.div`
 const ImgGrid = styled.div`
   position: relative;
 <<<<<<< HEAD
+<<<<<<< HEAD
   margin: 9px 17px 0px 20px;
   top:-35px;
   width: 285px;
@@ -149,6 +150,12 @@ const ImgGrid = styled.div`
   height: 285px;
   /* border: 1px solid black; */
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+  margin: 9px 17px 0px 20px;
+  top:-35px;
+  width: 285px;
+  height: 285px;
+>>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
 `;
 const TitleGrid = styled.div`
   width: 290px;
@@ -163,10 +170,14 @@ const TagGrid = styled.div`
   position: relative;
   top: 20px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   left: 23px;
 =======
   left: 20px;
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+  left: 23px;
+>>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
   z-index: 2;
   display: flex;
   justify-content: space-between;

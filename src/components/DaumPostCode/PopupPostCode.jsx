@@ -7,10 +7,27 @@ const PopupPostCode = (props) => {
   const dispatch = useDispatch();
   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
   const handlePostCode = (data) => {
+<<<<<<< HEAD
     // console.log(data);
     let jibunAddress = data.jibunAddress ? data.jibunAddress : data.autoJibunAddress ;
     let roadAddress = data.roadAddress; 
     let zoneCode = data.zonecode;
+=======
+    console.log(data);
+    let fullAddress = data.address;
+    let extraAddress = ''; 
+        
+        // 주소 조합용 로직 수정해야할 사항 있음
+        if (data.addressType === 'R') {
+          if (data.bname !== '') {
+            extraAddress += data.bname;
+          }
+          if (data.buildingName !== '') {
+            extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+          }
+          fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+        }
+>>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
 
     // console.log(data)
     // console.log(jibunAddress)

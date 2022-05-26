@@ -10,6 +10,7 @@ const Ellocation = ({children, ...rest}) => {
 
 const Box = styled.div`
 <<<<<<< HEAD
+<<<<<<< HEAD
     ${flex("center", "center", false)}
     padding-bottom: 1px;
     color : var(--point);
@@ -20,6 +21,11 @@ const Box = styled.div`
     /* width: 96px;
     height: 30px; */
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+    ${flex("center", "center", false)}
+    padding-bottom: 2px;
+    color : var(--point);
+>>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
     border: 1px solid var(--point);
     border-radius: 6px;
     background-color: var(--white);

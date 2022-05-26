@@ -91,10 +91,15 @@ const Elcategory = ({ children, ...rest }) => {
   height: ${(props) =>
     props.height ? `${props.height}` : ""};
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-weight: ${(props) =>
     props.fontWeight ? `${props.fontWeight}` : ""};
 =======
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+  padding-bottom: ${(props) =>
+    props.paddingBottom ? `${props.paddingBottom}` : ""};
+>>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
 `;
 
 
