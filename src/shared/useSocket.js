@@ -3,10 +3,10 @@ import io from "socket.io-client";
 let socket;
 
 // 모임페이지에 들어올 때 소켓 연결
-export const initiateSocket = (cb, meetingId, userId) => {
+export const initiateSocket = (cb, meetingId, userId, newGrabUrl) => {
   socket = io.connect("https://sparta-hs.shop/");
   socket && cb(socket);
-  socket.emit("joinMeetingRoom", meetingId, userId);
+  socket.emit("joinRoom", meetingId, userId, newGrabUrl);
   // console.log("소켓연결!");
   // console.log(socket);
 };
@@ -32,9 +32,9 @@ export const subscribeToChat = (cb) => {
   });
 };
 // 메시지 보내기
-export const sendMessage = (meetingId, userId, message) => {
+export const sendMessage = (meetingId, userId, message, newGrabUrl) => {
   if (socket) {
-    socket.emit("chat message", meetingId, userId, message);
+    socket.emit("chat message", meetingId, userId, message, newGrabUrl);
   }
 };
 // 방에 참여하기

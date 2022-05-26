@@ -11,6 +11,10 @@ import { body_3 } from "../../themes/textStyle";
 import { sendMessage } from "../../shared/useSocket";
 
 const ChatInput = () => {
+  let grabUrl = new URL(window.location.href);
+  console.log(grabUrl);
+  const newGrabUrl = grabUrl.pathname.split("/");
+  console.log(newGrabUrl[1]);
   const { meetingId } = useParams();
   const userId = localStorage.getItem("userId");
 
@@ -22,7 +26,7 @@ const ChatInput = () => {
     (e) => {
       e.preventDefault();
       if (!text.trim()) return;
-      sendMessage(meetingId, userId, text);
+      sendMessage(meetingId, userId, text, newGrabUrl[1]);
       setText("");
     },
     [meetingId, userId, text]
