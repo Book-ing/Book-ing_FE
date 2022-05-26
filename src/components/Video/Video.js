@@ -209,7 +209,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
 
       myStream
         .getTracks()
-        .forEach((track) => myPeerConnection.addTrack(track, myStream));
+        .forEach((track) =>
+          senders.push(myPeerConnection.addTrack(track, myStream))
+        );
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
       // pcObj[remoteSocketId] = myPeerConnection;
@@ -225,9 +227,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
       //     urlcopybox.current.style.display = "none";
       //   }
       // }
-      senders.push(myPeerConnection);
-      console.log(myPeerConnection);
-      console.log(senders);
       changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
     }
@@ -325,34 +324,29 @@ const Videoplayer = React.forwardRef((props, ref) => {
     });
   }
 
-  const shareScreen = async () => {
-    let sharedScreen = await navigator.mediaDevices
-      .getDisplayMedia({ cursor: true })
-      .then((stream) => {
-        console.log(stream.getTracks());
-        const screenTrack = stream.getTracks()[0];
-        console.log(screenTrack);
-        console.log(senders.current);
-        senders.current
-          .find((sender) => sender.track.kind === "video")
-          .replaceTrack(screenTrack);
-        screenTrack.onended = function () {
-          senders.current
-            .find((sender) => sender.track.kind === "video")
-            .replaceTrack(mystream.current.getTracks()[1]);
-        };
-        document.getElementById("sharedScreenSection").srcObject = sharedScreen;
-      });
-    console.log(sharedScreen);
-  };
+  async function shareScreen() {
+    let displayMediaStream = await navigator.mediaDevices.getDisplayMedia({
+      audio: true,
+      video: true,
+    });
+    console.log("화면", displayMediaStream);
+    console.log("화면1", displayMediaStream.getTracks()[0]);
+    const screenTrack = displayMediaStream.getTracks()[0];
+    console.log("@@@@@@@", senders);
+    console.log("@@@@@@@track", senders[1].track);
+    senders
+      .find((sender) => sender.track.kind === "video")
+      .replaceTrack(displayMediaStream.getTracks()[0]);
+    screenTrack.onended = function () {
+      senders
+        .find((sender) => sender.track.kind === "video")
+        .replaceTrack(myStream.getTracks()[1]);
+    };
 
-  // async function shareScreen() {
-  //   let displayMediaStream = await navigator.mediaDevices.getDisplayMedia();
-  //   senders.find(sender => sender.track.kind === 'video').replaceTrack(displayMediaStream.getTracks()[0]);
-  //   console.log(displayMediaStream);
-  //   document.getElementById("sharedScreenSection").srcObject =
-  //     displayMediaStream;
-  // }
+    // paintScreen(displayMediaStream)
+    document.getElementById("sharedScreenSection").srcObject =
+      displayMediaStream;
+  }
 
   //////////////////////////////////////
   React.useImperativeHandle(ref, () => ({
@@ -425,8 +419,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
         <div>
           <video
             id="sharedScreenSection"
-            controls
             autoPlay
+            playsInline
             style={{ border: "1px solid red" }}
           ></video>
           <button onClick={shareScreen}>화면공유</button>
