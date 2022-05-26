@@ -20,7 +20,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
 
   const checkEnterStatus = useRef();
   const videoGrid = useRef();
-  const senders = useRef([]);
 
   const changeNumberOfUsers = props.changeNumberOfUsers;
   const myvideo = useRef();
@@ -209,13 +208,10 @@ const Videoplayer = React.forwardRef((props, ref) => {
 
       myStream
         .getTracks()
-        .forEach((track) =>
-          senders.push(myPeerConnection.addTrack(track, myStream))
-        );
+        .forEach((track) => myPeerConnection.addTrack(track, myStream));
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
-      // pcObj[remoteSocketId] = myPeerConnection;
-      console.log(pcObj);
+      pcObj[remoteSocketId] = myPeerConnection;
 
       peopleInRoom++;
       console.log(peopleInRoom);
@@ -324,30 +320,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
     });
   }
 
-  async function shareScreen() {
-    let displayMediaStream = await navigator.mediaDevices.getDisplayMedia({
-      audio: true,
-      video: true,
-    });
-    console.log("화면", displayMediaStream);
-    console.log("화면1", displayMediaStream.getTracks()[0]);
-    const screenTrack = displayMediaStream.getTracks()[0];
-    console.log("@@@@@@@", senders);
-    console.log("@@@@@@@track", senders[1].track);
-    senders
-      .find((sender) => sender.track.kind === "video")
-      .replaceTrack(displayMediaStream.getTracks()[0]);
-    screenTrack.onended = function () {
-      senders
-        .find((sender) => sender.track.kind === "video")
-        .replaceTrack(myStream.getTracks()[1]);
-    };
-
-    // paintScreen(displayMediaStream)
-    document.getElementById("sharedScreenSection").srcObject =
-      displayMediaStream;
-  }
-
   //////////////////////////////////////
   React.useImperativeHandle(ref, () => ({
     handleCameraClick: () => {
@@ -415,15 +387,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
             style={{ display: "none" }}
             className="screensaver"
           ></div>
-        </div>
-        <div>
-          <video
-            id="sharedScreenSection"
-            autoPlay
-            playsInline
-            style={{ border: "1px solid red" }}
-          ></video>
-          <button onClick={shareScreen}>화면공유</button>
         </div>
       </MemberWrap>
     </DIV>
