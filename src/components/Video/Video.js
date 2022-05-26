@@ -9,6 +9,9 @@ import styled from "styled-components";
 // theme
 import flex from "../../themes/flex";
 
+// img
+import BookingKorLogo from "../../assets/bookingkorlogo.png";
+
 const Videoplayer = React.forwardRef((props, ref) => {
   const params = useParams();
   const studyId = params.studyId;
@@ -405,10 +408,10 @@ const DIV = styled.div`
 `;
 
 const MemberWrap = styled.div`
-  max-height: 616px;
-  ${flex("center", "center", false)}
+  max-width: 1050px;
+  ${flex}
   .memberVideo {
-    margin-bottom: 10px; //화상채팅간 영상간격
+    margin-right: 10px; //화상채팅간 영상간격
     width: 200px;
     height: 112px;
     border-radius: 8px;
@@ -436,38 +439,22 @@ const MemberWrap = styled.div`
   .videoBox {
     position: relative;
   }
-  .emojiBox {
-    position: absolute;
-    z-index: 2;
-    width: 77px;
-    height: 60px;
-    left: -77px;
-    top: 31px;
-  }
   .myVideo {
     // 사파리
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
+  .screensaver {
+    display: flex;
+    position: absolute;
+    background-color: #c9998d;
+    background: url(${BookingKorLogo}) no-repeat center;
+    background-size: contain;
+    width: 200px;
+    height: 112px;
+    z-index: 2;
+    top: 0px;
+  }
 `;
-
-// const URLCopyBox = styled.div`
-//   width: 202px;
-//   position: "relative";
-//   z-index: 10;
-// `;
-
-// const BubbleWrap = styled.div`
-//   font-size: 13px;
-//   width: 202px;
-//   height: 40px;
-//   color: #f8f9fa;
-//   background-color: #0028fa;
-//   border-radius: 4px;
-//   display: inline-flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-top: 10px;
-// `;
 
 export default React.memo(Videoplayer);
