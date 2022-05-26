@@ -10,6 +10,7 @@ import styled from "styled-components";
 import flex from "../../themes/flex";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // img
 import BookingKorLogo from "../../assets/bookingkorlogo.png";
 import { cookies } from "../../shared/cookie";
@@ -17,6 +18,11 @@ import { Grid } from "@mui/material";
 
 =======
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+// img
+import BookingKorLogo from "../../assets/bookingkorlogo.png";
+
+>>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
 const Videoplayer = React.forwardRef((props, ref) => {
   const params = useParams();
   const studyId = params.studyId;
@@ -533,6 +539,7 @@ const DIV = styled.div`
 
 const MemberWrap = styled.div`
 <<<<<<< HEAD
+<<<<<<< HEAD
   display: flex;
   max-width: 100%;
   flex-flow: wrap;
@@ -546,8 +553,12 @@ const MemberWrap = styled.div`
 =======
   max-height: 616px;
   ${flex("center", "center", false)}
+=======
+  max-width: 1050px;
+  ${flex}
+>>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
   .memberVideo {
-    margin-bottom: 10px; //화상채팅간 영상간격
+    margin-right: 10px; //화상채팅간 영상간격
     width: 200px;
     height: 112px;
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
@@ -591,20 +602,13 @@ const MemberWrap = styled.div`
 =======
     position: relative;
   }
-  .emojiBox {
-    position: absolute;
-    z-index: 2;
-    width: 77px;
-    height: 60px;
-    left: -77px;
-    top: 31px;
-  }
   .myVideo {
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
     // 사파리
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
   .screensaver {
     display: flex;
@@ -642,4 +646,19 @@ const MemberWrap = styled.div`
 // `;
 
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+  .screensaver {
+    display: flex;
+    position: absolute;
+    background-color: #c9998d;
+    background: url(${BookingKorLogo}) no-repeat center;
+    background-size: contain;
+    width: 200px;
+    height: 112px;
+    z-index: 2;
+    top: 0px;
+  }
+`;
+
+>>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
 export default React.memo(Videoplayer);

@@ -62,10 +62,13 @@ const Logo = styled.img`
   cursor: pointer;
 `;
 
+<<<<<<< HEAD
 const StudyTitle = styled(Eltext)`
   color: var(--point);
 `;
 
+=======
+>>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
 const HeaderBtns = styled.div`
   ${flex}
 `;

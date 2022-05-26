@@ -197,6 +197,8 @@ import React from "react";
 =======
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
+// components
+import VideoHeader from "../components/Video/VideoHeader";
 import styled from "styled-components";
 import Video from "../components/Video/Video";
 
@@ -207,6 +209,7 @@ import {
   BsFillCameraVideoFill,
   BsFillCameraVideoOffFill,
 } from "react-icons/bs";
+import flex from "../themes/flex";
 
 const Room = (props) => {
   const location = useLocation();
@@ -232,53 +235,53 @@ const Room = (props) => {
   };
 
   return (
-    <>
+    <RoomWrap>
+      <VideoHeader
+        numberOfUsers={numberOfUsers}
+        meetingId={location.state.meetingId}
+      />
       <DIV>
-        <div>
-          <VideoWrap>
-            <Video
-              nickname={nickname}
-              changeNumberOfUsers={changeNumberOfUsers}
-              ref={childRef}
-              meetingId={location.state.meetingId}
-            ></Video>
-          </VideoWrap>
+        <VideoWrap>
+          <Video
+            nickname={nickname}
+            changeNumberOfUsers={changeNumberOfUsers}
+            ref={childRef}
+            meetingId={location.state.meetingId}
+          ></Video>
+          <SharedVideoSection></SharedVideoSection>
+        </VideoWrap>
 
-          <SoundBtn>
-            <BtnWrap>
-              <Btn onClick={setSound}>
-                {soundOn ? (
-                  <>
-                    <BsFillMicFill />
-                    마이크 켜기
-                  </>
-                ) : (
-                  <>
-                    <BsFillMicMuteFill />
-                    마이크 끄기
-                  </>
-                )}
-              </Btn>
-              <Btn onClick={setVideo}>
-                {videoOn ? (
-                  <>
-                    <BsFillCameraVideoFill />
-                    비디오 켜기
-                  </>
-                ) : (
-                  <>
-                    <BsFillCameraVideoOffFill />
-                    비디오 끄기
-                  </>
-                )}
-              </Btn>
-            </BtnWrap>
-          </SoundBtn>
-        </div>
+        <SoundBtn>
+          <BtnWrap>
+            <Btn onClick={setSound}>
+              {soundOn ? (
+                <>
+                  <BsFillMicFill />
+                </>
+              ) : (
+                <>
+                  <BsFillMicMuteFill />
+                </>
+              )}
+            </Btn>
+            <Btn onClick={setVideo}>
+              {videoOn ? (
+                <>
+                  <BsFillCameraVideoFill />
+                </>
+              ) : (
+                <>
+                  <BsFillCameraVideoOffFill />
+                </>
+              )}
+            </Btn>
+          </BtnWrap>
+        </SoundBtn>
       </DIV>
-    </>
+    </RoomWrap>
   );
 };
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 export default Room;
@@ -309,29 +312,35 @@ export default Room;
 //     left: 20px;
 //   }
 // `;
+=======
+const RoomWrap = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #fbf9f9;
+`;
+>>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
 
 const DIV = styled.div`
   width: 100%;
-  height: 100vh; //100vh
-  padding-top: 64px;
-  margin: 0px 0px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;
+  padding-top: 100px;
+  margin: auto;
+  ${flex("center", "center", false)}
   position: relative;
+  border: 1px solid red;
   @media screen and (max-width: 1440px) {
     padding-top: 56px;
   }
 `;
 
 const VideoWrap = styled.div`
-  width: 1320px;
-  height: 610px;
-  display: flex;
-  justify-content: space-between;
+  width: 80%;
+  height: 100%;
+  ${flex("evenly", "start", false)}
   position: relative;
   margin-top: 10px;
   box-sizing: border-box;
+
   @media screen and (max-width: 1440px) {
     width: 980px;
     height: 605px;
@@ -339,13 +348,18 @@ const VideoWrap = styled.div`
   }
 `;
 
+const SharedVideoSection = styled.div`
+  width: 100%;
+  height: 80%;
+  border-radius: 10px;
+  border: 1px solid #c9998d;
+`;
+
 const SoundBtn = styled.div`
-  width: 740px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 32px;
+  ${flex("end")}
+  width: 80%;
   position: relative;
-  border-radius: 4px;
+  margin-bottom: 20px;
   @media screen and (max-width: 1440px) {
     width: 758px;
     margin: -114px 0px 0px 54px;
@@ -357,23 +371,18 @@ const SoundBtn = styled.div`
 `;
 
 const BtnWrap = styled.div`
-  width: 380px;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
+  ${flex("between", "center")}
 `;
 
 const Btn = styled.div`
-  width: 114px;
-  height: 48px;
-  color: #4a5056;
-  font-size: 14px;
-  border-radius: 4px;
-  background-color: rgba(0, 40, 250, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 10px;
+  ${flex}
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+  color: var(--white);
+  font-size: 20px;
+  border-radius: 50%;
+  background-color: #c9998d;
   cursor: pointer;
 `;
 
