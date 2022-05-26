@@ -113,7 +113,7 @@ const CardGrid = styled.div`
 `;
 const ImgGrid = styled.div`
   position: relative;
-  margin: 9px 17px 0px 17px;
+  margin: 9px 17px 0px 20px;
   top:-35px;
   width: 285px;
   height: 285px;
@@ -131,7 +131,7 @@ const TitleGrid = styled.div`
 const TagGrid = styled.div`
   position: relative;
   top: 20px;
-  left: 20px;
+  left: 23px;
   z-index: 2;
   display: flex;
   justify-content: space-between;

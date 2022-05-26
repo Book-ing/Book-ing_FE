@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import flex from "../themes/flex";
 
 const Ellocation = ({children, ...rest}) => {
     return (
@@ -8,11 +9,9 @@ const Ellocation = ({children, ...rest}) => {
 };
 
 const Box = styled.div`
-    text-align : center;
-    align-items : center;
+    ${flex("center", "center", false)}
+    padding-bottom: 2px;
     color : var(--point);
-    /* width: 96px;
-    height: 30px; */
     border: 1px solid var(--point);
     border-radius: 6px;
     background-color: var(--white);

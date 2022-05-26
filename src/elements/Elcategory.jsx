@@ -90,6 +90,8 @@ const Elcategory = ({ children, ...rest }) => {
     props.width ? `${props.width}` : ""};
   height: ${(props) =>
     props.height ? `${props.height}` : ""};
+  padding-bottom: ${(props) =>
+    props.paddingBottom ? `${props.paddingBottom}` : ""};
 `;
 
 
