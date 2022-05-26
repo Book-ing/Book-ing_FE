@@ -212,7 +212,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
         .forEach((track) => myPeerConnection.addTrack(track, myStream));
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
-      pcObj[remoteSocketId] = myPeerConnection;
+      // pcObj[remoteSocketId] = myPeerConnection;
       console.log(pcObj);
 
       peopleInRoom++;
