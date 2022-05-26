@@ -13,7 +13,6 @@ import {
   BsFillCameraVideoFill,
   BsFillCameraVideoOffFill,
 } from "react-icons/bs";
-import Chat from "../components/Chat/Chat";
 
 const Room = (props) => {
   const location = useLocation();
@@ -50,8 +49,6 @@ const Room = (props) => {
               meetingId={location.state.meetingId}
             ></Video>
           </VideoWrap>
-
-          <Chat />
 
           <SoundBtn>
             <BtnWrap>

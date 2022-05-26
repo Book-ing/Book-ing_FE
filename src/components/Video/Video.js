@@ -8,7 +8,6 @@ import styled from "styled-components";
 
 // theme
 import flex from "../../themes/flex";
-import { useSelector } from "react-redux";
 
 const Videoplayer = React.forwardRef((props, ref) => {
   const params = useParams();
@@ -33,17 +32,16 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let pcObj = {};
   let peopleInRoom = 1;
 
-  // const [socket, setSocket] = useState(null);
-  const socket = useSelector((state) => state.chat.socket);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    // const socket = io("https://sparta-hs.shop/", {
-    //   cors: { origin: "*" },
-    // });
-    // setSocket(socket);
+    const socket = io("https://sparta-hs.shop/", {
+      cors: { origin: "*" },
+    });
+    setSocket(socket);
 
     //서버로부터 accept_join 받음
-    socket.on("joinRoom", async (userObjArr, socketIdformserver) => {
+    socket.on("joinStudyRoom", async (userObjArr, socketIdformserver) => {
       const length = userObjArr.length;
       //카메라, 마이크 가져오기
       await getMedia();
