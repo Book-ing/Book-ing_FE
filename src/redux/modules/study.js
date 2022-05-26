@@ -6,8 +6,10 @@ import { history } from "../configStore";
 
 // Action
 const ADD_STUDY = "study/ADD_STUDY";
+const ADD_ONLINE_STUDY = "ADD_ONLINE_STUDY";
 const INOUT_STUDY = "INOUT_STUDY";
 const EDIT_STUDY = "EDIT_STUDY";
+const EDIT_ONLINE_STUDY = "EDIT_ONLINE_STUDY";
 const DELETE_STUDY = "DELETE_STUDY";
 const GET_STUDY_USER_LIST = "GET_STUDY_USER_LIST";
 const RESET_STUDY_USER_LIST = "RESET_STUDY_USER_LIST";
@@ -15,8 +17,14 @@ const KICK_STUDY_USER = "KICK_STUDY_USER";
 
 // ActionCreator
 const addStudy = createAction(ADD_STUDY, (data) => ({ data }));
+const addOnlineStudy = createAction(ADD_ONLINE_STUDY, (payload) => ({
+  payload,
+}));
 const inOutStudy = createAction(INOUT_STUDY, (payload) => ({ payload }));
 const editStudy = createAction(EDIT_STUDY, (payload) => ({ payload }));
+const editOnlineStudy = createAction(EDIT_ONLINE_STUDY, (payload) => ({
+  payload,
+}));
 const deleteStudy = createAction(DELETE_STUDY, (payload) => ({ payload }));
 const getStudyUserList = createAction(
   GET_STUDY_USER_LIST,
@@ -52,6 +60,22 @@ const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
     });
 };
 
+const addOnlineStudyDB = (payload) => (dispatch, getState) => {
+  console.log(payload);
+  studyApi
+    .posting(payload)
+    .then((res) => {
+      console.log(res);
+      window.location.replace(
+        `https://www.book-ing.co.kr/crew/${payload.meetingId}`
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("온라인 스터디 생성에 실패하였습니다.");
+    });
+};
+
 const getStudyUserListDB = (payload) => (dispatch, getState) => {
   console.log(payload);
   studyApi
@@ -79,6 +103,19 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
 const editStudyDB = (payload) => (dispatch, getState) => {
   studyApi
     .editStudy(payload)
+    .then((res) => {
+      window.location.replace(
+        `https://www.book-ing.co.kr/crew/${payload.meetingId}`
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const editOnlineStudyInfoDB = (payload) => (dispatch, getState) => {
+  studyApi
+    .editOnlineStudyInfo(payload)
     .then((res) => {
       window.location.replace(
         `https://www.book-ing.co.kr/crew/${payload.meetingId}`
@@ -146,12 +183,14 @@ export default handleActions(
 
 const studyActions = {
   addStudyDB,
+  addOnlineStudyDB,
   inOutStudyDB,
   deleteStudyDB,
   editStudyDB,
   getStudyUserListDB,
   resetStudyUserList,
   kickStudyUserDB,
+  editOnlineStudyInfoDB,
 };
 
 export { studyActions };

@@ -13,10 +13,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import PopupBookSearch from "../BookSearch/PopupBookSearch";
 import { useParams } from "react-router-dom";
+import { Radio } from "@mui/material";
+import { Label } from "@mui/icons-material";
 
 const ModalStudy = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
+
+  // study online/offline 을 위한 state
+  const [selectData, setSelectData] = useState("online");
 
   const bookInfo = useSelector((state) => state.book);
   // const bookInfo = useSelector((state) => state.book.list)
@@ -92,6 +97,7 @@ const ModalStudy = (props) => {
     e.preventDefault();
 
     const newStudyInfo = {
+      studyType: selectData,
       meetingId: Number(params.meetingId),
       studyTitle: addStudyInfo.title,
       studyDateTime: day,
@@ -114,6 +120,7 @@ const ModalStudy = (props) => {
     e.preventDefault();
 
     const editStudyInfo = {
+      studyType: props.studyInfo.studyType,
       studyId: studyInfoForModal.studyId,
       studyTitle: addStudyInfo.title,
       studyDateTime: day,
@@ -128,16 +135,235 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
+    console.log(editStudyInfo);
     dispatch(studyActions.editStudyDB(editStudyInfo));
   };
 
-  const handleModalClose = props.handleModalClose;
+  const handleStudyTypeChange = (e) => {
+    setSelectData(e.target.value);
+  };
+
+  const ProduceOnlineDB = (e) => {
+    e.preventDefault();
+
+    const newOnlineStudyInfo = {
+      studyType: selectData,
+      meetingId: Number(params.meetingId),
+      studyTitle: addStudyInfo.title,
+      studyDateTime: day,
+      studyLimitCnt: addStudyInfo.headCount,
+      studyNotice: addStudyInfo.notice,
+      studyBookTitle: bookInfo.name,
+      studyBookImg: bookInfo.imgURL,
+      studyBookInfo: bookInfo.desc,
+      studyBookWriter: bookInfo.writer,
+      studyBookPublisher: bookInfo.publisher,
+    };
+    console.log(newOnlineStudyInfo);
+    dispatch(studyActions.addOnlineStudyDB(newOnlineStudyInfo));
+  };
+
+  const editOnlineStudyInfoDB = (e) => {
+    e.preventDefault();
+
+    const editOnlineStudyInfo = {
+      studyType: props.studyInfo.studyType,
+      studyId: studyInfoForModal.studyId,
+      studyTitle: addStudyInfo.title,
+      studyDateTime: day,
+      meetingId: Number(params.meetingId),
+      studyNotice: addStudyInfo.notice,
+      studyBookTitle: bookInfo.name,
+      studyBookImg: bookInfo.imgURL,
+      studyBookInfo: bookInfo.desc,
+      studyBookWriter: bookInfo.writer,
+      studyBookPublisher: bookInfo.publisher,
+    };
+    dispatch(studyActions.editOnlineStudyInfoDB(editOnlineStudyInfo));
+  };
 
   return (
     <React.Fragment>
       <ModalWrap>
         <ModalBox>
-          {props.isEdit === true ? (
+          {props.isEdit === true && props.studyInfo.studyType === "online" ? (
+            // 온라인 수정상태일때의 모달창
+            <form onSubmit={editOnlineStudyInfoDB}>
+              <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
+              <StInput
+                name="title"
+                placeholder="스터디 타이틀 명을 입력해주세요."
+                onChange={onChangeInputHandler}
+                required
+              />
+
+              <div
+                className="중간 큰 박스"
+                style={{ display: "flex", height: "272px" }}
+              >
+                <div
+                  className="중간 작은 박스1"
+                  style={{ marginRight: "10px" }}
+                >
+                  <StInputName type="sub_2_bold" marginTop="16px">
+                    일시
+                  </StInputName>
+                  <StInputName type="sub_2_bold" marginTop="25px">
+                    인원 수 제한
+                  </StInputName>
+                </div>
+
+                <div
+                  className="중간 작은 박스2"
+                  style={{
+                    verticalAlign: "center",
+                    marginRight: "60px",
+                  }}
+                >
+                  <Eltext type="sub_2">
+                    {/* react-datepicker  */}
+                    <StDateInput width="230px" marginTop="16px">
+                      <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        minDate={new Date()}
+                        filterTime={filterPassedTime}
+                        locale={ko}
+                        showTimeSelect
+                        timeFormat="p"
+                        timeIntervals={10}
+                        dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                      />
+                    </StDateInput>
+                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
+                    <div>
+                      <StInput
+                        width="205px"
+                        marginTop="16px"
+                        name="headCount"
+                        max="300"
+                        min="2"
+                        type="number"
+                        placeholder={studyInfoForModal.studyLimitCnt}
+                        onChange={onChangeInputHandler}
+                        disabed
+                        readOnly
+                        style={{ border: "1px solid var(--notice)" }}
+                      />
+                      &nbsp;&nbsp;명
+                    </div>
+                  </Eltext>
+                </div>
+
+                <div
+                  className="중간 작은 박스3"
+                  style={{ marginRight: "24px" }}
+                >
+                  <StInputName type="sub_2_bold" marginTop="16px">
+                    책정보
+                  </StInputName>
+                </div>
+
+                <div
+                  className="중간 작은 박스4"
+                  style={{
+                    // border:"1px solid black",
+                    width: "475px",
+                    height: "236px",
+                    display: "inline-block",
+                  }}
+                >
+                  <Eltext type="sub_2">
+                    <StInput
+                      width="147px"
+                      marginTop="16px"
+                      name="bookSearch"
+                      placeholder="책 찾아보기"
+                      onClick={openBookSearch}
+                    />
+
+                    <StPostBtn
+                      style={{ marginTop: "8px" }}
+                      type="button"
+                      onClick={openBookSearch}
+                    >
+                      책 정보 찾기
+                    </StPostBtn>
+
+                    {/* <div id='popupDom'> */}
+                    {isOpenPopup && (
+                      // <PopupDom>
+                      <PopupBookSearch onClose={closeBookSearch} />
+                      // </PopupDom>
+                    )}
+                    {/* </div> */}
+
+                    <div
+                      className="책정보 Box"
+                      style={{
+                        width: "480px",
+                        height: "108px",
+                        marginTop: "8px",
+                        display: "flex",
+                      }}
+                    >
+                      <div
+                        className="책 프리뷰이미지"
+                        style={{
+                          width: "73px",
+                          height: "107px",
+                          // border: "1px solid black",
+                          backgroundImage: `url(${bookInfo.imgURL})`,
+                          backgroundSize: "contain",
+                        }}
+                      ></div>
+
+                      <div
+                        className="책 정보 소개"
+                        style={{
+                          width: "391px",
+                          height: "108px",
+                          marginLeft: "13px",
+                          // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                          overflow: "scroll",
+                        }}
+                      >
+                        <div style={{ fontWeight: "bold" }}>
+                          {bookInfo.name}
+                        </div>
+                        <div>{bookInfo.writer}</div>
+                        <div>{bookInfo.publisher}</div>
+                        <div>{bookInfo.desc}</div>
+                      </div>
+                    </div>
+                  </Eltext>
+                </div>
+              </div>
+
+              <TagTop type="sub_2_bold">스터디 공지</TagTop>
+
+              <textarea
+                name="notice"
+                onChange={onChangeInputHandler}
+                style={{
+                  width: "978px",
+                  height: "251px",
+                  border: "1px solid black",
+                }}
+                required
+              ></textarea>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <PostBtn shape="brown-outline">수정하기</PostBtn>
+              </div>
+            </form>
+          ) : props.isEdit === true ? (
+            // 수정상태일때의 모달창
             <form onSubmit={editStudyInfoDB}>
               <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
 
@@ -382,10 +608,250 @@ const ModalStudy = (props) => {
                 <PostBtn shape="brown-outline">수정하기</PostBtn>
               </div>
             </form>
+          ) : selectData === "online" ? (
+            // 온라인 생성 상태일때의 모달창
+            <form onSubmit={ProduceOnlineDB}>
+              <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
+              <div>
+                <label style={{ fontSize: "16px" }}>
+                  <Radio
+                    value="online"
+                    checked={selectData === "online"}
+                    onChange={handleStudyTypeChange}
+                    sx={{
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 28,
+                      },
+                    }}
+                  />
+                  온라인
+                </label>
+                <label style={{ fontSize: "16px" }}>
+                  <Radio
+                    value="offline"
+                    checked={selectData === "offline"}
+                    onChange={handleStudyTypeChange}
+                    sx={{
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 28,
+                      },
+                    }}
+                  />
+                  오프라인
+                </label>
+              </div>
+              <StInput
+                name="title"
+                placeholder="스터디 타이틀 명을 입력해주세요."
+                onChange={onChangeInputHandler}
+                required
+              />
+
+              <div
+                className="중간 큰 박스"
+                style={{ display: "flex", height: "272px" }}
+              >
+                <div
+                  className="중간 작은 박스1"
+                  style={{ marginRight: "10px" }}
+                >
+                  <StInputName type="sub_2_bold" marginTop="16px">
+                    일시
+                  </StInputName>
+                  <StInputName type="sub_2_bold" marginTop="25px">
+                    인원 수 제한
+                  </StInputName>
+                </div>
+
+                <div
+                  className="중간 작은 박스2"
+                  style={{
+                    verticalAlign: "center",
+                    marginRight: "60px",
+                  }}
+                >
+                  <Eltext type="sub_2">
+                    {/* react-datepicker  */}
+                    <StDateInput width="230px" marginTop="16px">
+                      <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        minDate={new Date()}
+                        filterTime={filterPassedTime}
+                        locale={ko}
+                        showTimeSelect
+                        timeFormat="p"
+                        timeIntervals={10}
+                        dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                      />
+                    </StDateInput>
+                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
+                    <div>
+                      <StInput
+                        width="205px"
+                        marginTop="16px"
+                        name="headCount"
+                        // max="10"
+                        max={
+                          props.meetingLimitCnt >= 10
+                            ? 10
+                            : props.meetingLimitCnt
+                        }
+                        min="2"
+                        type="number"
+                        // placeholder="최대 10명까지 가능합니다."
+                        placeholder={`최대 ${
+                          props.meetingLimitCnt >= 10
+                            ? 10
+                            : props.meetingLimitCnt
+                        }명까지 가능합니다.`}
+                        onChange={onChangeInputHandler}
+                        required
+                      />
+                      &nbsp;&nbsp;명
+                    </div>
+                  </Eltext>
+                </div>
+
+                <div
+                  className="중간 작은 박스3"
+                  style={{ marginRight: "24px" }}
+                >
+                  <StInputName type="sub_2_bold" marginTop="16px">
+                    책정보
+                  </StInputName>
+                </div>
+
+                <div
+                  className="중간 작은 박스4"
+                  style={{
+                    // border:"1px solid black",
+                    width: "475px",
+                    height: "236px",
+                    display: "inline-block",
+                  }}
+                >
+                  <Eltext type="sub_2">
+                    <StInput
+                      width="147px"
+                      marginTop="16px"
+                      name="bookSearch"
+                      placeholder="책 찾아보기"
+                      onClick={openBookSearch}
+                    />
+
+                    <StPostBtn
+                      style={{ marginTop: "8px" }}
+                      type="button"
+                      onClick={openBookSearch}
+                    >
+                      책 정보 찾기
+                    </StPostBtn>
+
+                    {/* <div id='popupDom'> */}
+                    {isOpenPopup && (
+                      // <PopupDom>
+                      <PopupBookSearch onClose={closeBookSearch} />
+                      // </PopupDom>
+                    )}
+                    {/* </div> */}
+
+                    <div
+                      className="책정보 Box"
+                      style={{
+                        width: "480px",
+                        height: "108px",
+                        marginTop: "8px",
+                        display: "flex",
+                      }}
+                    >
+                      <div
+                        className="책 프리뷰이미지"
+                        style={{
+                          width: "73px",
+                          height: "107px",
+                          // border: "1px solid black",
+                          backgroundImage: `url(${bookInfo.imgURL})`,
+                          backgroundSize: "contain",
+                        }}
+                      ></div>
+
+                      <div
+                        className="책 정보 소개"
+                        style={{
+                          width: "391px",
+                          height: "108px",
+                          marginLeft: "13px",
+                          // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                          overflow: "scroll",
+                        }}
+                      >
+                        <div style={{ fontWeight: "bold" }}>
+                          {bookInfo.name}
+                        </div>
+                        <div>{bookInfo.writer}</div>
+                        <div>{bookInfo.publisher}</div>
+                        <div>{bookInfo.desc}</div>
+                      </div>
+                    </div>
+                  </Eltext>
+                </div>
+              </div>
+
+              <TagTop type="sub_2_bold">스터디 공지</TagTop>
+
+              <textarea
+                name="notice"
+                onChange={onChangeInputHandler}
+                style={{
+                  width: "978px",
+                  height: "251px",
+                  border: "1px solid black",
+                }}
+                required
+              ></textarea>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <PostBtn shape="brown-outline">게시하기</PostBtn>
+              </div>
+            </form>
           ) : (
+            // 오프라인 생성 상태일때의 모달창
             <form onSubmit={ProduceDB}>
               <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
-
+              <div>
+                <label style={{ fontSize: "16px" }}>
+                  <Radio
+                    value="online"
+                    checked={selectData === "online"}
+                    onChange={handleStudyTypeChange}
+                    sx={{
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 28,
+                      },
+                    }}
+                  />
+                  온라인
+                </label>
+                <label style={{ fontSize: "16px" }}>
+                  <Radio
+                    value="offline"
+                    checked={selectData === "offline"}
+                    onChange={handleStudyTypeChange}
+                    sx={{
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 28,
+                      },
+                    }}
+                  />
+                  오프라인
+                </label>
+              </div>
               <StInput
                 name="title"
                 placeholder="스터디 타이틀 명을 입력해주세요."
@@ -440,10 +906,10 @@ const ModalStudy = (props) => {
                         width="205px"
                         marginTop="16px"
                         name="headCount"
-                        max="300"
+                        max={props.meetingLimitCnt}
                         min="2"
                         type="number"
-                        placeholder="최대 300명까지 가능합니다."
+                        placeholder={`최대 ${props.meetingLimitCnt}명까지 가능합니다.`}
                         onChange={onChangeInputHandler}
                         required
                       />
@@ -643,7 +1109,6 @@ const ModalWrap = styled.div`
 const ModalBox = styled.div`
   width: 980px;
   height: 755px;
-  /* border: 1px solid black; */
 `;
 
 const TagTop = styled(Eltext)`
@@ -670,21 +1135,7 @@ const StDateInput = styled.div`
   border-radius: 5px;
   border: 1px solid var(--point);
 `;
-// const TagBottom = styled(Eltext)`
-//   ${flex("center")}
-//   width: 118px;
-//   height: 35px;
-//   border-radius: 5px;
-//   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-//   color: #fff;
-//   background-color: var(--point);
-//   margin: 45px 0 20px 0;
-// `;
 
-// const BottomBox = styled.div`
-//   ${flex("start", "center", true)}
-//   margin-bottom: 15px;
-// `;
 const StPostBtn = styled.button`
   width: 118px;
   height: 30px;
@@ -716,35 +1167,9 @@ const StInput = styled.input`
   border: 1px solid var(--point);
 `;
 
-// const StSelect = styled.select`
-//   width: 230px;
-//   height: 30px;
-//   border: 1px solid var(--point);
-//   border-radius: 3px;
-// `;
-
-// const FileInputBox = styled.div`
-//   ${flex("start")}
-// `;
-
 const PostBtn = styled(Elbutton)`
   width: 148px;
   height: 46px;
   margin-top: 45px;
   border-radius: 6px;
 `;
-
-// const SearchContainer = styled.div`
-//     width: 80%;
-//     margin: 0 auto;
-//     margin-bottom: 10px;
-// `;
-
-// const ResultContainer = styled.div`
-
-//   width: 400px;
-//   height: 700px;
-//   border: 1px solid black;
-//   overflow: scroll;
-
-// `;

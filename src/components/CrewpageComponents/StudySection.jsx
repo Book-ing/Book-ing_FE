@@ -77,7 +77,9 @@ const StudySection = (props) => {
                   <ModalCloseBtn onClick={handleModalClose}>
                     <CloseIcon fontSize="large" />
                   </ModalCloseBtn>
-                  <ModalStudy />
+                  <ModalStudy
+                    meetingLimitCnt={props.crewInfo.meetingLimitCnt}
+                  />
                 </Box>
               </Modal>
             </>

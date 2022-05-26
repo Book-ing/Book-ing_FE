@@ -1,7 +1,5 @@
 import io from "socket.io-client";
 
-const targetServer = "https://sparta-hs.shop/";
-
 let socket;
 
 // 모임페이지에 들어올 때 소켓 연결

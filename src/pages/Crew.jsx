@@ -14,8 +14,6 @@ import styled from "styled-components";
 import CrewInfoTopBox from "../components/CrewpageComponents/CrewInfoTopBox";
 import CrewInfoBottomBox from "../components/CrewpageComponents/CrewInfoBottomBox";
 import StudySection from "../components/CrewpageComponents/StudySection";
-import Spinner from "../components/Spinner";
-import ChattingBox from "../components/Chat/ChattingBox";
 
 // themes
 import flex from "../themes/flex";
@@ -31,6 +29,10 @@ const Crew = (props) => {
   const __newProfileUser = useSelector((state) => state.crew.newProfileUser);
 
   console.log(__crewInfo);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
@@ -60,19 +62,22 @@ const Crew = (props) => {
       <BottomWrap>
         <StudySection crewInfo={__crewInfo} />
       </BottomWrap>
-      <CrewChatOpenBtn
-        aria-describedby={id}
-        type="button"
-        onClick={handleClick}
-      >
-        Chat
-      </CrewChatOpenBtn>
-      <Popper id={id} open={open} anchorEl={anchorEl}>
-        <ChatWrap>
-          {/* <ChattingBox meetingId={meetingId}></ChattingBox> */}
-          <Chat />
-        </ChatWrap>
-      </Popper>
+      {__isJoinedCrew === true ? (
+        <>
+          <CrewChatOpenBtn
+            aria-describedby={id}
+            type="button"
+            onClick={handleClick}
+          >
+            Chat
+          </CrewChatOpenBtn>
+          <Popper id={id} open={open} anchorEl={anchorEl}>
+            <ChatWrap>
+              <Chat />
+            </ChatWrap>
+          </Popper>
+        </>
+      ) : null}
     </CrewWrap>
   );
 };
