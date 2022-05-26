@@ -300,10 +300,15 @@ const Videoplayer = React.forwardRef((props, ref) => {
       //   }
       // }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
 =======
       senders.push(pcObj);
+=======
+      senders.push(myPeerConnection);
+      console.log(myPeerConnection);
+>>>>>>> 13555fd (webRTC console test)
       console.log(senders);
 >>>>>>> aa4d761 (test(console.log): Video.js console.log test)
       changeNumberOfUsers(`${peopleInRoom} / 10`);
