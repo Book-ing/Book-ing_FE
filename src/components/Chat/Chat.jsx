@@ -27,9 +27,14 @@ const Chat = () => {
   const socket = useSelector((state) => state.chat.socket);
 
   useEffect(() => {
+    let grabUrl = new URL(window.location.href);
+    console.log(grabUrl);
+    const newGrabUrl = grabUrl.pathname.split("/");
+    console.log(newGrabUrl[1]);
+
     if (!socket) {
       const setNewSocket = (socket) => dispatch(setSocket(socket));
-      initiateSocket(setNewSocket, meetingId, userId);
+      initiateSocket(setNewSocket, meetingId, userId, newGrabUrl[1]);
       getMessages((err, data) => {
         if (err) console.log(err);
         dispatch(loadMessages(data));
