@@ -284,7 +284,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
-      pcObj[remoteSocketId] = myPeerConnection;
+      // pcObj[remoteSocketId] = myPeerConnection;
       console.log(pcObj);
 
       peopleInRoom++;
