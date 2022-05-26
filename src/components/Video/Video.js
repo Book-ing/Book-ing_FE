@@ -225,7 +225,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
       //     urlcopybox.current.style.display = "none";
       //   }
       // }
-      senders.push(pcObj);
+      senders.push(myPeerConnection);
+      console.log(myPeerConnection);
       console.log(senders);
       changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
