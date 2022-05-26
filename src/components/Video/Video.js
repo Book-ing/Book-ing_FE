@@ -20,6 +20,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
 
   const checkEnterStatus = useRef();
   const videoGrid = useRef();
+  const senders = useRef([]);
 
   const changeNumberOfUsers = props.changeNumberOfUsers;
   const myvideo = useRef();
@@ -212,6 +213,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
       pcObj[remoteSocketId] = myPeerConnection;
+      console.log(pcObj);
 
       peopleInRoom++;
       console.log(peopleInRoom);
@@ -223,7 +225,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
       //     urlcopybox.current.style.display = "none";
       //   }
       // }
-
+      senders.push(pcObj);
+      console.log(senders);
       changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
     }
@@ -321,6 +324,35 @@ const Videoplayer = React.forwardRef((props, ref) => {
     });
   }
 
+  const shareScreen = async () => {
+    let sharedScreen = await navigator.mediaDevices
+      .getDisplayMedia({ cursor: true })
+      .then((stream) => {
+        console.log(stream.getTracks());
+        const screenTrack = stream.getTracks()[0];
+        console.log(screenTrack);
+        console.log(senders.current);
+        senders.current
+          .find((sender) => sender.track.kind === "video")
+          .replaceTrack(screenTrack);
+        screenTrack.onended = function () {
+          senders.current
+            .find((sender) => sender.track.kind === "video")
+            .replaceTrack(mystream.current.getTracks()[1]);
+        };
+        document.getElementById("sharedScreenSection").srcObject = sharedScreen;
+      });
+    console.log(sharedScreen);
+  };
+
+  // async function shareScreen() {
+  //   let displayMediaStream = await navigator.mediaDevices.getDisplayMedia();
+  //   senders.find(sender => sender.track.kind === 'video').replaceTrack(displayMediaStream.getTracks()[0]);
+  //   console.log(displayMediaStream);
+  //   document.getElementById("sharedScreenSection").srcObject =
+  //     displayMediaStream;
+  // }
+
   //////////////////////////////////////
   React.useImperativeHandle(ref, () => ({
     handleCameraClick: () => {
@@ -388,6 +420,15 @@ const Videoplayer = React.forwardRef((props, ref) => {
             style={{ display: "none" }}
             className="screensaver"
           ></div>
+        </div>
+        <div>
+          <video
+            id="sharedScreenSection"
+            controls
+            autoPlay
+            style={{ border: "1px solid red" }}
+          ></video>
+          <button onClick={shareScreen}>화면공유</button>
         </div>
       </MemberWrap>
     </DIV>
