@@ -8,7 +8,6 @@ import styled from "styled-components";
 
 // theme
 import flex from "../../themes/flex";
-import { useSelector } from "react-redux";
 
 <<<<<<< HEAD
 // img
@@ -53,16 +52,16 @@ const Videoplayer = React.forwardRef((props, ref) => {
 =======
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
 
-  // const [socket, setSocket] = useState(null);
-  const socket = useSelector((state) => state.chat.socket);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    // const socket = io("https://sparta-hs.shop/", {
-    //   cors: { origin: "*" },
-    // });
-    // setSocket(socket);
+    const socket = io("https://sparta-hs.shop/", {
+      cors: { origin: "*" },
+    });
+    setSocket(socket);
 
     //서버로부터 accept_join 받음
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     socket.on(
@@ -100,6 +99,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
 =======
     socket.on("joinRoom", async (userObjArr, socketIdformserver) => {
 >>>>>>> af89751 (feature(webRTC/chat): chat/video merge commit)
+=======
+    socket.on("joinStudyRoom", async (userObjArr, socketIdformserver) => {
+>>>>>>> 80191a9 (fix(webRTC/chat): delete chat feature in webRTC)
       const length = userObjArr.length;
       //카메라, 마이크 가져오기
       await getMedia();
