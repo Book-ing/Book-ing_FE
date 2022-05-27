@@ -449,7 +449,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         if (screenStream) {
-          paintPeerShare(peerStream, remoteSocketId, remoteNickname);
+          paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         }
       }
     }
@@ -471,47 +471,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         div.appendChild(nickNameContainer);
         div.appendChild(video);
         video.className = "memberVideo";
-        peername.className = "nickName";
-        nickNameContainer.className = "nickNameContainer";
-        div.className = "videoBox";
-        videoGrid.appendChild(div);
-
-        // 입장시 현재인원들의 카메라 및 음소거 상태 확인
-        if (!checkEnterStatus.current[id]) {
-          return;
-        }
-        if (checkEnterStatus.current[id].screensaver) {
-          const screensaver = document.createElement("div");
-          screensaver.className = "screensaver";
-          div.appendChild(screensaver);
-        }
-        if (checkEnterStatus.current[id].muted) {
-          const muteIcon = document.createElement("div");
-          muteIcon.className = "muteIcon";
-          nickNameContainer.prepend(muteIcon);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    async function paintPeerShare(peerStream, id, remoteNickname) {
-      try {
-        const videoGrid = document.querySelector("#video-grid");
-        const video2 = document.createElement("video");
-        const nickNameContainer = document.createElement("div");
-        const peername = document.createElement("div");
-        const div = document.createElement("div");
-        div.id = id;
-        video2.autoplay = true;
-        video2.playsInline = true;
-        video2.srcObject = peerStream;
-        peername.innerText = `${remoteNickname}`;
-        peername.style.color = "white";
-        nickNameContainer.appendChild(peername);
-        div.appendChild(nickNameContainer);
-        div.appendChild(video2);
-        video2.className = "memberVideo";
         peername.className = "nickName";
         nickNameContainer.className = "nickNameContainer";
         div.className = "videoBox";
