@@ -16,17 +16,14 @@ import styled from "styled-components";
 import flex from "../themes/flex";
 import { hiddenScroll } from "../themes/hiddenScroll";
 
-
 const MyStudy = () => {
   const dispatch = useDispatch();
 
   // variables
   const userId = localStorage.getItem("userId");
 
-
   // redux store
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
-
 
   return (
     <React.Fragment>
@@ -35,31 +32,21 @@ const MyStudy = () => {
           <MyStudyTopBox>
             <TitleText type="sub_1_bold">내가 만든 스터디</TitleText>
             <MyStudyItem>
-          
-              
-            <AccordionSection>
-                <MyStudyAccordions 
-                  isJoinedCrew={__isJoinedCrew}>
-
-                </MyStudyAccordions>
+              <AccordionSection>
+                <MyStudyAccordions
+                  isJoinedCrew={__isJoinedCrew}
+                ></MyStudyAccordions>
               </AccordionSection>
-
-
             </MyStudyItem>
           </MyStudyTopBox>
           <MyStudyBottomBox>
             <TitleText type="sub_1_bold">참여한 스터디</TitleText>
             <JoinedItem>
-
-
-            <AccordionSection>
-                <MyJoinedAccordions 
-                  isJoinedCrew={__isJoinedCrew}>
-
-                </MyJoinedAccordions>
+              <AccordionSection>
+                <MyJoinedAccordions
+                  isJoinedCrew={__isJoinedCrew}
+                ></MyJoinedAccordions>
               </AccordionSection>
-
-
             </JoinedItem>
           </MyStudyBottomBox>
         </MyStudyBox>
@@ -71,15 +58,18 @@ const MyStudy = () => {
 export default MyStudy;
 
 const MyStudyWrap = styled.div`
-  ${flex("center", "start", false)}
+  ${flex("start", "start", false)}
   width: 100%;
   height: 100%;
+  overflow: auto;
+  ${hiddenScroll};
 `;
 
 const MyStudyBox = styled.div`
-  ${flex("center", "start", false)}
-  width: 930px;
-  margin-left: 50px;
+  ${flex("start", "start", false)}
+  width: 100%;
+  height: 100%;
+  padding-left: 50px;
 `;
 
 const TitleText = styled(Eltext)`
@@ -92,7 +82,7 @@ const MyStudyTopBox = styled.div`
   ${flex("center", "start", false)}
   ${hiddenScroll};
   width: 100%;
-  margin-bottom: 52px;
+  margin: 40px 0 52px 0;
 `;
 
 const MyStudyItem = styled.div`

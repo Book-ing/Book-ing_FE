@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,8 +25,13 @@ const Header = () => {
   console.log("로그인 참트루?", isLogin);
 
   const clickLogout = () => {
-    dispatch(userActions.kakaoLogout());
+    if (window.confirm("로그아웃 하시겠습니까?"))
+      dispatch(userActions.kakaoLogout());
   };
+
+  useEffect(() => {
+    dispatch(userActions.loginCheckDB());
+  }, []);
 
   return (
     <React.Fragment>

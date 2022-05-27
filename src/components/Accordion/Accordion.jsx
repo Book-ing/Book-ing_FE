@@ -48,6 +48,7 @@ const CustomizedAccordions = (props) => {
   const paramsUserId = useParams();
 
   const [open, setOpen] = useState(false);
+  const [checkState, setCheckState] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
@@ -81,6 +82,7 @@ const CustomizedAccordions = (props) => {
     paramsUserId.meetingId,
     __isJoinedStudy,
     __newStudyProfileUser,
+    checkState,
   ]);
 
   if (__accordionData === "") return <></>;
@@ -100,6 +102,8 @@ const CustomizedAccordions = (props) => {
                 >
                   <AccordionSummaryComponent
                     props={cur}
+                    checkState={checkState}
+                    setCheckState={setCheckState}
                     isJoinedCrew={__isJoinedCrew}
                     onClick
                   />
@@ -131,6 +135,8 @@ const CustomizedAccordions = (props) => {
               >
                 <AccordionSummaryComponent
                   props={cur}
+                  checkState={checkState}
+                  setCheckState={setCheckState}
                   isJoinedCrew={__isJoinedCrew}
                 />
 
@@ -182,6 +188,8 @@ const CustomizedAccordions = (props) => {
                 >
                   <AccordionSummaryComponent
                     props={cur}
+                    checkState={checkState}
+                    setCheckState={setCheckState}
                     isJoinedCrew={__isJoinedCrew}
                     onClick
                   />
@@ -212,6 +220,8 @@ const CustomizedAccordions = (props) => {
             >
               <AccordionSummaryComponent
                 props={cur}
+                checkState={checkState}
+                setCheckState={setCheckState}
                 isJoinedCrew={__isJoinedCrew}
               />
 

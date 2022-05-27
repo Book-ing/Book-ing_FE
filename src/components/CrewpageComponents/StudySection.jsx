@@ -112,13 +112,14 @@ const StudySectionBox = styled.div`
 
 const StudySectionBoxLeft = styled.div`
   ${flex("between", "start", true)}
-  width: 530px;
+  max-width: 700px;
 `;
 
 const StudysectionTag = styled(Eltext)`
   ${flex}
   width: 147px;
   height: 35px;
+  margin-right: 10px;
   margin-bottom: 10px;
   border-radius: 7px;
   color: var(--white);
@@ -129,6 +130,7 @@ const StudysectionTag = styled(Eltext)`
 const StudysectionSearchInput = styled.input`
   min-width: 343px;
   height: 35px;
+  margin-right: 5px;
   padding-left: 10px;
   border: 1px solid var(--point);
   border-radius: 3px;
