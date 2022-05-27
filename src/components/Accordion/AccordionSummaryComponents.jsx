@@ -61,6 +61,7 @@ const AccordionSummaryComponent = (props) => {
   // variables
   const studyId = props.props.studyId;
   const studyDate = props.props.studyDateTime;
+  const isJoinedCrew = props.isJoinedCrew;
   const [splitedStudyDate, splitedTime] = studyDate.split(" ");
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
@@ -98,7 +99,10 @@ const AccordionSummaryComponent = (props) => {
   };
 
   const [studyUserListOpen, setStudyUserListOpen] = useState(false);
-  const handlestudyUserListModalOpen = () => setStudyUserListOpen(true);
+  const handlestudyUserListModalOpen = () => {
+    if (!loginId || !isJoinedCrew) return;
+    setStudyUserListOpen(true);
+  };
   const handlestudyUserListModalClose = () => setStudyUserListOpen(false);
 
   return (
