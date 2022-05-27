@@ -48,10 +48,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       cors: { origin: "*" },
     });
     setSocket(socket);
-    const sharedSocket = io("https://sparta-hs.shop/", {
-      cors: { origin: "*" },
-    });
-    setSharedSocket(sharedSocket);
+    setSharedSocket(socket);
 
     //서버로부터 accept_join 받음
     socket.on("joinStudyRoom", async (userObjArr, socketIdformserver) => {
