@@ -35,14 +35,24 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let myStream;
   let pcObj = {};
   let peopleInRoom = 1;
+  let screenStream;
+
+  const testBtn = useRef();
 
   const [socket, setSocket] = useState(null);
+  const [sharedSocket, setSharedSocket] = useState(null);
 
   useEffect(() => {
+    testBtn.current.addEventListener("click", getShareScreenMedia);
+
     const socket = io("https://sparta-hs.shop/", {
       cors: { origin: "*" },
     });
     setSocket(socket);
+    const sharedSocket = io("https://sparta-hs.shop/", {
+      cors: { origin: "*" },
+    });
+    setSharedSocket(sharedSocket);
 
     //서버로부터 accept_join 받음
     socket.on("joinStudyRoom", async (userObjArr, socketIdformserver) => {
@@ -176,6 +186,28 @@ const Videoplayer = React.forwardRef((props, ref) => {
       }
     }
 
+    async function getShareScreenMedia(deviceId) {
+      console.log("씨팔 겟 쉐어드 스크린 미디어");
+      const initialConstraints = {
+        audio: true,
+        video: true,
+      };
+
+      try {
+        screenStream = await navigator.mediaDevices.getDisplayMedia(
+          initialConstraints
+        );
+        const screenShare = document.getElementById("sharedScreenVideoTag");
+        // paintMyShareVideo(screenStream);
+        screenShare.srcObject = screenStream;
+
+        console.log("나 소켓 있어?", sharedSocket.id);
+        makeConnection(sharedSocket.id);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     // 영상 스트림을 DOM 비디오 엘리먼트에 넣어주는 함수
     async function addVideoStream(video, stream) {
       try {
@@ -213,6 +245,11 @@ const Videoplayer = React.forwardRef((props, ref) => {
       myStream
         .getTracks()
         .forEach((track) => myPeerConnection.addTrack(track, myStream));
+      if (screenStream) {
+        screenStream
+          .getTracks()
+          .forEach((track) => myPeerConnection.addTrack(track, screenStream));
+      }
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
       pcObj[remoteSocketId] = myPeerConnection;
@@ -411,9 +448,32 @@ const Videoplayer = React.forwardRef((props, ref) => {
           ></div>
         </div>
       </MemberWrap>
+      <TestVideoSection>
+        <video
+          id="sharedScreenVideoTag"
+          autoPlay
+          playsInline
+          style={{
+            width: "960px",
+            height: "540px",
+          }}
+        ></video>
+      </TestVideoSection>
+      <button onClick={() => {}} ref={testBtn}>
+        씨팔좆같은RTC
+      </button>
     </DIV>
   );
 });
+
+const TestVideoSection = styled.div`
+  border: 1px solid red;
+  width: 100%;
+  height: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+`;
 
 const DIV = styled.div`
   width: 202;
