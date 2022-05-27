@@ -108,6 +108,7 @@ const Cards = (props) => {
               <Eltext type="body_3">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div style={{marginTop:"-5px"}}>
                 {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
                 </div>
@@ -117,6 +118,11 @@ const Cards = (props) => {
 =======
                 {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+                <div style={{marginTop:"-5px"}}>
+                {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
+                </div>
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
               </Eltext>
 
               </div>

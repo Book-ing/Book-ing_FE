@@ -11,10 +11,14 @@ import { history } from "../redux/configStore";
 const MyCrewCard = (myCrewInfo) => {
   
 <<<<<<< HEAD
+<<<<<<< HEAD
   // console.log(myCrewInfo);
 =======
   console.log(myCrewInfo);
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+  // console.log(myCrewInfo);
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
   const info = myCrewInfo.myCrewInfo;
   
   return (

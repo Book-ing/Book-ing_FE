@@ -70,9 +70,12 @@ const Main = (props) => {
   // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // const __isMaster = useSelector((state) => state.main.isMeetingMaster);
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
   const __listMyMeeting = useSelector((state) => state.main.myMeeting);
   const __listTodayMeeting = useSelector((state) => state.main.todayMeeting);
   const __listRecommendMeeting = useSelector(
@@ -89,6 +92,7 @@ const Main = (props) => {
   // ========================================================================
   const userId = localStorage.getItem("userId");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
   // ==================== 민우님이 요청한 loginCheckDB ========================
@@ -100,6 +104,9 @@ const Main = (props) => {
     
 =======
   // console.log(userId)
+=======
+
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
 
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
@@ -179,9 +186,20 @@ const Main = (props) => {
 =======
         {userId ? (
           JSON.stringify(__listMyMeeting) === "{}" ? (
+<<<<<<< HEAD
             <NotMyCrewSection>
               <div>모임이 없습니다 모임을 생성하러 가볼까요?</div>
 >>>>>>> fa23e6a (chore(mainpage): prettier issues)
+=======
+            <StNothingMyCrewSection>
+              <StNothingCrewText>
+                <Eltext type="sub_1_bold" color= "point">
+                <div>생성된 모임이 없습니다.</div>
+               
+                <div>모임 생성하기 버튼을 눌러 모임을 만들어주세요😋</div>
+                </Eltext>
+              </StNothingCrewText>
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
               <ModalBtnGrid>
                 <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
                   모임 생성하기
@@ -195,6 +213,7 @@ const Main = (props) => {
                   </Box>
                 </Modal>
               </ModalBtnGrid>
+<<<<<<< HEAD
 <<<<<<< HEAD
             </StNothingMyCrewSection>
 =======
@@ -264,6 +283,9 @@ const Main = (props) => {
 =======
             </NotMyCrewSection>
 >>>>>>> fa23e6a (chore(mainpage): prettier issues)
+=======
+            </StNothingMyCrewSection>
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
           ) : (
             <MyCrewSection>
               <StCrewTitle>
@@ -739,6 +761,7 @@ const ModalCloseBtn = styled.button`
 
 const ModalBtnGrid = styled.div`
 <<<<<<< HEAD
+<<<<<<< HEAD
   ${flex("center")}
   max-width: 1000px;
   margin: 10px auto;
@@ -747,6 +770,11 @@ const ModalBtnGrid = styled.div`
   max-width: 1000px;
   margin: 80px auto;
 >>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
+=======
+  ${flex("center")}
+  max-width: 1000px;
+  margin: 10px auto;
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
 `;
 
 const GoSearchBtn = styled(Elbutton)`
@@ -800,11 +828,17 @@ const Container = styled.div`
   margin: auto;
 `;
 
-const NotMyCrewSection = styled.div`
+const StNothingMyCrewSection = styled.div`
   width: 100%;
-  height: 200px;
+  height: 150px;
+  padding-top: 25px;
   background-color: var(--main);
 `;
+
+const StNothingCrewText = styled.div`
+  ${flex("center")};
+  text-align: center;
+`
 
 const MyCrewSection = styled.div`
   ${flex("start", "center", false)}
@@ -840,6 +874,7 @@ const CardGrid = styled.div`
 >>>>>>> b6e403f (chore(mainpage): fix some padding in mainpage)
 `;
 
+<<<<<<< HEAD
 const StMyCrew = styled.div`
   ${flex("center", "center", true)}
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
@@ -895,6 +930,11 @@ const StSearchBtn = styled.button`
 >>>>>>> 477029c (fix(mainpage/view): fix each sections & width)
 =======
   /* margin-top: 40px; */
+=======
+const CrewGroupGrid = styled.div`
+  width: 100%;
+  height: 100%;
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
 `;
 
 const StSearchBtn = styled.button`
@@ -1024,6 +1064,7 @@ const CrewListNewest = styled.div`
     #ede1d3 75%
   );
 `;
+<<<<<<< HEAD
 >>>>>>> fa23e6a (chore(mainpage): prettier issues)
 // linear-gradient
 const StMyCrewStudyList = styled.div`
@@ -1039,3 +1080,5 @@ const StMyCrewStudyList = styled.div`
 =======
 `;
 >>>>>>> fa23e6a (chore(mainpage): prettier issues)
+=======
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)

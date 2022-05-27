@@ -31,6 +31,7 @@ const ElcategoryCheckbox = (props) => {
       ];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       
         const[checkedList, setCheckedList] =useState([]);
 
@@ -58,6 +59,22 @@ const ElcategoryCheckbox = (props) => {
       //   }
       
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+      
+        const[checkedList, setCheckedList] =useState([]);
+
+        const onCheckedElement = (checked, item) => {
+          if (checked) {
+            setCheckedList([...checkedList, item])
+            
+          } else if (!checked) {
+            setCheckedList(checkedList.filter(el => el !== item));
+          };
+        };
+
+
+        props.onChange(checkedList);
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
     return (
         <React.Fragment>
           <RadioCategoryWrap>
@@ -65,6 +82,7 @@ const ElcategoryCheckbox = (props) => {
               <div key={item.name}>
                 <StInputCheck
                   id={item.name}
+<<<<<<< HEAD
 <<<<<<< HEAD
                   type="checkbox"
                   name="category"
@@ -79,6 +97,14 @@ const ElcategoryCheckbox = (props) => {
                   color={item.hex}
                   onChange={props.onChange}
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+                  type="checkbox"
+                  name="category"
+                  value={item.code}
+                  color={item.hex}
+                  onChange={e => {
+                    onCheckedElement(e.target.checked, e.target.value)}}
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
                 />
                 <StRadioLabel htmlFor={item.name} color={item.hex}>{item.name}</StRadioLabel>
               </div>
@@ -89,9 +115,13 @@ const ElcategoryCheckbox = (props) => {
     }
   
 <<<<<<< HEAD
+<<<<<<< HEAD
   
 =======
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+  
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
 
 
 export default ElcategoryCheckbox;
@@ -101,7 +131,6 @@ const RadioCategoryWrap = styled.div`
     width: 1020px;
     height: 135px;
     margin-top: 8px;
-    /* margin-left: 20px; */
     padding-top: 10px;
     padding-bottom: 10px;
 `;

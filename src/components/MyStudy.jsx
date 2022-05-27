@@ -24,8 +24,12 @@ import styled from "styled-components";
 // theme
 import flex from "../themes/flex";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { hiddenScroll } from "../themes/hiddenScroll";
 =======
+=======
+import { hiddenScroll } from "../themes/hiddenScroll";
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
 
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 
@@ -157,11 +161,13 @@ const TitleText = styled(Eltext)`
 
 const MyStudyTopBox = styled.div`
   ${flex("center", "start", false)}
+  ${hiddenScroll};
   width: 100%;
   margin: 30px 0 52px 0;
 `;
 
 const MyStudyItem = styled.div`
+<<<<<<< HEAD
 <<<<<<< HEAD
   width: 920px;
   max-height: 545px;
@@ -174,6 +180,12 @@ const MyStudyItem = styled.div`
 <<<<<<< HEAD
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 =======
+=======
+  width: 1000px;
+  max-height: 800px;
+  overflow-y: scroll;
+  /* ${hiddenScroll}; */
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 `;
@@ -186,6 +198,7 @@ const MyStudyBottomBox = styled.div`
 
 const JoinedItem = styled.div`
 <<<<<<< HEAD
+<<<<<<< HEAD
   width: 920px;
   max-height: 545px;
   overflow-y: auto;  
@@ -197,8 +210,12 @@ const AccordionSection = styled.div`
   margin: auto;
 =======
   width: 100%;
+=======
+  width: 1000px;
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
   max-height: 500px;
   overflow-y: scroll;
+  ${hiddenScroll};
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 `;

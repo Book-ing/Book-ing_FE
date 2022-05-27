@@ -97,12 +97,17 @@ const getSearchCrew = (value, dispatch, history) => {
     .then((res) => {
       const word = res.data.data.searchResult;
 <<<<<<< HEAD
+<<<<<<< HEAD
       // console.log(word);
       // console.log(JSON.stringify(word) === "{}");
 =======
       console.log(word);
       console.log(JSON.stringify(word) === "{}");
 >>>>>>> ef4e324 (chore(setenv): env 파일 수정커밋입니다.)
+=======
+      // console.log(word);
+      // console.log(JSON.stringify(word) === "{}");
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
       dispatch(searchActions.getSearch(word));
       if (JSON.stringify(word) === "{}") {
         // const values = {
@@ -127,10 +132,14 @@ export default handleActions(
     [LOAD_CREW]: (state, action) =>
       produce(state, (draft) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // console.log(action.payload.data.studylist);
 =======
         console.log(action.payload.data.studylist);
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+        // console.log(action.payload.data.studylist);
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
         draft.studyList = action.payload.data.studylist;
         draft.myMeeting = action.payload.data.response.myMeeting;
         draft.todayMeeting = action.payload.data.response.todayMeeting;

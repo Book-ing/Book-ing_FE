@@ -29,6 +29,7 @@ const Search = () => {
   const info = useSelector((state)=> state.search.result);
   const ab = useSelector((state)=>state.search)
 <<<<<<< HEAD
+<<<<<<< HEAD
   // console.log(ab)
   // console.log(info.length)
   
@@ -44,6 +45,10 @@ const Search = () => {
 
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 =======
+=======
+  // console.log(ab)
+  // console.log(info.length)
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
   
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
@@ -60,12 +65,16 @@ const Search = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [category, setCategory] = useState("")
 =======
   
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+  const [category, setCategory] = useState("")
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;
@@ -77,19 +86,22 @@ const Search = () => {
     });
   };
 
-  console.log(searchInfo.category)
-
   const ProduceValue = (e) => {
     e.preventDefault();
     
     const value = {
       word: searchInfo.title,
 <<<<<<< HEAD
+<<<<<<< HEAD
       cate: (JSON.stringify(category) === "[]" ? "" : category.toString()
       ),
 =======
       cate: (searchInfo.category === "" ? "" : Number(searchInfo.category)),
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+      cate: (JSON.stringify(category) === "[]" ? "" : category.toString()
+      ),
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
       loc: searchInfo.region, 
     }
     console.log(value);
@@ -154,10 +166,14 @@ const Search = () => {
           <StInputName type="sub_2_bold">Category</StInputName>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           <ElcategoryCheckbox onChange={setCategory}/>
 =======
           <ElcategoryCheckbox onChange={onChangeInputHandler}/>
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+          <ElcategoryCheckbox onChange={setCategory}/>
+>>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
 
         </StCategoryBox>
         </form>
