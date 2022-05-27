@@ -28,6 +28,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const changeNumberOfUsers = props.changeNumberOfUsers;
   const myvideo = useRef();
   const mystream = useRef();
+  const testBtn = useRef();
   // const urlcopybox = useRef();
   let nickname = props.nickname;
 
@@ -37,7 +38,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let peopleInRoom = 1;
   let screenStream;
 
-  const testBtn = useRef();
+  const screenShare = document.getElementById("sharedScreenVideoTag");
 
   const [socket, setSocket] = useState(null);
   const [sharedSocket, setSharedSocket] = useState(null);
@@ -196,7 +197,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         screenStream = await navigator.mediaDevices.getDisplayMedia(
           initialConstraints
         );
-        const screenShare = document.getElementById("sharedScreenVideoTag");
         // paintMyShareVideo(screenStream);
         screenShare.srcObject = screenStream;
 
@@ -271,6 +271,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
       const peerStream = data.streams[0];
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
+        if (screenStream) {
+          screenShare.srcObject = screenStream;
+        }
       }
     }
 
@@ -459,7 +462,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
         ></video>
       </TestVideoSection>
       <button onClick={() => {}} ref={testBtn}>
-        씨팔좆같은RTC
+        화면공유
       </button>
     </DIV>
   );
