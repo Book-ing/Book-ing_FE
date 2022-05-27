@@ -126,6 +126,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
         changeNumberOfUsers(`${peopleInRoom} / 10`);
 
         console.log("socket1 length::", length);
+<<<<<<< HEAD
         if (length === 1) {
           return;
         }
@@ -163,6 +164,11 @@ const Videoplayer = React.forwardRef((props, ref) => {
       changeNumberOfUsers(`${peopleInRoom} / 10`);
 =======
 >>>>>>> 9c67655 (is it done?)
+=======
+        // if (length === 1) {
+        //   return;
+        // }
+>>>>>>> da3ef17 (test)
 
         for (let i = 0; i < length - 1; i++) {
           //가장 최근 들어온 브라우저 제외
@@ -226,9 +232,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
         changeNumberOfUsers(`${peopleInRoom} / 10`);
 
         console.log("socket2 length::", length);
-        if (length === 1) {
-          return;
-        }
+        // if (length === 1) {
+        //   return;
+        // }
 
         for (let i = 0; i < length - 1; i++) {
           //가장 최근 들어온 브라우저 제외
