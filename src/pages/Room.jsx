@@ -267,7 +267,7 @@ const Room = (props) => {
                 </>
               ) : (
                 <>
-                  <BsFillMicMuteFill />
+                  <BsFillMicMuteFill style={{ color: "#A0001A" }} />
                 </>
               )}
             </Btn>
@@ -278,18 +278,18 @@ const Room = (props) => {
                 </>
               ) : (
                 <>
-                  <BsFillCameraVideoOffFill />
+                  <BsFillCameraVideoOffFill style={{ color: "#A0001A" }} />
                 </>
               )}
             </Btn>
             <Btn onClick={setShareScreen}>
               {shared ? (
                 <>
-                  <MdScreenShare />
+                  <MdStopScreenShare style={{ color: "#A0001A" }} />
                 </>
               ) : (
                 <>
-                  <MdStopScreenShare />
+                  <MdScreenShare />
                 </>
               )}
             </Btn>
@@ -345,7 +345,6 @@ const DIV = styled.div`
   margin: auto;
   ${flex("center", "center", false)}
   position: relative;
-  border: 1px solid red;
   @media screen and (max-width: 1440px) {
     padding-top: 56px;
   }
@@ -372,6 +371,7 @@ const SharedVideoSection = styled.div`
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #c9998d;
+  overflow-x: auto;
   .shareVideo {
     width: 960px;
     height: 540px;
