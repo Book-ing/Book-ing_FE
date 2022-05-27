@@ -86,8 +86,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const [sharedSocket, setSharedSocket] = useState(null);
 
   useEffect(() => {
-    testBtn.current.addEventListener("click", getShareScreenMedia);
-
     const socket = io("https://sparta-hs.shop/", {
       cors: { origin: "*" },
     });
@@ -96,15 +94,28 @@ const Videoplayer = React.forwardRef((props, ref) => {
     });
     setSocket(socket);
     setSharedSocket(socket2);
-    console.log("socket:", socket, "socket2:", socket2);
+
+    const clickSharedScreen = () => {
+      const videoType = "SHARESCREEN";
+
+      socket2.emit("joinRoom", studyId, nickname, videoType);
+    };
+    testBtn.current.addEventListener("click", clickSharedScreen);
 
     //서버로부터 accept_join 받음
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     socket.on(
       "joinStudyRoom",
       async (userObjArr, socketIdformserver, videoType) => {
+=======
+    socket.on(
+      "joinStudyRoom",
+      async (userObjArr, socketIdformserver, videoType) => {
+        console.log(videoType);
+>>>>>>> 9c67655 (is it done?)
         const length = userObjArr.length;
         //카메라, 마이크 가져오기
         await getMedia();
@@ -114,6 +125,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
         if (length === 1) {
           return;
         }
+<<<<<<< HEAD
 
         for (let i = 0; i < length - 1; i++) {
           //가장 최근 들어온 브라우저 제외
@@ -145,28 +157,61 @@ const Videoplayer = React.forwardRef((props, ref) => {
       await getMedia();
       setSocketID(socketIdformserver);
       changeNumberOfUsers(`${peopleInRoom} / 10`);
+=======
+>>>>>>> 9c67655 (is it done?)
 
-      if (length === 1) {
-        return;
-      }
-
-      for (let i = 0; i < length - 1; i++) {
-        //가장 최근 들어온 브라우저 제외
-        try {
-          const newPC = makeConnection(
-            //RTCPeerconnection 생성
-            userObjArr[i].socketId,
-            userObjArr[i].nickname
-          );
-          const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
-          await newPC.setLocalDescription(offer);
-          socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
-        } catch (error) {
-          console.log(error);
+        for (let i = 0; i < length - 1; i++) {
+          //가장 최근 들어온 브라우저 제외
+          try {
+            const newPC = makeConnection(
+              //RTCPeerconnection 생성
+              userObjArr[i].socketId,
+              userObjArr[i].nickname
+            );
+            const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
+            await newPC.setLocalDescription(offer);
+            socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
+          } catch (error) {
+            console.log(error);
+          }
         }
       }
+    );
+
+    socket2.on(
+      "joinStudyRoom",
+      async (userObjArr, socketIdformserver, videoType) => {
+        const length = userObjArr.length;
+        await getShareScreenMedia();
+        setSocketID(socketIdformserver);
+        changeNumberOfUsers(`${peopleInRoom} / 10`);
+
+        if (length === 1) {
+          return;
+        }
+
+        for (let i = 0; i < length - 1; i++) {
+          //가장 최근 들어온 브라우저 제외
+          try {
+            const newPC = makeConnection(
+              //RTCPeerconnection 생성
+              userObjArr[i].socketId,
+              userObjArr[i].nickname
+            );
+            const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
+            await newPC.setLocalDescription(offer);
+            socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      }
+<<<<<<< HEAD
     });
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+    );
+>>>>>>> 9c67655 (is it done?)
 
     socket.on("checkCurStatus", (object) => {
       checkEnterStatus.current = object;
@@ -274,7 +319,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       }
     }
 
-    async function getShareScreenMedia(deviceId) {
+    async function getShareScreenMedia() {
       const initialConstraints = {
         audio: true,
         video: true,
@@ -284,14 +329,16 @@ const Videoplayer = React.forwardRef((props, ref) => {
         screenStream = await navigator.mediaDevices.getDisplayMedia(
           initialConstraints
         );
-        // paintMyShareVideo(screenStream);
-        const screenShare = document.getElementById("sharedScreenVideoTag");
-        screenShare.srcObject = screenStream;
-
-        makeConnection(socket2.id);
-        console.log(socket2.id);
-        socket2.emit("joinRoom", studyId, nickname);
-        console.log(nickname);
+        addVideoStream(myvideo.current, screenStream);
+        mystream.current.append(myvideo.current);
+        videoGrid.current.append(mystream.current);
+        setVideo(screenStream.getVideoTracks());
+        // myvideo.current.muted = true;
+        // setAudio(screenStream.getAudioTracks());
+        // const screenShare = document.getElementById("sharedScreenVideoTag");
+        // screenShare.srcObject = screenStream;
+        // makeConnection(socket2.id);
+        // socket2.emit("joinRoom", studyId, nickname);
       } catch (err) {
         console.log(err);
       }
@@ -402,8 +449,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         if (screenStream) {
-          const screenShare = document.getElementById("sharedScreenVideoTag");
-          screenShare.srcObject = screenStream;
+          paintPeerShare(peerStream, remoteSocketId, remoteNickname);
         }
       }
     }
@@ -425,6 +471,47 @@ const Videoplayer = React.forwardRef((props, ref) => {
         div.appendChild(nickNameContainer);
         div.appendChild(video);
         video.className = "memberVideo";
+        peername.className = "nickName";
+        nickNameContainer.className = "nickNameContainer";
+        div.className = "videoBox";
+        videoGrid.appendChild(div);
+
+        // 입장시 현재인원들의 카메라 및 음소거 상태 확인
+        if (!checkEnterStatus.current[id]) {
+          return;
+        }
+        if (checkEnterStatus.current[id].screensaver) {
+          const screensaver = document.createElement("div");
+          screensaver.className = "screensaver";
+          div.appendChild(screensaver);
+        }
+        if (checkEnterStatus.current[id].muted) {
+          const muteIcon = document.createElement("div");
+          muteIcon.className = "muteIcon";
+          nickNameContainer.prepend(muteIcon);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    async function paintPeerShare(peerStream, id, remoteNickname) {
+      try {
+        const videoGrid = document.querySelector("#video-grid");
+        const video2 = document.createElement("video");
+        const nickNameContainer = document.createElement("div");
+        const peername = document.createElement("div");
+        const div = document.createElement("div");
+        div.id = id;
+        video2.autoplay = true;
+        video2.playsInline = true;
+        video2.srcObject = peerStream;
+        peername.innerText = `${remoteNickname}`;
+        peername.style.color = "white";
+        nickNameContainer.appendChild(peername);
+        div.appendChild(nickNameContainer);
+        div.appendChild(video2);
+        video2.className = "memberVideo";
         peername.className = "nickName";
         nickNameContainer.className = "nickNameContainer";
         div.className = "videoBox";
@@ -599,7 +686,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
           ></div>
         </div>
       </MemberWrap>
-      <TestVideoSection>
+      {/* <TestVideoSection>
         <video
           id="sharedScreenVideoTag"
           autoPlay
@@ -609,10 +696,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
             height: "540px",
           }}
         ></video>
-      </TestVideoSection>
-      <button onClick={() => {}} ref={testBtn}>
-        화면공유
-      </button>
+      </TestVideoSection> */}
+      <button ref={testBtn}>화면공유</button>
     </DIV>
   );
 });
