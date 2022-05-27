@@ -69,11 +69,11 @@ const Room = (props) => {
             <Btn onClick={setSound}>
               {soundOn ? (
                 <>
-                  <BsFillMicFill />
+                  <BsFillMicMuteFill style={{ color: "#A0001A" }} />
                 </>
               ) : (
                 <>
-                  <BsFillMicMuteFill style={{ color: "#A0001A" }} />
+                  <BsFillMicFill />
                 </>
               )}
             </Btn>
