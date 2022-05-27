@@ -31,7 +31,6 @@ const Main = (props) => {
 
   // ======================================================================== 새로고침 시 오류로 데이터를 리듀스에서부터 분리하여 로직 구성 추후 원인을 파악하고 리팩토링 예정
 
-  // const __isMaster = useSelector((state) => state.main.isMeetingMaster);
   const __listMyMeeting = useSelector((state) => state.main.myMeeting);
   const __listTodayMeeting = useSelector((state) => state.main.todayMeeting);
   const __listRecommendMeeting = useSelector(
@@ -40,15 +39,14 @@ const Main = (props) => {
   const __listNewMeeting = useSelector((state) => state.main.newMeeting);
   const __listMyMeetingStudy = useSelector((state) => state.main.studyList);
 
-  // const isMaster = useSelector((state) => state);
-  // console.log(isMaster)
+  
   console.log(__listMyMeeting);
   console.log(__listTodayMeeting);
   console.log(__listRecommendMeeting);
   console.log(__listMyMeetingStudy);
   // ========================================================================
   const userId = localStorage.getItem("userId");
-  // console.log(userId)
+
 
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
@@ -56,13 +54,14 @@ const Main = (props) => {
   //   );
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
+    
 
   React.useEffect(() => {
     userId === null
       ? dispatch(mainActions.loadCrewDB())
       : dispatch(mainActions.login_loadCrewDB(userId));
   }, []);
-
+  
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
@@ -96,8 +95,14 @@ const Main = (props) => {
         {/* <MyCrewCard myCrewInfo={__listMyMeeting}/> */}
         {userId ? (
           JSON.stringify(__listMyMeeting) === "{}" ? (
-            <NotMyCrewSection>
-              <div>모임이 없습니다 모임을 생성하러 가볼까요?</div>
+            <StNothingMyCrewSection>
+              <StNothingCrewText>
+                <Eltext type="sub_1_bold" color= "point">
+                <div>생성된 모임이 없습니다.</div>
+               
+                <div>모임 생성하기 버튼을 눌러 모임을 만들어주세요😋</div>
+                </Eltext>
+              </StNothingCrewText>
               <ModalBtnGrid>
                 <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
                   모임 생성하기
@@ -111,7 +116,7 @@ const Main = (props) => {
                   </Box>
                 </Modal>
               </ModalBtnGrid>
-            </NotMyCrewSection>
+            </StNothingMyCrewSection>
           ) : (
             <MyCrewSection>
               <StCrewTitle>
@@ -298,9 +303,9 @@ const ModalCloseBtn = styled.button`
 `;
 
 const ModalBtnGrid = styled.div`
-  ${flex("end")}
+  ${flex("center")}
   max-width: 1000px;
-  margin: 80px auto;
+  margin: 10px auto;
 `;
 
 const GoSearchBtn = styled(Elbutton)`
@@ -331,11 +336,17 @@ const Container = styled.div`
   margin: auto;
 `;
 
-const NotMyCrewSection = styled.div`
+const StNothingMyCrewSection = styled.div`
   width: 100%;
-  height: 200px;
+  height: 150px;
+  padding-top: 25px;
   background-color: var(--main);
 `;
+
+const StNothingCrewText = styled.div`
+  ${flex("center")};
+  text-align: center;
+`
 
 const MyCrewSection = styled.div`
   ${flex("start", "center", false)}
@@ -353,16 +364,9 @@ const CardGrid = styled.div`
   height: 560px;
 `;
 
-const StMyCrew = styled.div`
-  ${flex("center", "center", true)}
-  width: 100%;
-  color: rgba(40, 34, 36, 0.5);
-`;
-
 const CrewGroupGrid = styled.div`
   width: 100%;
   height: 100%;
-  /* margin-top: 40px; */
 `;
 
 const StSearchBtn = styled.button`
@@ -405,13 +409,4 @@ const CrewListNewest = styled.div`
     var(--white) 75%,
     #ede1d3 75%
   );
-`;
-// linear-gradient
-const StMyCrewStudyList = styled.div`
-  width: 690px;
-  height: 100px;
-  margin-bottom: 20px;
-  background-color: #fbf9f9;
-  padding-top: 12px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;

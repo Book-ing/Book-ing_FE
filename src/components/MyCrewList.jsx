@@ -7,7 +7,7 @@ import { Eltext, Elchip } from "../elements";
 const MyCrewList = (props) => {
 
   const history = useHistory();
-  console.log(props)
+  // console.log(props)
 
 return (
   <React.Fragment>

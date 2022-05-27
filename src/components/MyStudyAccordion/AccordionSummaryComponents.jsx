@@ -30,7 +30,7 @@ import ModalStudy from "../Modal/ModalStudy";
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
     sx={{ pointerEvents: "none" }}
-    style={{ paddingLeft: "42px", paddingRight: "42px" }}
+    style={{ paddingLeft: "40px" }}
     expandIcon={
       <ArrowForwardIosSharpIcon
         sx={{ fontSize: "25px", color: "var(--point)", pointerEvents: "auto" }}

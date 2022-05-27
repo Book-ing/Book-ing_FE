@@ -30,7 +30,7 @@ const login_loadCrewDB = (userId) => {
     mainApi
       .load(userId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(loadCrew(res.data));
       })
       .catch((err) => {
@@ -44,7 +44,7 @@ const loadCrewDB = () => {
     mainApi
       .load_none()
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(loadCrew(res.data));
       })
       .catch((err) => {
@@ -68,19 +68,19 @@ const addCrewDB = (newCrewInfo) => {
     formData.append("meetingImage", newCrewInfo.image);
 
     // FormData의 key 확인
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
+    // for (let key of formData.keys()) {
+    //   console.log(key);
+    // }
 
     // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // }
 
     mainApi
       .posting(formData)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // dispatch(mainActions.loadCrewDB());
         window.location.replace("https://www.book-ing.co.kr/");
       })
@@ -96,8 +96,8 @@ const getSearchCrew = (value, dispatch, history) => {
     .searching(value)
     .then((res) => {
       const word = res.data.data.searchResult;
-      console.log(word);
-      console.log(JSON.stringify(word) === "{}");
+      // console.log(word);
+      // console.log(JSON.stringify(word) === "{}");
       dispatch(searchActions.getSearch(word));
       if (JSON.stringify(word) === "{}") {
         // const values = {
@@ -121,7 +121,7 @@ export default handleActions(
   {
     [LOAD_CREW]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.data.studylist);
+        // console.log(action.payload.data.studylist);
         draft.studyList = action.payload.data.studylist;
         draft.myMeeting = action.payload.data.response.myMeeting;
         draft.todayMeeting = action.payload.data.response.todayMeeting;

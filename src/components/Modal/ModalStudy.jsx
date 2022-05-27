@@ -14,7 +14,6 @@ import { ko } from "date-fns/esm/locale";
 import PopupBookSearch from "../BookSearch/PopupBookSearch";
 import { useParams } from "react-router-dom";
 import { Radio } from "@mui/material";
-import { Label } from "@mui/icons-material";
 
 const ModalStudy = (props) => {
   const dispatch = useDispatch();
@@ -40,7 +39,7 @@ const ModalStudy = (props) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
 
-    return currentDate.getTime() < selectedDate.getTime();
+    return currentDate.getTime()+3600000 < selectedDate.getTime();
   };
 
   const day = moment(startDate).format("YYYY-MM-DD HH:mm");

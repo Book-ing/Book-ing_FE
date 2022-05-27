@@ -12,19 +12,22 @@ import styled from "styled-components";
 // theme
 import flex from "../themes/flex";
 import MypageCard from "./MypageCard";
+import { hiddenScroll } from "../themes/hiddenScroll";
 
 const MyCrew = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userId = localStorage.getItem("userId")
+  const userId = localStorage.getItem("userId");
 
   // redux store
   const __myCrew = useSelector((state) => state.mypage.myCrew.data.myMeeting);
-  const __joinedMyCrew = useSelector((state) => state.mypage.joinedMyCrew.data.joinedMeeting);
+  const __joinedMyCrew = useSelector(
+    (state) => state.mypage.joinedMyCrew.data.joinedMeeting
+  );
 
-  console.log(__myCrew)
-  console.log(__joinedMyCrew)
-  
+  console.log(__myCrew);
+  console.log(__joinedMyCrew);
+
   useEffect(() => {
     dispatch(mypageActions.getCrewDB(userId));
   }, []);
@@ -32,8 +35,6 @@ const MyCrew = () => {
   useEffect(() => {
     dispatch(mypageActions.getJoinedCrewDB(userId));
   }, []);
-
-
 
   if (__myCrew === "" || __joinedMyCrew === "") return <></>;
 
@@ -46,11 +47,17 @@ const MyCrew = () => {
             <MyCrewItem>
               {JSON.stringify(__myCrew) === undefined ? (
                 <>
-                <br />
-                <DataNull type="body_1_bold">내가 만든 모임이 없습니다😋</DataNull>
+                  <br />
+                  <DataNull type="body_1_bold">
+                    내가 만든 모임이 없습니다😋
+                  </DataNull>
                 </>
               ) : (
-                <StCardBtn onClick = {()=>{history.push(`/crew/${__myCrew.meetingId}`)}}>
+                <StCardBtn
+                  onClick={() => {
+                    history.push(`/crew/${__myCrew.meetingId}`);
+                  }}
+                >
                   <MypageCard {...__myCrew} />
                 </StCardBtn>
               )}
@@ -60,8 +67,13 @@ const MyCrew = () => {
             <TitleText type="sub_1_bold">가입 된 모임</TitleText>
             <JoinedItem>
               {__joinedMyCrew.map((cur, idx) => (
-              <StCardBtn key={idx} onClick = {()=>{history.push(`/crew/${cur.meetingId}`)}}>
-                <MypageCard {...cur} key={idx} />
+                <StCardBtn
+                  key={idx}
+                  onClick={() => {
+                    history.push(`/crew/${cur.meetingId}`);
+                  }}
+                >
+                  <MypageCard {...cur} key={idx} />
                 </StCardBtn>
               ))}
             </JoinedItem>
@@ -75,15 +87,15 @@ const MyCrew = () => {
 export default MyCrew;
 
 const MyCrewWrap = styled.div`
-  ${flex("center", "start", false)}
+  ${flex("start", "start", false)}
   width: 100%;
   height: 100%;
 `;
 
 const MyCrewBox = styled.div`
   ${flex("center", "start", false)}
-  width: 80%;
-  margin-left: 50px;
+  width: 100%;
+  padding-left: 50px;
 `;
 
 const DataNull = styled(Eltext)`
@@ -102,6 +114,7 @@ const TitleText = styled(Eltext)`
 const MyCrewTopBox = styled.div`
   ${flex("center", "start", false)}
   width: 100%;
+  margin-top: 40px;
   margin-bottom: 52px;
 `;
 
@@ -115,11 +128,12 @@ const MyCrewBottomBox = styled.div`
 `;
 
 const JoinedItem = styled.div`
+  ${hiddenScroll};
   width: 890px;
-  max-height: 790px;
+  height: 790px;
   overflow-y: scroll;
 `;
 
 const StCardBtn = styled.button`
   text-align: left;
-`
+`;

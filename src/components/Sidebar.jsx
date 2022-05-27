@@ -32,7 +32,6 @@ const Sidebar = (props) => {
   // variables
   const userId = localStorage.getItem("userId");
 
-
   useEffect(() => {
     dispatch(mypageActions.getMyProfileDB(userId));
   }, [__myProfileData.statusMessage]);
@@ -48,9 +47,9 @@ const Sidebar = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const userInfo = {
-      userId:userId,
+      userId: userId,
       statusMessage: statusMsg,
-    }
+    };
     dispatch(mypageActions.changeStatusMsgDB(userInfo));
     alert("상태메세지가 변경되었습니다!");
   };
@@ -61,12 +60,12 @@ const Sidebar = (props) => {
       <SidebarWrap>
         <Greeting type="head_6_bold">안녕하세요, {loginUserName}님!</Greeting>
         <ImgBox>
-        <Elimage
-          width="190px"
-          height="190px"
-          shape="profile"
-          src={__myProfileData.profileImage}
-        />
+          <Elimage
+            width="190px"
+            height="190px"
+            shape="profile"
+            src={__myProfileData.profileImage}
+          />
         </ImgBox>
         <StatusMessage>
           <form onSubmit={onSubmitHandler}>
@@ -127,10 +126,11 @@ const SidebarWrap = styled.div`
 `;
 
 const ImgBox = styled.div`
-  border-radius: 20px;
+  overflow: hidden;
+  border-radius: 30px;
   border: 4px solid var(--point);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`
+`;
 
 const Greeting = styled(Eltext)`
   margin-bottom: 25px;

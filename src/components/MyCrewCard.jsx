@@ -10,7 +10,7 @@ import { history } from "../redux/configStore";
 
 const MyCrewCard = (myCrewInfo) => {
   
-  console.log(myCrewInfo);
+  // console.log(myCrewInfo);
   const info = myCrewInfo.myCrewInfo;
   
   return (
@@ -35,7 +35,7 @@ const MyCrewCard = (myCrewInfo) => {
                 </Ellocation>
 
                 <Elcategory 
-                shape={info.meetingCategory} color="white" width="85px" height="25px">
+                shape={info.meetingCategory} color="white" width="85px" height="25px" paddingBottom="2px">
                   {info.meetingCategory}
                 </Elcategory>
 
@@ -101,11 +101,10 @@ const CardGrid = styled.div`
 `;
 const ImgGrid = styled.div`
   position: relative;
-  margin: 9px 17px 0px 17px;
+  margin: 9px 17px 0px 20px;
   top:-35px;
   width: 285px;
   height: 285px;
-  /* border: 1px solid black; */
 `;
 const TitleGrid = styled.div`
   width: 290px;
@@ -119,7 +118,7 @@ const TitleGrid = styled.div`
 const TagGrid = styled.div`
   position: relative;
   top: 20px;
-  left: 20px;
+  left: 23px;
   z-index: 2;
   display: flex;
   justify-content: space-between;
