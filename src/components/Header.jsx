@@ -25,6 +25,7 @@ const Header = () => {
   console.log("로그인 참트루?", isLogin);
 
   const clickLogout = () => {
+<<<<<<< HEAD
     const result = window.confirm("로그아웃 하시겠습니까?");
     if (result === true) {
       window.open(LOGOUT_KAKAO_AUTH_URL, "_self");
@@ -32,6 +33,10 @@ const Header = () => {
     } else {
       return;
     }
+=======
+    if (window.confirm("로그아웃 하시겠습니까?"))
+      dispatch(userActions.kakaoLogout());
+>>>>>>> 0a03d59 (chore(modifyiedfiles): modified login check, accordions)
   };
 
   useEffect(() => {

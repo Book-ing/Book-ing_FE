@@ -173,6 +173,7 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
     .then((res) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       // dispatch(inOutStudy(res.data.isStudyJoined));
     })
     .catch((err) => {
@@ -196,6 +197,9 @@ const editStudyDB = (payload) => (dispatch, getState) => {
 >>>>>>> 9b3d7ed (feature(crewpage): 모임페이지 기능 완료)
       dispatch(inOutStudy(res.data.isStudyJoined));
 >>>>>>> 5079c71 (chore(feature/crewpage): 주탁님 에디터 작업 현황 반영 커밋입니다)
+=======
+      // dispatch(inOutStudy(res.data.isStudyJoined));
+>>>>>>> 0a03d59 (chore(modifyiedfiles): modified login check, accordions)
     })
     .catch((err) => {
       console.log(err);

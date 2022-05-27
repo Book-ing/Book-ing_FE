@@ -38,6 +38,7 @@ const Sidebar = (props) => {
   }, [__myProfileData.statusMessage]);
 
   const clickLogout = () => {
+<<<<<<< HEAD
     const result = window.confirm("로그아웃 하시겠습니까?");
     if (result === true) {
       window.open(LOGOUT_KAKAO_AUTH_URL, "_self");
@@ -45,6 +46,10 @@ const Sidebar = (props) => {
     } else {
       return;
     }
+=======
+    if (window.confirm("로그아웃 하시겠습니까?"))
+      dispatch(userActions.kakaoLogout());
+>>>>>>> 0a03d59 (chore(modifyiedfiles): modified login check, accordions)
   };
 
   const handleChange = (e) => {
