@@ -47,9 +47,13 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const myvideo = useRef();
   const mystream = useRef();
 <<<<<<< HEAD
+<<<<<<< HEAD
   const testBtn = useRef();
 =======
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+  const testBtn = useRef();
+>>>>>>> a931c40 (test for video)
   // const urlcopybox = useRef();
   let nickname = props.nickname;
 
@@ -65,8 +69,12 @@ const Videoplayer = React.forwardRef((props, ref) => {
 =======
   let screenStream;
 
+<<<<<<< HEAD
   const testBtn = useRef();
 >>>>>>> dbc9732 (feature(screenshare): make some video tag for screen share to test commit)
+=======
+  const screenShare = document.getElementById("sharedScreenVideoTag");
+>>>>>>> a931c40 (test for video)
 
   const [socket, setSocket] = useState(null);
   const [sharedSocket, setSharedSocket] = useState(null);
@@ -269,7 +277,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         screenStream = await navigator.mediaDevices.getDisplayMedia(
           initialConstraints
         );
-        const screenShare = document.getElementById("sharedScreenVideoTag");
         // paintMyShareVideo(screenStream);
         screenShare.srcObject = screenStream;
 
@@ -384,6 +391,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
       const peerStream = data.streams[0];
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
+        if (screenStream) {
+          screenShare.srcObject = screenStream;
+        }
       }
     }
 
@@ -590,7 +600,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
         ></video>
       </TestVideoSection>
       <button onClick={() => {}} ref={testBtn}>
-        씨팔좆같은RTC
+        화면공유
       </button>
     </DIV>
   );
