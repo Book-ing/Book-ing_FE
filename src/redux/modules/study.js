@@ -93,7 +93,7 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
   studyApi
     .joinStudy(crewId, studyId)
     .then((res) => {
-      dispatch(inOutStudy(res.data.isStudyJoined));
+      // dispatch(inOutStudy(res.data.isStudyJoined));
     })
     .catch((err) => {
       console.log(err);

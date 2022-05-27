@@ -37,7 +37,8 @@ const Sidebar = (props) => {
   }, [__myProfileData.statusMessage]);
 
   const clickLogout = () => {
-    dispatch(userActions.kakaoLogout());
+    if (window.confirm("로그아웃 하시겠습니까?"))
+      dispatch(userActions.kakaoLogout());
   };
 
   const handleChange = (e) => {
