@@ -260,7 +260,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
     }
 
     async function getShareScreenMedia(deviceId) {
-      console.log("씨팔 겟 쉐어드 스크린 미디어");
       const initialConstraints = {
         audio: true,
         video: true,
@@ -274,8 +273,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
         // paintMyShareVideo(screenStream);
         screenShare.srcObject = screenStream;
 
-        console.log("나 소켓 있어?", sharedSocket.id);
         makeConnection(sharedSocket.id);
+        sharedSocket.emit("joinRoom", studyId);
       } catch (err) {
         console.log(err);
       }
@@ -348,8 +347,12 @@ const Videoplayer = React.forwardRef((props, ref) => {
 
       peopleInRoom++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       console.log(peopleInRoom);
+=======
+      // console.log(peopleInRoom);
+>>>>>>> 713e646 (test for video)
 
       // for (let i = 0; i < peopleInRoom; i++) {
       //   if (peopleInRoom <= 4) {
