@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configStore";
 import { useLocation } from "react-router-dom";
 
+// components
+import VideoHeader from "../components/Video/VideoHeader";
 import styled from "styled-components";
 import Video from "../components/Video/Video";
 
@@ -13,6 +15,8 @@ import {
   BsFillCameraVideoFill,
   BsFillCameraVideoOffFill,
 } from "react-icons/bs";
+import { MdScreenShare, MdStopScreenShare } from "react-icons/md";
+import flex from "../themes/flex";
 
 const Room = (props) => {
   const location = useLocation();
@@ -20,6 +24,7 @@ const Room = (props) => {
   const nickname = localStorage.getItem("username");
   const [soundOn, setSoundOn] = useState(false);
   const [videoOn, setVideoOn] = useState(false);
+  const [shared, setShared] = useState(false);
   const [numberOfUsers, setNumberOfUsers] = React.useState("1/10");
 
   const childRef = React.useRef();
@@ -37,103 +42,96 @@ const Room = (props) => {
     childRef.current.handleCameraClick();
   };
 
-  return (
-    <>
-      <DIV>
-        <div>
-          <VideoWrap>
-            <Video
-              nickname={nickname}
-              changeNumberOfUsers={changeNumberOfUsers}
-              ref={childRef}
-              meetingId={location.state.meetingId}
-            ></Video>
-          </VideoWrap>
+  const setShareScreen = () => {
+    setShared(!shared);
+    childRef.current.shareScreen();
+  };
 
-          <SoundBtn>
-            <BtnWrap>
-              <Btn onClick={setSound}>
-                {soundOn ? (
-                  <>
-                    <BsFillMicFill />
-                    마이크 켜기
-                  </>
-                ) : (
-                  <>
-                    <BsFillMicMuteFill />
-                    마이크 끄기
-                  </>
-                )}
-              </Btn>
-              <Btn onClick={setVideo}>
-                {videoOn ? (
-                  <>
-                    <BsFillCameraVideoFill />
-                    비디오 켜기
-                  </>
-                ) : (
-                  <>
-                    <BsFillCameraVideoOffFill />
-                    비디오 끄기
-                  </>
-                )}
-              </Btn>
-            </BtnWrap>
-          </SoundBtn>
-        </div>
+  return (
+    <RoomWrap>
+      <VideoHeader
+        numberOfUsers={numberOfUsers}
+        meetingId={location.state.meetingId}
+      />
+      <DIV>
+        <VideoWrap>
+          <Video
+            nickname={nickname}
+            changeNumberOfUsers={changeNumberOfUsers}
+            ref={childRef}
+            meetingId={location.state.meetingId}
+          ></Video>
+          <SharedVideoSection id="sharedScreenSection"></SharedVideoSection>
+        </VideoWrap>
+
+        <SoundBtn>
+          <BtnWrap>
+            <Btn onClick={setSound}>
+              {soundOn ? (
+                <>
+                  <BsFillMicFill />
+                </>
+              ) : (
+                <>
+                  <BsFillMicMuteFill />
+                </>
+              )}
+            </Btn>
+            <Btn onClick={setVideo}>
+              {videoOn ? (
+                <>
+                  <BsFillCameraVideoFill />
+                </>
+              ) : (
+                <>
+                  <BsFillCameraVideoOffFill />
+                </>
+              )}
+            </Btn>
+            <Btn onClick={setShareScreen}>
+              {shared ? (
+                <>
+                  <MdScreenShare />
+                </>
+              ) : (
+                <>
+                  <MdStopScreenShare />
+                </>
+              )}
+            </Btn>
+          </BtnWrap>
+        </SoundBtn>
       </DIV>
-    </>
+    </RoomWrap>
   );
 };
-
-// const BubbleWrap = styled.div`
-//   z-index: 50;
-//   width: 245px;
-//   height: 40px;
-//   color: #f8f9fa;
-//   background-color: #0028fa;
-//   border-radius: 4px;
-//   display: inline-flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: absolute;
-//   bottom: 55px;
-//   left: 35px;
-//   z-index: 4;
-//   :after {
-//     border-top: 10px solid #0028fa;
-//     border-left: 10px solid transparent;
-//     border-right: 10px solid transparent;
-//     border-bottom: 0px solid;
-//     content: "";
-//     position: absolute;
-//     bottom: -9px;
-//     left: 20px;
-//   }
-// `;
+const RoomWrap = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #fbf9f9;
+`;
 
 const DIV = styled.div`
   width: 100%;
-  height: 100vh; //100vh
-  padding-top: 64px;
-  margin: 0px 0px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;
+  padding-top: 100px;
+  margin: auto;
+  ${flex("center", "center", false)}
   position: relative;
+  border: 1px solid red;
   @media screen and (max-width: 1440px) {
     padding-top: 56px;
   }
 `;
 
 const VideoWrap = styled.div`
-  width: 1320px;
-  height: 610px;
-  display: flex;
-  justify-content: space-between;
+  width: 80%;
+  height: 100%;
+  ${flex("evenly", "start", false)}
   position: relative;
   margin-top: 10px;
   box-sizing: border-box;
+
   @media screen and (max-width: 1440px) {
     width: 980px;
     height: 605px;
@@ -141,13 +139,24 @@ const VideoWrap = styled.div`
   }
 `;
 
+const SharedVideoSection = styled.div`
+  width: 100%;
+  height: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #c9998d;
+  .shareVideo {
+    width: 960px;
+    height: 540px;
+    border: 2px solid var(--point);
+  }
+`;
+
 const SoundBtn = styled.div`
-  width: 740px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 32px;
+  ${flex("end")}
+  width: 80%;
   position: relative;
-  border-radius: 4px;
+  margin-bottom: 20px;
   @media screen and (max-width: 1440px) {
     width: 758px;
     margin: -114px 0px 0px 54px;
@@ -159,23 +168,18 @@ const SoundBtn = styled.div`
 `;
 
 const BtnWrap = styled.div`
-  width: 380px;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
+  ${flex("between", "center")}
 `;
 
 const Btn = styled.div`
-  width: 114px;
-  height: 48px;
-  color: #4a5056;
-  font-size: 14px;
-  border-radius: 4px;
-  background-color: rgba(0, 40, 250, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 10px;
+  ${flex}
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+  color: var(--white);
+  font-size: 20px;
+  border-radius: 50%;
+  background-color: #c9998d;
   cursor: pointer;
 `;
 
