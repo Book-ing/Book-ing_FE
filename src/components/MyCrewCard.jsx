@@ -42,6 +42,7 @@ const MyCrewCard = (myCrewInfo) => {
                   {info.meetingLocation}
                 </Ellocation>
 <<<<<<< HEAD
+<<<<<<< HEAD
               
                 <Elcategory 
                 shape={info.meetingCategory} color="white" width="85px" height="25px">
@@ -52,12 +53,19 @@ const MyCrewCard = (myCrewInfo) => {
              
 =======
 
+=======
+              
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
                 <Elcategory 
-                shape={info.meetingCategory} color="white" width="85px" height="25px" paddingBottom="2px">
+                shape={info.meetingCategory} color="white" width="85px" height="25px">
                   {info.meetingCategory}
                 </Elcategory>
+<<<<<<< HEAD
 
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+             
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
               </TagGrid>
             </Eltext>
             
@@ -72,6 +80,9 @@ const MyCrewCard = (myCrewInfo) => {
             </Eltext>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
             <div style={{ display: "flex", width: "265px",
             justifyContent:"space-between"}}>
               <Elchip width="125px" shape="Fill" height="25px">
@@ -81,6 +92,7 @@ const MyCrewCard = (myCrewInfo) => {
                 </div>
                 </Eltext>
               </Elchip>
+<<<<<<< HEAD
 
               <Elchip width="125px" shape="Fill" height="25px">
                 <Eltext type="sub_2_bold" color="white">
@@ -106,6 +118,17 @@ const MyCrewCard = (myCrewInfo) => {
             </Elchip>
           </div>
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+
+              <Elchip width="125px" shape="Fill" height="25px">
+                <Eltext type="sub_2_bold" color="white">
+                  <div style={{paddingBottom:"2px"}}>
+                    스터디 : {info.meetingStudyCnt}개
+                  </div>
+                </Eltext>
+              </Elchip>
+            </div>
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
 
             <Eltext type="body_3">
               <SubGird>{info.meetingIntro}</SubGird>

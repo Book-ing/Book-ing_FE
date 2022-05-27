@@ -149,6 +149,10 @@ const StudysectionSearchInput = styled.input`
 
 const StudySectionBoxRight = styled.div``;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
 const AccordionSection = styled.div`
   width: 90%;
   margin: auto;

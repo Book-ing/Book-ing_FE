@@ -23,7 +23,7 @@ const Box = styled.div`
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
 =======
     ${flex("center", "center", false)}
-    padding-bottom: 2px;
+    padding-bottom: 1px;
     color : var(--point);
 >>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
     border: 1px solid var(--point);

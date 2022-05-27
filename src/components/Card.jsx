@@ -59,10 +59,14 @@ const Cards = (props) => {
            justifyContent:"space-between"}}>
             <Elchip width="125px" shape="Fill" height="25px">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
               <Eltext type="sub_2_bold" color="white">
                 <div style={{paddingBottom:"1px"}}>
                   현재인원 : {props.meetingPeopleCnt}명
                 </div>
+<<<<<<< HEAD
 =======
              <Eltext type="sub_2_bold" color="white">
 <<<<<<< HEAD
@@ -71,15 +75,21 @@ const Cards = (props) => {
 =======
               현재인원 : {props.meetingPeopleCnt}명
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
               </Eltext>
             </Elchip>
 
             <Elchip width="125px" shape="Fill" height="25px">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
               <Eltext type="sub_2_bold" color="white">
                 <div style={{paddingBottom:"1px"}}>
                   스터디 : {props.meetingStudyCnt}개
                 </div>
+<<<<<<< HEAD
 =======
              <Eltext type="sub_2_bold" color="white">
 <<<<<<< HEAD
@@ -88,6 +98,8 @@ const Cards = (props) => {
 =======
               스터디 : {props.meetingStudyCnt}개
 >>>>>>> 413a052 (page(Main): 작업중 DB 재배치를 위해 커밋)
+=======
+>>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
               </Eltext>
             </Elchip>
           </div>
