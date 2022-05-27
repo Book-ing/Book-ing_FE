@@ -70,12 +70,15 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let screenStream;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const testBtn = useRef();
 >>>>>>> dbc9732 (feature(screenshare): make some video tag for screen share to test commit)
 =======
   const screenShare = document.getElementById("sharedScreenVideoTag");
 >>>>>>> a931c40 (test for video)
 
+=======
+>>>>>>> a44785b (test for video share)
   const [socket, setSocket] = useState(null);
   const [sharedSocket, setSharedSocket] = useState(null);
 
@@ -278,6 +281,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
           initialConstraints
         );
         // paintMyShareVideo(screenStream);
+        const screenShare = document.getElementById("sharedScreenVideoTag");
         screenShare.srcObject = screenStream;
 
         makeConnection(sharedSocket.id);
@@ -392,6 +396,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         if (screenStream) {
+          const screenShare = document.getElementById("sharedScreenVideoTag");
           screenShare.srcObject = screenStream;
         }
       }
