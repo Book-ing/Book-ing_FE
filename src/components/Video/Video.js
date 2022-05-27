@@ -11,6 +11,7 @@ import flex from "../../themes/flex";
 
 // img
 import BookingKorLogo from "../../assets/bookingkorlogo.png";
+import { cookies } from "../../shared/cookie";
 
 const Videoplayer = React.forwardRef((props, ref) => {
   const params = useParams();
@@ -52,6 +53,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
     });
     setSocket(socket);
     setSharedSocket(socket2);
+    console.log("socket:", socket, "socket2:", socket2);
 
     //서버로부터 accept_join 받음
     socket.on("joinStudyRoom", async (userObjArr, socketIdformserver) => {
@@ -199,8 +201,10 @@ const Videoplayer = React.forwardRef((props, ref) => {
         const screenShare = document.getElementById("sharedScreenVideoTag");
         screenShare.srcObject = screenStream;
 
-        makeConnection(sharedSocket.id);
-        sharedSocket.emit("joinRoom", studyId);
+        makeConnection(socket2.id);
+        console.log(socket2.id);
+        socket2.emit("joinRoom", studyId, nickname);
+        console.log(nickname);
       } catch (err) {
         console.log(err);
       }
