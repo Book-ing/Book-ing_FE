@@ -30,17 +30,20 @@ const ElcategoryCheckbox = (props) => {
         { name: '역사', hex: '#FF6445', code:223 },
       ];
 
-      // function ProdBasicInfo() {
-      //   const[checkedList, setCheckedList] =useState([]);
-
-      //   const onCheckedElement = (checked, item) => {
-      //     if (checked) {
-      //       setCheckedList([...checkedList, item]);
-      //     } else if (!checked) {
-      //       setCheckedList(checkedList.filter(el => el !== item));
-      //     };
-      //   }
       
+        const[checkedList, setCheckedList] =useState([]);
+
+        const onCheckedElement = (checked, item) => {
+          if (checked) {
+            setCheckedList([...checkedList, item])
+            
+          } else if (!checked) {
+            setCheckedList(checkedList.filter(el => el !== item));
+          };
+        };
+
+
+        props.onChange(checkedList);
     return (
         <React.Fragment>
           <RadioCategoryWrap>
@@ -48,11 +51,12 @@ const ElcategoryCheckbox = (props) => {
               <div key={item.name}>
                 <StInputCheck
                   id={item.name}
-                  type="radio"
+                  type="checkbox"
                   name="category"
                   value={item.code}
                   color={item.hex}
-                  onChange={props.onChange}
+                  onChange={e => {
+                    onCheckedElement(e.target.checked, e.target.value)}}
                 />
                 <StRadioLabel htmlFor={item.name} color={item.hex}>{item.name}</StRadioLabel>
               </div>
@@ -61,6 +65,7 @@ const ElcategoryCheckbox = (props) => {
         </React.Fragment>
       );
     }
+  
   
 
 
@@ -71,7 +76,6 @@ const RadioCategoryWrap = styled.div`
     width: 1020px;
     height: 135px;
     margin-top: 8px;
-    /* margin-left: 20px; */
     padding-top: 10px;
     padding-bottom: 10px;
 `;

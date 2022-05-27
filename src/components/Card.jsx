@@ -78,7 +78,9 @@ const Cards = (props) => {
                 최근 스터디
               </Eltext>
               <Eltext type="body_3">
+                <div style={{marginTop:"-5px"}}>
                 {props.isMeetingRecruit} &nbsp;|&nbsp; {props.meetingLastStudyTime}
+                </div>
               </Eltext>
 
               </div>

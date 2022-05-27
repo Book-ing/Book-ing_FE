@@ -6,12 +6,14 @@ import { actionCreators as mypageActions } from "../redux/modules/mypage";
 // elements
 import { Eltext } from "../elements";
 
+
 // style
 import styled from "styled-components";
 
 // theme
 import flex from "../themes/flex";
 import MypageCard from "./MypageCard";
+import { hiddenScroll } from "../themes/hiddenScroll";
 
 const MyCrew = () => {
   const dispatch = useDispatch();
@@ -115,8 +117,9 @@ const MyCrewBottomBox = styled.div`
 `;
 
 const JoinedItem = styled.div`
+  ${hiddenScroll};
   width: 890px;
-  max-height: 790px;
+  height: 790px;
   overflow-y: scroll;
 `;
 

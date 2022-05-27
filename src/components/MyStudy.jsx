@@ -14,6 +14,7 @@ import styled from "styled-components";
 
 // theme
 import flex from "../themes/flex";
+import { hiddenScroll } from "../themes/hiddenScroll";
 
 
 const MyStudy = () => {
@@ -89,14 +90,16 @@ const TitleText = styled(Eltext)`
 
 const MyStudyTopBox = styled.div`
   ${flex("center", "start", false)}
+  ${hiddenScroll};
   width: 100%;
   margin-bottom: 52px;
 `;
 
 const MyStudyItem = styled.div`
-  width: 100%;
-  max-height: 500px;
+  width: 1000px;
+  max-height: 800px;
   overflow-y: scroll;
+  /* ${hiddenScroll}; */
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
@@ -106,9 +109,10 @@ const MyStudyBottomBox = styled.div`
 `;
 
 const JoinedItem = styled.div`
-  width: 100%;
+  width: 1000px;
   max-height: 500px;
   overflow-y: scroll;
+  ${hiddenScroll};
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 

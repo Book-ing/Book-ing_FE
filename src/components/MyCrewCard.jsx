@@ -10,7 +10,7 @@ import { history } from "../redux/configStore";
 
 const MyCrewCard = (myCrewInfo) => {
   
-  console.log(myCrewInfo);
+  // console.log(myCrewInfo);
   const info = myCrewInfo.myCrewInfo;
   
   return (

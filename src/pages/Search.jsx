@@ -21,8 +21,8 @@ const Search = () => {
 
   const info = useSelector((state)=> state.search.result);
   const ab = useSelector((state)=>state.search)
-  console.log(ab)
-  console.log(info.length)
+  // console.log(ab)
+  // console.log(info.length)
   
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
@@ -36,6 +36,7 @@ const Search = () => {
     region: "",
   });
 
+  const [category, setCategory] = useState("")
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;
@@ -47,18 +48,20 @@ const Search = () => {
     });
   };
 
-  console.log(searchInfo.category)
-
   const ProduceValue = (e) => {
     e.preventDefault();
     
     const value = {
       word: searchInfo.title,
-      cate: (searchInfo.category === "" ? "" : Number(searchInfo.category)),
+      cate: (JSON.stringify(category) === "[]" ? "" : category.toString()
+      ),
       loc: searchInfo.region, 
     }
     console.log(value);
-    dispatch(searchActions.getSearchDB(value));
+    
+
+      dispatch(searchActions.getSearchDB(value));
+   
   };
   
 
@@ -115,7 +118,7 @@ const Search = () => {
         <StCategoryBox>
           <StInputName type="sub_2_bold">Category</StInputName>
 
-          <ElcategoryCheckbox onChange={onChangeInputHandler}/>
+          <ElcategoryCheckbox onChange={setCategory}/>
 
         </StCategoryBox>
         </form>
