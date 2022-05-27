@@ -38,8 +38,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let peopleInRoom = 1;
   let screenStream;
 
-  const screenShare = document.getElementById("sharedScreenVideoTag");
-
   const [socket, setSocket] = useState(null);
   const [sharedSocket, setSharedSocket] = useState(null);
 
@@ -198,6 +196,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
           initialConstraints
         );
         // paintMyShareVideo(screenStream);
+        const screenShare = document.getElementById("sharedScreenVideoTag");
         screenShare.srcObject = screenStream;
 
         makeConnection(sharedSocket.id);
@@ -272,6 +271,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         if (screenStream) {
+          const screenShare = document.getElementById("sharedScreenVideoTag");
           screenShare.srcObject = screenStream;
         }
       }
