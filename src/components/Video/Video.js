@@ -9,18 +9,21 @@ import styled from "styled-components";
 // theme
 import flex from "../../themes/flex";
 
+// img
+import BookingKorLogo from "../../assets/bookingkorlogo.png";
+
 const Videoplayer = React.forwardRef((props, ref) => {
   const params = useParams();
   const studyId = params.studyId;
   const [muted, setMuted] = useState(false);
   const [cameraOff, setCameraOff] = useState(false);
+  const [shareOff, setShareOff] = useState(false);
   const [Audio, setAudio] = useState([]);
   const [Video, setVideo] = useState([]);
   const [socketID, setSocketID] = useState("");
 
   const checkEnterStatus = useRef();
   const videoGrid = useRef();
-  const senders = useRef([]);
 
   const changeNumberOfUsers = props.changeNumberOfUsers;
   const myvideo = useRef();
@@ -212,8 +215,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
         .forEach((track) => myPeerConnection.addTrack(track, myStream));
 
       // pcObj에 각 사용자와의 connection 정보를 저장함
-      // pcObj[remoteSocketId] = myPeerConnection;
-      console.log(pcObj);
+      pcObj[remoteSocketId] = myPeerConnection;
 
       peopleInRoom++;
       console.log(peopleInRoom);
@@ -225,9 +227,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
       //     urlcopybox.current.style.display = "none";
       //   }
       // }
-      senders.push(myPeerConnection);
-      console.log(myPeerConnection);
-      console.log(senders);
       changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
     }
@@ -325,35 +324,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
     });
   }
 
-  const shareScreen = async () => {
-    let sharedScreen = await navigator.mediaDevices
-      .getDisplayMedia({ cursor: true })
-      .then((stream) => {
-        console.log(stream.getTracks());
-        const screenTrack = stream.getTracks()[0];
-        console.log(screenTrack);
-        console.log(senders.current);
-        senders.current
-          .find((sender) => sender.track.kind === "video")
-          .replaceTrack(screenTrack);
-        screenTrack.onended = function () {
-          senders.current
-            .find((sender) => sender.track.kind === "video")
-            .replaceTrack(mystream.current.getTracks()[1]);
-        };
-        document.getElementById("sharedScreenSection").srcObject = sharedScreen;
-      });
-    console.log(sharedScreen);
-  };
-
-  // async function shareScreen() {
-  //   let displayMediaStream = await navigator.mediaDevices.getDisplayMedia();
-  //   senders.find(sender => sender.track.kind === 'video').replaceTrack(displayMediaStream.getTracks()[0]);
-  //   console.log(displayMediaStream);
-  //   document.getElementById("sharedScreenSection").srcObject =
-  //     displayMediaStream;
-  // }
-
   //////////////////////////////////////
   React.useImperativeHandle(ref, () => ({
     handleCameraClick: () => {
@@ -389,17 +359,35 @@ const Videoplayer = React.forwardRef((props, ref) => {
       }
     },
 
-    handleAllMute: () => {
-      Audio.forEach((track) => (track.enabled = false));
-      const nickNameContainer = document.querySelector("#nickNameContainer");
-      if (muted === false) {
-        setMuted(true);
-        const muteIcon = document.createElement("div");
-        muteIcon.className = "muteIcon";
-        nickNameContainer.prepend(muteIcon);
-        socket.emit("mic_check", studyId, socketID, true);
+    shareScreen: () => {
+      const sharedScreenSection = document.getElementById(
+        "sharedScreenSection"
+      );
+      if (shareOff === false) {
+        setShareOff(true);
+        const video = document.createElement("video");
+        video.autoplay = true;
+        video.playsInline = true;
+        sharedScreenSection.appendChild(video);
+        video.className = "shareVideo";
+      } else if (shareOff === true) {
+        setShareOff(false);
+        const video = sharedScreenSection.querySelector(".shareVideo");
+        sharedScreenSection.removeChild(video);
       }
     },
+
+    // handleAllMute: () => {
+    //   Audio.forEach((track) => (track.enabled = false));
+    //   const nickNameContainer = document.querySelector("#nickNameContainer");
+    //   if (muted === false) {
+    //     setMuted(true);
+    //     const muteIcon = document.createElement("div");
+    //     muteIcon.className = "muteIcon";
+    //     nickNameContainer.prepend(muteIcon);
+    //     socket.emit("mic_check", studyId, socketID, true);
+    //   }
+    // },
   }));
 
   return (
@@ -422,15 +410,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
             className="screensaver"
           ></div>
         </div>
-        <div>
-          <video
-            id="sharedScreenSection"
-            controls
-            autoPlay
-            style={{ border: "1px solid red" }}
-          ></video>
-          <button onClick={shareScreen}>화면공유</button>
-        </div>
       </MemberWrap>
     </DIV>
   );
@@ -448,10 +427,10 @@ const DIV = styled.div`
 `;
 
 const MemberWrap = styled.div`
-  max-height: 616px;
-  ${flex("center", "center", false)}
+  max-width: 1050px;
+  ${flex}
   .memberVideo {
-    margin-bottom: 10px; //화상채팅간 영상간격
+    margin-right: 10px; //화상채팅간 영상간격
     width: 200px;
     height: 112px;
     border-radius: 8px;
@@ -479,38 +458,22 @@ const MemberWrap = styled.div`
   .videoBox {
     position: relative;
   }
-  .emojiBox {
-    position: absolute;
-    z-index: 2;
-    width: 77px;
-    height: 60px;
-    left: -77px;
-    top: 31px;
-  }
   .myVideo {
     // 사파리
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
+  .screensaver {
+    display: flex;
+    position: absolute;
+    background-color: #c9998d;
+    background: url(${BookingKorLogo}) no-repeat center;
+    background-size: contain;
+    width: 200px;
+    height: 112px;
+    z-index: 2;
+    top: 0px;
+  }
 `;
-
-// const URLCopyBox = styled.div`
-//   width: 202px;
-//   position: "relative";
-//   z-index: 10;
-// `;
-
-// const BubbleWrap = styled.div`
-//   font-size: 13px;
-//   width: 202px;
-//   height: 40px;
-//   color: #f8f9fa;
-//   background-color: #0028fa;
-//   border-radius: 4px;
-//   display: inline-flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-top: 10px;
-// `;
 
 export default React.memo(Videoplayer);
