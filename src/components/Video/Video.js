@@ -88,8 +88,11 @@ const Videoplayer = React.forwardRef((props, ref) => {
     const socket = io("https://sparta-hs.shop/", {
       cors: { origin: "*" },
     });
+    const socket2 = io("https://sparta-hs.shop/", {
+      cors: { origin: "*" },
+    });
     setSocket(socket);
-    setSharedSocket(socket);
+    setSharedSocket(socket2);
 
     //서버로부터 accept_join 받음
 <<<<<<< HEAD
