@@ -52,14 +52,18 @@ const Cards = (props) => {
           <div style={{ display: "flex", width: "265px",
            justifyContent:"space-between"}}>
             <Elchip width="125px" shape="Fill" height="25px">
-             <Eltext type="sub_2_bold" color="white">
-              현재인원 : {props.meetingPeopleCnt}명
+              <Eltext type="sub_2_bold" color="white">
+                <div style={{paddingBottom:"1px"}}>
+                  현재인원 : {props.meetingPeopleCnt}명
+                </div>
               </Eltext>
             </Elchip>
 
             <Elchip width="125px" shape="Fill" height="25px">
-             <Eltext type="sub_2_bold" color="white">
-              스터디 : {props.meetingStudyCnt}개
+              <Eltext type="sub_2_bold" color="white">
+                <div style={{paddingBottom:"1px"}}>
+                  스터디 : {props.meetingStudyCnt}개
+                </div>
               </Eltext>
             </Elchip>
           </div>

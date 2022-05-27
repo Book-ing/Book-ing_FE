@@ -4,23 +4,74 @@ import { useHistory } from "react-router-dom";
 
 import { Eltext, Elchip } from "../elements";
 
+import flex from "../themes/flex";
+
 const MyCrewList = (props) => {
 
   const history = useHistory();
-  // console.log(props)
+  console.log(props)
+
+{/* <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
+                <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag> */}
 
 return (
   <React.Fragment>
-    <StMyCrewStudyList>
-              <div style={{display:"flex", width:"535px", height:"75px", marginLeft:"77px"}}>
-                
-                <div style={{width:"320px", height:"75px"}}>
+    {props.studyType === 301 ? (
 
+      <StMyCrewStudyList>
+        <StOnlineStudyListBox>
+          <StOnlineStudyInfoBox>
+        
+        
+      <StudyTypeOnlineTag type="sub_2_bold">온라인</StudyTypeOnlineTag>
+
+          <Eltext type="sub_2_bold">
+            <StStudyTitleBox>
+            
+              스터디명 : {props.studyTitle}
+            
+            </StStudyTitleBox>
+          </Eltext>
+          <Eltext type="body_5">
+            일 시 : {props.studyDateTime}
+          </Eltext>
+
+          </StOnlineStudyInfoBox>
+        
+        
+        <StOnlineStudyBtnsBox>
+        
+
+            <Eltext type="sub_2_bold">
+          <Elchip shape="Line" width="96px" height="30px">
+              {props.studyLimitCnt}
+          </Elchip>
+            </Eltext>
+
+          <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push(`/crew/${props.meetingId}`)}}>
+            <div style={{fontSize:"16px", fontWeight:"600"}}>
+            바로가기
+            </div>
+          </Elchip>
+
+        
+          </StOnlineStudyBtnsBox>
+        </StOnlineStudyListBox>
+      </ StMyCrewStudyList>
+
+    ) : (<StMyCrewStudyList>
+              
+              <StOfflineStudyListBox>
+                <StOfflineStudyInfoBox>
+
+                <StudyTypeOfflineTag type="sub_2_bold">오프라인</StudyTypeOfflineTag>
                   <Eltext type="sub_2_bold">
-                    <div style={{width:"320px", overflow:"hidden",textOverflow:"ellipsis", whiteSpace:"nowrap"}}>
+                    <StStudyTitleBox>
                       스터디명 : {props.studyTitle}
-                    </div>
+                    </StStudyTitleBox>
                   </Eltext>
+
+                <div style={{height:"50px", marginTop:"-3px"}}>
                   <Eltext type="body_5">
                     금 액 : {props.studyPrice}
                     <br />일 시 : {props.studyDateTime}
@@ -31,12 +82,12 @@ return (
                       위 치 : {props.studyAddr}
                     </div>
                   </Eltext>
-
-                </div>
+                  </div>
+                  </StOfflineStudyInfoBox>
                 
                 
                 
-                <div style={{display:"flex", justifyContent:"space-between", width:"220px", height:"30px", marginTop:"25px"}}>
+                <StOfflineStudyBtnsBox>
 
                     <Eltext type="sub_2_bold">
                   <Elchip shape="Line" width="96px" height="30px">
@@ -50,9 +101,10 @@ return (
                     </div>
                   </Elchip>
 
-                </div>
-              </div>
-            </ StMyCrewStudyList>
+                  </StOfflineStudyBtnsBox>
+                </StOfflineStudyListBox>
+            </ StMyCrewStudyList> 
+            )}
   </React.Fragment>
 )}
 
@@ -63,6 +115,81 @@ const StMyCrewStudyList = styled.div`
   height: 100px;
   margin-bottom: 20px;
   background-color: #FBF9F9;
-  padding-top: 12px;
+  /* padding-top: 12px; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
+const StOnlineStudyListBox = styled.div`
+  display: flex;
+  width: 535px;
+  height: 75px;
+  margin-left: 77px;
+  padding-top: 20px;
+  /* border: 1px solid black; */
+`
+const StOnlineStudyInfoBox = styled.div`
+  width: 320px;
+  height: 75px;
+  /* border: 1px solid black; */
+`
+const StStudyTitleBox = styled.div`
+  width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
+
+const StOnlineStudyBtnsBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 220px; 
+  height: 30px;
+  margin-top: 15px;
+`
+
+const StudyTypeOnlineTag = styled(Eltext)`
+  ${flex}
+  width: 80px;
+  padding-bottom: 2px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: #c9998d;
+  color: white;
+`;
+
+const StOfflineStudyListBox = styled.div`
+  display: flex;
+  width: 535px;
+  height: 100px;
+  margin-left: 77px;
+  /* border: 1px solid black; */
+`
+const StOfflineStudyInfoBox = styled.div`
+  margin-top: 3px;
+  width: 320px;
+  height: 100px;
+  /* border: 1px solid black; */
+`
+// const StStudyTitleBox = styled.div`
+//   width: 320px;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+// `
+
+const StOfflineStudyBtnsBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 220px; 
+  height: 30px;
+  margin-top: 30px;
+`
+
+const StudyTypeOfflineTag = styled(Eltext)`
+  ${flex}
+  width: 80px;
+  /* padding-bottom: 2px; */
+  height: 20px;
+  border-radius: 4px;
+  background-color: #839893;
+  color: white;
+`;

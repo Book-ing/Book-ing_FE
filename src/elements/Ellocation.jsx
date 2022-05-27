@@ -10,7 +10,7 @@ const Ellocation = ({children, ...rest}) => {
 
 const Box = styled.div`
     ${flex("center", "center", false)}
-    padding-bottom: 2px;
+    padding-bottom: 1px;
     color : var(--point);
     border: 1px solid var(--point);
     border-radius: 6px;

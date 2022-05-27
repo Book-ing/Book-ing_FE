@@ -1,7 +1,9 @@
 import { css } from "styled-components";
 
 export const novel = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -12,7 +14,9 @@ export const novel = css`
 `;
 
 export const poem = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -23,7 +27,9 @@ export const poem = css`
 `;
 
 export const essay = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -34,7 +40,9 @@ export const essay = css`
 `;
 
 export const economy = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -45,7 +53,9 @@ export const economy = css`
 `;
 
 export const selfDev = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -56,7 +66,9 @@ export const selfDev = css`
 `;
 
 export const humanities = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -67,7 +79,9 @@ export const humanities = css`
 `;
 
 export const philosophy = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -78,7 +92,9 @@ export const philosophy = css`
 `;
 
 export const science = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -89,7 +105,9 @@ export const science = css`
 `;
 
 export const society = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -100,7 +118,9 @@ export const society = css`
 `;
 
 export const art = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -111,7 +131,9 @@ export const art = css`
 `;
 
 export const popularCulture = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -122,7 +144,9 @@ export const popularCulture = css`
 `;
 
 export const technology = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -133,7 +157,9 @@ export const technology = css`
 `;
 
 export const itComputer = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -144,7 +170,9 @@ export const itComputer = css`
 `;
 
 export const life = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -155,7 +183,9 @@ export const life = css`
 `;
 
 export const health = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -166,7 +196,9 @@ export const health = css`
 `;
 
 export const construction = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -177,7 +209,9 @@ export const construction = css`
 `;
 
 export const literature = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -188,7 +222,9 @@ export const literature = css`
 `;
 
 export const language = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -199,7 +235,9 @@ export const language = css`
 `;
 
 export const edu = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -210,7 +248,8 @@ export const edu = css`
 `;
 
 export const sports = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
     align-items : center;
     color : #FBF9F9;
     width: 96px;
@@ -221,7 +260,9 @@ export const sports = css`
 `;
 
 export const job = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -232,7 +273,9 @@ export const job = css`
 `;
 
 export const exam = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;
@@ -243,7 +286,9 @@ export const exam = css`
 `;
 
 export const history = css`
-    text-align : center;
+    display : flex;
+    justify-content : center;
+    align-items : center;
     color: white;
     width: 96px;
     height: 30px;

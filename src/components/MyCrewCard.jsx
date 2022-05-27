@@ -33,12 +33,12 @@ const MyCrewCard = (myCrewInfo) => {
                 <Ellocation width="85px" height="25px">
                   {info.meetingLocation}
                 </Ellocation>
-
+              
                 <Elcategory 
-                shape={info.meetingCategory} color="white" width="85px" height="25px" paddingBottom="2px">
+                shape={info.meetingCategory} color="white" width="85px" height="25px">
                   {info.meetingCategory}
                 </Elcategory>
-
+             
               </TagGrid>
             </Eltext>
             
@@ -52,20 +52,24 @@ const MyCrewCard = (myCrewInfo) => {
               <TitleGrid>{info.meetingName}</TitleGrid>
             </Eltext>
 
-          <div style={{ display: "flex", width: "265px",
-           justifyContent:"space-between"}}>
-            <Elchip width="125px" shape="Fill" height="25px">
-             <Eltext type="sub_2_bold" color="white">
-              현재인원 : {info.meetingPeopleCnt}명
-              </Eltext>
-            </Elchip>
+            <div style={{ display: "flex", width: "265px",
+            justifyContent:"space-between"}}>
+              <Elchip width="125px" shape="Fill" height="25px">
+                <Eltext type="sub_2_bold" color="white">
+                <div style={{paddingBottom:"2px"}}>
+                현재인원 : {info.meetingPeopleCnt}명
+                </div>
+                </Eltext>
+              </Elchip>
 
-            <Elchip width="125px" shape="Fill" height="25px">
-             <Eltext type="sub_2_bold" color="white">
-              스터디 : {info.meetingStudyCnt}개
-              </Eltext>
-            </Elchip>
-          </div>
+              <Elchip width="125px" shape="Fill" height="25px">
+                <Eltext type="sub_2_bold" color="white">
+                  <div style={{paddingBottom:"2px"}}>
+                    스터디 : {info.meetingStudyCnt}개
+                  </div>
+                </Eltext>
+              </Elchip>
+            </div>
 
             <Eltext type="body_3">
               <SubGird>{info.meetingIntro}</SubGird>

@@ -136,12 +136,6 @@ const StudysectionSearchInput = styled.input`
 
 const StudySectionBoxRight = styled.div``;
 
-// const CreateStudyBtn = styled(Elbutton)`
-//   width: 147px;
-//   height: 35px;
-//   border-radius: 7px;
-//   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-// `;
 
 const AccordionSection = styled.div`
   width: 90%;
