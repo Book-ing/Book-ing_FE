@@ -110,6 +110,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
     socket.on(
       "joinStudyRoom",
       async (userObjArr, socketIdformserver, videoType) => {
+<<<<<<< HEAD
 =======
     socket.on(
       "joinStudyRoom",
@@ -119,12 +120,16 @@ const Videoplayer = React.forwardRef((props, ref) => {
 >>>>>>> 9c67655 (is it done?)
 =======
 >>>>>>> f86f924 (test)
+=======
+        console.log(videoType);
+>>>>>>> 8a9f22d (add(webRTC/v1): make webRTC/v1 branch)
         const length = userObjArr.length;
         //카메라, 마이크 가져오기
         await getMedia();
         setSocketID(socketIdformserver);
         changeNumberOfUsers(`${peopleInRoom} / 10`);
 
+<<<<<<< HEAD
         console.log("socket1 length::", length);
 <<<<<<< HEAD
         if (length === 1) {
@@ -169,45 +174,15 @@ const Videoplayer = React.forwardRef((props, ref) => {
         //   return;
         // }
 >>>>>>> da3ef17 (test)
+=======
+        if (length === 1) {
+          return;
+        }
+>>>>>>> 8a9f22d (add(webRTC/v1): make webRTC/v1 branch)
 
         for (let i = 0; i < length - 1; i++) {
           //가장 최근 들어온 브라우저 제외
           try {
-            if (length > 2) {
-              if (i === 0) {
-                continue;
-              }
-            }
-            if (length > 3) {
-              if (i === 1) {
-                continue;
-              }
-            }
-            if (length > 4) {
-              if (i === 2) {
-                continue;
-              }
-            }
-            if (length > 5) {
-              if (i === 3) {
-                continue;
-              }
-            }
-            if (length > 6) {
-              if (i === 4) {
-                continue;
-              }
-            }
-            if (length > 7) {
-              if (i === 5) {
-                continue;
-              }
-            }
-            if (length > 8) {
-              if (i === 6) {
-                continue;
-              }
-            }
             const newPC = makeConnection(
               //RTCPeerconnection 생성
               userObjArr[i].socketId,
@@ -231,22 +206,21 @@ const Videoplayer = React.forwardRef((props, ref) => {
         setSocketID(socketIdformserver);
         changeNumberOfUsers(`${peopleInRoom} / 10`);
 
-        console.log("socket2 length::", length);
-        // if (length === 1) {
-        //   return;
-        // }
+        if (length === 1) {
+          return;
+        }
 
         for (let i = 0; i < length - 1; i++) {
           //가장 최근 들어온 브라우저 제외
           try {
             const newPC = makeConnection(
               //RTCPeerconnection 생성
-              userObjArr[i + 1].socketId,
-              userObjArr[i + 1].nickname
+              userObjArr[i].socketId,
+              userObjArr[i].nickname
             );
             const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
             await newPC.setLocalDescription(offer);
-            socket.emit("offer", offer, userObjArr[i + 1].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
+            socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
           } catch (error) {
             console.log(error);
           }
@@ -495,7 +469,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         if (screenStream) {
-          paintPeerFace(peerStream, remoteSocketId, remoteNickname);
+          paintPeerShare(peerStream, remoteSocketId, remoteNickname);
         }
       }
     }
@@ -517,6 +491,47 @@ const Videoplayer = React.forwardRef((props, ref) => {
         div.appendChild(nickNameContainer);
         div.appendChild(video);
         video.className = "memberVideo";
+        peername.className = "nickName";
+        nickNameContainer.className = "nickNameContainer";
+        div.className = "videoBox";
+        videoGrid.appendChild(div);
+
+        // 입장시 현재인원들의 카메라 및 음소거 상태 확인
+        if (!checkEnterStatus.current[id]) {
+          return;
+        }
+        if (checkEnterStatus.current[id].screensaver) {
+          const screensaver = document.createElement("div");
+          screensaver.className = "screensaver";
+          div.appendChild(screensaver);
+        }
+        if (checkEnterStatus.current[id].muted) {
+          const muteIcon = document.createElement("div");
+          muteIcon.className = "muteIcon";
+          nickNameContainer.prepend(muteIcon);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    async function paintPeerShare(peerStream, id, remoteNickname) {
+      try {
+        const videoGrid = document.querySelector("#video-grid");
+        const video2 = document.createElement("video");
+        const nickNameContainer = document.createElement("div");
+        const peername = document.createElement("div");
+        const div = document.createElement("div");
+        div.id = id;
+        video2.autoplay = true;
+        video2.playsInline = true;
+        video2.srcObject = peerStream;
+        peername.innerText = `${remoteNickname}`;
+        peername.style.color = "white";
+        nickNameContainer.appendChild(peername);
+        div.appendChild(nickNameContainer);
+        div.appendChild(video2);
+        video2.className = "memberVideo";
         peername.className = "nickName";
         nickNameContainer.className = "nickNameContainer";
         div.className = "videoBox";
