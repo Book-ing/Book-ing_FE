@@ -46,16 +46,16 @@ const Videoplayer = React.forwardRef((props, ref) => {
     const socket = io("https://sparta-hs.shop/", {
       cors: { origin: "*" },
     });
-    const socket2 = io("https://sparta-hs.shop/", {
-      cors: { origin: "*" },
-    });
+    // const socket2 = io("https://sparta-hs.shop/", {
+    //   cors: { origin: "*" },
+    // });
     setSocket(socket);
-    setSharedSocket(socket2);
+    // setSharedSocket(socket2);
 
     const clickSharedScreen = () => {
       const videoType = "SHARESCREEN";
 
-      socket2.emit("joinRoom", studyId, nickname, videoType);
+      socket.emit("joinRoom", studyId, nickname, videoType);
     };
     testBtn.current.addEventListener("click", clickSharedScreen);
 
@@ -66,10 +66,11 @@ const Videoplayer = React.forwardRef((props, ref) => {
         console.log(videoType);
         const length = userObjArr.length;
         //카메라, 마이크 가져오기
-        await getMedia();
+        await getMedia(videoType);
         setSocketID(socketIdformserver);
         changeNumberOfUsers(`${peopleInRoom} / 10`);
 
+        console.log("socket1 length::", length);
         if (length === 1) {
           return;
         }
@@ -92,35 +93,36 @@ const Videoplayer = React.forwardRef((props, ref) => {
       }
     );
 
-    socket2.on(
-      "joinStudyRoom",
-      async (userObjArr, socketIdformserver, videoType) => {
-        const length = userObjArr.length;
-        await getShareScreenMedia();
-        setSocketID(socketIdformserver);
-        changeNumberOfUsers(`${peopleInRoom} / 10`);
+    // socket2.on(
+    //   "joinStudyRoom",
+    //   async (userObjArr, socketIdformserver, videoType) => {
+    //     const length = userObjArr.length;
+    //     await getShareScreenMedia();
+    //     setSocketID(socketIdformserver);
+    //     changeNumberOfUsers(`${peopleInRoom} / 10`);
 
-        if (length === 1) {
-          return;
-        }
+    //     console.log("socket2 length::", length);
+    //     if (length === 1) {
+    //       return;
+    //     }
 
-        for (let i = 0; i < length - 1; i++) {
-          //가장 최근 들어온 브라우저 제외
-          try {
-            const newPC = makeConnection(
-              //RTCPeerconnection 생성
-              userObjArr[i].socketId,
-              userObjArr[i].nickname
-            );
-            const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
-            await newPC.setLocalDescription(offer);
-            socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      }
-    );
+    //     for (let i = 0; i < length - 1; i++) {
+    //       //가장 최근 들어온 브라우저 제외
+    //       try {
+    //         const newPC = makeConnection(
+    //           //RTCPeerconnection 생성
+    //           userObjArr[i].socketId,
+    //           userObjArr[i].nickname
+    //         );
+    //         const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
+    //         await newPC.setLocalDescription(offer);
+    //         socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
+    //       } catch (error) {
+    //         console.log(error);
+    //       }
+    //     }
+    //   }
+    // );
 
     socket.on("checkCurStatus", (object) => {
       checkEnterStatus.current = object;
@@ -204,51 +206,65 @@ const Videoplayer = React.forwardRef((props, ref) => {
     });
 
     //사용자의 stream 가져오는 함수
-    async function getMedia(deviceId) {
+    async function getMedia(videoType) {
       const initialConstraints = {
         audio: true,
         video: { facingMode: "user" },
       };
-
-      try {
-        myStream = await navigator.mediaDevices.getUserMedia(
-          initialConstraints
-        );
-        addVideoStream(myvideo.current, myStream);
-        mystream.current.append(myvideo.current);
-        videoGrid.current.append(mystream.current);
-        myvideo.current.muted = true;
-        setAudio(myStream.getAudioTracks());
-        setVideo(myStream.getVideoTracks());
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    async function getShareScreenMedia() {
-      const initialConstraints = {
+      const initialConstraints1 = {
         audio: true,
         video: true,
       };
 
       try {
-        screenStream = await navigator.mediaDevices.getDisplayMedia(
-          initialConstraints
-        );
-        addVideoStream(myvideo.current, screenStream);
-        mystream.current.append(myvideo.current);
-        videoGrid.current.append(mystream.current);
-        setVideo(screenStream.getVideoTracks());
-        // myvideo.current.muted = true;
-        // setAudio(screenStream.getAudioTracks());
-        // const screenShare = document.getElementById("sharedScreenVideoTag");
-        // screenShare.srcObject = screenStream;
-        // makeConnection(socket2.id);
-        // socket2.emit("joinRoom", studyId, nickname);
-      } catch (err) {
-        console.log(err);
+        if (videoType === "SHARESCREEN") {
+          screenStream = await navigator.mediaDevices.getDisplayMedia(
+            initialConstraints1
+          );
+          addVideoStream(myvideo.current, screenStream);
+          mystream.current.append(myvideo.current);
+          videoGrid.current.append(mystream.current);
+          setVideo(screenStream.getVideoTracks());
+        } else {
+          myStream = await navigator.mediaDevices.getUserMedia(
+            initialConstraints
+          );
+          addVideoStream(myvideo.current, myStream);
+          mystream.current.append(myvideo.current);
+          videoGrid.current.append(mystream.current);
+          myvideo.current.muted = true;
+          setAudio(myStream.getAudioTracks());
+          setVideo(myStream.getVideoTracks());
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
+
+    // async function getShareScreenMedia() {
+    //   const initialConstraints = {
+    //     audio: true,
+    //     video: true,
+    //   };
+
+    //   try {
+    //     screenStream = await navigator.mediaDevices.getDisplayMedia(
+    //       initialConstraints
+    //     );
+    //     addVideoStream(myvideo.current, screenStream);
+    //     mystream.current.append(myvideo.current);
+    //     videoGrid.current.append(mystream.current);
+    //     setVideo(screenStream.getVideoTracks());
+    //     // myvideo.current.muted = true;
+    //     // setAudio(screenStream.getAudioTracks());
+    //     // const screenShare = document.getElementById("sharedScreenVideoTag");
+    //     // screenShare.srcObject = screenStream;
+    //     // makeConnection(socket2.id);
+    //     // socket2.emit("joinRoom", studyId, nickname);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
 
     // 영상 스트림을 DOM 비디오 엘리먼트에 넣어주는 함수
     async function addVideoStream(video, stream) {
@@ -315,7 +331,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         if (screenStream) {
-          paintPeerShare(peerStream, remoteSocketId, remoteNickname);
+          paintPeerFace(peerStream, remoteSocketId, remoteNickname);
         }
       }
     }
@@ -337,47 +353,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         div.appendChild(nickNameContainer);
         div.appendChild(video);
         video.className = "memberVideo";
-        peername.className = "nickName";
-        nickNameContainer.className = "nickNameContainer";
-        div.className = "videoBox";
-        videoGrid.appendChild(div);
-
-        // 입장시 현재인원들의 카메라 및 음소거 상태 확인
-        if (!checkEnterStatus.current[id]) {
-          return;
-        }
-        if (checkEnterStatus.current[id].screensaver) {
-          const screensaver = document.createElement("div");
-          screensaver.className = "screensaver";
-          div.appendChild(screensaver);
-        }
-        if (checkEnterStatus.current[id].muted) {
-          const muteIcon = document.createElement("div");
-          muteIcon.className = "muteIcon";
-          nickNameContainer.prepend(muteIcon);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    async function paintPeerShare(peerStream, id, remoteNickname) {
-      try {
-        const videoGrid = document.querySelector("#video-grid");
-        const video2 = document.createElement("video");
-        const nickNameContainer = document.createElement("div");
-        const peername = document.createElement("div");
-        const div = document.createElement("div");
-        div.id = id;
-        video2.autoplay = true;
-        video2.playsInline = true;
-        video2.srcObject = peerStream;
-        peername.innerText = `${remoteNickname}`;
-        peername.style.color = "white";
-        nickNameContainer.appendChild(peername);
-        div.appendChild(nickNameContainer);
-        div.appendChild(video2);
-        video2.className = "memberVideo";
         peername.className = "nickName";
         nickNameContainer.className = "nickNameContainer";
         div.className = "videoBox";
@@ -545,7 +520,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
           }}
         ></video>
       </TestVideoSection> */}
-      <button ref={testBtn}>화면공유</button>
+      <button ref={testBtn} style={{ border: "1px solid red", width: "100px" }}>
+        화면공유
+      </button>
     </DIV>
   );
 });
