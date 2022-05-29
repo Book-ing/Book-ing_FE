@@ -129,9 +129,13 @@ const MyStudyAccordions = (props) => {
           __accordionData.map((cur, idx) => {
             return (
 <<<<<<< HEAD
+<<<<<<< HEAD
               
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+              
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
               <Accordion
                 expanded={expanded === __accordionData[idx].studyId}
                 onChange={handleChange(__accordionData[idx].studyId)}
@@ -148,9 +152,13 @@ const MyStudyAccordions = (props) => {
                 />
               </Accordion>
 <<<<<<< HEAD
+<<<<<<< HEAD
               
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+              
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
             );
           })
         ) : (
@@ -178,9 +186,13 @@ const StudyNoneNotice = styledComp(Eltext)`
   line-height: 50px;
   margin: auto;
 <<<<<<< HEAD
+<<<<<<< HEAD
   border: 5px solid black;
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  border: 5px solid black;
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
   color: var(--gray);
 `;
 

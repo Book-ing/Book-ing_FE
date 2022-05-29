@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { actionCreators as mypageActions } from "../redux/modules/mypage";
 
 // elements
-import { Eltext } from "../elements";
+import { Eltext, Elbutton } from "../elements";
 
 
 // style
@@ -22,7 +22,16 @@ const MyCrew = () => {
 
   // redux store
   const __myCrew = useSelector((state) => state.mypage.myCrew.data.myMeeting);
+<<<<<<< HEAD
   const __joinedMyCrew = useSelector((state) => state.mypage.joinedMyCrew.data.joinedMeeting);
+=======
+  const __joinedMyCrew = useSelector(
+    (state) => state.mypage.joinedMyCrew.data.joinedMeeting
+  );
+
+  // console.log(__myCrew);
+  console.log(JSON.stringify(__joinedMyCrew));
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 
   console.log(__myCrew)
   console.log(__joinedMyCrew)
@@ -47,10 +56,19 @@ const MyCrew = () => {
             <TitleText type="sub_1_bold">내가 만든 모임</TitleText>
             <MyCrewItem>
               {JSON.stringify(__myCrew) === undefined ? (
+<<<<<<< HEAD
                 <>
                 <br />
                 <DataNull type="body_1_bold">내가 만든 모임이 없습니다😋</DataNull>
                 </>
+=======
+                <div style={{margin:"30px auto", textAlign:"center"}}>
+                  <br />
+                  <DataNull type="body_1_bold">
+                    내가 만든 모임이 없습니다😋
+                  </DataNull>
+                </div>
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
               ) : (
                 <StCardBtn onClick = {()=>{history.push(`/crew/${__myCrew.meetingId}`)}}>
                   <MypageCard {...__myCrew} />
@@ -61,11 +79,38 @@ const MyCrew = () => {
           <MyCrewBottomBox>
             <TitleText type="sub_1_bold">가입 된 모임</TitleText>
             <JoinedItem>
+<<<<<<< HEAD
               {__joinedMyCrew.map((cur, idx) => (
               <StCardBtn key={idx} onClick = {()=>{history.push(`/crew/${cur.meetingId}`)}}>
                 <MypageCard {...cur} key={idx} />
+=======
+              {JSON.stringify(__joinedMyCrew) === "[]" ? 
+              (
+                
+                  <div style={{margin:"150px auto", textAlign:"center"}}>
+                  <DataNull type="body_1_bold">
+                    내가 가입한 모임이 없습니다😋
+                  </DataNull>
+                  <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
+                  }}>
+                    모임 보러가기
+                  </GoSearchBtn>
+                  </div>
+                
+              )
+              :
+              (__joinedMyCrew.map((cur, idx) => (
+                <StCardBtn
+                  key={idx}
+                  onClick={() => {
+                    history.push(`/crew/${cur.meetingId}`);
+                  }}
+                >
+                  <MypageCard {...cur} key={idx} />
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 </StCardBtn>
-              ))}
+              )))
+            }
             </JoinedItem>
           </MyCrewBottomBox>
         </MyCrewBox>
@@ -90,9 +135,9 @@ const MyCrewBox = styled.div`
 
 const DataNull = styled(Eltext)`
   color: var(--gray);
-  text-align: center;
+  /* text-align: center; */
   padding: 20px 0;
-  margin: auto;
+  /* margin: auto; */
 `;
 
 const TitleText = styled(Eltext)`
@@ -108,7 +153,7 @@ const MyCrewTopBox = styled.div`
 `;
 
 const MyCrewItem = styled.div`
-  width: 100%;
+  width: 890px;
 `;
 
 const MyCrewBottomBox = styled.div`
@@ -117,12 +162,22 @@ const MyCrewBottomBox = styled.div`
 `;
 
 const JoinedItem = styled.div`
-  ${hiddenScroll};
   width: 890px;
-  height: 790px;
-  overflow-y: scroll;
+  max-height: 790px;
+  overflow-y: auto;
 `;
 
 const StCardBtn = styled.button`
   text-align: left;
+<<<<<<< HEAD
 `
+=======
+`;
+
+const GoSearchBtn = styled(Elbutton)`
+  width: 147px;
+  height: 35px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+`;
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)

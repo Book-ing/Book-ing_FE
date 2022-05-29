@@ -67,6 +67,9 @@ const AccordionDetailsComponent = (props) => {
         </Grid>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
         {props.props.studyType === "online" ? null : (
           <Grid item xs={6}>
             <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
@@ -76,6 +79,7 @@ const AccordionDetailsComponent = (props) => {
             </KAKAOMAPSECTION>
           </Grid>
         )}
+<<<<<<< HEAD
 =======
         <Grid item xs={6}>
           <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
@@ -85,6 +89,8 @@ const AccordionDetailsComponent = (props) => {
           </KAKAOMAPSECTION>
         </Grid>
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
       </Grid>
 
       {/* NoteSection */}
@@ -96,6 +102,7 @@ const AccordionDetailsComponent = (props) => {
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         <NoteSection>
           {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
@@ -104,13 +111,20 @@ const AccordionDetailsComponent = (props) => {
             </MenuBtn>
           )}
 =======
+=======
+        
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
         <NoteSection>
-          {props.isJoinedCrew === true ? (
+          {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
               <LinearScaleIcon sx={{ fontSize: 35 }} />
             </MenuBtn>
+<<<<<<< HEAD
           ) : null}
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+          )}
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 
           <Popover
             id={id}
@@ -133,17 +147,26 @@ const AccordionDetailsComponent = (props) => {
           >
             <Box sx={styles}>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <MoreBtns 
                 onClick={() => {
                   history.push({
                     pathname: "/notewrite",
                     state: { bookInfo: props },
+=======
+              <MoreBtns 
+                onClick={() => {
+                  history.push({
+                    pathname: "/notewrites",
+                    state: { bookInfo: props, meetingId: params },
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                   });
                 }} 
                 shape="brown-outline"
               >
                 스터디 노트 수정
               </MoreBtns>
+<<<<<<< HEAD
 =======
               <MoreBtns onClick={() => {
                         history.push({
@@ -153,6 +176,8 @@ const AccordionDetailsComponent = (props) => {
                         });
                       }} shape="brown-outline">스터디 노트 수정</MoreBtns>
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
             </Box>
           </Popover>
 
@@ -183,15 +208,20 @@ const AccordionDetailsComponent = (props) => {
                 </Eltext>
                 <Eltext type="sub_2">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   지은이 : {props.props.studyBookWriter}
 =======
                   지은이 : {props.props.studyBookwriter}
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                  지은이 : {props.props.studyBookWriter}
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 </Eltext>
                 <Eltext type="sub_2">
                   출판사 : {props.props.studyBookPublisher}
                 </Eltext>
                 <Eltext type="sub_2">
+<<<<<<< HEAD
 <<<<<<< HEAD
                   책 소개 :  {props.props.studyBookInfo}...
 =======
@@ -199,6 +229,9 @@ const AccordionDetailsComponent = (props) => {
                   <br />
                   {props.props.studyBookInfo}...
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                  책 소개 :  {props.props.studyBookInfo}...
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 </Eltext>
               </Grid>
             </Grid>
@@ -209,12 +242,17 @@ const AccordionDetailsComponent = (props) => {
                 {props.props.studyNote === undefined ? (
         
 <<<<<<< HEAD
+<<<<<<< HEAD
                   btnStatus === "A" ? (
                     studyMasterId === userId ? (
 =======
                   btnStatus === "A"
                       ? (studyMasterId === userId ? 
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                  btnStatus === "A" ? (
+                    studyMasterId === userId ? (
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                         <Grid
                           container
                           direction="column"
@@ -227,14 +265,20 @@ const AccordionDetailsComponent = (props) => {
                         >
                           <NoneNoteText type="sub_2">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                             <div style={{textAlign:"center"}}>
                             스터디 노트📖가 작성되지 않았습니다.
                               <br /> 
                             스터디 시작 일시로부터 24시간 이내에 작성해주세요🙂✏️
                             </div>
+<<<<<<< HEAD
 =======
                             스터디 노트가 작성되지 않았습니다.
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                           </NoneNoteText>
                           <CreateStudyNote
                             shape="brown-outline"
@@ -245,9 +289,13 @@ const AccordionDetailsComponent = (props) => {
                                 state: { bookInfo: props },
 =======
                                 pathname: "/notewrites",
+<<<<<<< HEAD
                                 state: { bookInfo: props,
                                         meetingId: params },
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                                state: { bookInfo: props, meetingId: params },
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                               });
                             }}
                           >
@@ -255,6 +303,9 @@ const AccordionDetailsComponent = (props) => {
                           </CreateStudyNote>
                         </Grid>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                       ) : (
                         <Grid
                           container
@@ -275,6 +326,7 @@ const AccordionDetailsComponent = (props) => {
                             </div>   
                           </NoneNoteText>
                         </Grid>
+<<<<<<< HEAD
                         )
                 ) : (
                   <Grid
@@ -301,13 +353,33 @@ const AccordionDetailsComponent = (props) => {
                           <p>스터디 노트가 작성되지 않았습니다.</p>
                           <p>스터디장은 24시간 이내에 노트를 작성할 수 있습니다.</p>
                         </NoneNoteText>
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                         )
-                      : 
-                      <div>
-                        <p>스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.</p>
+                ) : (
+                  <Grid
+                      container
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="center"
+                      sx={{
+                        width: "100%",
+                        minHeight: "200px",
+                      }}
+                    >
+                      <NoneNoteText type="sub_2">
+                      <div style={{textAlign:"center"}}>
+                        스터디 시작 일시로부터 24시간이지나 노트 작성이
+                        불가능합니다😢
                       </div>
+<<<<<<< HEAD
                     
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                      </NoneNoteText>
+                    </Grid>
+                  )
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 ) : (
                   <Eltext type="head_1">
                     <Viewer initialValue={props.props.studyNote} />

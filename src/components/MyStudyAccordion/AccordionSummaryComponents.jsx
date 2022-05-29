@@ -36,9 +36,13 @@ import StudyUserListModal from "../Modal/UserListModal/StudyUserListModal";
 import flex from "../../themes/flex";
 import ModalStudy from "../Modal/ModalStudy";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useHistory } from "react-router-dom";
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+import { useHistory } from "react-router-dom";
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
@@ -70,9 +74,13 @@ const AccordionSummary = styled((props) => (
 const AccordionSummaryComponent = (props) => {
   const dispatch = useDispatch();
 <<<<<<< HEAD
+<<<<<<< HEAD
   const history = useHistory();
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  const history = useHistory();
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
@@ -152,6 +160,7 @@ const AccordionSummaryComponent = (props) => {
       ></AccordionSummary>
       <AccordionHeaderWrap>
 <<<<<<< HEAD
+<<<<<<< HEAD
         {/* {props.isJoinedCrew === true && */}
         {props.props.studyMasterProfile.userId ===
         parseInt(localStorage.getItem("userId")) ? (
@@ -160,6 +169,10 @@ const AccordionSummaryComponent = (props) => {
 =======
         {props.isJoinedCrew === true &&
         props.props.studyMasterProfile.userId ===
+=======
+        {/* {props.isJoinedCrew === true && */}
+        {props.props.studyMasterProfile.userId ===
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
           parseInt(localStorage.getItem("userId")) ? (
           <MenuBtn onClick={handleClick}>
             <LinearScaleIcon sx={{ fontSize: 35 }} />
@@ -206,6 +219,7 @@ const AccordionSummaryComponent = (props) => {
         <Grid container>
           <CrewInfo>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div title={props.props.studyTitle}>
               <TitleText type="sub_2_bold">
                 {props.props.studyType === "online" ? (
@@ -214,6 +228,18 @@ const AccordionSummaryComponent = (props) => {
                   <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
                 )}
                 <TitleSection>스터디명 : {props.props.studyTitle}</TitleSection>
+=======
+          <div title={props.props.studyTitle}>
+              <TitleText type="sub_2_bold">
+              {props.props.studyType === "online" ? (
+                <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
+              ) : (
+                <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
+              )}
+            <TitleSection>
+                스터디명 : {props.props.studyTitle}
+            </TitleSection>
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
               </TitleText>
             </div>
             {props.props.studyType === "online" ? null : (
@@ -221,6 +247,7 @@ const AccordionSummaryComponent = (props) => {
                 금액 : {props.props.studyPrice}원
               </InfoText>
             )}
+<<<<<<< HEAD
             <InfoText type="sub_2">
               일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
             </InfoText>
@@ -244,13 +271,26 @@ const AccordionSummaryComponent = (props) => {
               스터디명 :{props.props.studyTitle}
             </TitleText>
             <InfoText type="sub_2">금액 : {props.props.studyPrice}원</InfoText>
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
             <InfoText type="sub_2">
               일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
             </InfoText>
+
+            {props.props.studyType === "online" ? null : (
             <InfoText type="sub_2">
-              위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
+              <div title={props.props.studyAddr + "," + props.props.studyAddrDetail}>
+                <LocationSection>
+                  위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
+                </LocationSection>
+              </div>
             </InfoText>
+<<<<<<< HEAD
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+            )}
+
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
           </CrewInfo>
         </Grid>
 
@@ -302,22 +342,33 @@ const AccordionSummaryComponent = (props) => {
 
         <RightBox>
 <<<<<<< HEAD
+<<<<<<< HEAD
           {props.props.isStudyEnd === true ? null : props.props.studyType ===
             "online" ? (
+=======
+        {props.props.studyType === "online" ? (
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
+<<<<<<< HEAD
                   state: { meetingId: props.props.meetingId },
+=======
+                  state: { meetingId: __crewId },
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 });
               }}
             >
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
           ) : null}
+<<<<<<< HEAD
 
           {/* {props.isJoinedCrew === false ||
 =======
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
           {props.isJoinedCrew === false ||
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
           props.props.studyMasterProfile.userId ===
@@ -352,10 +403,15 @@ export default AccordionSummaryComponent;
 const AccordionSummaryWrap = styledComp.div`
   ${flex}
 <<<<<<< HEAD
+<<<<<<< HEAD
   width:900px;
   height:130px;
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  width:900px;
+  height:130px;
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
   background-color: #fbf9f9;
   padding: 10px 0;
 `;
@@ -381,6 +437,7 @@ const MoreBtns = styledComp(Elbutton)`
 const AccordionHeaderWrap = styledComp.div`
   position: relative;
 <<<<<<< HEAD
+<<<<<<< HEAD
   display:inline-block;
   ${flex("between", "center")}
   width: 800px;
@@ -390,6 +447,12 @@ const AccordionHeaderWrap = styledComp.div`
   width: 100%;
 
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  display:inline-block;
+  ${flex("between", "center")}
+  width: 800px;
+  
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
   @media screen and (max-width: 1260px) {
     ${flex("start", "center", false)}
   }
@@ -426,6 +489,9 @@ const CrewInfo = styledComp.div`
 const TitleText = styledComp(Eltext)``;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 const TitleSection = styledComp.div`
 // border: 1px solid black;
   width: 400px;
@@ -443,10 +509,13 @@ const LocationSection = styledComp.div`
   white-space: nowrap;
 `;
 
+<<<<<<< HEAD
 =======
 const InfoText = styledComp(Eltext)``;
 
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 const MemberSection = styledComp.div`
   ${flex}
   cursor: pointer
@@ -485,9 +554,19 @@ const TotalMember = styledComp(Eltext)`
 `;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const JoinOnlineStudyRoom = styledComp(Elbutton)`
   width: 160px;
 =======
+=======
+const JoinOnlineStudyRoom = styledComp(Elbutton)`
+  width: 160px;
+  height: 30px;
+  margin-right: 20px;
+  border-radius: 5px;
+`;
+
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 const JoinBtn = styledComp(Elbutton)`
   width: 96px;
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
@@ -539,6 +618,9 @@ const ModalCloseBtn = styledComp.button`
   top: 30px;
 `;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 
 const StudyTypeOnlineTag = styledComp(Eltext)`
   ${flex}
@@ -554,6 +636,7 @@ const StudyTypeOfflineTag = styledComp(Eltext)`
   border-radius: 4px;
   background-color: #839893;
   color: white;
+<<<<<<< HEAD
 `;
 
 const NoticeTag = styledComp.div`
@@ -565,3 +648,6 @@ const NoticeTag = styledComp.div`
 `;
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+`;
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)

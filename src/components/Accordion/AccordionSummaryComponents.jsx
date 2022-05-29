@@ -106,6 +106,8 @@ const AccordionSummaryComponent = (props) => {
   };
   const handlestudyUserListModalClose = () => setStudyUserListOpen(false);
 
+  console.log(props);
+
   return (
     <AccordionSummaryWrap>
       <AccordionSummary

@@ -161,7 +161,6 @@ const TitleText = styled(Eltext)`
 
 const MyStudyTopBox = styled.div`
   ${flex("center", "start", false)}
-  ${hiddenScroll};
   width: 100%;
   margin: 30px 0 52px 0;
 `;
@@ -169,10 +168,14 @@ const MyStudyTopBox = styled.div`
 const MyStudyItem = styled.div`
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
   width: 920px;
   max-height: 545px;
   overflow-y: auto;
   /* box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5); */
+<<<<<<< HEAD
 =======
   width: 100%;
   max-height: 500px;
@@ -188,6 +191,8 @@ const MyStudyItem = styled.div`
 >>>>>>> 490fc3e (page(Main): 수정사항 반영 후 커밋)
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 `;
 
 const MyStudyBottomBox = styled.div`
@@ -199,10 +204,14 @@ const MyStudyBottomBox = styled.div`
 const JoinedItem = styled.div`
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
   width: 920px;
   max-height: 545px;
   overflow-y: auto;  
   /* box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5); */
+<<<<<<< HEAD
 `;
 
 const AccordionSection = styled.div`
@@ -218,9 +227,11 @@ const AccordionSection = styled.div`
   ${hiddenScroll};
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 `;
 
 const AccordionSection = styled.div`
-  width: 100%;
+  width: 900px;
   margin: auto;
 `;

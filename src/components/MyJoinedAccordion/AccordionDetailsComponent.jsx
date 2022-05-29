@@ -67,6 +67,9 @@ const AccordionDetailsComponent = (props) => {
         </Grid>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
         {props.props.studyType === "online" ? null : (
           <Grid item xs={6}>
             <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
@@ -76,6 +79,7 @@ const AccordionDetailsComponent = (props) => {
             </KAKAOMAPSECTION>
           </Grid>
         )}
+<<<<<<< HEAD
 =======
         <Grid item xs={6}>
           <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
@@ -85,6 +89,8 @@ const AccordionDetailsComponent = (props) => {
           </KAKAOMAPSECTION>
         </Grid>
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
       </Grid>
 
       {/* NoteSection */}
@@ -163,6 +169,7 @@ const AccordionDetailsComponent = (props) => {
               </Grid>
               <Grid item xs style={{ marginLeft: "40px" }}>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <Eltext type="sub_2_bold">
                   책 제목 : {props.props.studyBookTitle}
                 </Eltext>
@@ -175,11 +182,19 @@ const AccordionDetailsComponent = (props) => {
                 <Eltext type="sub_2">
                   지은이 : {props.props.studyBookwriter}
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+              <Eltext type="sub_2_bold">
+                  책 제목 : {props.props.studyBookTitle}
+                </Eltext>
+                <Eltext type="sub_2">
+                  지은이 : {props.props.studyBookWriter}
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 </Eltext>
                 <Eltext type="sub_2">
                   출판사 : {props.props.studyBookPublisher}
                 </Eltext>
                 <Eltext type="sub_2">
+<<<<<<< HEAD
 <<<<<<< HEAD
                   책 소개 :  {props.props.studyBookInfo}...
 =======
@@ -187,6 +202,9 @@ const AccordionDetailsComponent = (props) => {
                   <br />
                   {props.props.studyBookInfo}...
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                  책 소개 :  {props.props.studyBookInfo}...
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 </Eltext>
               </Grid>
             </Grid>
@@ -194,6 +212,7 @@ const AccordionDetailsComponent = (props) => {
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
               <Grid sx={{ minHeight: "200px" }}>
                 
+<<<<<<< HEAD
 <<<<<<< HEAD
               {props.props.studyNote === undefined ? (
         
@@ -321,6 +340,86 @@ const AccordionDetailsComponent = (props) => {
                   </Eltext>
                 )}
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+              {props.props.studyNote === undefined ? (
+        
+        btnStatus === "A" ? (
+          studyMasterId === userId ? (
+              <Grid
+                container
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                sx={{
+                  width: "100%",
+                  minHeight: "200px",
+                }}
+              >
+                <NoneNoteText type="sub_2">
+                  <div style={{textAlign:"center"}}>
+                  스터디 노트📖가 작성되지 않았습니다.
+                    <br /> 
+                  스터디 시작 일시로부터 24시간 이내에 작성해주세요🙂✏️
+                  </div>
+                </NoneNoteText>
+                <CreateStudyNote
+                  shape="brown-outline"
+                  onClick={() => {
+                    history.push({
+                      pathname: "/notewrites",
+                      state: { bookInfo: props, meetingId: params },
+                    });
+                  }}
+                >
+                  작성하기
+                </CreateStudyNote>
+              </Grid>
+            ) : (
+              <Grid
+                container
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                textAlign="center"
+                sx={{
+                  width: "100%",
+                  minHeight: "200px",
+                }}
+              >
+                <NoneNoteText type="sub_2">
+                  <div style={{textAlign:"center"}}>
+                    스터디 노트📖가 작성되지 않았습니다.
+                      <br />
+                    노트는 스터디장만 작성할 수 있습니다🔒
+                  </div>   
+                </NoneNoteText>
+              </Grid>
+              )
+      ) : (
+        <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              width: "100%",
+              minHeight: "200px",
+            }}
+          >
+            <NoneNoteText type="sub_2">
+            <div style={{textAlign:"center"}}>
+              스터디 시작 일시로부터 24시간이지나 노트 작성이
+              불가능합니다😢
+            </div>
+            </NoneNoteText>
+          </Grid>
+        )
+      ) : (
+        <Eltext type="head_1">
+          <Viewer initialValue={props.props.studyNote} />
+        </Eltext>
+      )}
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
               </Grid>
             </Grid>
           </Grid>

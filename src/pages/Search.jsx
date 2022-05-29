@@ -190,6 +190,7 @@ const Search = () => {
       <TagBottom>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div style={{marginLeft: "500px", width:"500px", height:"500px", marginTop: "100px", marginBottom:"100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
         </div>
       </TagBottom>
@@ -208,6 +209,9 @@ const Search = () => {
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 =======
         <div style={{marginLeft: "185px", width:"1020px", height:"325px", marginTop: "100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
+=======
+        <div style={{marginLeft: "500px", width:"500px", height:"500px", marginTop: "100px", marginBottom:"100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
         </div>
       </TagBottom>
       }

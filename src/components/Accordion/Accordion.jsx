@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // modules
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
@@ -46,6 +47,11 @@ const Accordion = styled((props) => (
 const CustomizedAccordions = (props) => {
   const dispatch = useDispatch();
   const paramsUserId = useParams();
+  console.log(paramsUserId);
+  const location = useLocation();
+  console.log(location.search);
+  const studyNum = location.search ? location.search.substring(7) : '';
+  console.log(studyNum)
 
   const [open, setOpen] = useState(false);
   const [checkState, setCheckState] = useState(false);
@@ -66,12 +72,12 @@ const CustomizedAccordions = (props) => {
   // variables
   const userId = localStorage.getItem("userId");
 
-  const [expanded, setExpanded] = useState("");
+  const [expanded, setExpanded] = useState(Number(studyNum));
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-
+  
   useEffect(() => {
     dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     return () => {
@@ -105,6 +111,7 @@ const CustomizedAccordions = (props) => {
                     checkState={checkState}
                     setCheckState={setCheckState}
                     isJoinedCrew={__isJoinedCrew}
+                    num={__accordionData[idx].studyId}
                     onClick
                   />
 
@@ -117,7 +124,7 @@ const CustomizedAccordions = (props) => {
             })
           ) : (
             <StudyNoneNotice type="sub_1">
-              생성된 스터디가 없습니다,
+              생성된 스터디가 없습니다😅
             </StudyNoneNotice>
           )}
         </>
@@ -149,8 +156,8 @@ const CustomizedAccordions = (props) => {
           })
         ) : (
           <StudyNoneNotice type="sub_1">
-            생성된 스터디가 없습니다,
-            <br /> 새로운 스터디를 만들어 볼까요?
+            생성된 스터디가 없습니다😅
+            <br />새로운 스터디를 만들어 볼까요?
             <br />
             {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
             <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
@@ -203,7 +210,7 @@ const CustomizedAccordions = (props) => {
             })
           ) : (
             <StudyNoneNotice type="sub_1">
-              생성된 스터디가 없습니다,
+              생성된 스터디가 없습니다😅
             </StudyNoneNotice>
           )}
         </>

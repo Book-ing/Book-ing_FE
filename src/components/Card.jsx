@@ -34,12 +34,18 @@ const Cards = (props) => {
                 <Elcategory 
                 shape={props.meetingCategory} color="white" width="85px" height="25px">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <div style={{paddingBottom:"2px"}}>
                   {props.meetingCategory}
                   </div>
 =======
                   {props.meetingCategory}
 >>>>>>> c84d771 (components(Card): Card 컴포넌트 작성 후 커밋)
+=======
+                  <div style={{paddingBottom:"2px"}}>
+                  {props.meetingCategory}
+                  </div>
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
                 </Elcategory>
 
               </TagGrid>

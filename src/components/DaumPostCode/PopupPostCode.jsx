@@ -8,10 +8,14 @@ const PopupPostCode = (props) => {
   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
   const handlePostCode = (data) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
     // console.log(data);
     let jibunAddress = data.jibunAddress ? data.jibunAddress : data.autoJibunAddress ;
     let roadAddress = data.roadAddress; 
     let zoneCode = data.zonecode;
+<<<<<<< HEAD
 =======
     console.log(data);
     let fullAddress = data.address;
@@ -28,6 +32,8 @@ const PopupPostCode = (props) => {
           fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
 >>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
+=======
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 
     // console.log(data)
     // console.log(jibunAddress)

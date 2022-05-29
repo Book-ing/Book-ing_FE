@@ -92,6 +92,7 @@ const Elcategory = ({ children, ...rest }) => {
     props.height ? `${props.height}` : ""};
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-weight: ${(props) =>
     props.fontWeight ? `${props.fontWeight}` : ""};
 =======
@@ -100,6 +101,10 @@ const Elcategory = ({ children, ...rest }) => {
   padding-bottom: ${(props) =>
     props.paddingBottom ? `${props.paddingBottom}` : ""};
 >>>>>>> 7b21e18 (develop_online: WebRTC 버전관리 따로위한 브랜치 생성 커밋)
+=======
+  font-weight: ${(props) =>
+    props.fontWeight ? `${props.fontWeight}` : ""};
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 `;
 
 

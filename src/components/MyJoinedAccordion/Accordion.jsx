@@ -169,6 +169,7 @@ const MyJoinedAccordions = (props) => {
             <br /> 스터디에 참가하러 가 볼까요?
             <br />
 <<<<<<< HEAD
+<<<<<<< HEAD
             <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
             }}>
               모임 찾아보기
@@ -177,6 +178,11 @@ const MyJoinedAccordions = (props) => {
             }}>
               스터디 찾아보기
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+            <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
+            }}>
+              모임 찾아보기
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
             </GoSearchBtn>
           </StudyNoneNotice>
         )}

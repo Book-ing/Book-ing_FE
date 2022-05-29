@@ -63,7 +63,12 @@ const AccordionDetailsComponent = (props) => {
 =======
   const btnStatus = props.props.studyStatus;
 
+<<<<<<< HEAD
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+  console.log(props)
+
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>
@@ -94,13 +99,15 @@ const AccordionDetailsComponent = (props) => {
         alignItems="flex-start"
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
+        
         <NoteSection>
-          {props.isJoinedCrew === true ? (
+          {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
               <LinearScaleIcon sx={{ fontSize: 35 }} />
             </MenuBtn>
-          ) : null}
+          )}
 
+         
           <Popover
             id={id}
             open={open}
@@ -160,12 +167,19 @@ const AccordionDetailsComponent = (props) => {
                 <Eltext type="sub_2_bold">
                   책 제목 : {props.props.studyBookTitle}
                 </Eltext>
+<<<<<<< HEAD
                 <Eltext type="sub_2">지은이 : 필요값{}</Eltext>
                 <Eltext type="sub_2">출판사 : 필요값{}</Eltext>
+=======
                 <Eltext type="sub_2">
-                  책 소개 :
-                  <br />
-                  {props.props.studyBookInfo}...
+                  지은이 : {props.props.studyBookWriter}
+                </Eltext>
+                <Eltext type="sub_2">
+                  출판사 : {props.props.studyBookPublisher}
+                </Eltext>
+>>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+                <Eltext type="sub_2">
+                  책 소개 :  {props.props.studyBookInfo}...
                 </Eltext>
               </Grid>
             </Grid>
@@ -210,7 +224,11 @@ const AccordionDetailsComponent = (props) => {
                         }}
                       >
                         <NoneNoteText type="sub_2">
-                          스터디 노트가 작성되지 않았습니다.
+                          <div style={{textAlign:"center"}}>
+                            스터디 노트📖가 작성되지 않았습니다.
+                              <br />
+                            스터디 시작 일시로부터 24시간 이내에 작성해주세요🙂✏️
+                          </div>
                         </NoneNoteText>
 <<<<<<< HEAD
                         </Grid>
@@ -258,10 +276,11 @@ const AccordionDetailsComponent = (props) => {
                         }}
                       >
                         <NoneNoteText type="sub_2">
-                          스터디 노트가 작성되지 않았습니다.
+                        <div style={{textAlign:"center"}}>
+                          스터디 노트📖가 작성되지 않았습니다.
                           <br />
-                          스터디장이라면 모임 시작 후 24시간 이내에 노트를
-                          작성할 수 있습니다.
+                          노트는 스터디장만 작성할 수 있습니다🔒
+                        </div>
                         </NoneNoteText>
 <<<<<<< HEAD
                         </Grid>
@@ -281,8 +300,10 @@ const AccordionDetailsComponent = (props) => {
                       }}
                     >
                       <NoneNoteText type="sub_2">
-                        스터디 시간으로부터 24시간이지나 노트 작성이
-                        불가능합니다.
+                      <div style={{textAlign:"center"}}>
+                        스터디 시작 일시로부터 24시간이지나 노트 작성이
+                        불가능합니다😢
+                      </div>
                       </NoneNoteText>
                     </Grid>
                   )
