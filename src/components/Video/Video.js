@@ -12,6 +12,7 @@ import flex from "../../themes/flex";
 // img
 import BookingKorLogo from "../../assets/bookingkorlogo.png";
 import { cookies } from "../../shared/cookie";
+import { Grid } from "@mui/material";
 
 const Videoplayer = React.forwardRef((props, ref) => {
   const params = useParams();
@@ -40,24 +41,12 @@ const Videoplayer = React.forwardRef((props, ref) => {
   let screenStream;
 
   const [socket, setSocket] = useState(null);
-  const [sharedSocket, setSharedSocket] = useState(null);
 
   useEffect(() => {
     const socket = io("https://sparta-hs.shop/", {
       cors: { origin: "*" },
     });
-    const socket2 = io("https://sparta-hs.shop/", {
-      cors: { origin: "*" },
-    });
     setSocket(socket);
-    setSharedSocket(socket2);
-
-    const clickSharedScreen = () => {
-      const videoType = "SHARESCREEN";
-
-      socket2.emit("joinRoom", studyId, nickname, videoType);
-    };
-    testBtn.current.addEventListener("click", clickSharedScreen);
 
     //서버로부터 accept_join 받음
     socket.on(
@@ -67,36 +56,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         const length = userObjArr.length;
         //카메라, 마이크 가져오기
         await getMedia();
-        setSocketID(socketIdformserver);
-        changeNumberOfUsers(`${peopleInRoom} / 10`);
-
-        if (length === 1) {
-          return;
-        }
-
-        for (let i = 0; i < length - 1; i++) {
-          //가장 최근 들어온 브라우저 제외
-          try {
-            const newPC = makeConnection(
-              //RTCPeerconnection 생성
-              userObjArr[i].socketId,
-              userObjArr[i].nickname
-            );
-            const offer = await newPC.createOffer(); // 각 연결들에 대해 offer를 생성
-            await newPC.setLocalDescription(offer);
-            socket.emit("offer", offer, userObjArr[i].socketId, nickname); // offer를 보내는 사람의 socket id와 닉네임
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      }
-    );
-
-    socket2.on(
-      "joinStudyRoom",
-      async (userObjArr, socketIdformserver, videoType) => {
-        const length = userObjArr.length;
-        await getShareScreenMedia();
         setSocketID(socketIdformserver);
         changeNumberOfUsers(`${peopleInRoom} / 10`);
 
@@ -194,13 +153,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
       removeVideo(leavedSocketId);
       peopleInRoom--;
       changeNumberOfUsers(`${peopleInRoom} / 10`);
-      // for (let i = 0; i < peopleInRoom; i++) {
-      //   if (peopleInRoom <= 4) {
-      //     urlcopybox.current.style.display = "block";
-      //   } else if (peopleInRoom === 5) {
-      //     urlcopybox.current.style.display = "none";
-      //   }
-      // }
     });
 
     //사용자의 stream 가져오는 함수
@@ -222,31 +174,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         setVideo(myStream.getVideoTracks());
       } catch (error) {
         console.log(error);
-      }
-    }
-
-    async function getShareScreenMedia() {
-      const initialConstraints = {
-        audio: true,
-        video: true,
-      };
-
-      try {
-        screenStream = await navigator.mediaDevices.getDisplayMedia(
-          initialConstraints
-        );
-        addVideoStream(myvideo.current, screenStream);
-        mystream.current.append(myvideo.current);
-        videoGrid.current.append(mystream.current);
-        setVideo(screenStream.getVideoTracks());
-        // myvideo.current.muted = true;
-        // setAudio(screenStream.getAudioTracks());
-        // const screenShare = document.getElementById("sharedScreenVideoTag");
-        // screenShare.srcObject = screenStream;
-        // makeConnection(socket2.id);
-        // socket2.emit("joinRoom", studyId, nickname);
-      } catch (err) {
-        console.log(err);
       }
     }
 
@@ -297,15 +224,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       pcObj[remoteSocketId] = myPeerConnection;
 
       peopleInRoom++;
-      // console.log(peopleInRoom);
 
-      // for (let i = 0; i < peopleInRoom; i++) {
-      //   if (peopleInRoom <= 4) {
-      //     urlcopybox.current.style.display = "block";
-      //   } else if (peopleInRoom === 5) {
-      //     urlcopybox.current.style.display = "none";
-      //   }
-      // }
       changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
     }
@@ -314,9 +233,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
       const peerStream = data.streams[0];
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
-        if (screenStream) {
-          paintPeerShare(peerStream, remoteSocketId, remoteNickname);
-        }
       }
     }
 
@@ -337,47 +253,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         div.appendChild(nickNameContainer);
         div.appendChild(video);
         video.className = "memberVideo";
-        peername.className = "nickName";
-        nickNameContainer.className = "nickNameContainer";
-        div.className = "videoBox";
-        videoGrid.appendChild(div);
-
-        // 입장시 현재인원들의 카메라 및 음소거 상태 확인
-        if (!checkEnterStatus.current[id]) {
-          return;
-        }
-        if (checkEnterStatus.current[id].screensaver) {
-          const screensaver = document.createElement("div");
-          screensaver.className = "screensaver";
-          div.appendChild(screensaver);
-        }
-        if (checkEnterStatus.current[id].muted) {
-          const muteIcon = document.createElement("div");
-          muteIcon.className = "muteIcon";
-          nickNameContainer.prepend(muteIcon);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    async function paintPeerShare(peerStream, id, remoteNickname) {
-      try {
-        const videoGrid = document.querySelector("#video-grid");
-        const video2 = document.createElement("video");
-        const nickNameContainer = document.createElement("div");
-        const peername = document.createElement("div");
-        const div = document.createElement("div");
-        div.id = id;
-        video2.autoplay = true;
-        video2.playsInline = true;
-        video2.srcObject = peerStream;
-        peername.innerText = `${remoteNickname}`;
-        peername.style.color = "white";
-        nickNameContainer.appendChild(peername);
-        div.appendChild(nickNameContainer);
-        div.appendChild(video2);
-        video2.className = "memberVideo";
         peername.className = "nickName";
         nickNameContainer.className = "nickNameContainer";
         div.className = "videoBox";
@@ -499,18 +374,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         sharedScreenSection.removeChild(video);
       }
     },
-
-    // handleAllMute: () => {
-    //   Audio.forEach((track) => (track.enabled = false));
-    //   const nickNameContainer = document.querySelector("#nickNameContainer");
-    //   if (muted === false) {
-    //     setMuted(true);
-    //     const muteIcon = document.createElement("div");
-    //     muteIcon.className = "muteIcon";
-    //     nickNameContainer.prepend(muteIcon);
-    //     socket.emit("mic_check", studyId, socketID, true);
-    //   }
-    // },
   }));
 
   return (
@@ -534,34 +397,12 @@ const Videoplayer = React.forwardRef((props, ref) => {
           ></div>
         </div>
       </MemberWrap>
-      {/* <TestVideoSection>
-        <video
-          id="sharedScreenVideoTag"
-          autoPlay
-          playsInline
-          style={{
-            width: "960px",
-            height: "540px",
-          }}
-        ></video>
-      </TestVideoSection> */}
-      <button ref={testBtn}>화면공유</button>
     </DIV>
   );
 });
 
-const TestVideoSection = styled.div`
-  border: 1px solid red;
-  width: 100%;
-  height: 600px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-`;
-
 const DIV = styled.div`
-  width: 202;
-  ${flex("start", "center", false)}
+  ${flex("center", "center", false)}
   position: "relative";
   /* @media screen and (max-width: 1440px) {
     position: absolute;
@@ -571,8 +412,8 @@ const DIV = styled.div`
 `;
 
 const MemberWrap = styled.div`
-  max-width: 1050px;
-  ${flex}
+  display: flex;
+  border: 1px solid blue;
   .memberVideo {
     margin-right: 10px; //화상채팅간 영상간격
     width: 200px;
@@ -600,6 +441,7 @@ const MemberWrap = styled.div`
     align-items: center;
   }
   .videoBox {
+    flex-grow: 1;
     position: relative;
   }
   .myVideo {
@@ -613,8 +455,8 @@ const MemberWrap = styled.div`
     background-color: #c9998d;
     background: url(${BookingKorLogo}) no-repeat center;
     background-size: contain;
-    width: 200px;
-    height: 112px;
+    width: 100%;
+    height: 100%;
     z-index: 2;
     top: 0px;
   }
