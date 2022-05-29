@@ -15,6 +15,7 @@ import flex from "../../themes/flex";
 import BookingKorLogo from "../../assets/bookingkorlogo.png";
 import { cookies } from "../../shared/cookie";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Grid } from "@mui/material";
 =======
 >>>>>>> 4b0dd2a (test socket id)
@@ -24,6 +25,9 @@ import { Grid } from "@mui/material";
 =======
 // img
 import BookingKorLogo from "../../assets/bookingkorlogo.png";
+=======
+import { Grid } from "@mui/material";
+>>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
 
 >>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
 const Videoplayer = React.forwardRef((props, ref) => {
@@ -83,24 +87,12 @@ const Videoplayer = React.forwardRef((props, ref) => {
 =======
 >>>>>>> a44785b (test for video share)
   const [socket, setSocket] = useState(null);
-  const [sharedSocket, setSharedSocket] = useState(null);
 
   useEffect(() => {
     const socket = io("https://sparta-hs.shop/", {
       cors: { origin: "*" },
     });
-    const socket2 = io("https://sparta-hs.shop/", {
-      cors: { origin: "*" },
-    });
     setSocket(socket);
-    setSharedSocket(socket2);
-
-    const clickSharedScreen = () => {
-      const videoType = "SHARESCREEN";
-
-      socket2.emit("joinRoom", studyId, nickname, videoType);
-    };
-    testBtn.current.addEventListener("click", clickSharedScreen);
 
     //서버로부터 accept_join 받음
 <<<<<<< HEAD
@@ -198,6 +190,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       }
     );
 
+<<<<<<< HEAD
     socket2.on(
       "joinStudyRoom",
       async (userObjArr, socketIdformserver, videoType) => {
@@ -233,6 +226,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
     );
 >>>>>>> 9c67655 (is it done?)
 
+=======
+>>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
     socket.on("checkCurStatus", (object) => {
       checkEnterStatus.current = object;
     });
@@ -306,6 +301,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       peopleInRoom--;
       changeNumberOfUsers(`${peopleInRoom} / 10`);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       // for (let i = 0; i < peopleInRoom; i++) {
       //   if (peopleInRoom <= 4) {
@@ -315,6 +311,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
       //   }
       // }
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+>>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
     });
 
     //사용자의 stream 가져오는 함수
@@ -336,31 +334,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         setVideo(myStream.getVideoTracks());
       } catch (error) {
         console.log(error);
-      }
-    }
-
-    async function getShareScreenMedia() {
-      const initialConstraints = {
-        audio: true,
-        video: true,
-      };
-
-      try {
-        screenStream = await navigator.mediaDevices.getDisplayMedia(
-          initialConstraints
-        );
-        addVideoStream(myvideo.current, screenStream);
-        mystream.current.append(myvideo.current);
-        videoGrid.current.append(mystream.current);
-        setVideo(screenStream.getVideoTracks());
-        // myvideo.current.muted = true;
-        // setAudio(screenStream.getAudioTracks());
-        // const screenShare = document.getElementById("sharedScreenVideoTag");
-        // screenShare.srcObject = screenStream;
-        // makeConnection(socket2.id);
-        // socket2.emit("joinRoom", studyId, nickname);
-      } catch (err) {
-        console.log(err);
       }
     }
 
@@ -432,6 +405,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       peopleInRoom++;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       console.log(peopleInRoom);
 =======
@@ -460,6 +434,9 @@ const Videoplayer = React.forwardRef((props, ref) => {
 >>>>>>> aa4d761 (test(console.log): Video.js console.log test)
 =======
 >>>>>>> 6c62b75 (test webRTc shared screen)
+=======
+
+>>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
       changeNumberOfUsers(`${peopleInRoom} / 10`);
       return myPeerConnection;
     }
@@ -468,9 +445,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
       const peerStream = data.streams[0];
       if (data.track.kind === "video") {
         paintPeerFace(peerStream, remoteSocketId, remoteNickname);
-        if (screenStream) {
-          paintPeerShare(peerStream, remoteSocketId, remoteNickname);
-        }
       }
     }
 
@@ -491,47 +465,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
         div.appendChild(nickNameContainer);
         div.appendChild(video);
         video.className = "memberVideo";
-        peername.className = "nickName";
-        nickNameContainer.className = "nickNameContainer";
-        div.className = "videoBox";
-        videoGrid.appendChild(div);
-
-        // 입장시 현재인원들의 카메라 및 음소거 상태 확인
-        if (!checkEnterStatus.current[id]) {
-          return;
-        }
-        if (checkEnterStatus.current[id].screensaver) {
-          const screensaver = document.createElement("div");
-          screensaver.className = "screensaver";
-          div.appendChild(screensaver);
-        }
-        if (checkEnterStatus.current[id].muted) {
-          const muteIcon = document.createElement("div");
-          muteIcon.className = "muteIcon";
-          nickNameContainer.prepend(muteIcon);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    async function paintPeerShare(peerStream, id, remoteNickname) {
-      try {
-        const videoGrid = document.querySelector("#video-grid");
-        const video2 = document.createElement("video");
-        const nickNameContainer = document.createElement("div");
-        const peername = document.createElement("div");
-        const div = document.createElement("div");
-        div.id = id;
-        video2.autoplay = true;
-        video2.playsInline = true;
-        video2.srcObject = peerStream;
-        peername.innerText = `${remoteNickname}`;
-        peername.style.color = "white";
-        nickNameContainer.appendChild(peername);
-        div.appendChild(nickNameContainer);
-        div.appendChild(video2);
-        video2.className = "memberVideo";
         peername.className = "nickName";
         nickNameContainer.className = "nickNameContainer";
         div.className = "videoBox";
@@ -671,18 +604,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
 >>>>>>> 3dfbd8b (chore(webRTC): made function of shared screen section)
       }
     },
-
-    // handleAllMute: () => {
-    //   Audio.forEach((track) => (track.enabled = false));
-    //   const nickNameContainer = document.querySelector("#nickNameContainer");
-    //   if (muted === false) {
-    //     setMuted(true);
-    //     const muteIcon = document.createElement("div");
-    //     muteIcon.className = "muteIcon";
-    //     nickNameContainer.prepend(muteIcon);
-    //     socket.emit("mic_check", studyId, socketID, true);
-    //   }
-    // },
   }));
 
   return (
@@ -706,32 +627,12 @@ const Videoplayer = React.forwardRef((props, ref) => {
           ></div>
         </div>
       </MemberWrap>
-      {/* <TestVideoSection>
-        <video
-          id="sharedScreenVideoTag"
-          autoPlay
-          playsInline
-          style={{
-            width: "960px",
-            height: "540px",
-          }}
-        ></video>
-      </TestVideoSection> */}
-      <button ref={testBtn}>화면공유</button>
     </DIV>
   );
 });
 
-const TestVideoSection = styled.div`
-  border: 1px solid red;
-  width: 100%;
-  height: 600px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-`;
-
 const DIV = styled.div`
+<<<<<<< HEAD
 <<<<<<< HEAD
   /* ${flex("center", "center", false)} */
   position: "relative";
@@ -743,6 +644,9 @@ const DIV = styled.div`
 =======
   width: 202;
   ${flex("start", "center", false)}
+=======
+  ${flex("center", "center", false)}
+>>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
   position: "relative";
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
   /* @media screen and (max-width: 1440px) {
@@ -753,6 +657,7 @@ const DIV = styled.div`
 `;
 
 const MemberWrap = styled.div`
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   display: flex;
@@ -772,6 +677,10 @@ const MemberWrap = styled.div`
   max-width: 1050px;
   ${flex}
 >>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
+=======
+  display: flex;
+  border: 1px solid blue;
+>>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
   .memberVideo {
     margin-right: 10px; //화상채팅간 영상간격
     width: 200px;
@@ -805,6 +714,7 @@ const MemberWrap = styled.div`
   }
   .videoBox {
 <<<<<<< HEAD
+<<<<<<< HEAD
     display: block;
     flex-grow: 1;
     min-width: 200px;
@@ -815,6 +725,9 @@ const MemberWrap = styled.div`
   .myVideo {
     margin: auto;
 =======
+=======
+    flex-grow: 1;
+>>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
     position: relative;
   }
   .myVideo {
@@ -868,8 +781,8 @@ const MemberWrap = styled.div`
     background-color: #c9998d;
     background: url(${BookingKorLogo}) no-repeat center;
     background-size: contain;
-    width: 200px;
-    height: 112px;
+    width: 100%;
+    height: 100%;
     z-index: 2;
     top: 0px;
   }

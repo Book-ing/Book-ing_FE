@@ -255,7 +255,7 @@ const Room = (props) => {
             ref={childRef}
             meetingId={location.state.meetingId}
           ></Video>
-          <SharedVideoSection id="sharedScreenSection"></SharedVideoSection>
+          {/* <SharedVideoSection id="sharedScreenSection"></SharedVideoSection> */}
         </VideoWrap>
 
         <SoundBtn>
@@ -351,9 +351,9 @@ const DIV = styled.div`
 `;
 
 const VideoWrap = styled.div`
-  width: 80%;
+  width: 100%;
   height: 100%;
-  ${flex("evenly", "start", false)}
+  ${flex("center", "center", false)}
   position: relative;
   margin-top: 10px;
   box-sizing: border-box;
