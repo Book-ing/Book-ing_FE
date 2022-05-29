@@ -133,7 +133,7 @@ const Search = () => {
         </TagBottom>
       :
       <TagBottom>
-        <div style={{marginLeft: "185px", width:"1020px", height:"325px", marginTop: "100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
+        <div style={{marginLeft: "500px", width:"500px", height:"500px", marginTop: "100px", marginBottom:"100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
         </div>
       </TagBottom>
       }
@@ -182,7 +182,8 @@ const StInputName = styled(Eltext)`
 
 const TagBottom = styled.div`
   width: 1440px;
-  height: 1240px;
+  min-height: 800px;
+  max-height: 1240px;
   overflow: scroll;
   margin: auto;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { actionCreators as mypageActions } from "../redux/modules/mypage";
 
 // elements
-import { Eltext } from "../elements";
+import { Eltext, Elbutton } from "../elements";
 
 // style
 import styled from "styled-components";
@@ -25,8 +25,8 @@ const MyCrew = () => {
     (state) => state.mypage.joinedMyCrew.data.joinedMeeting
   );
 
-  console.log(__myCrew);
-  console.log(__joinedMyCrew);
+  // console.log(__myCrew);
+  console.log(JSON.stringify(__joinedMyCrew));
 
   useEffect(() => {
     dispatch(mypageActions.getCrewDB(userId));
@@ -46,12 +46,12 @@ const MyCrew = () => {
             <TitleText type="sub_1_bold">내가 만든 모임</TitleText>
             <MyCrewItem>
               {JSON.stringify(__myCrew) === undefined ? (
-                <>
+                <div style={{margin:"30px auto", textAlign:"center"}}>
                   <br />
                   <DataNull type="body_1_bold">
                     내가 만든 모임이 없습니다😋
                   </DataNull>
-                </>
+                </div>
               ) : (
                 <StCardBtn
                   onClick={() => {
@@ -66,7 +66,22 @@ const MyCrew = () => {
           <MyCrewBottomBox>
             <TitleText type="sub_1_bold">가입 된 모임</TitleText>
             <JoinedItem>
-              {__joinedMyCrew.map((cur, idx) => (
+              {JSON.stringify(__joinedMyCrew) === "[]" ? 
+              (
+                
+                  <div style={{margin:"150px auto", textAlign:"center"}}>
+                  <DataNull type="body_1_bold">
+                    내가 가입한 모임이 없습니다😋
+                  </DataNull>
+                  <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
+                  }}>
+                    모임 보러가기
+                  </GoSearchBtn>
+                  </div>
+                
+              )
+              :
+              (__joinedMyCrew.map((cur, idx) => (
                 <StCardBtn
                   key={idx}
                   onClick={() => {
@@ -75,7 +90,8 @@ const MyCrew = () => {
                 >
                   <MypageCard {...cur} key={idx} />
                 </StCardBtn>
-              ))}
+              )))
+            }
             </JoinedItem>
           </MyCrewBottomBox>
         </MyCrewBox>
@@ -100,9 +116,9 @@ const MyCrewBox = styled.div`
 
 const DataNull = styled(Eltext)`
   color: var(--gray);
-  text-align: center;
+  /* text-align: center; */
   padding: 20px 0;
-  margin: auto;
+  /* margin: auto; */
 `;
 
 const TitleText = styled(Eltext)`
@@ -119,7 +135,7 @@ const MyCrewTopBox = styled.div`
 `;
 
 const MyCrewItem = styled.div`
-  width: 100%;
+  width: 890px;
 `;
 
 const MyCrewBottomBox = styled.div`
@@ -128,12 +144,18 @@ const MyCrewBottomBox = styled.div`
 `;
 
 const JoinedItem = styled.div`
-  ${hiddenScroll};
   width: 890px;
-  height: 790px;
-  overflow-y: scroll;
+  max-height: 790px;
+  overflow-y: auto;
 `;
 
 const StCardBtn = styled.button`
   text-align: left;
+`;
+
+const GoSearchBtn = styled(Elbutton)`
+  width: 147px;
+  height: 35px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 `;

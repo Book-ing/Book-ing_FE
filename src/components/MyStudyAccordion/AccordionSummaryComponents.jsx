@@ -26,6 +26,7 @@ import StudyUserListModal from "../Modal/UserListModal/StudyUserListModal";
 // theme
 import flex from "../../themes/flex";
 import ModalStudy from "../Modal/ModalStudy";
+import { useHistory } from "react-router-dom";
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
@@ -52,6 +53,7 @@ const AccordionSummary = styled((props) => (
 
 const AccordionSummaryComponent = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
@@ -107,8 +109,8 @@ const AccordionSummaryComponent = (props) => {
       // id="panel1d-header"
       ></AccordionSummary>
       <AccordionHeaderWrap>
-        {props.isJoinedCrew === true &&
-        props.props.studyMasterProfile.userId ===
+        {/* {props.isJoinedCrew === true && */}
+        {props.props.studyMasterProfile.userId ===
           parseInt(localStorage.getItem("userId")) ? (
           <MenuBtn onClick={handleClick}>
             <LinearScaleIcon sx={{ fontSize: 35 }} />
@@ -153,16 +155,37 @@ const AccordionSummaryComponent = (props) => {
 
         <Grid container>
           <CrewInfo>
-            <TitleText type="sub_2_bold">
-              스터디명 :{props.props.studyTitle}
-            </TitleText>
-            <InfoText type="sub_2">금액 : {props.props.studyPrice}원</InfoText>
+          <div title={props.props.studyTitle}>
+              <TitleText type="sub_2_bold">
+              {props.props.studyType === "online" ? (
+                <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
+              ) : (
+                <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
+              )}
+            <TitleSection>
+                스터디명 : {props.props.studyTitle}
+            </TitleSection>
+              </TitleText>
+            </div>
+            {props.props.studyType === "online" ? null : (
+              <InfoText type="sub_2">
+                금액 : {props.props.studyPrice}원
+              </InfoText>
+            )}
             <InfoText type="sub_2">
               일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
             </InfoText>
+
+            {props.props.studyType === "online" ? null : (
             <InfoText type="sub_2">
-              위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
+              <div title={props.props.studyAddr + "," + props.props.studyAddrDetail}>
+                <LocationSection>
+                  위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
+                </LocationSection>
+              </div>
             </InfoText>
+            )}
+
           </CrewInfo>
         </Grid>
 
@@ -213,6 +236,18 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
+        {props.props.studyType === "online" ? (
+            <JoinOnlineStudyRoom
+              onClick={() => {
+                history.push({
+                  pathname: `/room/${studyId}`,
+                  state: { meetingId: __crewId },
+                });
+              }}
+            >
+              온라인 스터디룸 입장
+            </JoinOnlineStudyRoom>
+          ) : null}
           {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
@@ -234,6 +269,8 @@ export default AccordionSummaryComponent;
 
 const AccordionSummaryWrap = styledComp.div`
   ${flex}
+  width:900px;
+  height:130px;
   background-color: #fbf9f9;
   padding: 10px 0;
 `;
@@ -258,9 +295,10 @@ const MoreBtns = styledComp(Elbutton)`
 
 const AccordionHeaderWrap = styledComp.div`
   position: relative;
+  display:inline-block;
   ${flex("between", "center")}
-  width: 100%;
-
+  width: 800px;
+  
   @media screen and (max-width: 1260px) {
     ${flex("start", "center", false)}
   }
@@ -292,7 +330,22 @@ const CrewInfo = styledComp.div`
 
 const TitleText = styledComp(Eltext)``;
 
+const TitleSection = styledComp.div`
+// border: 1px solid black;
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 const InfoText = styledComp(Eltext)``;
+
+const LocationSection = styledComp.div`
+  width: 390px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 
 const MemberSection = styledComp.div`
   ${flex}
@@ -331,6 +384,13 @@ const TotalMember = styledComp(Eltext)`
   color: var(--point);
 `;
 
+const JoinOnlineStudyRoom = styledComp(Elbutton)`
+  width: 160px;
+  height: 30px;
+  margin-right: 20px;
+  border-radius: 5px;
+`;
+
 const JoinBtn = styledComp(Elbutton)`
   width: 96px;
   height: 30px;
@@ -360,4 +420,20 @@ const ModalCloseBtn = styledComp.button`
   position: absolute;
   right: 160px;
   top: 30px;
+`;
+
+const StudyTypeOnlineTag = styledComp(Eltext)`
+  ${flex}
+  width: 80px;
+  border-radius: 4px;
+  background-color: #c9998d;
+  color: white;
+`;
+
+const StudyTypeOfflineTag = styledComp(Eltext)`
+  ${flex}
+  width: 80px;
+  border-radius: 4px;
+  background-color: #839893;
+  color: white;
 `;

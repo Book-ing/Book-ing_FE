@@ -24,13 +24,13 @@ return (
         
         
       <StudyTypeOnlineTag type="sub_2_bold">온라인</StudyTypeOnlineTag>
-
+      
           <Eltext type="sub_2_bold">
+          <div title={props.studyTitle}>
             <StStudyTitleBox>
-            
               스터디명 : {props.studyTitle}
-            
             </StStudyTitleBox>
+          </div>
           </Eltext>
           <Eltext type="body_5">
             일 시 : {props.studyDateTime}
@@ -48,7 +48,10 @@ return (
           </Elchip>
             </Eltext>
 
-          <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push(`/crew/${props.meetingId}`)}}>
+          <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push({
+           pathname: `/crew/${props.meetingId}`,
+           search : `?study=${props.studyId}`
+          })}}>
             <div style={{fontSize:"16px", fontWeight:"600"}}>
             바로가기
             </div>
@@ -63,23 +66,28 @@ return (
               
               <StOfflineStudyListBox>
                 <StOfflineStudyInfoBox>
-
+           
                 <StudyTypeOfflineTag type="sub_2_bold">오프라인</StudyTypeOfflineTag>
+             
                   <Eltext type="sub_2_bold">
-                    <StStudyTitleBox>
-                      스터디명 : {props.studyTitle}
-                    </StStudyTitleBox>
+                    <div title= {props.studyTitle}> 
+                      <StStudyTitleBox>
+                        스터디명 : {props.studyTitle}
+                      </StStudyTitleBox>
+                    </div>  
                   </Eltext>
 
-                <div style={{height:"50px", marginTop:"-3px"}}>
+                <div style={{height:"50px", marginTop:"-4px"}}>
                   <Eltext type="body_5">
                     금 액 : {props.studyPrice}
                     <br />일 시 : {props.studyDateTime}
                   </Eltext>
 
                   <Eltext type="body_5">
-                    <div style={{width:"320px", overflow:"hidden",textOverflow:"ellipsis", whiteSpace:"nowrap"}}>
-                      위 치 : {props.studyAddr}
+                    <div title={props.studyAddr}>
+                      <StLocationText>
+                        위 치 : {props.studyAddr}
+                      </StLocationText>
                     </div>
                   </Eltext>
                   </div>
@@ -95,7 +103,10 @@ return (
                   </Elchip>
                     </Eltext>
 
-                  <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push(`/crew/${props.meetingId}`)}}>
+                  <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push({
+                    pathname: `/crew/${props.meetingId}`,
+                    search : `?study=${props.studyId}`
+                    })}}>
                     <div style={{fontSize:"16px", fontWeight:"600"}}>
                     바로가기
                     </div>
@@ -136,6 +147,9 @@ const StStudyTitleBox = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* &:hover {
+    overflow: visible;
+  } */
 `
 
 const StOnlineStudyBtnsBox = styled.div`
@@ -161,6 +175,7 @@ const StOfflineStudyListBox = styled.div`
   width: 535px;
   height: 100px;
   margin-left: 77px;
+  padding-top: 2px;
   /* border: 1px solid black; */
 `
 const StOfflineStudyInfoBox = styled.div`
@@ -184,10 +199,21 @@ const StOfflineStudyBtnsBox = styled.div`
   margin-top: 30px;
 `
 
+const StLocationText = styled.div`
+  width:320px;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  margin-top: -1px;
+  /* &:hover {
+    overflow: visible;
+  } */
+`
+
 const StudyTypeOfflineTag = styled(Eltext)`
   ${flex}
   width: 80px;
-  /* padding-bottom: 2px; */
+  padding-bottom: 2px;
   height: 20px;
   border-radius: 4px;
   background-color: #839893;

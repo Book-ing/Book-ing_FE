@@ -36,7 +36,9 @@ const MyCrewCard = (myCrewInfo) => {
               
                 <Elcategory 
                 shape={info.meetingCategory} color="white" width="85px" height="25px">
+                  <div style={{paddingBottom:"2px"}}>
                   {info.meetingCategory}
+                  </div>
                 </Elcategory>
              
               </TagGrid>

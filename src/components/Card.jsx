@@ -33,7 +33,9 @@ const Cards = (props) => {
 
                 <Elcategory 
                 shape={props.meetingCategory} color="white" width="85px" height="25px">
+                  <div style={{paddingBottom:"2px"}}>
                   {props.meetingCategory}
+                  </div>
                 </Elcategory>
 
               </TagGrid>

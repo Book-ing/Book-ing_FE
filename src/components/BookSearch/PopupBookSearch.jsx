@@ -31,6 +31,7 @@ const PopupBookSearch = (props) => {
       })
       .catch((err) => console.error(err));
   };
+  console.log(searchBookList);
 
   return (
     <React.Fragment>
@@ -58,8 +59,8 @@ const PopupBookSearch = (props) => {
               imgURL={book.thumbnail}
               name={book.title}
               price={book.price}
-              writer={"지은이 : " + book.authors.join(", ")}
-              publisher={"출판사 : " + book.publisher}
+              writer={book.authors.join(", ")}
+              publisher={book.publisher}
               salePrice={book.sale_price}
               desc={book.contents + "..."}
               popupClose={props.onClose}

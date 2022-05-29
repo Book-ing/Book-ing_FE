@@ -28,7 +28,7 @@ const ModalStudy = (props) => {
   // console.log(params.meetingId);
 
   const postInfo = useSelector((state) => state.postcode);
-  // console.log(postInfo)
+
 
   // react datepicker 상태관리
   const [startDate, setStartDate] = useState(new Date());
@@ -111,7 +111,7 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    console.log(newStudyInfo);
+    // console.log(newStudyInfo);
     dispatch(studyActions.addStudyDB(newStudyInfo));
   };
 
@@ -134,7 +134,7 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    console.log(editStudyInfo);
+    // console.log(editStudyInfo);
     dispatch(studyActions.editStudyDB(editStudyInfo));
   };
 
@@ -158,7 +158,7 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    console.log(newOnlineStudyInfo);
+    // console.log(newOnlineStudyInfo);
     dispatch(studyActions.addOnlineStudyDB(newOnlineStudyInfo));
   };
 
@@ -180,6 +180,8 @@ const ModalStudy = (props) => {
     };
     dispatch(studyActions.editOnlineStudyInfoDB(editOnlineStudyInfo));
   };
+
+  // console.log(props);
 
   return (
     <React.Fragment>
@@ -303,16 +305,16 @@ const ModalStudy = (props) => {
                         width: "480px",
                         height: "108px",
                         marginTop: "8px",
-                        display: "flex",
+                        display: "flex",   
                       }}
                     >
+                      
                       <div
                         className="책 프리뷰이미지"
                         style={{
                           width: "73px",
                           height: "107px",
-                          // border: "1px solid black",
-                          backgroundImage: `url(${bookInfo.imgURL})`,
+                          backgroundImage: `url(${props.studyInfo.studyBookImg})`,
                           backgroundSize: "contain",
                         }}
                       ></div>
@@ -320,20 +322,22 @@ const ModalStudy = (props) => {
                       <div
                         className="책 정보 소개"
                         style={{
-                          width: "391px",
+                          width: "395px",
                           height: "108px",
                           marginLeft: "13px",
                           // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                           overflow: "scroll",
+                          overflowX:"hidden"
                         }}
                       >
                         <div style={{ fontWeight: "bold" }}>
-                          {bookInfo.name}
+                          {props.studyInfo.studyBookTitle}
                         </div>
-                        <div>{bookInfo.writer}</div>
-                        <div>{bookInfo.publisher}</div>
-                        <div>{bookInfo.desc}</div>
+                        <div>지은이 : {props.studyInfo.studyBookWriter}</div>
+                        <div>출판사 : {props.studyInfo.studyBookPublisher}</div>
+                        <div>소개 : {props.studyInfo.studyBookInfo}...</div>
                       </div>
+                      
                     </div>
                   </Eltext>
                 </div>
@@ -362,7 +366,7 @@ const ModalStudy = (props) => {
               </div>
             </form>
           ) : props.isEdit === true ? (
-            // 수정상태일때의 모달창
+            // 수정상태일때의 오프라인 모달창
             <form onSubmit={editStudyInfoDB}>
               <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
 
@@ -475,8 +479,9 @@ const ModalStudy = (props) => {
                       float="left"
                       name="postCode"
                       // id="postCode"
-                      placeholder={postInfo.zonecode}
+                      placeholder={postInfo.zoneCode}
                       onChange={onChangeInputHandler}
+                      onClick={openPostCode}
                     />
 
                     {/* 버튼 클릭 시 팝업 생성 */}
@@ -500,6 +505,7 @@ const ModalStudy = (props) => {
                       // id="roadAddress"
                       placeholder={postInfo.roadAdd}
                       onChange={onChangeInputHandler}
+                      onClick={openPostCode}
                     />
 
                     <StInput
@@ -509,6 +515,7 @@ const ModalStudy = (props) => {
                       name="jibunAdd"
                       placeholder={postInfo.jibunAdd}
                       onChange={onChangeInputHandler}
+                      onClick={openPostCode}
                     />
 
                     <StInput
@@ -558,8 +565,7 @@ const ModalStudy = (props) => {
                         style={{
                           width: "73px",
                           height: "107px",
-                          // border: "1px solid black",
-                          backgroundImage: `url(${bookInfo.imgURL})`,
+                          backgroundImage: `url(${props.studyInfo.studyBookImg})`,
                           backgroundSize: "contain",
                         }}
                       ></div>
@@ -567,20 +573,22 @@ const ModalStudy = (props) => {
                       <div
                         className="책 정보 소개"
                         style={{
-                          width: "391px",
+                          width: "395px",
                           height: "108px",
                           marginLeft: "13px",
-                          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                          // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                           overflow: "scroll",
+                          overflowX:"hidden"
                         }}
                       >
                         <div style={{ fontWeight: "bold" }}>
-                          {bookInfo.name}
+                          {props.studyInfo.studyBookTitle}
                         </div>
-                        <div>{bookInfo.writer}</div>
-                        <div>{bookInfo.publisher}</div>
-                        <div>{bookInfo.desc}</div>
+                        <div>지은이 : {props.studyInfo.studyBookWriter}</div>
+                        <div>출판사 : {props.studyInfo.studyBookPublisher}</div>
+                        <div>소개 : {props.studyInfo.studyBookInfo}...</div>
                       </div>
+
                     </div>
                   </Eltext>
                 </div>
@@ -763,13 +771,14 @@ const ModalStudy = (props) => {
                         marginTop: "8px",
                         display: "flex",
                       }}
-                    >
+                    > 
+                      {bookInfo.name === "" ? <></> : (
+                        <>
                       <div
                         className="책 프리뷰이미지"
                         style={{
                           width: "73px",
                           height: "107px",
-                          // border: "1px solid black",
                           backgroundImage: `url(${bookInfo.imgURL})`,
                           backgroundSize: "contain",
                         }}
@@ -778,20 +787,22 @@ const ModalStudy = (props) => {
                       <div
                         className="책 정보 소개"
                         style={{
-                          width: "391px",
+                          width: "395px",
                           height: "108px",
                           marginLeft: "13px",
                           // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                           overflow: "scroll",
+                          overflowX:"hidden"
                         }}
                       >
                         <div style={{ fontWeight: "bold" }}>
                           {bookInfo.name}
                         </div>
-                        <div>{bookInfo.writer}</div>
-                        <div>{bookInfo.publisher}</div>
-                        <div>{bookInfo.desc}</div>
+                        <div>지은이 : {bookInfo.writer}</div>
+                        <div>출판사 : {bookInfo.publisher}</div>
+                        <div>소개 : {bookInfo.desc}...</div>
                       </div>
+                      </>)}
                     </div>
                   </Eltext>
                 </div>
@@ -958,8 +969,9 @@ const ModalStudy = (props) => {
                       float="left"
                       name="postCode"
                       // id="postCode"
-                      placeholder={postInfo.zonecode}
+                      placeholder={postInfo.zoneCode}
                       onChange={onChangeInputHandler}
+                      onClick={openPostCode}
                     />
 
                     {/* 버튼 클릭 시 팝업 생성 */}
@@ -983,6 +995,7 @@ const ModalStudy = (props) => {
                       // id="roadAddress"
                       placeholder={postInfo.roadAdd}
                       onChange={onChangeInputHandler}
+                      onClick={openPostCode}
                     />
 
                     <StInput
@@ -992,13 +1005,14 @@ const ModalStudy = (props) => {
                       name="jibunAdd"
                       placeholder={postInfo.jibunAdd}
                       onChange={onChangeInputHandler}
+                      onClick={openPostCode}
                     />
 
                     <StInput
                       width="470px"
                       marginTop="6px"
                       name="addDetail"
-                      placeholder="건물명 등 상세주소를 입력해주세요."
+                      placeholder="건물명 등 상세주소를 직접 입력해주세요!"
                       onChange={onChangeInputHandler}
                       required
                     />
@@ -1036,12 +1050,13 @@ const ModalStudy = (props) => {
                         display: "flex",
                       }}
                     >
+                      {bookInfo.name === "" ? <></> : (
+                        <>
                       <div
                         className="책 프리뷰이미지"
                         style={{
                           width: "73px",
                           height: "107px",
-                          // border: "1px solid black",
                           backgroundImage: `url(${bookInfo.imgURL})`,
                           backgroundSize: "contain",
                         }}
@@ -1050,20 +1065,22 @@ const ModalStudy = (props) => {
                       <div
                         className="책 정보 소개"
                         style={{
-                          width: "391px",
+                          width: "395px",
                           height: "108px",
                           marginLeft: "13px",
                           // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                           overflow: "scroll",
+                          overflowX:"hidden"
                         }}
                       >
                         <div style={{ fontWeight: "bold" }}>
                           {bookInfo.name}
                         </div>
-                        <div>{bookInfo.writer}</div>
-                        <div>{bookInfo.publisher}</div>
-                        <div>{bookInfo.desc}</div>
+                        <div>지은이 : {bookInfo.writer}</div>
+                        <div>출판사 : {bookInfo.publisher}</div>
+                        <div>소개 : {bookInfo.desc}...</div>
                       </div>
+                      </>)}
                     </div>
                   </Eltext>
                 </div>

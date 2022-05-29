@@ -94,6 +94,7 @@ const MyStudyAccordions = (props) => {
         {__accordionData.length ? (
           __accordionData.map((cur, idx) => {
             return (
+              
               <Accordion
                 expanded={expanded === __accordionData[idx].studyId}
                 onChange={handleChange(__accordionData[idx].studyId)}
@@ -109,6 +110,7 @@ const MyStudyAccordions = (props) => {
                   isJoinedCrew={__isJoinedCrew}
                 />
               </Accordion>
+              
             );
           })
         ) : (
@@ -135,6 +137,7 @@ const StudyNoneNotice = styledComp(Eltext)`
   height: 450px;
   line-height: 50px;
   margin: auto;
+  border: 5px solid black;
   color: var(--gray);
 `;
 

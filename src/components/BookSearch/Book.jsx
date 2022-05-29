@@ -16,7 +16,7 @@ const Book = ({ imgURL="", name='도서명', desc='도서 설명', writer='작�
                 <BookInfo>
                     <BookName>{ name }</BookName>
                     <BookDesc>{ desc }...</BookDesc>
-                    <span>{writer} | {publisher}</span>
+                    <span>지은이: {writer} | 출판사: {publisher}</span>
                     <div> 가격:{price}원</div>
                     <StBtn onClick={ () => {dispatch(postBook({imgURL, name, desc,writer, publisher})); popupClose();}}>선택하기</StBtn>
                 </BookInfo>

@@ -60,13 +60,15 @@ const AccordionDetailsComponent = (props) => {
           </StudyNoticeText>
         </Grid>
 
-        <Grid item xs={6}>
-          <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
-          {/* Markered 지도 삽입 */}
-          <KAKAOMAPSECTION style={{ marginTop: "20px" }}>
-            <Location props={props.props} />
-          </KAKAOMAPSECTION>
-        </Grid>
+        {props.props.studyType === "online" ? null : (
+          <Grid item xs={6}>
+            <StudysectionTag type="sub_2_bold">위치</StudysectionTag>
+            {/* Markered 지도 삽입 */}
+            <KAKAOMAPSECTION style={{ marginTop: "20px" }}>
+              <Location props={props.props} />
+            </KAKAOMAPSECTION>
+          </Grid>
+        )}
       </Grid>
 
       {/* NoteSection */}
@@ -77,12 +79,13 @@ const AccordionDetailsComponent = (props) => {
         alignItems="flex-start"
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
+        
         <NoteSection>
-          {props.isJoinedCrew === true ? (
+          {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
               <LinearScaleIcon sx={{ fontSize: 35 }} />
             </MenuBtn>
-          ) : null}
+          )}
 
           <Popover
             id={id}
@@ -104,13 +107,17 @@ const AccordionDetailsComponent = (props) => {
             }}
           >
             <Box sx={styles}>
-              <MoreBtns onClick={() => {
-                        history.push({
-                          pathname: "/notewrites",
-                          state: { bookInfo: props,
-                                  meetingId: params },
-                        });
-                      }} shape="brown-outline">스터디 노트 수정</MoreBtns>
+              <MoreBtns 
+                onClick={() => {
+                  history.push({
+                    pathname: "/notewrites",
+                    state: { bookInfo: props, meetingId: params },
+                  });
+                }} 
+                shape="brown-outline"
+              >
+                스터디 노트 수정
+              </MoreBtns>
             </Box>
           </Popover>
 
@@ -140,15 +147,13 @@ const AccordionDetailsComponent = (props) => {
                   책 제목 : {props.props.studyBookTitle}
                 </Eltext>
                 <Eltext type="sub_2">
-                  지은이 : {props.props.studyBookwriter}
+                  지은이 : {props.props.studyBookWriter}
                 </Eltext>
                 <Eltext type="sub_2">
                   출판사 : {props.props.studyBookPublisher}
                 </Eltext>
                 <Eltext type="sub_2">
-                  책 소개 :
-                  <br />
-                  {props.props.studyBookInfo}...
+                  책 소개 :  {props.props.studyBookInfo}...
                 </Eltext>
               </Grid>
             </Grid>
@@ -158,8 +163,8 @@ const AccordionDetailsComponent = (props) => {
                 
                 {props.props.studyNote === undefined ? (
         
-                  btnStatus === "A"
-                      ? (studyMasterId === userId ? 
+                  btnStatus === "A" ? (
+                    studyMasterId === userId ? (
                         <Grid
                           container
                           direction="column"
@@ -171,32 +176,64 @@ const AccordionDetailsComponent = (props) => {
                           }}
                         >
                           <NoneNoteText type="sub_2">
-                            스터디 노트가 작성되지 않았습니다.
+                            <div style={{textAlign:"center"}}>
+                            스터디 노트📖가 작성되지 않았습니다.
+                              <br /> 
+                            스터디 시작 일시로부터 24시간 이내에 작성해주세요🙂✏️
+                            </div>
                           </NoneNoteText>
                           <CreateStudyNote
                             shape="brown-outline"
                             onClick={() => {
                               history.push({
                                 pathname: "/notewrites",
-                                state: { bookInfo: props,
-                                        meetingId: params },
+                                state: { bookInfo: props, meetingId: params },
                               });
                             }}
                           >
                             작성하기
                           </CreateStudyNote>
                         </Grid>
-                        :
-                        <NoneNoteText type="sub_2">
-                          <p>스터디 노트가 작성되지 않았습니다.</p>
-                          <p>스터디장은 24시간 이내에 노트를 작성할 수 있습니다.</p>
-                        </NoneNoteText>
+                      ) : (
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          textAlign="center"
+                          sx={{
+                            width: "100%",
+                            minHeight: "200px",
+                          }}
+                        >
+                          <NoneNoteText type="sub_2">
+                            <div style={{textAlign:"center"}}>
+                              스터디 노트📖가 작성되지 않았습니다.
+                                <br />
+                              노트는 스터디장만 작성할 수 있습니다🔒
+                            </div>   
+                          </NoneNoteText>
+                        </Grid>
                         )
-                      : 
-                      <div>
-                        <p>스터디 시간으로부터 24시간이지나 노트 작성이 불가능합니다.</p>
+                ) : (
+                  <Grid
+                      container
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="center"
+                      sx={{
+                        width: "100%",
+                        minHeight: "200px",
+                      }}
+                    >
+                      <NoneNoteText type="sub_2">
+                      <div style={{textAlign:"center"}}>
+                        스터디 시작 일시로부터 24시간이지나 노트 작성이
+                        불가능합니다😢
                       </div>
-                    
+                      </NoneNoteText>
+                    </Grid>
+                  )
                 ) : (
                   <Eltext type="head_1">
                     <Viewer initialValue={props.props.studyNote} />

@@ -116,9 +116,9 @@ const MyJoinedAccordions = (props) => {
             내가 참여한 스터디가 없습니다.
             <br /> 스터디에 참가하러 가 볼까요?
             <br />
-            <GoSearchBtn shape="brown-outline" onClick={() => {mainActions.getSearchCrew("", dispatch, history)
+            <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
             }}>
-              스터디 찾아보기
+              모임 찾아보기
             </GoSearchBtn>
           </StudyNoneNotice>
         )}
