@@ -69,33 +69,33 @@ const Room = (props) => {
             <Btn onClick={setSound}>
               {soundOn ? (
                 <>
-                  <BsFillMicFill />
+                  <BsFillMicMuteFill style={{ color: "#A0001A" }} />
                 </>
               ) : (
                 <>
-                  <BsFillMicMuteFill style={{ color: "#A0001A" }} />
+                  <BsFillMicFill />
                 </>
               )}
             </Btn>
             <Btn onClick={setVideo}>
               {videoOn ? (
                 <>
-                  <BsFillCameraVideoFill />
+                  <BsFillCameraVideoOffFill style={{ color: "#A0001A" }} />
                 </>
               ) : (
                 <>
-                  <BsFillCameraVideoOffFill style={{ color: "#A0001A" }} />
+                  <BsFillCameraVideoFill />
                 </>
               )}
             </Btn>
             <Btn onClick={setShareScreen}>
               {shared ? (
                 <>
-                  <MdStopScreenShare style={{ color: "#A0001A" }} />
+                  <MdScreenShare />
                 </>
               ) : (
                 <>
-                  <MdScreenShare />
+                  <MdStopScreenShare style={{ color: "#A0001A" }} />
                 </>
               )}
             </Btn>
