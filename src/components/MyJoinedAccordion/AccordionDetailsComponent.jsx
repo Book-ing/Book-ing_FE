@@ -83,11 +83,11 @@ const AccordionDetailsComponent = (props) => {
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
         <NoteSection>
-          {props.isJoinedCrew === true ? (
+          {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
               <FaEllipsisH />
             </MenuBtn>
-          ) : null}
+          )}
 
           <Popover
             id={id}

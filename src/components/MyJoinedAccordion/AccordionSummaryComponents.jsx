@@ -57,7 +57,7 @@ const AccordionSummaryComponent = (props) => {
   const history = useHistory();
   // console.log(props);
   // Redux Store
-  const __crewId = useSelector((state) => state.crew.crewData.meetingId);
+  const __crewId = props.props.meetingId;
   const loginId = localStorage.getItem("userId");
 
   // console.log(props.checkState);
@@ -251,7 +251,7 @@ const AccordionSummaryComponent = (props) => {
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: props.props.meetingId },
+                  state: { meetingId: __crewId },
                 });
               }}
             >
