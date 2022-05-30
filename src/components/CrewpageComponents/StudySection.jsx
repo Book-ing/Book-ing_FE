@@ -23,10 +23,14 @@ const StudySection = (props) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   console.log();
 =======
   console.log()
 >>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
+=======
+  console.log();
+>>>>>>> cf95201 (chore(crewpage): change button in accordiondetail & add og image)
   const dispatch = useDispatch();
 =======
 >>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
@@ -100,10 +104,14 @@ const StudySection = (props) => {
       </StudySectionBox>
       <AccordionSection>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <CustomAccordions
 =======
         <CustomAccordions 
 >>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
+=======
+        <CustomAccordions
+>>>>>>> cf95201 (chore(crewpage): change button in accordiondetail & add og image)
           isJoinedCrew={__isJoinedCrew}
           meetingLimitCnt={props.crewInfo.meetingLimitCnt}
         ></CustomAccordions>
@@ -158,9 +166,12 @@ const StudysectionSearchInput = styled.input`
 const StudySectionBoxRight = styled.div``;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 04777ba (page(Main): 작업 완료 후 커밋)
+=======
+>>>>>>> cf95201 (chore(crewpage): change button in accordiondetail & add og image)
 const AccordionSection = styled.div`
   width: 90%;
   margin: auto;

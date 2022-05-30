@@ -16,6 +16,9 @@ import { Box, Popover } from "@mui/material";
 import styledComp from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
 
+// react-icons
+import { FaEllipsisH } from "react-icons/fa";
+
 // theme
 import flex from "../../themes/flex";
 import Location from "../Location";
@@ -64,9 +67,13 @@ const AccordionDetailsComponent = (props) => {
   const btnStatus = props.props.studyStatus;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
 =======
   console.log(props)
+=======
+  console.log(props);
+>>>>>>> cf95201 (chore(crewpage): change button in accordiondetail & add og image)
 
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
   return (
@@ -99,15 +106,15 @@ const AccordionDetailsComponent = (props) => {
         alignItems="flex-start"
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
-        
+
         <NoteSection>
-          {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
+          {studyMasterId !== userId ||
+          props.props.studyNote === undefined ? null : (
             <MenuBtn onClick={handleClick}>
-              <LinearScaleIcon sx={{ fontSize: 35 }} />
+              <FaEllipsisH />
             </MenuBtn>
           )}
 
-         
           <Popover
             id={id}
             open={open}
@@ -163,6 +170,7 @@ const AccordionDetailsComponent = (props) => {
                   src={props.props.studyBookImg}
                 />
               </Grid>
+<<<<<<< HEAD
               {props.props.studyBookTitle === "" ?
                <NoneNoteText type="sub_2">
                 <div style={{textAlign:"center", marginTop:"100px", marginLeft:"165px"}}>
@@ -189,6 +197,36 @@ const AccordionDetailsComponent = (props) => {
                   책 소개 :  {props.props.studyBookInfo}...
                 </Eltext>
               </Grid>)}
+=======
+              {props.props.studyBookTitle === "" ? (
+                <NoneNoteText type="sub_2">
+                  <div
+                    style={{
+                      textAlign: "center",
+                      marginTop: "100px",
+                      marginLeft: "165px",
+                    }}
+                  >
+                    해당 스터디에는 모임장이 등록한 책 정보가 없습니다😢
+                  </div>
+                </NoneNoteText>
+              ) : (
+                <Grid item xs style={{ marginLeft: "40px" }}>
+                  <Eltext type="sub_2_bold">
+                    책 제목 : {props.props.studyBookTitle}
+                  </Eltext>
+                  <Eltext type="sub_2">
+                    지은이 : {props.props.studyBookWriter}
+                  </Eltext>
+                  <Eltext type="sub_2">
+                    출판사 : {props.props.studyBookPublisher}
+                  </Eltext>
+                  <Eltext type="sub_2">
+                    책 소개 : {props.props.studyBookInfo}...
+                  </Eltext>
+                </Grid>
+              )}
+>>>>>>> cf95201 (chore(crewpage): change button in accordiondetail & add og image)
             </Grid>
             <Grid>
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
@@ -231,10 +269,11 @@ const AccordionDetailsComponent = (props) => {
                         }}
                       >
                         <NoneNoteText type="sub_2">
-                          <div style={{textAlign:"center"}}>
+                          <div style={{ textAlign: "center" }}>
                             스터디 노트📖가 작성되지 않았습니다.
-                              <br />
-                            스터디 시작 일시로부터 24시간 이내에 작성해주세요🙂✏️
+                            <br />
+                            스터디 시작 일시로부터 24시간 이내에
+                            작성해주세요🙂✏️
                           </div>
                         </NoneNoteText>
 <<<<<<< HEAD
@@ -283,11 +322,11 @@ const AccordionDetailsComponent = (props) => {
                         }}
                       >
                         <NoneNoteText type="sub_2">
-                        <div style={{textAlign:"center"}}>
-                          스터디 노트📖가 작성되지 않았습니다.
-                          <br />
-                          노트는 스터디장만 작성할 수 있습니다🔒
-                        </div>
+                          <div style={{ textAlign: "center" }}>
+                            스터디 노트📖가 작성되지 않았습니다.
+                            <br />
+                            노트는 스터디장만 작성할 수 있습니다🔒
+                          </div>
                         </NoneNoteText>
 <<<<<<< HEAD
                         </Grid>
@@ -307,10 +346,10 @@ const AccordionDetailsComponent = (props) => {
                       }}
                     >
                       <NoneNoteText type="sub_2">
-                      <div style={{textAlign:"center"}}>
-                        스터디 시작 일시로부터 24시간이지나 노트 작성이
-                        불가능합니다😢
-                      </div>
+                        <div style={{ textAlign: "center" }}>
+                          스터디 시작 일시로부터 24시간이지나 노트 작성이
+                          불가능합니다😢
+                        </div>
                       </NoneNoteText>
                     </Grid>
                   )
@@ -389,6 +428,7 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 10px;
   color: var(--point);
+  font-size: 35px;
 
   &:hover {
     color: var(--notice)
