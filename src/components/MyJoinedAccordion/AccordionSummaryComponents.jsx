@@ -71,7 +71,7 @@ const AccordionSummaryComponent = (props) => {
   const clickInOutStudyBtn = () => {
     props.setCheckState(!props.checkState);
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
-    dispatch(mypageActions.getJoinedStudyDB());
+    // dispatch(mypageActions.getJoinedStudyDB());
     const status = false;
     history.push({
       pathname:"/mypage",
@@ -251,7 +251,7 @@ const AccordionSummaryComponent = (props) => {
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: __crewId },
+                  state: { meetingId: props.props.meetingId },
                 });
               }}
             >
