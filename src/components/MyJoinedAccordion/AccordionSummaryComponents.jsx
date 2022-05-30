@@ -71,7 +71,6 @@ const AccordionSummaryComponent = (props) => {
   const clickInOutStudyBtn = () => {
     props.setCheckState(!props.checkState);
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
-    // dispatch(mypageActions.getJoinedStudyDB());
     const status = false;
     history.push({
       pathname:"/mypage",

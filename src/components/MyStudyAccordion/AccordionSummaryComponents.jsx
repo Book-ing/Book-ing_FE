@@ -71,9 +71,9 @@ const AccordionSummaryComponent = (props) => {
   // const clickInOutStudyBtn = () => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
-  console.log(props);
+  console.log(props.props);
 
-  // console.log(__crewId, studyId);
+  console.log(props.props.studyMasterProfile.profileImage);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
