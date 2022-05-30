@@ -37,8 +37,13 @@ const Sidebar = (props) => {
   }, [__myProfileData.statusMessage]);
 
   const clickLogout = () => {
-    if (window.confirm("로그아웃 하시겠습니까?"))
+    const result = window.confirm("로그아웃 하시겠습니까?");
+    if (result === true) {
+      window.open(LOGOUT_KAKAO_AUTH_URL, "_self");
       dispatch(userActions.kakaoLogout());
+    } else {
+      return;
+    }
   };
 
   const handleChange = (e) => {
@@ -106,9 +111,7 @@ const Sidebar = (props) => {
           </MyStudy>
         </PageList>
         <LogoutBtn _onClick={clickLogout}>
-          <StyledAtag href={LOGOUT_KAKAO_AUTH_URL}>
-            <BtnText type="sub_1">로그아웃</BtnText>
-          </StyledAtag>
+          <BtnText type="sub_1">로그아웃</BtnText>
         </LogoutBtn>
       </SidebarWrap>
     </React.Fragment>

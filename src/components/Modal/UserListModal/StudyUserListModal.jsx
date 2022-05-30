@@ -56,6 +56,8 @@ const UserList = (props) => {
       }
     };
 
+    console.log(props.eachStudyData);
+
     return (
       <UserListModalWrap>
         <Header>
@@ -113,10 +115,14 @@ const UserList = (props) => {
 
           {/* 일반 유저 영역 시작 */}
           {filterdStudyUserList.map((cur, idx) => {
+            console.log(cur);
             return (
               <EachUser key={idx}>
                 <EachUserLeftBox>
-                  <Avatar sx={{ marginRight: "10px" }} />
+                  <Avatar
+                    src={filterdStudyUserList[idx].profileImage}
+                    sx={{ marginRight: "10px" }}
+                  />
                   <UserName type="sub_2_bold">
                     {filterdStudyUserList[idx].username}
                   </UserName>
