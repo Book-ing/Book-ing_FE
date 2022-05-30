@@ -96,7 +96,10 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
       // dispatch(inOutStudy(res.data.isStudyJoined));
     })
     .catch((err) => {
-      console.log(err);
+      const message = err.response.data.message;
+      if (message === "종료된 스터디") {
+        alert("이미 종료된 스터디입니다.");
+      }
     });
 };
 
