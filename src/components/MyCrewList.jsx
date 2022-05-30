@@ -35,21 +35,6 @@ const MyCrewList = (props) => {
                 </Elchip>
               </Eltext>
 
-              {/* <div style={{ fontSize: "16px", fontWeight: "600" }}> */}
-              {/* <Elchip
-                  shape="LineBtn"
-                  fontSize="30px"
-                  width="96px"
-                  height="30px"
-                  onClick={() => {
-                    history.push({
-                      pathname: `/crew/${props.meetingId}`,
-                      search: `?study=${props.studyId}`,
-                    });
-                  }}
-                >
-                  바로가기
-                </Elchip> */}
               <Gobtn
                 shape="brown-outline"
                 onClick={() => {
@@ -102,22 +87,6 @@ const MyCrewList = (props) => {
                 </Elchip>
               </Eltext>
 
-              {/* <div style={{ fontSize: "16px", fontWeight: "600" }}>
-                <Elchip
-                  shape="LineBtn"
-                  fontSize="30px"
-                  width="96px"
-                  height="30px"
-                  onClick={() => {
-                    history.push({
-                      pathname: `/crew/${props.meetingId}`,
-                      search: `?study=${props.studyId}`,
-                    });
-                  }}
-                >
-                  바로가기
-                </Elchip>
-              </div> */}
               <Gobtn
                 shape="brown-outline"
                 onClick={() => {
