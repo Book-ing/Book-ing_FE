@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Modules
 import { studyActions } from "../../redux/modules/study";
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
 
 // mui
@@ -54,11 +55,13 @@ const AccordionSummary = styled((props) => (
 const AccordionSummaryComponent = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  // console.log(props);
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
   const loginId = localStorage.getItem("userId");
 
+  // console.log(props.checkState);
+  // console.log(props.setCheckState);
   // variables
   const studyId = props.props.studyId;
   const studyDate = props.props.studyDateTime;
@@ -66,13 +69,13 @@ const AccordionSummaryComponent = (props) => {
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
   const clickInOutStudyBtn = () => {
-    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
     props.setCheckState(!props.checkState);
+    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+    dispatch(mypageActions.getJoinedStudyDB());
     const status = false;
     history.push({
-      pathname: "/mypage",
-      state: status,
-    });
+      pathname:"/mypage",
+      state: status});
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -161,39 +164,37 @@ const AccordionSummaryComponent = (props) => {
 
         <Grid container>
           <CrewInfo>
-            <TitleText type="sub_2_bold">
+              <TitleText type="sub_2_bold">
               {props.props.studyType === "online" ? (
                 <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
               ) : (
                 <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
               )}
-              <div title={props.props.studyTitle}>
-                <TitleSection>스터디명 : {props.props.studyTitle}</TitleSection>
-              </div>
-            </TitleText>
-            {props.props.studyType === "online" ? null : (
+            <div title={props.props.studyTitle}>
+              <TitleSection>
+                스터디명 : {props.props.studyTitle}
+              </TitleSection>
+            </div>
+              </TitleText>
+              {props.props.studyType === "online" ? null : (
               <InfoText type="sub_2">
                 금액 : {props.props.studyPrice}원
               </InfoText>
-            )}
+              )}
             <InfoText type="sub_2">
               일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
             </InfoText>
 
             {props.props.studyType === "online" ? null : (
-              <InfoText type="sub_2">
-                <div
-                  title={
-                    props.props.studyAddr + "," + props.props.studyAddrDetail
-                  }
-                >
-                  <LocationSection>
-                    위치 : {props.props.studyAddr},{" "}
-                    {props.props.studyAddrDetail}
-                  </LocationSection>
-                </div>
-              </InfoText>
+            <InfoText type="sub_2">
+              <div title={props.props.studyAddr + "," + props.props.studyAddrDetail}>
+                <LocationSection>
+                  위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
+                </LocationSection>
+              </div>
+            </InfoText>
             )}
+
           </CrewInfo>
         </Grid>
 
@@ -244,7 +245,8 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
-          {props.props.studyType === "online" ? (
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
@@ -255,7 +257,8 @@ const AccordionSummaryComponent = (props) => {
             >
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
-          ) : null}
+          ) : null
+        )}
 
           {/* {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
@@ -268,17 +271,20 @@ const AccordionSummaryComponent = (props) => {
               참가하기
             </JoinBtn>
           )} */}
-          {props.props.studyType === "online" ? (
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
             <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
-              취소하기
+            취소하기
             </JoinBtn>
-          ) : (
-            <div style={{ position: "absolute", marginTop: "-75px" }}>
-              <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
-                취소하기
-              </JoinBtn>
+            ) : (
+            <div style={{position:"absolute", marginTop:"-75px"}}>
+            <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
+            취소하기
+            </JoinBtn>
             </div>
-          )}
+            )
+        )}    
+ 
         </RightBox>
       </AccordionHeaderWrap>
       {props.props.isStudyEnd === true ? (
