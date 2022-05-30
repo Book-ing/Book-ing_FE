@@ -7,7 +7,7 @@ import { FaEllipsisH } from "react-icons/fa";
 
 // Modules
 import { studyActions } from "../../redux/modules/study";
-import { actionCreators as accordionActions } from "../../redux/modules/accordion";
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -71,6 +71,9 @@ const AccordionSummaryComponent = (props) => {
   // const clickInOutStudyBtn = () => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
+  console.log(props);
+
+  // console.log(__crewId, studyId);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -104,6 +107,7 @@ const AccordionSummaryComponent = (props) => {
 
   const clickDeleteStudyBtn = () => {
     dispatch(studyActions.deleteStudyDB(studyId, __crewId));
+    // dispatch(mypageActions.getMyStudyDB());
   };
 
   const [studyUserListOpen, setStudyUserListOpen] = useState(false);
@@ -250,7 +254,7 @@ const AccordionSummaryComponent = (props) => {
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: __crewId },
+                  state: { meetingId: props.props.meetingId },
                 });
               }}
             >

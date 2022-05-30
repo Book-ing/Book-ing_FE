@@ -68,6 +68,11 @@ const AccordionSummaryComponent = (props) => {
   const clickInOutStudyBtn = () => {
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
     props.setCheckState(!props.checkState);
+    const status = false;
+    history.push({
+      pathname: "/mypage",
+      state: status,
+    });
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -244,7 +249,7 @@ const AccordionSummaryComponent = (props) => {
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: __crewId },
+                  state: { meetingId: props.props.meetingId },
                 });
               }}
             >

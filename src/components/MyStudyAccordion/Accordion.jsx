@@ -53,9 +53,6 @@ const MyStudyAccordions = (props) => {
   );
   
   // variables
-  const fuck = useSelector((state) => state);
-  console.log(fuck)
-
   const [expanded, setExpanded] = useState(Number(studyNum));
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -72,10 +69,10 @@ const MyStudyAccordions = (props) => {
     __isJoinedStudy,
     __newStudyProfileUser,
   ]);
+  console.log(props);
 
   if (__accordionData === "") return <></>;
   
-  console.log(__accordionData);
 
     return (
       <>
