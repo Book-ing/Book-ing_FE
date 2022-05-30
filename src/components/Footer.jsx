@@ -8,12 +8,16 @@ import { FaGitAlt } from "react-icons/fa";
 import { AiFillFacebook } from "react-icons/ai";
 import { IoMailSharp } from "react-icons/io5";
 import { SiNotion } from "react-icons/si";
+import { FiInstagram } from "react-icons/fi";
+import { SiSitepoint } from "react-icons/si";
 
 // assets
 import LogoSrc from "../assets/bookingLogo.svg";
 import MinwooImg from "../assets/teamatesImg/minwooImg.png";
 import BaeseungImg from "../assets/teamatesImg/baeseungImg.png";
 import TaakeImg from "../assets/teamatesImg/taakeImg.png";
+import Seoyoon from "../assets/teamatesImg/seoyoon.png";
+import Jihyun from "../assets/teamatesImg/jihyun.jpeg";
 import Velog from "../assets/footerIcons/velogIcon.svg";
 import Tstory from "../assets/footerIcons/tstoryIcon.svg";
 
@@ -312,7 +316,7 @@ const Footer = () => {
                 <EachBox>
                   <MemberInfo>
                     <Avatar
-                      // src={}
+                      src={Seoyoon}
                       sx={{ width: "45px", height: "45px" }}
                     />
                     <TextBox>
@@ -321,14 +325,20 @@ const Footer = () => {
                     </TextBox>
                   </MemberInfo>
                   <MemberOneLinePr type="body_2">
-                    디자이너 최서윤입니다.
+                    let seoyoon =<br />
+                    planner+designer+developer
                   </MemberOneLinePr>
                   <MemberLinks>
-                    <button onClick={() => {}}>
-                      <SiNotion
-                        fontSize={30}
-                        style={{ color: `var(--point)` }}
-                      />
+                    <button
+                      onClick={() => {
+                        window.open(
+                          "http://yunisportfolio.creatorlink.net/",
+                          "_blank"
+                        );
+                      }}
+                      style={{ fontSize: 30, color: "var(--point)" }}
+                    >
+                      <SiSitepoint />
                     </button>
                   </MemberLinks>
                 </EachBox>
@@ -336,7 +346,7 @@ const Footer = () => {
                 <EachBox>
                   <MemberInfo>
                     <Avatar
-                      // src={}
+                      src={Jihyun}
                       sx={{ width: "45px", height: "45px" }}
                     />
                     <TextBox>
@@ -345,31 +355,25 @@ const Footer = () => {
                     </TextBox>
                   </MemberInfo>
                   <MemberOneLinePr type="body_2">
-                    꿈꾸는 디자이너입니다.
+                    UX/UI 디자이너입니다.
                   </MemberOneLinePr>
                   <MemberLinks>
-                    <button onClick={() => {}}>
-                      <SiNotion
-                        fontSize={30}
-                        style={{ color: `var(--point)` }}
-                      />
+                    <button
+                      onClick={() => {
+                        window.open(
+                          "https://www.instagram.com/design_hyeony",
+                          "_blank"
+                        );
+                      }}
+                      style={{ fontSize: 30, color: "var(--point)" }}
+                    >
+                      <FiInstagram />
                     </button>
                   </MemberLinks>
                 </EachBox>
               </FooterInnerRightMemberBox>
             </FooterInnerRightBox>
           </FooterInnerBox>
-          {/* <FooterSpanBox>
-            <StSpan type="sub_2_bold">Team</StSpan>
-            <StSpan type="sub_2_bold">Github</StSpan>
-            <StSpan type="sub_2_bold">Company</StSpan>
-          </FooterSpanBox>
-          <Logo src={LogoSrc}></Logo>
-          <FooterSpanBox>
-            <StSpan type="sub_2_bold">Help desk</StSpan>
-            <StSpan type="sub_2_bold">Blog</StSpan>
-            <StSpan type="sub_2_bold">Resources</StSpan>
-          </FooterSpanBox> */}
         </FooterBox>
       </FooterWrap>
     </React.Fragment>
