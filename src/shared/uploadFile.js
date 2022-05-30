@@ -1,14 +1,14 @@
 // image file 업로드 함수
 import AWS from "aws-sdk";
 
-const S3_BUCKET = process.env.AWS_BUCKET;
-const REGION = "ap-northeast-2";
-// const IDENTITY_POOL_ID = process.env.AWS_IDENTITY_POOL_ID;
+const S3_BUCKET = process.env.REACT_APP_BUCKET;
+const REGION = process.env.REACT_APP_REGION;
+const IDENTITY_POOL_ID = process.env.REACT_APP_AWS_IDENTITY_POOL_ID;
 
 AWS.config.update({
   region: REGION,
   credentials: new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: process.env.AWS_IDENTITY_POOL_ID,
+    IdentityPoolId: IDENTITY_POOL_ID,
   }),
 });
 

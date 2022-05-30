@@ -4,11 +4,12 @@ import flex from "../themes/flex";
 
 // rest 종류 : size(width_숫자만)
 const Elchip = (props) => {
-    const {shape, width, height, children} = props;
+    const {shape, width, height, onClick, children} = props;
   
     const styles = {
         width: width,
         height: height,
+        onClick: onClick,
     }
     
     if(shape === "Fill"){
@@ -54,7 +55,7 @@ const BrownLine = styled.div`
 `;
 
 const FillButton = styled.button`
-     ${(props) => (props.width ? `width: ${props.width}` : "width:80px")};
+    ${(props) => (props.width ? `width: ${props.width}` : "width:80px")};
     ${(props) => (props.height ? `height: ${props.height}` : "height:50px")};
     ${flex("center", "center", false)}
     text-align: center;
@@ -65,8 +66,9 @@ const FillButton = styled.button`
 `
 
 const LineButton = styled.button`
-   ${(props) => (props.width ? `width: ${props.width}` : "width:80px")};
+    ${(props) => (props.width ? `width: ${props.width}` : "width:80px")};
     ${(props) => (props.height ? `height: ${props.height}` : "height:50px")};
+    ${(props) => (props.onClick ? `onClick= ${props.onClick}` : "")};
     ${flex("center", "center", false)}
     border: 1px solid #815854;
     color: #815854;

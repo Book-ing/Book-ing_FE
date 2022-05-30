@@ -21,11 +21,11 @@ const getSearchDB = (value) => {
   return function (dispatch) {
     console.log(value);
 
-  searchApi
+    searchApi
     .search(value)
     .then((res) => {
       console.log(res);
-      dispatch(searchActions.getSearch(res.data.data.searchResult))
+     dispatch(searchActions.getSearch(res.data.data.searchResult))
     })
   }
 }

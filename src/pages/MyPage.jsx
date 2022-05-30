@@ -21,9 +21,11 @@ const Mypage = () => {
   const dispatch = useDispatch();
   const [isMyCrew, setIsMyCrew] = useState(true);
 
-  useEffect(() => {
-    dispatch(userActions.loginCheckDB());
-  }, []);
+// ==================== 민우님이 요청한 loginCheckDB ========================
+  // useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+// ==================== 민우님이 요청한 loginCheckDB ========================
 
   return (
     <React.Fragment>
@@ -45,7 +47,8 @@ const MypageWrap = styled.div`
   ${flex("center", "center", false)}
 
   max-width: 1440px;
-  height: 100vh;
+  height: 1240px;
+  //height: 100vh;
   margin: auto;
 `;
 

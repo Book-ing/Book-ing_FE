@@ -2,6 +2,8 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
 import { mainApi } from "../../api/mainApi";
+import { searchActions } from "../modules/search";
+import { useHistory } from "react-router-dom";
 
 // Action
 
@@ -16,7 +18,7 @@ const addCrew = createAction(ADD_CREW, (data) => ({ data }));
 //initialState
 
 const initialState = {
-  isMeetingMaster: "",
+  studyList: "",
   myMeeting: "",
   todayMeeting: "",
   recommendMeeting: "",
@@ -28,7 +30,7 @@ const login_loadCrewDB = (userId) => {
     mainApi
       .load(userId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(loadCrew(res.data));
       })
       .catch((err) => {
@@ -42,7 +44,7 @@ const loadCrewDB = () => {
     mainApi
       .load_none()
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(loadCrew(res.data));
       })
       .catch((err) => {
@@ -66,21 +68,21 @@ const addCrewDB = (newCrewInfo) => {
     formData.append("meetingImage", newCrewInfo.image);
 
     // FormData의 key 확인
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
+    // for (let key of formData.keys()) {
+    //   console.log(key);
+    // }
 
     // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // }
 
     mainApi
       .posting(formData)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // dispatch(mainActions.loadCrewDB());
-        window.location.replace("http://localhost:3000/");
+        window.location.replace("https://www.book-ing.co.kr/");
       })
       .catch((error) => {
         console.log("게시글 등록 에러!");
@@ -88,12 +90,39 @@ const addCrewDB = (newCrewInfo) => {
   };
 };
 
+const getSearchCrew = (value, dispatch, history) => {
+  // console.log(value)
+  mainApi
+    .searching(value)
+    .then((res) => {
+      const word = res.data.data.searchResult;
+      // console.log(word);
+      // console.log(JSON.stringify(word) === "{}");
+      dispatch(searchActions.getSearch(word));
+      if (JSON.stringify(word) === "{}") {
+        // const values = {
+        //   word: "",
+        //   cate: "",
+        //   loc: "",
+        // }
+        // dispatch(searchActions.getSearchDB(values))
+        return alert(
+          "원하는 모임이 검색되지 않았습니다! 검색 페이지를 이용해주세요"
+        );
+        // history.push("/search")
+      } else {
+        return history.push("/search");
+      }
+    })
+    .catch((err) => console.error(err));
+};
+
 export default handleActions(
   {
     [LOAD_CREW]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.data);
-        draft.isMeetingMaster = action.payload.data.isMeetingMaster;
+        // console.log(action.payload.data.studylist);
+        draft.studyList = action.payload.data.studylist;
         draft.myMeeting = action.payload.data.response.myMeeting;
         draft.todayMeeting = action.payload.data.response.todayMeeting;
         draft.recommendMeeting = action.payload.data.response.recommendMeeting;
@@ -111,6 +140,7 @@ const mainActions = {
   loadCrewDB,
   login_loadCrewDB,
   addCrewDB,
+  getSearchCrew,
 };
 
 export { mainActions };

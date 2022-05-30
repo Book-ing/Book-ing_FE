@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
@@ -9,13 +9,35 @@ import { Elimage, Eltext } from "../elements";
 import Editor from "../components/Editor";
 import WygiwysEditor from "../components/WygiwysEditor.jsx";
 import book from "../redux/modules/book";
+import { actionCreators as userActions } from "../redux/modules/crew";
+import { useDispatch } from "react-redux";
 
 const NoteWrites = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
-  
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+  // React.useEffect(() => {
+  //   dispatch(userActions.loginCheckDB());
+  // }, []);
+  // ==================== 민우님이 요청한 loginCheckDB ========================
+
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
-  console.log(bookInfo)
+  const meetingId = location.state.meetingId.meetingId;
+  console.log(bookInfo);
+  console.log(meetingId);
+
+  const studyInfo = {
+    studyId: bookInfo.studyId,
+    masterId: bookInfo.studyMasterProfile.userId,
+    studyValue: bookInfo.studyNote,
+    meetingId: meetingId,
+  };
 
   return (
     <React.Fragment>
@@ -31,22 +53,21 @@ const NoteWrites = () => {
 
           <InfoGrid>
             <ImgGrid>
-              <Elimage
-                shape="bookImg"
-                src={bookInfo.studyBookImg}
-              />
+              <Elimage shape="bookImg" src={bookInfo.studyBookImg} />
             </ImgGrid>
             <InfoBox>
-              <Eltext type="sub_2_bold">책 제목: {bookInfo.studyBookTitle}</Eltext>
+              <Eltext type="sub_2_bold">
+                책 제목: {bookInfo.studyBookTitle}
+              </Eltext>
               <br />
               <Eltext type="sub_2">지은이: {bookInfo.studyBookWriter}</Eltext>
               <br />
-              <Eltext type="sub_2">출판사: {bookInfo.studyBookPurblisher}</Eltext>
+              <Eltext type="sub_2">
+                출판사: {bookInfo.studyBookPurblisher}
+              </Eltext>
               <br />
               <Eltext type="sub_2">책 소개</Eltext>
-              <Eltext type="sub_2">
-                {bookInfo.studyBookInfo}...
-              </Eltext>
+              <Eltext type="sub_2">{bookInfo.studyBookInfo}...</Eltext>
             </InfoBox>
           </InfoGrid>
 
@@ -59,14 +80,8 @@ const NoteWrites = () => {
           </TitleGrid>
 
           <EditGrid>
-          <WygiwysEditor></WygiwysEditor>
+            <WygiwysEditor studyInfo={studyInfo} />
           </EditGrid>
-
-          <BtnGrid>
-            <Elchip shape="LineBtn" width="148px" height="45px">
-              게시하기
-            </Elchip>
-          </BtnGrid>
         </Container>
       </Grids>
     </React.Fragment>
@@ -75,10 +90,10 @@ const NoteWrites = () => {
 
 const Grids = styled.div`
   width: 1440px;
-  height: 1964px;
+  height: 1914px;
   /* border: 1px solid #815854; */
   padding: 58px 95px 58px 94px;
-  background-color: #FBF9F9;
+  background-color: #fbf9f9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(4px);
   margin: auto;
@@ -122,8 +137,8 @@ const EditGrid = styled.div`
   /* border: 1px solid black; */
 `;
 
-const BtnGrid = styled.button`
-  margin-top: 150px;
-`;
+// const BtnGrid = styled.div`
+//   margin-top: 150px;
+// `;
 
 export default NoteWrites;

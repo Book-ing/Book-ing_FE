@@ -6,13 +6,13 @@ const GlobalStyles = createGlobalStyle`
 	${reset};
     :root {
 		/* color */
-    --main : #F9EBDE;
+    --main : #EDE1D3;
     --point: #815854;
 		--fontColor: #282224;
     --black: #333333;
     --line: #eaeaea;
 		--white : #ffffff;
-		--notice : #ff7776;
+		--notice : #A0001A;
 		--gray : #989696;
   };
   * {

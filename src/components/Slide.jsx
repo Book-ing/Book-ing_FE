@@ -25,10 +25,16 @@ const Slide = () => {
           <img src={img1} alt="" />
         </div>
         <div>
-          <img src={img2} alt="" />
-        </div>
-        <div>
-          <img src={img3} alt="" />
+          <button
+            onClick={() => {
+              window.open(
+                "https://docs.google.com/forms/d/e/1FAIpQLScavM-MMAsDG-YvmxvVjEL_geLkGLuAreDCV1A0VWeKhuesyQ/viewform",
+                "_blank"
+              );
+            }}
+          >
+            <img src={img2} alt="" />
+          </button>
         </div>
       </Carousel>
     </StDiv>
@@ -38,6 +44,6 @@ const Slide = () => {
 export default Slide;
 
 const StDiv = styled.div`
-  max-width: 1440px;
+  max-width: 1200px;
   margin: auto;
 `;

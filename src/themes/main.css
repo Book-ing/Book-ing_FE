@@ -1,0 +1,36 @@
+/* swiper css */
+
+.swiper-button-next { 
+  position: absolute;
+  border-radius: 50%;
+  margin-left: 50px;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background-image: url("../assets/swiper/next.svg");
+  background-size: cover;
+  background-position: 50% 60%;
+  background-repeat: no-repeat;
+ }
+
+ .swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev { 
+  position: absolute;
+  border-radius: 50%;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background-image: url("../assets/swiper/prev.svg");
+  background-size: cover;
+  background-position: 50% 60%;
+  background-repeat: no-repeat;
+ }
+
+ .swiper-button-prev::after {
+  display: none;
+}
+
+

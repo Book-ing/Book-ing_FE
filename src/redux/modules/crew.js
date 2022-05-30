@@ -88,7 +88,10 @@ const joinCrewDB = (payload) => (dispatch, getState) => {
       dispatch(join_crew(payload));
     })
     .catch((err) => {
-      console.log(err);
+      const message = err.response.data.message;
+      if (message === "강퇴당한 유저는 모임 참여가 불가능합니다.") {
+        alert(message);
+      }
     });
 };
 

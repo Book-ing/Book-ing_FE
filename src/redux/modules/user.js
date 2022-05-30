@@ -24,7 +24,6 @@ const initialstate = {
 
 // thunk
 const kakaoLogin = (payload) => (dispatch, getState) => {
-  
   userApi
     .login(payload)
     .then((res) => {
@@ -81,11 +80,13 @@ const loginCheckDB = () => (dispatch, getState) => {
           path: "/",
           sameSite: "None",
           secure: true,
+          maxAge: 7200, // 20분
         });
         setCookie("refreshToken", refreshToken, {
           path: "/",
           sameSite: "None",
           secure: true,
+          maxAge: 64800, // 2시간
         });
       }
       dispatch(loginCheck());

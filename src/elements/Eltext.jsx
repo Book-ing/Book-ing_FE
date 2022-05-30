@@ -15,6 +15,8 @@ import {
   head_6_bold,
   head_7,
   head_7_bold,
+  head_8,
+  head_8_bold,
   sub_1,
   sub_1_bold,
   sub_2,
@@ -27,6 +29,7 @@ import {
   body_3_bold,
   body_4,
   body_4_bold,
+  body_5,
   button,
   button_bold,
 } from "../themes/textStyle";
@@ -70,6 +73,10 @@ const Wrapper = styled.div`
         return `${head_7}`;
       case "head_7_bold":
         return `${head_7_bold}`;
+      case "head_8":
+        return `${head_8}`;
+      case "head_8_bold":
+        return `${head_8_bold}`;
       case "sub_1":
         return `${sub_1}`;
       case "sub_1_bold":
@@ -94,6 +101,8 @@ const Wrapper = styled.div`
         return `${body_4}`;
       case "body_4_bold":
         return `${body_4_bold}`;
+      case "body_5":
+        return `${body_5}`;
       case "button":
         return `${button}`;
       case "button_bold":
