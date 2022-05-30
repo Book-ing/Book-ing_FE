@@ -47,11 +47,11 @@ const Accordion = styled((props) => (
 const CustomizedAccordions = (props) => {
   const dispatch = useDispatch();
   const paramsUserId = useParams();
-  console.log(paramsUserId);
+  // console.log(paramsUserId);
   const location = useLocation();
-  console.log(location.search);
+  // console.log(location.search);
   const studyNum = location.search ? location.search.substring(7) : '';
-  console.log(studyNum)
+  // console.log(studyNum)
 
   const [open, setOpen] = useState(false);
   const [checkState, setCheckState] = useState(false);
@@ -61,7 +61,6 @@ const CustomizedAccordions = (props) => {
 
   // redux store
   const __accordionData = useSelector((state) => state.accordion.accordionData);
-  // console.log(__accordionData);
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const __isJoinedStudy = useSelector((state) => state.study.isStudyJoined);
   const __newStudyProfileUser = useSelector(

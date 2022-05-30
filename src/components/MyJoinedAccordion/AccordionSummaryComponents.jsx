@@ -67,6 +67,7 @@ const AccordionSummaryComponent = (props) => {
 
   const clickInOutStudyBtn = () => {
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+    props.setCheckState(!props.checkState);
   };
 
   const [anchorEl, setAnchorEl] = useState(null);

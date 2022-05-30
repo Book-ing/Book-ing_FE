@@ -143,6 +143,13 @@ const AccordionDetailsComponent = (props) => {
                   src={props.props.studyBookImg}
                 />
               </Grid>
+              {props.props.studyBookTitle === "" ?
+               <NoneNoteText type="sub_2">
+                <div style={{textAlign:"center", marginTop:"100px", marginLeft:"165px"}}>
+                  해당 스터디에는 모임장이 등록한 책 정보가 없습니다😢
+                </div> 
+              </NoneNoteText>
+              : (
               <Grid item xs style={{ marginLeft: "40px" }}>
                 <Eltext type="sub_2_bold">
                   책 제목 : {props.props.studyBookTitle}
@@ -156,7 +163,7 @@ const AccordionDetailsComponent = (props) => {
                 <Eltext type="sub_2">
                   책 소개 :  {props.props.studyBookInfo}...
                 </Eltext>
-              </Grid>
+              </Grid>)}
             </Grid>
             <Grid>
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>

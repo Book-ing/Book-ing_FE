@@ -50,10 +50,10 @@ const MyStudyAccordions = (props) => {
   const history = useHistory();
   
 
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
-  const hadleModalOpen = () => setOpen(true);
-  const handleModalClose = () => setOpen(false);
+  // const hadleModalOpen = () => setOpen(true);
+  // const handleModalClose = () => setOpen(false);
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myStudy);
@@ -66,7 +66,7 @@ const MyStudyAccordions = (props) => {
   console.log(__accordionData)
  
   // variables
-  const userId = localStorage.getItem("userId");
+  // const userId = localStorage.getItem("userId");
 
   const [expanded, setExpanded] = useState("");
 

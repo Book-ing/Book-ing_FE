@@ -2,6 +2,9 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// react-icons
+import { FaEllipsisH } from "react-icons/fa";
+
 // Modules
 import { studyActions } from "../../redux/modules/study";
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
@@ -65,9 +68,9 @@ const AccordionSummaryComponent = (props) => {
   const [splitedStudyDate, splitedTime] = studyDate.split(" ");
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
-  const clickInOutStudyBtn = () => {
-    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
-  };
+  // const clickInOutStudyBtn = () => {
+  //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+  // };
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -113,7 +116,7 @@ const AccordionSummaryComponent = (props) => {
         {props.props.studyMasterProfile.userId ===
           parseInt(localStorage.getItem("userId")) ? (
           <MenuBtn onClick={handleClick}>
-            <LinearScaleIcon sx={{ fontSize: 35 }} />
+            <FaEllipsisH/>
           </MenuBtn>
         ) : null}
         <Popover
@@ -311,7 +314,7 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 0;
   color: var(--point);
-
+  font-size: 35px;
   &:hover {
     color: var(--notice)
   }

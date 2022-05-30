@@ -50,10 +50,10 @@ const MyJoinedAccordions = (props) => {
   const history = useHistory();
   
 
-  const [open, setOpen] = useState(false);
-
-  const hadleModalOpen = () => setOpen(true);
-  const handleModalClose = () => setOpen(false);
+  // const [open, setOpen] = useState(false);
+  const [checkState, setCheckState] = useState(false);
+  // const hadleModalOpen = () => setOpen(true);
+  // const handleModalClose = () => setOpen(false);
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myJoinedStudy);
@@ -62,11 +62,12 @@ const MyJoinedAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
+  const myJoinedStudy = useSelector((state) => state.mypage.myStudy);
 
-  console.log(__accordionData)
+  console.log(myJoinedStudy)
  
   // variables
-  const userId = localStorage.getItem("userId");
+  // const userId = localStorage.getItem("userId");
 
   const [expanded, setExpanded] = useState("");
 
@@ -82,7 +83,9 @@ const MyJoinedAccordions = (props) => {
   }, [
     dispatch,
     __isJoinedStudy,
+    myJoinedStudy,
     __newStudyProfileUser,
+    checkState,
   ]);
 
   if (__accordionData === "") return <></>;
@@ -101,6 +104,8 @@ const MyJoinedAccordions = (props) => {
               >
                 <AccordionSummaryComponent
                   props={cur}
+                  checkState={checkState}
+                  setCheckState={setCheckState}
                   isJoinedCrew={__isJoinedCrew}
                 />
 
