@@ -22,7 +22,11 @@ import flex from "../../themes/flex";
 const StudySection = (props) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   console.log();
+=======
+  console.log()
+>>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
   const dispatch = useDispatch();
 =======
 >>>>>>> 9cb1af1 (chore(feature/crewpage): 상호 작업상황 반영을 위한 커밋입니다.)
@@ -95,7 +99,11 @@ const StudySection = (props) => {
         </StudySectionBoxRight>
       </StudySectionBox>
       <AccordionSection>
+<<<<<<< HEAD
         <CustomAccordions
+=======
+        <CustomAccordions 
+>>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
           isJoinedCrew={__isJoinedCrew}
           meetingLimitCnt={props.crewInfo.meetingLimitCnt}
         ></CustomAccordions>

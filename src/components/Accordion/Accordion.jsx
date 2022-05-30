@@ -68,6 +68,8 @@ const CustomizedAccordions = (props) => {
     (state) => state.study.newStudyProfileUser
   );
   const __searchData = useSelector((state) => state.studySearch.searchData);
+  console.log(__isJoinedCrew);
+  console.log(props);
 
   // variables
   const userId = localStorage.getItem("userId");
@@ -173,7 +175,7 @@ const CustomizedAccordions = (props) => {
                 >
                   <CloseIcon fontSize="large" />
                 </button>
-                <ModalStudy />
+                <ModalStudy meetingLimitCnt={props.meetingLimitCnt}/>
               </Box>
             </Modal>
           </StudyNoneNotice>

@@ -208,14 +208,14 @@ return (
                   </Elchip>
                     </Eltext>
 
+                  <div style={{fontSize:"16px", fontWeight:"600"}}>
                   <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push({
                     pathname: `/crew/${props.meetingId}`,
                     search : `?study=${props.studyId}`
                     })}}>
-                    <div style={{fontSize:"16px", fontWeight:"600"}}>
                     바로가기
-                    </div>
                   </Elchip>
+                  </div>
 
                   </StOfflineStudyBtnsBox>
                 </StOfflineStudyListBox>

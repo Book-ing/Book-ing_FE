@@ -364,6 +364,7 @@ const AccordionSummaryComponent = (props) => {
             </JoinOnlineStudyRoom>
           ) : null}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
           {/* {props.isJoinedCrew === false ||
 =======
@@ -371,6 +372,9 @@ const AccordionSummaryComponent = (props) => {
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
           {props.isJoinedCrew === false ||
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+          {/* {props.isJoinedCrew === false ||
+>>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
             <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
@@ -380,6 +384,7 @@ const AccordionSummaryComponent = (props) => {
             <JoinBtn shape="brown-outline" onClick={clickInOutStudyBtn}>
               참가하기
             </JoinBtn>
+<<<<<<< HEAD
 <<<<<<< HEAD
           )} */}
         </RightBox>
@@ -391,6 +396,9 @@ const AccordionSummaryComponent = (props) => {
       )}
 =======
           )}
+=======
+          )} */}
+>>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
         </RightBox>
       </AccordionHeaderWrap>
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
@@ -566,6 +574,7 @@ const JoinOnlineStudyRoom = styledComp(Elbutton)`
   border-radius: 5px;
 `;
 
+<<<<<<< HEAD
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 const JoinBtn = styledComp(Elbutton)`
   width: 96px;
@@ -574,6 +583,14 @@ const JoinBtn = styledComp(Elbutton)`
   margin-right: 20px;
   border-radius: 5px;
 `;
+=======
+// const JoinBtn = styledComp(Elbutton)`
+//   width: 96px;
+//   height: 30px;
+//   margin-right: 20px;
+//   border-radius: 5px;
+// `;
+>>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
 
 <<<<<<< HEAD
 // const JoinBtn = styledComp(Elbutton)`
@@ -594,9 +611,19 @@ const RightBox = styledComp.div`
   width: 300px;
 =======
 const RightBox = styledComp.div`
+  // ${flex("end", "center", true)}
+  // width: 100%;
+  position: absolute;
+  bottom: -20px;
+  // margin-top: -20px;
+  right: 180px;
   ${flex("end", "center", true)}
+<<<<<<< HEAD
   width: 100%;
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  width: 300px;
+>>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
 `;
 
 const editStudyModalstyle = {
