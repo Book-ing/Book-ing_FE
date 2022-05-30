@@ -25,9 +25,6 @@ const MyCrew = () => {
     (state) => state.mypage.joinedMyCrew.data.joinedMeeting
   );
 
-  // console.log(__myCrew);
-  console.log(JSON.stringify(__joinedMyCrew));
-
   useEffect(() => {
     dispatch(mypageActions.getCrewDB(userId));
   }, []);
@@ -46,7 +43,7 @@ const MyCrew = () => {
             <TitleText type="sub_1_bold">내가 만든 모임</TitleText>
             <MyCrewItem>
               {JSON.stringify(__myCrew) === undefined ? (
-                <div style={{margin:"30px auto", textAlign:"center"}}>
+                <div style={{ margin: "30px auto", textAlign: "center" }}>
                   <br />
                   <DataNull type="body_1_bold">
                     내가 만든 모임이 없습니다😋
@@ -66,32 +63,32 @@ const MyCrew = () => {
           <MyCrewBottomBox>
             <TitleText type="sub_1_bold">가입 된 모임</TitleText>
             <JoinedItem>
-              {JSON.stringify(__joinedMyCrew) === "[]" ? 
-              (
-                
-                  <div style={{margin:"150px auto", textAlign:"center"}}>
+              {JSON.stringify(__joinedMyCrew) === "[]" ? (
+                <div style={{ margin: "150px auto", textAlign: "center" }}>
                   <DataNull type="body_1_bold">
                     내가 가입한 모임이 없습니다😋
                   </DataNull>
-                  <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
-                  }}>
+                  <GoSearchBtn
+                    shape="brown-outline"
+                    onClick={() => {
+                      history.push("/");
+                    }}
+                  >
                     모임 보러가기
                   </GoSearchBtn>
-                  </div>
-                
-              )
-              :
-              (__joinedMyCrew.map((cur, idx) => (
-                <StCardBtn
-                  key={idx}
-                  onClick={() => {
-                    history.push(`/crew/${cur.meetingId}`);
-                  }}
-                >
-                  <MypageCard {...cur} key={idx} />
-                </StCardBtn>
-              )))
-            }
+                </div>
+              ) : (
+                __joinedMyCrew.map((cur, idx) => (
+                  <StCardBtn
+                    key={idx}
+                    onClick={() => {
+                      history.push(`/crew/${cur.meetingId}`);
+                    }}
+                  >
+                    <MypageCard {...cur} key={idx} />
+                  </StCardBtn>
+                ))
+              )}
             </JoinedItem>
           </MyCrewBottomBox>
         </MyCrewBox>
@@ -116,9 +113,7 @@ const MyCrewBox = styled.div`
 
 const DataNull = styled(Eltext)`
   color: var(--gray);
-  /* text-align: center; */
   padding: 20px 0;
-  /* margin: auto; */
 `;
 
 const TitleText = styled(Eltext)`

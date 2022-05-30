@@ -401,7 +401,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
 });
 
 const DIV = styled.div`
-  /* ${flex("center", "center", false)} */
   position: "relative";
   max-width: 100%;
   display: flex;
@@ -465,9 +464,6 @@ const MemberWrap = styled.div`
   .screensaver {
     display: flex;
     position: absolute;
-    /* background-color: #c9998d; */
-    /* background: url(${BookingKorLogo}) no-repeat center;
-    background-size: contain; */
     width: 100%;
     height: 100%;
     z-index: 2;

@@ -28,8 +28,6 @@ const Crew = (props) => {
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const __newProfileUser = useSelector((state) => state.crew.newProfileUser);
 
-  console.log(__crewInfo);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -38,11 +36,6 @@ const Crew = (props) => {
     dispatch(CrewActions.getCrewInfoDB(meetingId));
   }, [dispatch, meetingId, __isJoinedCrew, __newProfileUser]);
 
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-  // React.useEffect(() => {
-  //   dispatch(userActions.loginCheckDB());
-  // }, []);
-  // ==================== 민우님이 요청한 loginCheckDB ========================
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {

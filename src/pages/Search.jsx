@@ -13,22 +13,13 @@ import { getSearch } from "../redux/modules/search";
 import SearchIcon from "@mui/icons-material/Search";
 import { searchActions } from "../redux/modules/search";
 import { actionCreators as userActions } from "../redux/modules/crew";
-import noSearch from "../assets/search/noSearch.png"
-
+import noSearch from "../assets/search/noSearch.png";
 
 const Search = () => {
   const dispatch = useDispatch();
 
-  const info = useSelector((state)=> state.search.result);
-  const ab = useSelector((state)=>state.search)
-  // console.log(ab)
-  // console.log(info.length)
-  
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-  // React.useEffect(() => {
-  //   dispatch(userActions.loginCheckDB());
-  // }, []);
-   // ==================== 민우님이 요청한 loginCheckDB ========================
+  const info = useSelector((state) => state.search.result);
+  const ab = useSelector((state) => state.search);
 
   const [searchInfo, setSearchInfo] = useState({
     title: "",
@@ -36,7 +27,7 @@ const Search = () => {
     region: "",
   });
 
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("");
 
   const onChangeInputHandler = (e) => {
     const { value, name } = e.target;
@@ -44,99 +35,93 @@ const Search = () => {
     setSearchInfo({
       ...searchInfo,
       [name]: value,
-      
     });
   };
 
   const ProduceValue = (e) => {
     e.preventDefault();
-    
+
     const value = {
       word: searchInfo.title,
-      cate: (JSON.stringify(category) === "[]" ? "" : category.toString()
-      ),
-      loc: searchInfo.region, 
-    }
-    console.log(value);
-    
-
-      dispatch(searchActions.getSearchDB(value));
-   
+      cate: JSON.stringify(category) === "[]" ? "" : category.toString(),
+      loc: searchInfo.region,
+    };
+    dispatch(searchActions.getSearchDB(value));
   };
-  
 
   const SelectList = [
-    { name:"지역을 선택해주세요", code:""},
-    { name:"서울", code: 101 },
-    { name:"부산", code: 102 },
-    { name:"대구", code: 103 },
-    { name:"인천", code: 104 },
-    { name:"광주", code: 105 },
-    { name:"대전", code: 106 },
-    { name:"울산", code: 107 },
-    { name:"세종", code: 108 },
-    { name:"경기", code: 109 },
-    { name:"강원", code: 110 },
-    { name:"충북", code: 111 },
-    { name:"충남", code: 112 },
-    { name:"전북", code: 113 },
-    { name:"전남", code: 114 },
-    { name:"경북", code: 115 },
-    { name:"경남", code: 116 },
-    { name:"제주", code: 117 },
+    { name: "지역을 선택해주세요", code: "" },
+    { name: "서울", code: 101 },
+    { name: "부산", code: 102 },
+    { name: "대구", code: 103 },
+    { name: "인천", code: 104 },
+    { name: "광주", code: 105 },
+    { name: "대전", code: 106 },
+    { name: "울산", code: 107 },
+    { name: "세종", code: 108 },
+    { name: "경기", code: 109 },
+    { name: "강원", code: 110 },
+    { name: "충북", code: 111 },
+    { name: "충남", code: 112 },
+    { name: "전북", code: 113 },
+    { name: "전남", code: 114 },
+    { name: "경북", code: 115 },
+    { name: "경남", code: 116 },
+    { name: "제주", code: 117 },
   ];
-  if (ab === ""
-  )
-    return <></>;
-
+  if (ab === "") return <></>;
 
   return (
     <React.Fragment>
       <TagTop>
-       <form onSubmit={ProduceValue}>
-        <StSearchBox>
-          <StSelect name="region" onChange={onChangeInputHandler}>
-            {SelectList.map((cur) => (
-              <option value={cur.code} key={cur.code}>
-                {cur.name}
-              </option>
-            ))}
-          </StSelect>
-          <StInputLine>
-          <StInput
-            name="title"
-            placeholder="원하는 모임을 검색해주세요."
-            onChange={onChangeInputHandler}
-          />
-          <StSearchBtn >
+        <form onSubmit={ProduceValue}>
+          <StSearchBox>
+            <StSelect name="region" onChange={onChangeInputHandler}>
+              {SelectList.map((cur) => (
+                <option value={cur.code} key={cur.code}>
+                  {cur.name}
+                </option>
+              ))}
+            </StSelect>
+            <StInputLine>
+              <StInput
+                name="title"
+                placeholder="원하는 모임을 검색해주세요."
+                onChange={onChangeInputHandler}
+              />
+              <StSearchBtn>
+                <SearchIcon fontSize="large" />
+              </StSearchBtn>
+            </StInputLine>
+          </StSearchBox>
+          <StCategoryBox>
+            <StInputName type="sub_2_bold">Category</StInputName>
 
-            <SearchIcon fontSize="large" />
-
-        </StSearchBtn>
-        </StInputLine>
-        </StSearchBox>
-        <StCategoryBox>
-          <StInputName type="sub_2_bold">Category</StInputName>
-
-          <ElcategoryCheckbox onChange={setCategory}/>
-
-        </StCategoryBox>
+            <ElcategoryCheckbox onChange={setCategory} />
+          </StCategoryBox>
         </form>
       </TagTop>
-      {info.length ? 
+      {info.length ? (
         <TagBottom>
-        {info.map((p, idx) => {
-          return (
-        <CrewList key={idx} {...p}/>
-          );
-        })}
+          {info.map((p, idx) => {
+            return <CrewList key={idx} {...p} />;
+          })}
         </TagBottom>
-      :
-      <TagBottom>
-        <div style={{marginLeft: "500px", width:"500px", height:"500px", marginTop: "100px", marginBottom:"100px", backgroundImage: `url(${noSearch})`, backgroundSize: "cover"}}>
-        </div>
-      </TagBottom>
-      }
+      ) : (
+        <TagBottom>
+          <div
+            style={{
+              marginLeft: "500px",
+              width: "500px",
+              height: "500px",
+              marginTop: "100px",
+              marginBottom: "100px",
+              backgroundImage: `url(${noSearch})`,
+              backgroundSize: "cover",
+            }}
+          ></div>
+        </TagBottom>
+      )}
     </React.Fragment>
   );
 };
@@ -165,8 +150,6 @@ const StInput = styled.input`
   width: 750px;
   height: 30px;
   background-color: transparent;
-  /* border-radius: 5px;
-  border: 1px solid var(--point); */
 `;
 
 const StSelect = styled.select`
@@ -198,41 +181,39 @@ const StInputLine = styled.div`
   border: 1px solid var(--point);
 `;
 
-
 const StSearchBtn = styled.button`
   vertical-align: middle;
 `;
 
 const RadioCategoryWrap = styled.div`
-    display: inline-block;
-    width: 900px;
-    height: 135px;
-    margin-top: 8px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  display: inline-block;
+  width: 900px;
+  height: 135px;
+  margin-top: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 const StRadioLabel = styled.label`
-    ${flex("center", "center", false)}
-    float: left;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    letter-spacing: -0.015rem;
-    color: black;
-    width: 96px;
-    height: 30px;
-    border: 1px solid ${(props) => props.color};
-    box-sizing: border-box;
-    border-radius: 6px;
-    margin-right: 6px;
-    margin-bottom: 10px;
+  ${flex("center", "center", false)}
+  float: left;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  letter-spacing: -0.015rem;
+  color: black;
+  width: 96px;
+  height: 30px;
+  border: 1px solid ${(props) => props.color};
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 6px;
+  margin-bottom: 10px;
 `;
 
 const StInputCheck = styled.input`
-    
-    display: none;
-    &:checked + ${StRadioLabel} {
-        background-color: ${(props) => props.color};
-        color: white;
-    }
-    `;
+  display: none;
+  &:checked + ${StRadioLabel} {
+    background-color: ${(props) => props.color};
+    color: white;
+  }
+`;

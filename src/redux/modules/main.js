@@ -30,7 +30,6 @@ const login_loadCrewDB = (userId) => {
     mainApi
       .load(userId)
       .then((res) => {
-        // console.log(res.data);
         dispatch(loadCrew(res.data));
       })
       .catch((err) => {
@@ -44,7 +43,6 @@ const loadCrewDB = () => {
     mainApi
       .load_none()
       .then((res) => {
-        // console.log(res.data);
         dispatch(loadCrew(res.data));
       })
       .catch((err) => {
@@ -55,9 +53,6 @@ const loadCrewDB = () => {
 
 const addCrewDB = (newCrewInfo) => {
   return function (dispatch) {
-    // console.log(newCrewInfo.name)
-    // console.log(newCrewInfo.image)
-
     const formData = new FormData();
 
     formData.append("meetingName", newCrewInfo.title);
@@ -67,21 +62,9 @@ const addCrewDB = (newCrewInfo) => {
     formData.append("meetingLimitCnt", newCrewInfo.headCnt);
     formData.append("meetingImage", newCrewInfo.image);
 
-    // FormData의 key 확인
-    // for (let key of formData.keys()) {
-    //   console.log(key);
-    // }
-
-    // FormData의 value 확인
-    // for (let value of formData.values()) {
-    //   console.log(value);
-    // }
-
     mainApi
       .posting(formData)
       .then((res) => {
-        // console.log(res);
-        // dispatch(mainActions.loadCrewDB());
         window.location.replace("https://www.book-ing.co.kr/");
       })
       .catch((error) => {
@@ -91,25 +74,15 @@ const addCrewDB = (newCrewInfo) => {
 };
 
 const getSearchCrew = (value, dispatch, history) => {
-  // console.log(value)
   mainApi
     .searching(value)
     .then((res) => {
       const word = res.data.data.searchResult;
-      // console.log(word);
-      // console.log(JSON.stringify(word) === "{}");
       dispatch(searchActions.getSearch(word));
       if (JSON.stringify(word) === "{}") {
-        // const values = {
-        //   word: "",
-        //   cate: "",
-        //   loc: "",
-        // }
-        // dispatch(searchActions.getSearchDB(values))
         return alert(
           "원하는 모임이 검색되지 않았습니다! 검색 페이지를 이용해주세요"
         );
-        // history.push("/search")
       } else {
         return history.push("/search");
       }
@@ -121,17 +94,13 @@ export default handleActions(
   {
     [LOAD_CREW]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.data.studylist);
         draft.studyList = action.payload.data.studylist;
         draft.myMeeting = action.payload.data.response.myMeeting;
         draft.todayMeeting = action.payload.data.response.todayMeeting;
         draft.recommendMeeting = action.payload.data.response.recommendMeeting;
         draft.newMeeting = action.payload.data.response.newMeeting;
       }),
-    [ADD_CREW]: (state, action) =>
-      produce(state, (draft) => {
-        // draft.list.unshift(action.payload.data);
-      }),
+    [ADD_CREW]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );

@@ -27,7 +27,6 @@ const Sidebar = (props) => {
 
   // redux store
   const __myProfileData = useSelector((state) => state.mypage.myProfile);
-  console.log(__myProfileData);
 
   // variables
   const userId = localStorage.getItem("userId");
@@ -189,13 +188,6 @@ const LogoutBtn = styled(Elbutton)`
   height: 37px;
   border-radius: 100px;
   margin-top: 111px;
-`;
-
-const StyledAtag = styled.a`
-  ${flex("center", "center", false)}
-  width: 107px;
-  height: 37px;
-  border-radius: 100px;
 `;
 
 const BtnText = styled(Eltext)`

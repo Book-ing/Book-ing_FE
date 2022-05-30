@@ -8,7 +8,6 @@ import flex from "../themes/flex";
 
 const MyCrewList = (props) => {
   const history = useHistory();
-  console.log(props);
 
   return (
     <React.Fragment>
@@ -46,7 +45,6 @@ const MyCrewList = (props) => {
               >
                 바로가기
               </Gobtn>
-              {/* </div> */}
             </StOnlineStudyBtnsBox>
           </StOnlineStudyListBox>
         </StMyCrewStudyList>
@@ -178,9 +176,6 @@ const StLocationText = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-top: -1px;
-  /* &:hover {
-    overflow: visible;
-  } */
 `;
 
 const StudyTypeOfflineTag = styled(Eltext)`

@@ -23,9 +23,6 @@ const Mypage = () => {
   const location = useLocation();
 
   const status = location.state;
-  console.log(status);
-
-  // const [status, setStatus] = useState(true);
 
   const [isMyCrew, setIsMyCrew] = useState(true);
 
@@ -34,10 +31,8 @@ const Mypage = () => {
   }, []);
 
   useEffect(() => {
-    status === undefined ?
-    setIsMyCrew(true) : setIsMyCrew(false);
+    status === undefined ? setIsMyCrew(true) : setIsMyCrew(false);
   }, []);
-
 
   return (
     <React.Fragment>

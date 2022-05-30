@@ -27,13 +27,9 @@ const initialState = {
 
 const addStudyNoteDB = (studyNoteInfo) => {
   return function (dispatch) {
-    console.log(studyNoteInfo);
-
     editorApi
       .posting(studyNoteInfo)
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((error) => {
         console.log("게시글 등록 에러!");
       });
@@ -42,13 +38,9 @@ const addStudyNoteDB = (studyNoteInfo) => {
 
 const modifyStudyNoteDB = (studyNoteInfo) => {
   return function (dispatch) {
-    console.log(studyNoteInfo);
-
     editorApi
       .modifying(studyNoteInfo)
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((error) => {
         console.log("게시글 등록 에러!");
       });

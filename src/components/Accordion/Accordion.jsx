@@ -47,11 +47,8 @@ const Accordion = styled((props) => (
 const CustomizedAccordions = (props) => {
   const dispatch = useDispatch();
   const paramsUserId = useParams();
-  // console.log(paramsUserId);
   const location = useLocation();
-  // console.log(location.search);
-  const studyNum = location.search ? location.search.substring(7) : '';
-  // console.log(studyNum)
+  const studyNum = location.search ? location.search.substring(7) : "";
 
   const [open, setOpen] = useState(false);
   const [checkState, setCheckState] = useState(false);
@@ -67,8 +64,6 @@ const CustomizedAccordions = (props) => {
     (state) => state.study.newStudyProfileUser
   );
   const __searchData = useSelector((state) => state.studySearch.searchData);
-  console.log(__isJoinedCrew);
-  console.log(props);
 
   // variables
   const userId = localStorage.getItem("userId");
@@ -78,7 +73,7 @@ const CustomizedAccordions = (props) => {
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-  
+
   useEffect(() => {
     dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     return () => {
@@ -158,7 +153,8 @@ const CustomizedAccordions = (props) => {
         ) : (
           <StudyNoneNotice type="sub_1">
             생성된 스터디가 없습니다😅
-            <br />새로운 스터디를 만들어 볼까요?
+            <br />
+            새로운 스터디를 만들어 볼까요?
             <br />
             {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
             <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
@@ -174,7 +170,7 @@ const CustomizedAccordions = (props) => {
                 >
                   <CloseIcon fontSize="large" />
                 </button>
-                <ModalStudy meetingLimitCnt={props.meetingLimitCnt}/>
+                <ModalStudy meetingLimitCnt={props.meetingLimitCnt} />
               </Box>
             </Modal>
           </StudyNoneNotice>

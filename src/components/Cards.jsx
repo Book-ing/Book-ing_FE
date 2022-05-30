@@ -8,7 +8,6 @@ import Ellocation from "../elements/Ellocation";
 import { history } from "../redux/configStore";
 
 const Cards = (props) => {
-  // console.log(props.image_url);
   return (
     <React.Fragment>
       <StButton>
@@ -62,7 +61,6 @@ Cards.defaultProps = {
 const CardGrid = styled.div`
   width: 198px;
   height: 339px;
-  /* border: 1px solid black; */
 `;
 const ImgGrid = styled.div`
   margin: auto;

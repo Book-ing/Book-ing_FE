@@ -22,7 +22,6 @@ const Header = () => {
 
   // login check
   const isLogin = logged();
-  console.log("로그인 참트루?", isLogin);
 
   const clickLogout = () => {
     const result = window.confirm("로그아웃 하시겠습니까?");
@@ -70,11 +69,9 @@ const Header = () => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {/* <a href={LOGOUT_KAKAO_AUTH_URL}> */}
                 <StBtn shape="brown-outline" _onClick={clickLogout}>
                   Log out
                 </StBtn>
-                {/* </a> */}
                 <StBtn
                   shape="brown-outline"
                   _onClick={() => {

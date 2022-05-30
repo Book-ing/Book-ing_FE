@@ -232,13 +232,10 @@ const ModalCrew = (props) => {
               placeholder="모임 이름을 입력해주세요."
               onChange={onChangeInputHandler}
             />
-            {/* 카테고리 삽입 ================ Stlye 미완성 협의 후 진행예정*/}
 
             <div style={{ marginTop: "20px" }} />
             <StInputName type="sub_2_bold">Category</StInputName>
             <ElcategoryRadio onChange={onChangeInputHandler} />
-
-            {/* 카테고리 삽입 */}
 
             <StInputName type="sub_2_bold">모임 소개 글</StInputName>
             <StInput
@@ -268,16 +265,16 @@ const ModalCrew = (props) => {
               <div style={{ marginLeft: "75px" }}>
                 <StInputName type="sub_2_bold">인원 수 제한</StInputName>
                 <div style={{ display: "flex" }}>
-                  <div style={{width:"205px"}}>
-                  <StInput
-                    required
-                    name="headCount"
-                    max="300"
-                    min="2"
-                    type="number"
-                    placeholder="최대 300명 까지 가능합니다."
-                    onChange={onChangeInputHandler}
-                  />
+                  <div style={{ width: "205px" }}>
+                    <StInput
+                      required
+                      name="headCount"
+                      max="300"
+                      min="2"
+                      type="number"
+                      placeholder="최대 300명 까지 가능합니다."
+                      onChange={onChangeInputHandler}
+                    />
                   </div>
                   <StInputName type="sub_2" style={{ marginLeft: "10px" }}>
                     명
@@ -314,7 +311,6 @@ const ModalCrew = (props) => {
               }}
             >
               <PostBtn shape="brown-outline">게시하기</PostBtn>
-              {/* <button onClick={handleModalClose}>닫기버튼이다싸바라</button> */}
             </div>
           </form>
         </ModalBox>

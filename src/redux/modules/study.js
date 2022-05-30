@@ -61,11 +61,9 @@ const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
 };
 
 const addOnlineStudyDB = (payload) => (dispatch, getState) => {
-  console.log(payload);
   studyApi
     .posting(payload)
     .then((res) => {
-      console.log(res);
       window.location.replace(
         `https://www.book-ing.co.kr/crew/${payload.meetingId}`
       );
@@ -77,7 +75,6 @@ const addOnlineStudyDB = (payload) => (dispatch, getState) => {
 };
 
 const getStudyUserListDB = (payload) => (dispatch, getState) => {
-  console.log(payload);
   studyApi
     .getStudyUserList(payload)
     .then((res) => {
@@ -92,9 +89,7 @@ const getStudyUserListDB = (payload) => (dispatch, getState) => {
 const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
   studyApi
     .joinStudy(crewId, studyId)
-    .then((res) => {
-      // dispatch(inOutStudy(res.data.isStudyJoined));
-    })
+    .then((res) => {})
     .catch((err) => {
       const message = err.response.data.message;
       if (message === "종료된 스터디") {
@@ -154,10 +149,7 @@ const kickStudyUserDB = (studyId, targetId) => (dispatch, getState) => {
 
 export default handleActions(
   {
-    [ADD_STUDY]: (state, action) =>
-      produce(state, (draft) => {
-        // console.log("전달 완료")
-      }),
+    [ADD_STUDY]: (state, action) => produce(state, (draft) => {}),
     [INOUT_STUDY]: (state, action) =>
       produce(state, (draft) => {
         draft.isStudyJoined = action.payload.payload;

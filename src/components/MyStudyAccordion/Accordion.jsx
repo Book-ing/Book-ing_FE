@@ -6,7 +6,6 @@ import { useHistory, useLocation } from "react-router-dom";
 // modules
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 
-
 // mui
 import { styled } from "@mui/material/styles";
 import MuiAccordion from "@mui/material/Accordion";
@@ -41,8 +40,8 @@ const MyStudyAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  
-  const studyNum = location.search ? location.search.substring(7) : '';
+
+  const studyNum = location.search ? location.search.substring(7) : "";
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myStudy);
@@ -51,7 +50,7 @@ const MyStudyAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
-  
+
   // variables
   const [expanded, setExpanded] = useState(Number(studyNum));
 
@@ -64,53 +63,49 @@ const MyStudyAccordions = (props) => {
     return () => {
       dispatch(mypageActions.reset_mystudy());
     };
-  }, [
-    dispatch,
-    __isJoinedStudy,
-    __newStudyProfileUser,
-  ]);
-  console.log(props);
+  }, [dispatch, __isJoinedStudy, __newStudyProfileUser]);
 
   if (__accordionData === "") return <></>;
-  
 
-    return (
-      <>
-        {__accordionData.length ? (
-          __accordionData.map((cur, idx) => {
-            return (
-              
-              <Accordion
-                expanded={expanded === __accordionData[idx].studyId}
-                onChange={handleChange(__accordionData[idx].studyId)}
-                key={idx}
-              >
-                <AccordionSummaryComponent
-                  props={cur}
-                  isJoinedCrew={__isJoinedCrew}
-                />
+  return (
+    <>
+      {__accordionData.length ? (
+        __accordionData.map((cur, idx) => {
+          return (
+            <Accordion
+              expanded={expanded === __accordionData[idx].studyId}
+              onChange={handleChange(__accordionData[idx].studyId)}
+              key={idx}
+            >
+              <AccordionSummaryComponent
+                props={cur}
+                isJoinedCrew={__isJoinedCrew}
+              />
 
-                <AccordionDetailsComponent
-                  props={cur}
-                  isJoinedCrew={__isJoinedCrew}
-                />
-              </Accordion>
-              
-            );
-          })
-        ) : (
-          <StudyNoneNotice type="sub_1">
+              <AccordionDetailsComponent
+                props={cur}
+                isJoinedCrew={__isJoinedCrew}
+              />
+            </Accordion>
+          );
+        })
+      ) : (
+        <StudyNoneNotice type="sub_1">
           내가 만든 스터디가 없습니다.
           <br /> 스터디를 위해 모임을 찾아 볼까요?
           <br />
-          <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
-          }}>
+          <GoSearchBtn
+            shape="brown-outline"
+            onClick={() => {
+              history.push("/");
+            }}
+          >
             모임 찾아보기
           </GoSearchBtn>
         </StudyNoneNotice>
-        )}
-      </>
-    );
+      )}
+    </>
+  );
 };
 
 export default MyStudyAccordions;

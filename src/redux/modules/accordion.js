@@ -44,7 +44,6 @@ export default handleActions(
     [RESET_ACCORDION]: (state, action) =>
       produce(state, (draft) => {
         draft.accordionData = "";
-        console.log(draft.accordionData);
       }),
   },
   initialState

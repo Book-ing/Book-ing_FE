@@ -6,14 +6,14 @@ import "react-quill/dist/quill.snow.css";
 
 export const Editor = () => {
   const [state, setState] = React.useState({ value: null });
-  const handleChange = value => {
+  const handleChange = (value) => {
     setState({ value });
   };
   return (
-    <div className="text-editor" style={{width:"1220px", height:"1130px"}}>
-      <EditorToolbar/>
+    <div className="text-editor" style={{ width: "1220px", height: "1130px" }}>
+      <EditorToolbar />
       <ReactQuill
-        style={{width:"1220px", height:"1130px"}}
+        style={{ width: "1220px", height: "1130px" }}
         theme="snow"
         value={state.value}
         onChange={handleChange}

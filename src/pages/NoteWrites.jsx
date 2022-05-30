@@ -20,17 +20,9 @@ const NoteWrites = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-  // React.useEffect(() => {
-  //   dispatch(userActions.loginCheckDB());
-  // }, []);
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
   const meetingId = location.state.meetingId.meetingId;
-  console.log(bookInfo);
-  console.log(meetingId);
 
   const studyInfo = {
     studyId: bookInfo.studyId,
@@ -91,7 +83,6 @@ const NoteWrites = () => {
 const Grids = styled.div`
   width: 1440px;
   height: 1914px;
-  /* border: 1px solid #815854; */
   padding: 58px 95px 58px 94px;
   background-color: #fbf9f9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -102,14 +93,12 @@ const Grids = styled.div`
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  /* border: 1px solid #815854; */
   ${flex("start", "center", false)}
 `;
 
 const TitleGrid = styled.div`
   width: 100%;
   height: 45px;
-  /* border: 1px solid #815854; */
 `;
 
 const InfoGrid = styled.div`
@@ -134,11 +123,6 @@ const InfoBox = styled.div`
 const EditGrid = styled.div`
   width: 1220px;
   margin-top: 20px;
-  /* border: 1px solid black; */
 `;
-
-// const BtnGrid = styled.div`
-//   margin-top: 150px;
-// `;
 
 export default NoteWrites;

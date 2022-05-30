@@ -8,6 +8,7 @@ const UPLOAD = "image/UPLOAD";
 //action creator
 export const setPreview = createAction(SET_PREVIEW, (preview) => ({ preview }));
 export const uploadImageToS3 = createAction(UPLOAD, (imgUrl) => ({ imgUrl }));
+
 //initialState
 const initialState = {
   preview: "http://via.placeholder.com/400x300",

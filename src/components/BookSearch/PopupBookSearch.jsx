@@ -27,11 +27,9 @@ const PopupBookSearch = (props) => {
       )
       .then((res) => {
         setSearchBookList(res.data.documents);
-        console.log(res.data.documents);
       })
       .catch((err) => console.error(err));
   };
-  console.log(searchBookList);
 
   return (
     <React.Fragment>

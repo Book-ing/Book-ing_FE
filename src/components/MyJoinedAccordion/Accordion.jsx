@@ -6,11 +6,9 @@ import { useParams, useHistory, useLocation } from "react-router-dom";
 // modules
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 
-
 // mui
 import { styled } from "@mui/material/styles";
 import MuiAccordion from "@mui/material/Accordion";
-
 
 // styled components
 import { Eltext, Elbutton } from "../../elements";
@@ -43,12 +41,8 @@ const MyJoinedAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  console.log(location.state);
 
-  // const [open, setOpen] = useState(false);
   const [checkState, setCheckState] = useState(false);
-  // const hadleModalOpen = () => setOpen(true);
-  // const handleModalClose = () => setOpen(false);
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myJoinedStudy);
@@ -57,13 +51,7 @@ const MyJoinedAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
-  const fuck = useSelector((state) => state.mypage.myJoinedStudy);
-  console.log(fuck)
- 
-  // variables
-  // const userId = localStorage.getItem("userId");
 
-  
   const [expanded, setExpanded] = useState("");
 
   const [status, setStatus] = useState(true);
@@ -75,59 +63,54 @@ const MyJoinedAccordions = (props) => {
   useEffect(() => {
     dispatch(mypageActions.getJoinedStudyDB());
     return () => {
-      status === undefined ?
-    setStatus(true) : setStatus(false);
+      status === undefined ? setStatus(true) : setStatus(false);
       dispatch(mypageActions.reset_joined_mystudy());
     };
-  }, [
-    dispatch,
-    __isJoinedStudy,
-    __newStudyProfileUser,
-    checkState,
-    status,
-  ]);
+  }, [dispatch, __isJoinedStudy, __newStudyProfileUser, checkState, status]);
 
   if (__accordionData === "") return <></>;
-  
-  console.log(__accordionData);
 
-    return (
-      <>
-        {__accordionData.length ? (
-          __accordionData.map((cur, idx) => {
-            return (
-              <Accordion
-                expanded={expanded === __accordionData[idx].studyId}
-                onChange={handleChange(__accordionData[idx].studyId)}
-                key={idx}
-              >
-                <AccordionSummaryComponent
-                  props={cur}
-                  checkState={checkState}
-                  setCheckState={setCheckState}
-                  isJoinedCrew={__isJoinedCrew}
-                />
+  return (
+    <>
+      {__accordionData.length ? (
+        __accordionData.map((cur, idx) => {
+          return (
+            <Accordion
+              expanded={expanded === __accordionData[idx].studyId}
+              onChange={handleChange(__accordionData[idx].studyId)}
+              key={idx}
+            >
+              <AccordionSummaryComponent
+                props={cur}
+                checkState={checkState}
+                setCheckState={setCheckState}
+                isJoinedCrew={__isJoinedCrew}
+              />
 
-                <AccordionDetailsComponent
-                  props={cur}
-                  isJoinedCrew={__isJoinedCrew}
-                />
-              </Accordion>
-            );
-          })
-        ) : (
-          <StudyNoneNotice type="sub_1">
-            내가 참여한 스터디가 없습니다.
-            <br /> 스터디에 참가하러 가 볼까요?
-            <br />
-            <GoSearchBtn shape="brown-outline" onClick={() => {history.push("/")
-            }}>
-              모임 찾아보기
-            </GoSearchBtn>
-          </StudyNoneNotice>
-        )}
-      </>
-    );
+              <AccordionDetailsComponent
+                props={cur}
+                isJoinedCrew={__isJoinedCrew}
+              />
+            </Accordion>
+          );
+        })
+      ) : (
+        <StudyNoneNotice type="sub_1">
+          내가 참여한 스터디가 없습니다.
+          <br /> 스터디에 참가하러 가 볼까요?
+          <br />
+          <GoSearchBtn
+            shape="brown-outline"
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            모임 찾아보기
+          </GoSearchBtn>
+        </StudyNoneNotice>
+      )}
+    </>
+  );
 };
 
 export default MyJoinedAccordions;

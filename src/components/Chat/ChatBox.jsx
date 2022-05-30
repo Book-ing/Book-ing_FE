@@ -10,7 +10,6 @@ const ChatBox = memo(() => {
   // const user = useSelector((state) => state.user.user);
   const user = localStorage.getItem("userId");
   const chat = useSelector((state) => state.chat.messages);
-  console.log(chat);
   const scrollRef = useRef();
 
   const scrollToBottom = () => {

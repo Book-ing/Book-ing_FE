@@ -33,7 +33,7 @@ const WygiwysEditor = ({ option, studyInfo }) => {
   const onChangeIntroFunction = () => {
     const editorInstance = editorRef.current.getInstance();
     const getContent_md = editorInstance.getMarkdown();
-    
+
     const status = true;
 
     const studyNoteInfo = {
@@ -43,13 +43,13 @@ const WygiwysEditor = ({ option, studyInfo }) => {
 
     studyInfo.studyNote === undefined
       ? dispatch(editorActions.addStudyNoteDB(studyNoteInfo))
-      : (dispatch(editorActions.modifyStudyNoteDB(studyNoteInfo)));
-      dispatch(mypageActions.getMyStudyDB());
-      history.push({
-      pathname:"/mypage",
+      : dispatch(editorActions.modifyStudyNoteDB(studyNoteInfo));
+    dispatch(mypageActions.getMyStudyDB());
+    history.push({
+      pathname: "/mypage",
       state: status,
-      search: `?study=${studyInfo.studyId}`
-    })
+      search: `?study=${studyInfo.studyId}`,
+    });
   };
 
   const defaultOpt = {
@@ -62,9 +62,7 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     language: "ko-KR",
     // colorSyntax: 글자 색 바꾸는 기능 / condeSyntaxHighlight : 언어에 따른 코드 색 변경
     plugins: [colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]],
-    initialValue: `${
-      studyInfo.studyValue ? studyInfo.studyValue : ""
-    }`,
+    initialValue: `${studyInfo.studyValue ? studyInfo.studyValue : ""}`,
     hooks: {
       addImageBlobHook: async (blob, callback) => {
         const imgUrl = await uploadFile(blob);

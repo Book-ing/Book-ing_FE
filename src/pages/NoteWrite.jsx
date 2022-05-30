@@ -16,18 +16,8 @@ const NoteWrite = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-  // React.useEffect(() => {
-  //   dispatch(userActions.loginCheckDB());
-  // }, []);
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
-  
-  console.log(bookInfo);
-  
 
   const studyInfo = {
     studyId: bookInfo.studyId,
@@ -62,7 +52,9 @@ const NoteWrite = () => {
                 출판사: {bookInfo.studyBookPublisher}
               </Eltext>
               <br />
-              <Eltext type="sub_2">책 소개 : {bookInfo.studyBookInfo}...</Eltext>
+              <Eltext type="sub_2">
+                책 소개 : {bookInfo.studyBookInfo}...
+              </Eltext>
             </InfoBox>
           </InfoGrid>
 

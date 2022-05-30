@@ -27,7 +27,6 @@ const kakaoLogin = (payload) => (dispatch, getState) => {
   userApi
     .login(payload)
     .then((res) => {
-      console.log(res);
       const accessToken = res.data.data.accessToken;
       const refreshToken = res.data.data.refreshToken;
       const { userId, username, kakaoUserId } = jwtDecode(accessToken);
@@ -48,7 +47,6 @@ const kakaoLogin = (payload) => (dispatch, getState) => {
       history.replace("/");
     })
     .catch((error) => {
-      console.log("소셜로그인 에러", error);
       window.alert("로그인에 실패하였습니다.");
       history.replace("/login");
     });
@@ -71,7 +69,6 @@ const loginCheckDB = () => (dispatch, getState) => {
   userApi
     .loginCheck()
     .then((res) => {
-      console.log(res);
       const status = res.status;
       const accessToken = res.data.data.accessToken;
       const refreshToken = res.data.data.refreshToken;

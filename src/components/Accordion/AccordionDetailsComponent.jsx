@@ -50,8 +50,6 @@ const AccordionDetailsComponent = (props) => {
 
   const btnStatus = props.props.studyStatus;
 
-  console.log(props);
-
   return (
     <AccordionDetails>
       <Grid container sx={{ mb: "45px" }}>

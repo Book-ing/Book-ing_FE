@@ -56,8 +56,6 @@ const UserList = (props) => {
       }
     };
 
-    console.log(props.eachStudyData);
-
     return (
       <UserListModalWrap>
         <Header>
@@ -115,7 +113,6 @@ const UserList = (props) => {
 
           {/* 일반 유저 영역 시작 */}
           {filterdStudyUserList.map((cur, idx) => {
-            console.log(cur);
             return (
               <EachUser key={idx}>
                 <EachUserLeftBox>
@@ -157,7 +154,6 @@ const style = {
 
 const UserListModalWrap = styled.div`
   position: relative;
-  /* overflow: hidden; */
   width: 100%;
   height: 100%;
 `;
