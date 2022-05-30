@@ -10,6 +10,7 @@ import { FaEllipsisH } from "react-icons/fa";
 // Modules
 import { studyActions } from "../../redux/modules/study";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
+<<<<<<< HEAD
 =======
 =======
 // react-icons
@@ -20,6 +21,8 @@ import { FaEllipsisH } from "react-icons/fa";
 import { studyActions } from "../../redux/modules/study";
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> daab47f (page(Main): 수정 후 커밋)
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -103,6 +106,7 @@ const AccordionSummaryComponent = (props) => {
   // const clickInOutStudyBtn = () => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
+<<<<<<< HEAD
   console.log(props.props);
 
   console.log(props.props.studyMasterProfile.profileImage);
@@ -116,6 +120,11 @@ const AccordionSummaryComponent = (props) => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
 >>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
+=======
+  console.log(props);
+
+  // console.log(__crewId, studyId);
+>>>>>>> daab47f (page(Main): 수정 후 커밋)
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -161,9 +170,13 @@ const AccordionSummaryComponent = (props) => {
   const clickDeleteStudyBtn = () => {
     dispatch(studyActions.deleteStudyDB(studyId, __crewId));
 <<<<<<< HEAD
+<<<<<<< HEAD
     // dispatch(mypageActions.getMyStudyDB());
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+    // dispatch(mypageActions.getMyStudyDB());
+>>>>>>> daab47f (page(Main): 수정 후 커밋)
   };
 
   const [studyUserListOpen, setStudyUserListOpen] = useState(false);
@@ -380,10 +393,14 @@ const AccordionSummaryComponent = (props) => {
                 history.push({
                   pathname: `/room/${studyId}`,
 <<<<<<< HEAD
+<<<<<<< HEAD
                   state: { meetingId: props.props.meetingId },
 =======
                   state: { meetingId: __crewId },
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+                  state: { meetingId: props.props.meetingId },
+>>>>>>> daab47f (page(Main): 수정 후 커밋)
                 });
               }}
             >

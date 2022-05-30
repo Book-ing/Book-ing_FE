@@ -112,6 +112,7 @@ const MyStudyAccordions = (props) => {
   
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
   // variables
+<<<<<<< HEAD
   const fuck = useSelector((state) => state);
   console.log(fuck)
 
@@ -119,6 +120,8 @@ const MyStudyAccordions = (props) => {
   const [expanded, setExpanded] = useState("");
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 =======
+=======
+>>>>>>> daab47f (page(Main): 수정 후 커밋)
   const [expanded, setExpanded] = useState(Number(studyNum));
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
@@ -137,6 +140,7 @@ const MyStudyAccordions = (props) => {
     __newStudyProfileUser,
   ]);
 <<<<<<< HEAD
+<<<<<<< HEAD
   console.log(props);
 
   if (__accordionData === "") return <></>;
@@ -147,6 +151,12 @@ const MyStudyAccordions = (props) => {
   
   console.log(__accordionData);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  console.log(props);
+
+  if (__accordionData === "") return <></>;
+  
+>>>>>>> daab47f (page(Main): 수정 후 커밋)
 
     return (
       <>
