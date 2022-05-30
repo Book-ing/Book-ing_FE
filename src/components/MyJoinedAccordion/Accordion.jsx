@@ -1,22 +1,16 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 
 // modules
-import { actionCreators as accordionActions } from "../../redux/modules/accordion";
-import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
-import { mainActions } from "../../redux/modules/main";
+
 
 // mui
 import { styled } from "@mui/material/styles";
-import { Modal, Box } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
+
 
 // styled components
 import { Eltext, Elbutton } from "../../elements";
@@ -48,7 +42,8 @@ const Accordion = styled((props) => (
 const MyJoinedAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  
+  const location = useLocation();
+  console.log(location.state);
 
   // const [open, setOpen] = useState(false);
   const [checkState, setCheckState] = useState(false);
@@ -62,14 +57,16 @@ const MyJoinedAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
-  const myJoinedStudy = useSelector((state) => state.mypage.myStudy);
-
-  console.log(myJoinedStudy)
+  const fuck = useSelector((state) => state.mypage.myJoinedStudy);
+  console.log(fuck)
  
   // variables
   // const userId = localStorage.getItem("userId");
 
+  
   const [expanded, setExpanded] = useState("");
+
+  const [status, setStatus] = useState(true);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -78,14 +75,16 @@ const MyJoinedAccordions = (props) => {
   useEffect(() => {
     dispatch(mypageActions.getJoinedStudyDB());
     return () => {
+      status === undefined ?
+    setStatus(true) : setStatus(false);
       dispatch(mypageActions.reset_joined_mystudy());
     };
   }, [
     dispatch,
     __isJoinedStudy,
-    myJoinedStudy,
     __newStudyProfileUser,
     checkState,
+    status,
   ]);
 
   if (__accordionData === "") return <></>;

@@ -18,6 +18,7 @@ import {
   Main,
   MyPage,
   Search,
+  NoteWrite,
   NoteWrites,
   Test,
 } from "../pages/index";
@@ -45,6 +46,7 @@ function App() {
             <Route path="/crew/:meetingId" exact component={Crew} />
             <Route path="/mypage" exact component={MyPage} />
             <Route path="/notewrites" exact component={NoteWrites} />
+            <Route path="/notewrite" exact component={NoteWrite} />
             <Route path="/search" exact component={Search} />
             <Footer />
           </Wraper>

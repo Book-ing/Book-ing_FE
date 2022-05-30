@@ -9,6 +9,9 @@ import { Avatar, Grid } from "@mui/material";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Box, Popover } from "@mui/material";
 
+// react-icons
+import { FaEllipsisH } from "react-icons/fa";
+
 // styled components
 import styledComp from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
@@ -83,7 +86,7 @@ const AccordionDetailsComponent = (props) => {
         <NoteSection>
           {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
-              <LinearScaleIcon sx={{ fontSize: 35 }} />
+              <FaEllipsisH />
             </MenuBtn>
           )}
 
@@ -110,8 +113,8 @@ const AccordionDetailsComponent = (props) => {
               <MoreBtns 
                 onClick={() => {
                   history.push({
-                    pathname: "/notewrites",
-                    state: { bookInfo: props, meetingId: params },
+                    pathname: "/notewrite",
+                    state: { bookInfo: props },
                   });
                 }} 
                 shape="brown-outline"
@@ -186,8 +189,8 @@ const AccordionDetailsComponent = (props) => {
                             shape="brown-outline"
                             onClick={() => {
                               history.push({
-                                pathname: "/notewrites",
-                                state: { bookInfo: props, meetingId: params },
+                                pathname: "/notewrite",
+                                state: { bookInfo: props },
                               });
                             }}
                           >
@@ -275,7 +278,7 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 10px;
   color: var(--point);
-
+  font-size: 35px;
   &:hover {
     color: var(--notice)
   }
