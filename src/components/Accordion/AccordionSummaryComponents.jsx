@@ -71,8 +71,12 @@ const AccordionSummaryComponent = (props) => {
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
   const clickInOutStudyBtn = () => {
-    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
-    props.setCheckState(!props.checkState);
+    if (props.props.studyLimitCnt === props.props.studyUserCnt) {
+      alert("스터디 인원이 가득 차 더이상 참가할 수 없습니다.");
+    } else {
+      dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+      props.setCheckState(!props.checkState);
+    }
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -242,13 +246,13 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
-          {props.props.isStudyEnd === true ? null : props.props
+          {props.props.studyStatus === "B" ? null : props.props
               .isStudyJoined === true && props.props.studyType === "online" ? (
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: __crewId },
+                  state: { meetingId: __crewId, studyData: props.props },
                 });
               }}
             >
@@ -274,6 +278,27 @@ const AccordionSummaryComponent = (props) => {
       ) : (
         <NoticeTag style={{ backgroundColor: "#A2D16E" }}></NoticeTag>
       )}
+      {props.props.studyMasterProfile.userId ===
+      parseInt(localStorage.getItem("userId")) ? (
+        <MineStudyTag>
+          <div
+            style={{
+              width: "90px",
+              height: "35px",
+              opacity: "0.1",
+              backgroundColor: "var(--gray)",
+            }}
+          ></div>
+          <div
+            style={{
+              width: "60px",
+              height: "35px",
+              backgroundColor: "#2e9cff",
+              boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.5)",
+            }}
+          ></div>
+        </MineStudyTag>
+      ) : null}
     </AccordionSummaryWrap>
   );
 };
@@ -441,4 +466,13 @@ const NoticeTag = styledComp.div`
   top: 0;
   width: 10px;
   height: 100%;
+`;
+
+const MineStudyTag = styledComp.div`
+  ${flex}
+  position: absolute;
+  right: -60px;
+  bottom:0;
+  width: 150px;
+  height: 35px;
 `;

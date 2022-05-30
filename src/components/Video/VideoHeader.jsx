@@ -23,6 +23,9 @@ const VideoHeader = (props) => {
             history.push("/");
           }}
         ></Logo>
+        <StudyTitle type="sub_1_bold">
+          스터디명 : {props.studyData.studyTitle}
+        </StudyTitle>
         <HeaderBtns>
           <ChatPeopleCnt type="sub_1_bold">{props.numberOfUsers}</ChatPeopleCnt>
           <StBtn
@@ -63,12 +66,18 @@ const Logo = styled.img`
 `;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 79a30b3 (chore(stuff): accordion, mycrewlist, slide, video header modify)
 const StudyTitle = styled(Eltext)`
   color: var(--point);
 `;
 
+<<<<<<< HEAD
 =======
 >>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
+=======
+>>>>>>> 79a30b3 (chore(stuff): accordion, mycrewlist, slide, video header modify)
 const HeaderBtns = styled.div`
   ${flex}
 `;
