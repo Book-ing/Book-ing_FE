@@ -11,9 +11,11 @@ import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { Avatar, AvatarGroup, Grid } from "@mui/material";
-import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Box, Popover, Modal } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+
+// react-icons
+import { FaEllipsisH } from "react-icons/fa";
 
 // styled components
 import styledComp from "styled-components";
@@ -56,6 +58,9 @@ const AccordionSummaryComponent = (props) => {
 
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
+  const __CrewMasterId = useSelector(
+    (state) => state.crew.crewData.meetingMasterProfile.userId
+  );
   const loginId = localStorage.getItem("userId");
 
   // variables
@@ -86,8 +91,13 @@ const AccordionSummaryComponent = (props) => {
   const [editStudyModal, setEditStudyModal] = useState(false);
 
   const handleEditStudyModalOpen = (e) => {
-    e.stopPropagation();
-    setEditStudyModal(true);
+    if (props.props.isStudyEnd === true) {
+      alert("이미 종료된 스터디는 수정할 수 없습니다.");
+      return;
+    } else {
+      e.stopPropagation();
+      setEditStudyModal(true);
+    }
   };
 
   const handleEditStudyModalClose = (e) => {
@@ -106,8 +116,6 @@ const AccordionSummaryComponent = (props) => {
   };
   const handlestudyUserListModalClose = () => setStudyUserListOpen(false);
 
-  console.log(props);
-
   return (
     <AccordionSummaryWrap>
       <AccordionSummary
@@ -115,11 +123,12 @@ const AccordionSummaryComponent = (props) => {
       // id="panel1d-header"
       ></AccordionSummary>
       <AccordionHeaderWrap>
-        {props.isJoinedCrew === true &&
-        props.props.studyMasterProfile.userId ===
-          parseInt(localStorage.getItem("userId")) ? (
+        {(props.isJoinedCrew === true &&
+          props.props.studyMasterProfile.userId ===
+            parseInt(localStorage.getItem("userId"))) ||
+        __CrewMasterId === parseInt(localStorage.getItem("userId")) ? (
           <MenuBtn onClick={handleClick}>
-            <LinearScaleIcon sx={{ fontSize: 35 }} />
+            <FaEllipsisH />
           </MenuBtn>
         ) : null}
         <Popover
@@ -233,8 +242,8 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
-          {props.props.isStudyJoined === true &&
-          props.props.studyType === "online" ? (
+          {props.props.isStudyEnd === true ? null : props.props
+              .isStudyJoined === true && props.props.studyType === "online" ? (
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
@@ -247,8 +256,9 @@ const AccordionSummaryComponent = (props) => {
             </JoinOnlineStudyRoom>
           ) : null}
           {props.isJoinedCrew === false ||
-          props.props.studyMasterProfile.userId ===
-            parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
+          props.props.studyMasterProfile.userId === parseInt(loginId) ||
+          props.props.isStudyEnd === true ? null : props.props.isStudyJoined ===
+            true ? (
             <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
               취소하기
             </JoinBtn>
@@ -259,6 +269,11 @@ const AccordionSummaryComponent = (props) => {
           )}
         </RightBox>
       </AccordionHeaderWrap>
+      {props.props.isStudyEnd === true ? (
+        <NoticeTag style={{ backgroundColor: "#ED6D59" }}></NoticeTag>
+      ) : (
+        <NoticeTag style={{ backgroundColor: "#A2D16E" }}></NoticeTag>
+      )}
     </AccordionSummaryWrap>
   );
 };
@@ -269,6 +284,7 @@ const AccordionSummaryWrap = styledComp.div`
   ${flex}
   background-color: #fbf9f9;
   padding: 10px 0;
+  position: relative;
 `;
 
 const styles = {
@@ -306,6 +322,7 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 0;
   color: var(--point);
+  font-size: 35px;
 
   &:hover {
     color: var(--notice)
@@ -416,4 +433,12 @@ const ModalCloseBtn = styledComp.button`
   position: absolute;
   right: 160px;
   top: 30px;
+`;
+
+const NoticeTag = styledComp.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
 `;
