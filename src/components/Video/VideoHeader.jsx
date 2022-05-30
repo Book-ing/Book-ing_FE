@@ -23,6 +23,9 @@ const VideoHeader = (props) => {
             history.push("/");
           }}
         ></Logo>
+        <StudyTitle type="sub_1_bold">
+          스터디명 : {props.studyData.studyTitle}
+        </StudyTitle>
         <HeaderBtns>
           <ChatPeopleCnt type="sub_1_bold">{props.numberOfUsers}</ChatPeopleCnt>
           <StBtn
@@ -60,6 +63,10 @@ const Logo = styled.img`
   width: 122px;
   height: 47px;
   cursor: pointer;
+`;
+
+const StudyTitle = styled(Eltext)`
+  color: var(--point);
 `;
 
 const HeaderBtns = styled.div`
