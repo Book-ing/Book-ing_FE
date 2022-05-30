@@ -52,7 +52,6 @@ const Videoplayer = React.forwardRef((props, ref) => {
     socket.on(
       "joinStudyRoom",
       async (userObjArr, socketIdformserver, videoType) => {
-        console.log(videoType);
         const length = userObjArr.length;
         //카메라, 마이크 가져오기
         await getMedia();
@@ -402,8 +401,13 @@ const Videoplayer = React.forwardRef((props, ref) => {
 });
 
 const DIV = styled.div`
-  ${flex("center", "center", false)}
+  /* ${flex("center", "center", false)} */
   position: "relative";
+  max-width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  text-align: center;
+  padding: 5px;
   /* @media screen and (max-width: 1440px) {
     position: absolute;
     right: 0px;
@@ -413,18 +417,22 @@ const DIV = styled.div`
 
 const MemberWrap = styled.div`
   display: flex;
-  border: 1px solid blue;
+  max-width: 100%;
+  flex-flow: wrap;
+
   .memberVideo {
-    margin-right: 10px; //화상채팅간 영상간격
-    width: 200px;
-    height: 112px;
+    margin: auto;
+    min-width: 200px;
+    width: 100%;
+    min-height: 112px;
+    height: 100%;
     border-radius: 8px;
     position: relative;
     object-fit: cover;
     @media screen and (max-width: 1440px) {
       width: 202px;
       height: 113px;
-      margin-bottom: 10px;
+      margin: auto;
     }
   }
   .nickNameContainer {
@@ -441,10 +449,15 @@ const MemberWrap = styled.div`
     align-items: center;
   }
   .videoBox {
+    display: block;
     flex-grow: 1;
+    min-width: 200px;
+    max-width: 350px;
+    margin: 10px; //화상채팅간 영상간격
     position: relative;
   }
   .myVideo {
+    margin: auto;
     // 사파리
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
@@ -453,8 +466,8 @@ const MemberWrap = styled.div`
     display: flex;
     position: absolute;
     background-color: #c9998d;
-    background: url(${BookingKorLogo}) no-repeat center;
-    background-size: contain;
+    /* background: url(${BookingKorLogo}) no-repeat center;
+    background-size: contain; */
     width: 100%;
     height: 100%;
     z-index: 2;
