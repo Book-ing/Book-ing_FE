@@ -20,6 +20,7 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 import flex from "../../themes/flex";
 
 const StudySection = (props) => {
+  console.log()
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -87,7 +88,10 @@ const StudySection = (props) => {
         </StudySectionBoxRight>
       </StudySectionBox>
       <AccordionSection>
-        <CustomAccordions isJoinedCrew={__isJoinedCrew}></CustomAccordions>
+        <CustomAccordions 
+          isJoinedCrew={__isJoinedCrew}
+          meetingLimitCnt={props.crewInfo.meetingLimitCnt}
+        ></CustomAccordions>
       </AccordionSection>
     </StudySectionWrap>
   );

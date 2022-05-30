@@ -248,7 +248,7 @@ const AccordionSummaryComponent = (props) => {
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
           ) : null}
-          {props.isJoinedCrew === false ||
+          {/* {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
             <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
@@ -258,7 +258,7 @@ const AccordionSummaryComponent = (props) => {
             <JoinBtn shape="brown-outline" onClick={clickInOutStudyBtn}>
               참가하기
             </JoinBtn>
-          )}
+          )} */}
         </RightBox>
       </AccordionHeaderWrap>
     </AccordionSummaryWrap>
@@ -391,16 +391,22 @@ const JoinOnlineStudyRoom = styledComp(Elbutton)`
   border-radius: 5px;
 `;
 
-const JoinBtn = styledComp(Elbutton)`
-  width: 96px;
-  height: 30px;
-  margin-right: 20px;
-  border-radius: 5px;
-`;
+// const JoinBtn = styledComp(Elbutton)`
+//   width: 96px;
+//   height: 30px;
+//   margin-right: 20px;
+//   border-radius: 5px;
+// `;
 
 const RightBox = styledComp.div`
+  // ${flex("end", "center", true)}
+  // width: 100%;
+  position: absolute;
+  bottom: -20px;
+  // margin-top: -20px;
+  right: 180px;
   ${flex("end", "center", true)}
-  width: 100%;
+  width: 300px;
 `;
 
 const editStudyModalstyle = {
