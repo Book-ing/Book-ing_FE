@@ -108,6 +108,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
       "joinStudyRoom",
       async (userObjArr, socketIdformserver, videoType) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         console.log(videoType);
 >>>>>>> 9c67655 (is it done?)
 =======
@@ -115,6 +116,8 @@ const Videoplayer = React.forwardRef((props, ref) => {
 =======
         console.log(videoType);
 >>>>>>> 8a9f22d (add(webRTC/v1): make webRTC/v1 branch)
+=======
+>>>>>>> 22e5349 (chore(cambox): modified each cam box)
         const length = userObjArr.length;
         //카메라, 마이크 가져오기
         await getMedia();
@@ -634,6 +637,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
 const DIV = styled.div`
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   /* ${flex("center", "center", false)} */
   position: "relative";
   max-width: 100%;
@@ -649,6 +653,15 @@ const DIV = styled.div`
 >>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
   position: "relative";
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+  /* ${flex("center", "center", false)} */
+  position: "relative";
+  max-width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  text-align: center;
+  padding: 5px;
+>>>>>>> 22e5349 (chore(cambox): modified each cam box)
   /* @media screen and (max-width: 1440px) {
     position: absolute;
     right: 0px;
@@ -679,6 +692,7 @@ const MemberWrap = styled.div`
 >>>>>>> 717697e (view(webRTC): camchat room view 1차 완성 커밋입니다.)
 =======
   display: flex;
+<<<<<<< HEAD
   border: 1px solid blue;
 >>>>>>> e85fdf2 (chore(merge): 주탁님 작업사항 병합을 위한 커밋입니다.)
   .memberVideo {
@@ -686,6 +700,17 @@ const MemberWrap = styled.div`
     width: 200px;
     height: 112px;
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+  max-width: 100%;
+  flex-flow: wrap;
+
+  .memberVideo {
+    margin: auto;
+    min-width: 200px;
+    width: 100%;
+    min-height: 112px;
+    height: 100%;
+>>>>>>> 22e5349 (chore(cambox): modified each cam box)
     border-radius: 8px;
     position: relative;
     object-fit: cover;
@@ -693,10 +718,14 @@ const MemberWrap = styled.div`
       width: 202px;
       height: 113px;
 <<<<<<< HEAD
+<<<<<<< HEAD
       margin: auto;
 =======
       margin-bottom: 10px;
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+      margin: auto;
+>>>>>>> 22e5349 (chore(cambox): modified each cam box)
     }
   }
   .nickNameContainer {
@@ -713,6 +742,7 @@ const MemberWrap = styled.div`
     align-items: center;
   }
   .videoBox {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     display: block;
@@ -732,6 +762,17 @@ const MemberWrap = styled.div`
   }
   .myVideo {
 >>>>>>> be3fbe5 (feature(webRTC): webRTC 기능 추가중 배포 테스트 커밋입니다)
+=======
+    display: block;
+    flex-grow: 1;
+    min-width: 200px;
+    max-width: 350px;
+    margin: 10px; //화상채팅간 영상간격
+    position: relative;
+  }
+  .myVideo {
+    margin: auto;
+>>>>>>> 22e5349 (chore(cambox): modified each cam box)
     // 사파리
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
@@ -779,8 +820,8 @@ const MemberWrap = styled.div`
     display: flex;
     position: absolute;
     background-color: #c9998d;
-    background: url(${BookingKorLogo}) no-repeat center;
-    background-size: contain;
+    /* background: url(${BookingKorLogo}) no-repeat center;
+    background-size: contain; */
     width: 100%;
     height: 100%;
     z-index: 2;

@@ -138,6 +138,7 @@ const VideoWrap = styled.div`
   margin-top: 10px;
   box-sizing: border-box;
   overflow-y: auto;
+<<<<<<< HEAD
 
   @media screen and (max-width: 1440px) {
     width: 980px;
@@ -357,6 +358,8 @@ const VideoWrap = styled.div`
   position: relative;
   margin-top: 10px;
   box-sizing: border-box;
+=======
+>>>>>>> 22e5349 (chore(cambox): modified each cam box)
 
   @media screen and (max-width: 1440px) {
     width: 980px;
@@ -365,19 +368,19 @@ const VideoWrap = styled.div`
   }
 `;
 
-const SharedVideoSection = styled.div`
-  width: 100%;
-  height: 80%;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #c9998d;
-  overflow-x: auto;
-  .shareVideo {
-    width: 960px;
-    height: 540px;
-    border: 2px solid var(--point);
-  }
-`;
+// const SharedVideoSection = styled.div`
+//   width: 100%;
+//   height: 80%;
+//   padding: 10px;
+//   border-radius: 10px;
+//   border: 1px solid #c9998d;
+//   overflow-x: auto;
+//   .shareVideo {
+//     width: 960px;
+//     height: 540px;
+//     border: 2px solid var(--point);
+//   }
+// `;
 
 const SoundBtn = styled.div`
   ${flex("end")}
