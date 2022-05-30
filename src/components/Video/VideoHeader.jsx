@@ -23,11 +23,14 @@ const VideoHeader = (props) => {
             history.push("/");
           }}
         ></Logo>
+<<<<<<< HEAD
         {/* {props.studyData.studyTitle ? (
           <StudyTitle type="sub_1_bold">
             스터디명 : {props.studyData.studyTitle}
           </StudyTitle>
         ) : null} */}
+=======
+>>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
         <HeaderBtns>
           <ChatPeopleCnt type="sub_1_bold">{props.numberOfUsers}</ChatPeopleCnt>
           <StBtn
