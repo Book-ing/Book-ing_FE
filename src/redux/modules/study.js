@@ -181,6 +181,7 @@ const inOutStudyDB = (crewId, studyId) => (dispatch, getState) => {
       if (message === "종료된 스터디") {
         alert("이미 종료된 스터디입니다.");
       }
+<<<<<<< HEAD
     });
 };
 
@@ -203,6 +204,8 @@ const editStudyDB = (payload) => (dispatch, getState) => {
     })
     .catch((err) => {
       console.log(err);
+=======
+>>>>>>> 23dd40b (chore(joinStudyAlert): popup alert when click join btn already done study)
     });
 };
 
