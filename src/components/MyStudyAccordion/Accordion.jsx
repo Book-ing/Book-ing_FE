@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useHistory, useLocation } from "react-router-dom";
 
 // modules
@@ -13,22 +14,23 @@ import { styled } from "@mui/material/styles";
 import MuiAccordion from "@mui/material/Accordion";
 =======
 import { useHistory } from "react-router-dom";
+=======
+import { useHistory, useLocation } from "react-router-dom";
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
 // modules
-import { actionCreators as accordionActions } from "../../redux/modules/accordion";
-import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
-import { mainActions } from "../../redux/modules/main";
+
 
 // mui
 import { styled } from "@mui/material/styles";
-import { Modal, Box } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
+<<<<<<< HEAD
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
 // styled components
 import { Eltext, Elbutton } from "../../elements";
@@ -36,9 +38,12 @@ import { Eltext, Elbutton } from "../../elements";
 // components
 import AccordionSummaryComponent from "./AccordionSummaryComponents";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import ModalStudy from "../Modal/ModalStudy";
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
 // styled components
 import styledComp from "styled-components";
@@ -64,6 +69,7 @@ const MyStudyAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 <<<<<<< HEAD
+<<<<<<< HEAD
   const location = useLocation();
   
   const studyNum = location.search ? location.search.substring(7) : '';
@@ -80,6 +86,11 @@ const MyStudyAccordions = (props) => {
   // const hadleModalOpen = () => setOpen(true);
   // const handleModalClose = () => setOpen(false);
 >>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
+=======
+  const location = useLocation();
+  
+  const studyNum = location.search ? location.search.substring(7) : '';
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myStudy);
@@ -89,6 +100,7 @@ const MyStudyAccordions = (props) => {
     (state) => state.study.newStudyProfileUser
   );
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   // variables
   const [expanded, setExpanded] = useState(Number(studyNum));
@@ -96,11 +108,19 @@ const MyStudyAccordions = (props) => {
 
   console.log(__accordionData)
  
+=======
+  
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
   // variables
-  // const userId = localStorage.getItem("userId");
+  const fuck = useSelector((state) => state);
+  console.log(fuck)
 
+<<<<<<< HEAD
   const [expanded, setExpanded] = useState("");
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  const [expanded, setExpanded] = useState(Number(studyNum));
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

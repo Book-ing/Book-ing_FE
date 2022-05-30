@@ -25,6 +25,9 @@ import {
   MyPage,
   Search,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
   NoteWrite,
   NoteWrites,
   Test,
@@ -85,7 +88,11 @@ function App() {
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
 =======
             <Route path="/notewrites" exact component={NoteWrites} />
+<<<<<<< HEAD
 >>>>>>> 3240a35 (fix(accordion): study type에 따른 조건부 렌더링 추가)
+=======
+            <Route path="/notewrite" exact component={NoteWrite} />
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
             <Route path="/search" exact component={Search} />
             <Footer />
           </Wraper>

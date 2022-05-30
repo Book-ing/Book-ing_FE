@@ -134,6 +134,9 @@ const AccordionSummaryComponent = (props) => {
 
   const handleEditStudyModalOpen = (e) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
     if (props.props.isStudyEnd === true) {
       alert("이미 종료된 스터디는 수정할 수 없습니다.");
       return;
@@ -141,10 +144,13 @@ const AccordionSummaryComponent = (props) => {
       e.stopPropagation();
       setEditStudyModal(true);
     }
+<<<<<<< HEAD
 =======
     e.stopPropagation();
     setEditStudyModal(true);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
   };
 
   const handleEditStudyModalClose = (e) => {
@@ -359,11 +365,16 @@ const AccordionSummaryComponent = (props) => {
         <RightBox>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           {props.props.isStudyEnd === true ? null : props.props.studyType ===
             "online" ? (
 =======
         {props.props.studyType === "online" ? (
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
@@ -378,10 +389,16 @@ const AccordionSummaryComponent = (props) => {
             >
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
+<<<<<<< HEAD
           ) : null}
 <<<<<<< HEAD
 <<<<<<< HEAD
 
+=======
+          ) : null
+        )}
+        
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
           {/* {props.isJoinedCrew === false ||
 =======
 =======
@@ -417,7 +434,15 @@ const AccordionSummaryComponent = (props) => {
 >>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
         </RightBox>
       </AccordionHeaderWrap>
+<<<<<<< HEAD
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+      {props.props.isStudyEnd === true ? (
+        <NoticeTag style={{ backgroundColor: "#ED6D59" }}></NoticeTag>
+      ) : (
+        <NoticeTag style={{ backgroundColor: "#A2D16E" }}></NoticeTag>
+      )}
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
     </AccordionSummaryWrap>
   );
 };
@@ -684,6 +709,9 @@ const StudyTypeOfflineTag = styledComp(Eltext)`
   background-color: #839893;
   color: white;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 `;
 
 const NoticeTag = styledComp.div`
@@ -692,9 +720,13 @@ const NoticeTag = styledComp.div`
   top: 0;
   width: 10px;
   height: 100%;
+<<<<<<< HEAD
 `;
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 =======
 `;
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+`;
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)

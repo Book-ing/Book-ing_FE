@@ -30,6 +30,7 @@ const Mypage = () => {
   const [isMyCrew, setIsMyCrew] = useState(true);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -40,6 +41,11 @@ const Mypage = () => {
   // }, []);
 // ==================== 민우님이 요청한 loginCheckDB ========================
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
   useEffect(() => {
     status === undefined ?

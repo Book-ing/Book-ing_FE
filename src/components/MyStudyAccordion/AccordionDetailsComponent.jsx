@@ -10,11 +10,17 @@ import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Box, Popover } from "@mui/material";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // react-icons
 import { FaEllipsisH } from "react-icons/fa";
 
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+// react-icons
+import { FaEllipsisH } from "react-icons/fa";
+
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 // styled components
 import styledComp from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
@@ -117,7 +123,7 @@ const AccordionDetailsComponent = (props) => {
         <NoteSection>
           {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
-              <LinearScaleIcon sx={{ fontSize: 35 }} />
+              <FaEllipsisH />
             </MenuBtn>
 <<<<<<< HEAD
           ) : null}
@@ -157,9 +163,14 @@ const AccordionDetailsComponent = (props) => {
               <MoreBtns 
                 onClick={() => {
                   history.push({
+<<<<<<< HEAD
                     pathname: "/notewrites",
                     state: { bookInfo: props, meetingId: params },
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+                    pathname: "/notewrite",
+                    state: { bookInfo: props },
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
                   });
                 }} 
                 shape="brown-outline"
@@ -285,6 +296,7 @@ const AccordionDetailsComponent = (props) => {
                             onClick={() => {
                               history.push({
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 pathname: "/notewrite",
                                 state: { bookInfo: props },
 =======
@@ -296,6 +308,10 @@ const AccordionDetailsComponent = (props) => {
 =======
                                 state: { bookInfo: props, meetingId: params },
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+                                pathname: "/notewrite",
+                                state: { bookInfo: props },
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
                               });
                             }}
                           >
@@ -422,10 +438,14 @@ const MenuBtn = styledComp.button`
   top: 10px;
   color: var(--point);
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 35px;
 =======
 
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  font-size: 35px;
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
   &:hover {
     color: var(--notice)
   }

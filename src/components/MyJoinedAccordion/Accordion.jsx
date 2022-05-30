@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useParams, useHistory, useLocation } from "react-router-dom";
 
 // modules
@@ -14,22 +15,24 @@ import MuiAccordion from "@mui/material/Accordion";
 
 =======
 import { useParams, useHistory } from "react-router-dom";
+=======
+import { useParams, useHistory, useLocation } from "react-router-dom";
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
 // modules
-import { actionCreators as accordionActions } from "../../redux/modules/accordion";
-import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
-import { mainActions } from "../../redux/modules/main";
+
 
 // mui
 import { styled } from "@mui/material/styles";
-import { Modal, Box } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
+<<<<<<< HEAD
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
 // styled components
 import { Eltext, Elbutton } from "../../elements";
@@ -62,6 +65,7 @@ const MyJoinedAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 <<<<<<< HEAD
+<<<<<<< HEAD
   const location = useLocation();
   console.log(location.state);
 
@@ -71,6 +75,10 @@ const MyJoinedAccordions = (props) => {
   // const handleModalClose = () => setOpen(false);
 =======
   
+=======
+  const location = useLocation();
+  console.log(location.state);
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 
 <<<<<<< HEAD
   const [open, setOpen] = useState(false);
@@ -94,6 +102,7 @@ const MyJoinedAccordions = (props) => {
   );
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   const fuck = useSelector((state) => state.mypage.myJoinedStudy);
   console.log(fuck)
  
@@ -111,13 +120,23 @@ const MyJoinedAccordions = (props) => {
 >>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
 
   console.log(myJoinedStudy)
+=======
+  const fuck = useSelector((state) => state.mypage.myJoinedStudy);
+  console.log(fuck)
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
  
   // variables
   // const userId = localStorage.getItem("userId");
 
+  
   const [expanded, setExpanded] = useState("");
 
+<<<<<<< HEAD
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  const [status, setStatus] = useState(true);
+
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
@@ -126,26 +145,33 @@ const MyJoinedAccordions = (props) => {
     dispatch(mypageActions.getJoinedStudyDB());
     return () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
       status === undefined ?
     setStatus(true) : setStatus(false);
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+      status === undefined ?
+    setStatus(true) : setStatus(false);
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
       dispatch(mypageActions.reset_joined_mystudy());
     };
   }, [
     dispatch,
     __isJoinedStudy,
-    myJoinedStudy,
     __newStudyProfileUser,
 <<<<<<< HEAD
 <<<<<<< HEAD
     checkState,
     status,
+<<<<<<< HEAD
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 =======
     checkState,
 >>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
+=======
+>>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
   ]);
 
   if (__accordionData === "") return <></>;
