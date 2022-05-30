@@ -56,7 +56,9 @@ const Footer = () => {
                   </CircleBackground>
                   <MailTextBox>
                     <MailTitle type="sub_2_bold">Mail</MailTitle>
-                    <MailAddr type="sub_2_bold">teambooking@gmail.com</MailAddr>
+                    <MailAddr type="sub_2_bold">
+                      devteambooking@gmail.com
+                    </MailAddr>
                   </MailTextBox>
                 </MailBox>
                 <IconBox>
@@ -69,9 +71,18 @@ const Footer = () => {
                       <FaGitAlt fontSize={27} />
                     </CircleBackground>
                   </button>
-                  <CircleBackground>
-                    <AiFillFacebook fontSize={25} />
-                  </CircleBackground>
+                  <button
+                    onClick={() => {
+                      window.open(
+                        "https://www.instagram.com/team.book.ing/",
+                        "_blank"
+                      );
+                    }}
+                  >
+                    <CircleBackground>
+                      <FiInstagram />
+                    </CircleBackground>
+                  </button>
                 </IconBox>
                 <FooterCopyright type="body_2">
                   2022 BOOK-ing Co.All rights Reserved.
@@ -456,6 +467,8 @@ const CircleBackground = styled.div`
   border-radius: 50%;
   background-color: var(--main);
   color: var(--point);
+
+  font-size: 25px;
 `;
 
 const MailTextBox = styled.div`
