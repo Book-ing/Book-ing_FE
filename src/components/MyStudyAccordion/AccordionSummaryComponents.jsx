@@ -201,6 +201,7 @@ const AccordionSummaryComponent = (props) => {
         {/* {props.isJoinedCrew === true && */}
         {props.props.studyMasterProfile.userId ===
         parseInt(localStorage.getItem("userId")) ? (
+<<<<<<< HEAD
           <MenuBtn onClick={handleClick}>
             <FaEllipsisH />
 =======
@@ -218,6 +219,10 @@ const AccordionSummaryComponent = (props) => {
 =======
             <FaEllipsisH/>
 >>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
+=======
+          <MenuBtn onClick={handleClick}>
+            <FaEllipsisH />
+>>>>>>> 204fffe (chore(modify): index.html, header, modal user list, sidebar, accordionsummary)
           </MenuBtn>
         ) : null}
         <Popover
@@ -261,6 +266,7 @@ const AccordionSummaryComponent = (props) => {
           <CrewInfo>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div title={props.props.studyTitle}>
               <TitleText type="sub_2_bold">
                 {props.props.studyType === "online" ? (
@@ -281,6 +287,16 @@ const AccordionSummaryComponent = (props) => {
                 스터디명 : {props.props.studyTitle}
             </TitleSection>
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+            <div title={props.props.studyTitle}>
+              <TitleText type="sub_2_bold">
+                {props.props.studyType === "online" ? (
+                  <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
+                ) : (
+                  <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
+                )}
+                <TitleSection>스터디명 : {props.props.studyTitle}</TitleSection>
+>>>>>>> 204fffe (chore(modify): index.html, header, modal user list, sidebar, accordionsummary)
               </TitleText>
             </div>
             {props.props.studyType === "online" ? null : (
@@ -319,6 +335,7 @@ const AccordionSummaryComponent = (props) => {
             </InfoText>
 
             {props.props.studyType === "online" ? null : (
+<<<<<<< HEAD
             <InfoText type="sub_2">
               <div title={props.props.studyAddr + "," + props.props.studyAddrDetail}>
                 <LocationSection>
@@ -332,6 +349,21 @@ const AccordionSummaryComponent = (props) => {
             )}
 
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+              <InfoText type="sub_2">
+                <div
+                  title={
+                    props.props.studyAddr + "," + props.props.studyAddrDetail
+                  }
+                >
+                  <LocationSection>
+                    위치 : {props.props.studyAddr},{" "}
+                    {props.props.studyAddrDetail}
+                  </LocationSection>
+                </div>
+              </InfoText>
+            )}
+>>>>>>> 204fffe (chore(modify): index.html, header, modal user list, sidebar, accordionsummary)
           </CrewInfo>
         </Grid>
 
@@ -385,6 +417,7 @@ const AccordionSummaryComponent = (props) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           {props.props.isStudyEnd === true ? null : props.props.studyType ===
             "online" ? (
 =======
@@ -394,6 +427,10 @@ const AccordionSummaryComponent = (props) => {
         {props.props.isStudyEnd === true ? null : (
           props.props.studyType === "online" ? (
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
+=======
+          {props.props.isStudyEnd === true ? null : props.props.studyType ===
+            "online" ? (
+>>>>>>> 204fffe (chore(modify): index.html, header, modal user list, sidebar, accordionsummary)
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
@@ -413,6 +450,7 @@ const AccordionSummaryComponent = (props) => {
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
 <<<<<<< HEAD
+<<<<<<< HEAD
           ) : null}
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -429,6 +467,10 @@ const AccordionSummaryComponent = (props) => {
           {props.isJoinedCrew === false ||
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 =======
+=======
+          ) : null}
+
+>>>>>>> 204fffe (chore(modify): index.html, header, modal user list, sidebar, accordionsummary)
           {/* {props.isJoinedCrew === false ||
 >>>>>>> 8c60712 (page(Main): 버그 및 css 수정 후 커밋)
           props.props.studyMasterProfile.userId ===
@@ -744,6 +786,7 @@ const NoticeTag = styledComp.div`
   width: 10px;
   height: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
 `;
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
@@ -753,3 +796,6 @@ const NoticeTag = styledComp.div`
 =======
 `;
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
+=======
+`;
+>>>>>>> 204fffe (chore(modify): index.html, header, modal user list, sidebar, accordionsummary)

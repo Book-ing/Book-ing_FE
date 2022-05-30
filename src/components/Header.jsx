@@ -26,6 +26,7 @@ const Header = () => {
 
   const clickLogout = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const result = window.confirm("로그아웃 하시겠습니까?");
     if (result === true) {
       window.open(LOGOUT_KAKAO_AUTH_URL, "_self");
@@ -37,6 +38,15 @@ const Header = () => {
     if (window.confirm("로그아웃 하시겠습니까?"))
       dispatch(userActions.kakaoLogout());
 >>>>>>> 0a03d59 (chore(modifyiedfiles): modified login check, accordions)
+=======
+    const result = window.confirm("로그아웃 하시겠습니까?");
+    if (result === true) {
+      window.open(LOGOUT_KAKAO_AUTH_URL, "_self");
+      dispatch(userActions.kakaoLogout());
+    } else {
+      return;
+    }
+>>>>>>> 204fffe (chore(modify): index.html, header, modal user list, sidebar, accordionsummary)
   };
 
   useEffect(() => {
