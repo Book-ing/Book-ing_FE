@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Modules
 import { studyActions } from "../../redux/modules/study";
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
 
 // mui
@@ -54,11 +55,13 @@ const AccordionSummary = styled((props) => (
 const AccordionSummaryComponent = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  // console.log(props);
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
   const loginId = localStorage.getItem("userId");
 
+  // console.log(props.checkState);
+  // console.log(props.setCheckState);
   // variables
   const studyId = props.props.studyId;
   const studyDate = props.props.studyDateTime;
@@ -66,8 +69,13 @@ const AccordionSummaryComponent = (props) => {
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
   const clickInOutStudyBtn = () => {
-    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
     props.setCheckState(!props.checkState);
+    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+    dispatch(mypageActions.getJoinedStudyDB());
+    const status = false;
+    history.push({
+      pathname:"/mypage",
+      state: status});
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -237,7 +245,8 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
-        {props.props.studyType === "online" ? (
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
@@ -248,7 +257,8 @@ const AccordionSummaryComponent = (props) => {
             >
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
-          ) : null}
+          ) : null
+        )}
 
           {/* {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
@@ -261,21 +271,27 @@ const AccordionSummaryComponent = (props) => {
               참가하기
             </JoinBtn>
           )} */}
-        {props.props.studyType === "online" ? (
-          <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
-          취소하기
-          </JoinBtn>
-          ) : (
-          <div style={{position:"absolute", marginTop:"-75px"}}>
-          <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
-          취소하기
-          </JoinBtn>
-          </div>
-          )}   
-            
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
+            <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
+            취소하기
+            </JoinBtn>
+            ) : (
+            <div style={{position:"absolute", marginTop:"-75px"}}>
+            <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
+            취소하기
+            </JoinBtn>
+            </div>
+            )
+        )}    
  
         </RightBox>
       </AccordionHeaderWrap>
+      {props.props.isStudyEnd === true ? (
+        <NoticeTag style={{ backgroundColor: "#ED6D59" }}></NoticeTag>
+      ) : (
+        <NoticeTag style={{ backgroundColor: "#A2D16E" }}></NoticeTag>
+      )}
     </AccordionSummaryWrap>
   );
 };
@@ -456,4 +472,12 @@ const StudyTypeOfflineTag = styledComp(Eltext)`
   border-radius: 4px;
   background-color: #839893;
   color: white;
+`;
+
+const NoticeTag = styledComp.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
 `;

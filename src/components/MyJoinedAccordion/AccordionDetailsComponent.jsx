@@ -9,6 +9,9 @@ import { Avatar, Grid } from "@mui/material";
 import LinearScaleIcon from "@mui/icons-material/LinearScale";
 import { Box, Popover } from "@mui/material";
 
+// react-icons
+import { FaEllipsisH } from "react-icons/fa";
+
 // styled components
 import styledComp from "styled-components";
 import { Eltext, Elbutton } from "../../elements";
@@ -82,7 +85,7 @@ const AccordionDetailsComponent = (props) => {
         <NoteSection>
           {props.isJoinedCrew === true ? (
             <MenuBtn onClick={handleClick}>
-              <LinearScaleIcon sx={{ fontSize: 35 }} />
+              <FaEllipsisH />
             </MenuBtn>
           ) : null}
 
@@ -270,7 +273,7 @@ const MenuBtn = styledComp.button`
   right: 10px;
   top: 10px;
   color: var(--point);
-
+  font-size: 35px;
   &:hover {
     color: var(--notice)
   }

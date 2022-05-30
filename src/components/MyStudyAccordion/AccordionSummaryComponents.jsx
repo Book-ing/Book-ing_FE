@@ -88,8 +88,13 @@ const AccordionSummaryComponent = (props) => {
   const [editStudyModal, setEditStudyModal] = useState(false);
 
   const handleEditStudyModalOpen = (e) => {
-    e.stopPropagation();
-    setEditStudyModal(true);
+    if (props.props.isStudyEnd === true) {
+      alert("이미 종료된 스터디는 수정할 수 없습니다.");
+      return;
+    } else {
+      e.stopPropagation();
+      setEditStudyModal(true);
+    }
   };
 
   const handleEditStudyModalClose = (e) => {
@@ -239,7 +244,8 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
-        {props.props.studyType === "online" ? (
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
@@ -250,7 +256,9 @@ const AccordionSummaryComponent = (props) => {
             >
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
-          ) : null}
+          ) : null
+        )}
+        
           {/* {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (
@@ -264,6 +272,11 @@ const AccordionSummaryComponent = (props) => {
           )} */}
         </RightBox>
       </AccordionHeaderWrap>
+      {props.props.isStudyEnd === true ? (
+        <NoticeTag style={{ backgroundColor: "#ED6D59" }}></NoticeTag>
+      ) : (
+        <NoticeTag style={{ backgroundColor: "#A2D16E" }}></NoticeTag>
+      )}
     </AccordionSummaryWrap>
   );
 };
@@ -445,4 +458,12 @@ const StudyTypeOfflineTag = styledComp(Eltext)`
   border-radius: 4px;
   background-color: #839893;
   color: white;
+`;
+
+const NoticeTag = styledComp.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
 `;

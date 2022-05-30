@@ -1,29 +1,21 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 // modules
-import { actionCreators as accordionActions } from "../../redux/modules/accordion";
-import { actionCreators as crewActions } from "../../redux/modules/crew";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
-import { mainActions } from "../../redux/modules/main";
+
 
 // mui
 import { styled } from "@mui/material/styles";
-import { Modal, Box } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
 
 // styled components
 import { Eltext, Elbutton } from "../../elements";
 
 // components
 import AccordionSummaryComponent from "./AccordionSummaryComponents";
-import ModalStudy from "../Modal/ModalStudy";
 
 // styled components
 import styledComp from "styled-components";
@@ -48,12 +40,9 @@ const Accordion = styled((props) => (
 const MyStudyAccordions = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   
-
-  // const [open, setOpen] = useState(false);
-
-  // const hadleModalOpen = () => setOpen(true);
-  // const handleModalClose = () => setOpen(false);
+  const studyNum = location.search ? location.search.substring(7) : '';
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myStudy);
@@ -62,13 +51,12 @@ const MyStudyAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
-
-  console.log(__accordionData)
- 
+  
   // variables
-  // const userId = localStorage.getItem("userId");
+  const fuck = useSelector((state) => state);
+  console.log(fuck)
 
-  const [expanded, setExpanded] = useState("");
+  const [expanded, setExpanded] = useState(Number(studyNum));
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

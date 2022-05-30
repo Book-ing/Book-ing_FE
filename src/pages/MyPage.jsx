@@ -16,16 +16,28 @@ import Sidebar from "../components/Sidebar";
 import flex from "../themes/flex";
 import MyCrew from "../components/MyCrew";
 import MyStudy from "../components/MyStudy";
+import { useLocation } from "react-router-dom";
 
 const Mypage = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const location = useLocation();
+
+  const status = location.state;
+  console.log(status);
+
+  // const [status, setStatus] = useState(true);
+
   const [isMyCrew, setIsMyCrew] = useState(true);
 
-// ==================== 민우님이 요청한 loginCheckDB ========================
-  // useEffect(() => {
-  //   dispatch(userActions.loginCheckDB());
-  // }, []);
-// ==================== 민우님이 요청한 loginCheckDB ========================
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    status === undefined ?
+    setIsMyCrew(true) : setIsMyCrew(false);
+  }, []);
+
 
   return (
     <React.Fragment>
