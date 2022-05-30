@@ -465,7 +465,7 @@ const MemberWrap = styled.div`
   .screensaver {
     display: flex;
     position: absolute;
-    background-color: #c9998d;
+    /* background-color: #c9998d; */
     /* background: url(${BookingKorLogo}) no-repeat center;
     background-size: contain; */
     width: 100%;
