@@ -289,14 +289,16 @@ const AccordionSummaryComponent = (props) => {
               backgroundColor: "var(--gray)",
             }}
           ></div>
-          <div
+          <StickerBox
             style={{
               width: "60px",
               height: "35px",
               backgroundColor: "#2e9cff",
               boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.5)",
             }}
-          ></div>
+          >
+            <MyText>My</MyText>
+          </StickerBox>
         </MineStudyTag>
       ) : null}
     </AccordionSummaryWrap>
@@ -475,4 +477,16 @@ const MineStudyTag = styledComp.div`
   bottom:0;
   width: 150px;
   height: 35px;
+`;
+
+const StickerBox = styledComp.div`
+  ${flex}
+  color: #333;
+`;
+
+const MyText = styledComp.span`
+  font-family: 'Hi Melody', cursive;
+  font-size: 25px;
+  font-weight: bold;
+  transform: rotate(340deg)
 `;
