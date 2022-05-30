@@ -102,7 +102,7 @@ const AccordionSummaryComponent = (props) => {
   // console.log(props);
 >>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
   // Redux Store
-  const __crewId = useSelector((state) => state.crew.crewData.meetingId);
+  const __crewId = props.props.meetingId;
   const loginId = localStorage.getItem("userId");
 
 <<<<<<< HEAD
@@ -428,7 +428,7 @@ const AccordionSummaryComponent = (props) => {
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: props.props.meetingId },
+                  state: { meetingId: __crewId },
                 });
               }}
             >

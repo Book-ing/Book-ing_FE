@@ -109,6 +109,7 @@ const AccordionDetailsComponent = (props) => {
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
         <NoteSection>
 <<<<<<< HEAD
+<<<<<<< HEAD
           {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
             <MenuBtn onClick={handleClick}>
               <FaEllipsisH />
@@ -121,6 +122,13 @@ const AccordionDetailsComponent = (props) => {
             </MenuBtn>
           ) : null}
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+          {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
+            <MenuBtn onClick={handleClick}>
+              <FaEllipsisH />
+            </MenuBtn>
+          )}
+>>>>>>> 67b8cc1 (page(Main): 수정사항 적용 후 커밋)
 
           <Popover
             id={id}
