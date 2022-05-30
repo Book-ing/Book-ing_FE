@@ -7,7 +7,7 @@ import { FaEllipsisH } from "react-icons/fa";
 
 // Modules
 import { studyActions } from "../../redux/modules/study";
-import { actionCreators as accordionActions } from "../../redux/modules/accordion";
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -71,6 +71,9 @@ const AccordionSummaryComponent = (props) => {
   // const clickInOutStudyBtn = () => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
+  console.log(props.props);
+
+  console.log(props.props.studyMasterProfile.profileImage);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -104,6 +107,7 @@ const AccordionSummaryComponent = (props) => {
 
   const clickDeleteStudyBtn = () => {
     dispatch(studyActions.deleteStudyDB(studyId, __crewId));
+    // dispatch(mypageActions.getMyStudyDB());
   };
 
   const [studyUserListOpen, setStudyUserListOpen] = useState(false);
@@ -119,9 +123,9 @@ const AccordionSummaryComponent = (props) => {
       <AccordionHeaderWrap>
         {/* {props.isJoinedCrew === true && */}
         {props.props.studyMasterProfile.userId ===
-          parseInt(localStorage.getItem("userId")) ? (
+        parseInt(localStorage.getItem("userId")) ? (
           <MenuBtn onClick={handleClick}>
-            <FaEllipsisH/>
+            <FaEllipsisH />
           </MenuBtn>
         ) : null}
         <Popover
@@ -163,16 +167,14 @@ const AccordionSummaryComponent = (props) => {
 
         <Grid container>
           <CrewInfo>
-          <div title={props.props.studyTitle}>
+            <div title={props.props.studyTitle}>
               <TitleText type="sub_2_bold">
-              {props.props.studyType === "online" ? (
-                <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
-              ) : (
-                <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
-              )}
-            <TitleSection>
-                스터디명 : {props.props.studyTitle}
-            </TitleSection>
+                {props.props.studyType === "online" ? (
+                  <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
+                ) : (
+                  <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
+                )}
+                <TitleSection>스터디명 : {props.props.studyTitle}</TitleSection>
               </TitleText>
             </div>
             {props.props.studyType === "online" ? null : (
@@ -185,15 +187,19 @@ const AccordionSummaryComponent = (props) => {
             </InfoText>
 
             {props.props.studyType === "online" ? null : (
-            <InfoText type="sub_2">
-              <div title={props.props.studyAddr + "," + props.props.studyAddrDetail}>
-                <LocationSection>
-                  위치 : {props.props.studyAddr}, {props.props.studyAddrDetail}
-                </LocationSection>
-              </div>
-            </InfoText>
+              <InfoText type="sub_2">
+                <div
+                  title={
+                    props.props.studyAddr + "," + props.props.studyAddrDetail
+                  }
+                >
+                  <LocationSection>
+                    위치 : {props.props.studyAddr},{" "}
+                    {props.props.studyAddrDetail}
+                  </LocationSection>
+                </div>
+              </InfoText>
             )}
-
           </CrewInfo>
         </Grid>
 
@@ -244,21 +250,20 @@ const AccordionSummaryComponent = (props) => {
         </Grid>
 
         <RightBox>
-        {props.props.isStudyEnd === true ? null : (
-          props.props.studyType === "online" ? (
+          {props.props.isStudyEnd === true ? null : props.props.studyType ===
+            "online" ? (
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: __crewId },
+                  state: { meetingId: props.props.meetingId },
                 });
               }}
             >
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
-          ) : null
-        )}
-        
+          ) : null}
+
           {/* {props.isJoinedCrew === false ||
           props.props.studyMasterProfile.userId ===
             parseInt(loginId) ? null : props.props.isStudyJoined === true ? (

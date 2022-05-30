@@ -23,9 +23,6 @@ const VideoHeader = (props) => {
             history.push("/");
           }}
         ></Logo>
-        <StudyTitle type="sub_1_bold">
-          스터디명 : {props.studyData.studyTitle}
-        </StudyTitle>
         <HeaderBtns>
           <ChatPeopleCnt type="sub_1_bold">{props.numberOfUsers}</ChatPeopleCnt>
           <StBtn

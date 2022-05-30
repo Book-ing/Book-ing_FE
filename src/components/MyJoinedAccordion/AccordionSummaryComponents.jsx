@@ -57,7 +57,7 @@ const AccordionSummaryComponent = (props) => {
   const history = useHistory();
   // console.log(props);
   // Redux Store
-  const __crewId = useSelector((state) => state.crew.crewData.meetingId);
+  const __crewId = props.props.meetingId;
   const loginId = localStorage.getItem("userId");
 
   // console.log(props.checkState);
