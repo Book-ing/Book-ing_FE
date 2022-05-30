@@ -119,12 +119,18 @@ const AccordionSummaryComponent = (props) => {
   // const clickInOutStudyBtn = () => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
+<<<<<<< HEAD
 >>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
 =======
   console.log(props);
 
   // console.log(__crewId, studyId);
 >>>>>>> daab47f (page(Main): 수정 후 커밋)
+=======
+  console.log(props.props);
+
+  console.log(props.props.studyMasterProfile.profileImage);
+>>>>>>> fbec042 (page(Main): merge 위한 커밋)
 
   const [anchorEl, setAnchorEl] = useState(null);
 
