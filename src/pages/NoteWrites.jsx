@@ -17,18 +17,25 @@ const NoteWrites = () => {
   const location = useLocation();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f9213a3 (chore(noteWrites): modify scroll to top in this page)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4017e03 (page(Mypage): 내가 참여한 스터디 불러오는 기능 전까지 구현)
+=======
+>>>>>>> f9213a3 (chore(noteWrites): modify scroll to top in this page)
   // ==================== 민우님이 요청한 loginCheckDB ========================
   // React.useEffect(() => {
   //   dispatch(userActions.loginCheckDB());
   // }, []);
   // ==================== 민우님이 요청한 loginCheckDB ========================
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   
@@ -43,11 +50,19 @@ const NoteWrites = () => {
   console.log(bookInfo)
   console.log(meetingId)
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+  // hitory.push로 전 페이지에서 data를 가지고 오는 작업
+  const bookInfo = location.state.bookInfo.props;
+  const meetingId = location.state.meetingId.meetingId;
+  console.log(bookInfo);
+  console.log(meetingId);
+>>>>>>> f9213a3 (chore(noteWrites): modify scroll to top in this page)
 
   const studyInfo = {
     studyId: bookInfo.studyId,
     masterId: bookInfo.studyMasterProfile.userId,
     studyValue: bookInfo.studyNote,
+<<<<<<< HEAD
 <<<<<<< HEAD
     meetingId: meetingId,
   };
@@ -55,6 +70,10 @@ const NoteWrites = () => {
     meetingId: meetingId
   }
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+    meetingId: meetingId,
+  };
+>>>>>>> f9213a3 (chore(noteWrites): modify scroll to top in this page)
 
   return (
     <React.Fragment>
@@ -98,10 +117,14 @@ const NoteWrites = () => {
 
           <EditGrid>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <WygiwysEditor studyInfo={studyInfo} />
 =======
           <WygiwysEditor studyInfo={studyInfo}/>
 >>>>>>> 668866c (components(Editor):수정, 케이스별로 보여줄 버튼 로직 구현)
+=======
+            <WygiwysEditor studyInfo={studyInfo} />
+>>>>>>> f9213a3 (chore(noteWrites): modify scroll to top in this page)
           </EditGrid>
         </Container>
       </Grids>
