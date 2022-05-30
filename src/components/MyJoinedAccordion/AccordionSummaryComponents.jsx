@@ -7,6 +7,7 @@ import { studyActions } from "../../redux/modules/study";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
@@ -15,6 +16,9 @@ import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 =======
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
 
 // mui
@@ -86,6 +90,7 @@ const AccordionSummaryComponent = (props) => {
 =======
 =======
   const history = useHistory();
+<<<<<<< HEAD
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
 
 =======
@@ -93,10 +98,14 @@ const AccordionSummaryComponent = (props) => {
 =======
 
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+  // console.log(props);
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
   // Redux Store
   const __crewId = useSelector((state) => state.crew.crewData.meetingId);
   const loginId = localStorage.getItem("userId");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
@@ -106,6 +115,10 @@ const AccordionSummaryComponent = (props) => {
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 =======
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+  // console.log(props.checkState);
+  // console.log(props.setCheckState);
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
   // variables
   const studyId = props.props.studyId;
   const studyDate = props.props.studyDateTime;
@@ -113,6 +126,7 @@ const AccordionSummaryComponent = (props) => {
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
   const clickInOutStudyBtn = () => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -133,15 +147,23 @@ const AccordionSummaryComponent = (props) => {
 =======
     props.setCheckState(!props.checkState);
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+=======
+    props.setCheckState(!props.checkState);
+    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+    dispatch(mypageActions.getJoinedStudyDB());
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
     const status = false;
     history.push({
       pathname:"/mypage",
       state: status});
+<<<<<<< HEAD
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
 =======
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
     props.setCheckState(!props.checkState);
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -233,25 +255,32 @@ const AccordionSummaryComponent = (props) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
               <TitleText type="sub_2_bold">
 =======
             <TitleText type="sub_2_bold">
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+              <TitleText type="sub_2_bold">
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
               {props.props.studyType === "online" ? (
                 <StudyTypeOnlineTag>온라인</StudyTypeOnlineTag>
               ) : (
                 <StudyTypeOfflineTag>오프라인</StudyTypeOfflineTag>
               )}
-              <div title={props.props.studyTitle}>
-                <TitleSection>스터디명 : {props.props.studyTitle}</TitleSection>
-              </div>
-            </TitleText>
-            {props.props.studyType === "online" ? null : (
+            <div title={props.props.studyTitle}>
+              <TitleSection>
+                스터디명 : {props.props.studyTitle}
+              </TitleSection>
+            </div>
+              </TitleText>
+              {props.props.studyType === "online" ? null : (
               <InfoText type="sub_2">
                 금액 : {props.props.studyPrice}원
               </InfoText>
+<<<<<<< HEAD
 <<<<<<< HEAD
               )}
 <<<<<<< HEAD
@@ -279,12 +308,18 @@ const AccordionSummaryComponent = (props) => {
 =======
             )}
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+              )}
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
             <InfoText type="sub_2">
               일시 : {splitedYY}년 {splitedMM}월 {splitedDD}일 {splitedTime}
             </InfoText>
 
             {props.props.studyType === "online" ? null : (
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
             <InfoText type="sub_2">
               <div title={props.props.studyAddr + "," + props.props.studyAddrDetail}>
                 <LocationSection>
@@ -292,6 +327,7 @@ const AccordionSummaryComponent = (props) => {
                 </LocationSection>
               </div>
             </InfoText>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
 =======
@@ -313,6 +349,10 @@ const AccordionSummaryComponent = (props) => {
               </InfoText>
             )}
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+            )}
+
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
           </CrewInfo>
         </Grid>
 
@@ -367,6 +407,7 @@ const AccordionSummaryComponent = (props) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         {props.props.isStudyEnd === true ? null : (
           props.props.studyType === "online" ? (
 =======
@@ -379,6 +420,10 @@ const AccordionSummaryComponent = (props) => {
 =======
           {props.props.studyType === "online" ? (
 >>>>>>> 8ab56eb (commit before pull Taak-ee's branch)
+=======
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
             <JoinOnlineStudyRoom
               onClick={() => {
                 history.push({
@@ -389,6 +434,7 @@ const AccordionSummaryComponent = (props) => {
             >
               온라인 스터디룸 입장
             </JoinOnlineStudyRoom>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -408,6 +454,10 @@ const AccordionSummaryComponent = (props) => {
           ) : null
         )}
 >>>>>>> d002026 (page(Main): 각종 사항 수정 후 커밋)
+=======
+          ) : null
+        )}
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
 
           {/* {props.isJoinedCrew === false ||
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
@@ -448,21 +498,28 @@ const AccordionSummaryComponent = (props) => {
           )}
 =======
           )} */}
-          {props.props.studyType === "online" ? (
+        {props.props.isStudyEnd === true ? null : (
+          props.props.studyType === "online" ? (
             <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
-              취소하기
+            취소하기
             </JoinBtn>
-          ) : (
-            <div style={{ position: "absolute", marginTop: "-75px" }}>
-              <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
-                취소하기
-              </JoinBtn>
+            ) : (
+            <div style={{position:"absolute", marginTop:"-75px"}}>
+            <JoinBtn shape="red-outline" onClick={clickInOutStudyBtn}>
+            취소하기
+            </JoinBtn>
             </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
             )
         )}    
  
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
+=======
+            )
+        )}    
+ 
+>>>>>>> 526f94e (page(Main): Merge 과정에서 생긴 문제 해결 후 커밋)
         </RightBox>
       </AccordionHeaderWrap>
 <<<<<<< HEAD
