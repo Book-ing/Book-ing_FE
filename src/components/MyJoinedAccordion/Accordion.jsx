@@ -72,11 +72,18 @@ const MyJoinedAccordions = (props) => {
 =======
   
 
+<<<<<<< HEAD
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  // const [open, setOpen] = useState(false);
+  const [checkState, setCheckState] = useState(false);
+  // const hadleModalOpen = () => setOpen(true);
+  // const handleModalClose = () => setOpen(false);
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myJoinedStudy);
@@ -85,6 +92,7 @@ const MyJoinedAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
+<<<<<<< HEAD
 <<<<<<< HEAD
   const fuck = useSelector((state) => state.mypage.myJoinedStudy);
   console.log(fuck)
@@ -98,11 +106,14 @@ const MyJoinedAccordions = (props) => {
   const [status, setStatus] = useState(true);
 
 =======
+=======
+  const myJoinedStudy = useSelector((state) => state.mypage.myStudy);
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
 
-  console.log(__accordionData)
+  console.log(myJoinedStudy)
  
   // variables
-  const userId = localStorage.getItem("userId");
+  // const userId = localStorage.getItem("userId");
 
   const [expanded, setExpanded] = useState("");
 
@@ -124,12 +135,17 @@ const MyJoinedAccordions = (props) => {
   }, [
     dispatch,
     __isJoinedStudy,
+    myJoinedStudy,
     __newStudyProfileUser,
+<<<<<<< HEAD
 <<<<<<< HEAD
     checkState,
     status,
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+    checkState,
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
   ]);
 
   if (__accordionData === "") return <></>;
@@ -149,10 +165,15 @@ const MyJoinedAccordions = (props) => {
                 <AccordionSummaryComponent
                   props={cur}
 <<<<<<< HEAD
+<<<<<<< HEAD
                   checkState={checkState}
                   setCheckState={setCheckState}
 =======
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+                  checkState={checkState}
+                  setCheckState={setCheckState}
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
                   isJoinedCrew={__isJoinedCrew}
                 />
 

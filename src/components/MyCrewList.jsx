@@ -147,20 +147,20 @@ return (
         <StOnlineStudyBtnsBox>
         
 
-            <Eltext type="sub_2_bold">
+        <Eltext type="sub_2_bold">
           <Elchip shape="Line" width="96px" height="30px">
               {props.studyLimitCnt}
           </Elchip>
-            </Eltext>
+        </Eltext>
 
+        <div style={{fontSize:"16px", fontWeight:"600"}}>
           <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push({
            pathname: `/crew/${props.meetingId}`,
            search : `?study=${props.studyId}`
           })}}>
-            <div style={{fontSize:"16px", fontWeight:"600"}}>
             바로가기
-            </div>
           </Elchip>
+        </div>
 
         
           </StOnlineStudyBtnsBox>
@@ -208,14 +208,14 @@ return (
                   </Elchip>
                     </Eltext>
 
-                  <div style={{fontSize:"16px", fontWeight:"600"}}>
-                  <Elchip shape="LineBtn" fontSize="30px" width="96px" height="30px" onClick={()=>{history.push({
+                <div style={{fontSize:"16px", fontWeight:"600"}}>
+                  <Elchip shape="LineBtn" fontSize="30px" width="96px"  height="30px" onClick={()=>{history.push({
                     pathname: `/crew/${props.meetingId}`,
                     search : `?study=${props.studyId}`
                     })}}>
                     바로가기
                   </Elchip>
-                  </div>
+                </div>
 
                   </StOfflineStudyBtnsBox>
                 </StOfflineStudyListBox>

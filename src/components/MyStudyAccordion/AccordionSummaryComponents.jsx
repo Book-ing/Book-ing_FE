@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // react-icons
 import { FaEllipsisH } from "react-icons/fa";
 
@@ -10,6 +11,11 @@ import { FaEllipsisH } from "react-icons/fa";
 import { studyActions } from "../../redux/modules/study";
 import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 =======
+=======
+// react-icons
+import { FaEllipsisH } from "react-icons/fa";
+
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
 // Modules
 import { studyActions } from "../../redux/modules/study";
 import { actionCreators as accordionActions } from "../../redux/modules/accordion";
@@ -93,6 +99,7 @@ const AccordionSummaryComponent = (props) => {
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   // const clickInOutStudyBtn = () => {
   //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   // };
@@ -104,6 +111,11 @@ const AccordionSummaryComponent = (props) => {
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   };
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  // const clickInOutStudyBtn = () => {
+  //   dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+  // };
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -175,8 +187,12 @@ const AccordionSummaryComponent = (props) => {
 >>>>>>> 151e069 (page(Mypage): Main,Mypage,MyCrew,MyStudy 수정 후 커밋)
           parseInt(localStorage.getItem("userId")) ? (
           <MenuBtn onClick={handleClick}>
+<<<<<<< HEAD
             <LinearScaleIcon sx={{ fontSize: 35 }} />
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+            <FaEllipsisH/>
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
           </MenuBtn>
         ) : null}
         <Popover
@@ -474,10 +490,14 @@ const MenuBtn = styledComp.button`
   top: 0;
   color: var(--point);
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 35px;
 =======
 
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  font-size: 35px;
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
   &:hover {
     color: var(--notice)
   }

@@ -70,11 +70,16 @@ const MyStudyAccordions = (props) => {
 =======
   
 
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
+<<<<<<< HEAD
   const hadleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+  // const hadleModalOpen = () => setOpen(true);
+  // const handleModalClose = () => setOpen(false);
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
 
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myStudy);
@@ -92,7 +97,7 @@ const MyStudyAccordions = (props) => {
   console.log(__accordionData)
  
   // variables
-  const userId = localStorage.getItem("userId");
+  // const userId = localStorage.getItem("userId");
 
   const [expanded, setExpanded] = useState("");
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)

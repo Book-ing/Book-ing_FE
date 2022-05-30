@@ -101,7 +101,11 @@ const AccordionSummaryComponent = (props) => {
       state: status});
 =======
     dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+<<<<<<< HEAD
 >>>>>>> f0be747 (page(Mypage):Mypage 작성 완료 후 merge 위한 커밋)
+=======
+    props.setCheckState(!props.checkState);
+>>>>>>> afcd110 (page(Main): 수정 사항 배포 확인차 커밋)
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
