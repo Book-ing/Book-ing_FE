@@ -78,6 +78,7 @@ const CustomizedAccordions = (props) => {
     dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     return () => {
       dispatch(accordionActions.reset_accordion());
+      dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     };
   }, [
     dispatch,
@@ -89,7 +90,7 @@ const CustomizedAccordions = (props) => {
 
   console.log(checkState);
 
-  // if (__accordionData === "") return <></>;
+  if (__accordionData === "") return <></>;
 
   if (!__searchData.length) {
     // searchData가 없을 때 렌더링
