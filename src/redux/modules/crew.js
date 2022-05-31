@@ -91,6 +91,9 @@ const joinCrewDB = (payload) => (dispatch, getState) => {
       if (message === "강퇴당한 유저는 모임 참여가 불가능합니다.") {
         alert(message);
       }
+      if (message === "모임 제한 인원 수가 찼습니다.") {
+        alert("모임 제한 인원 수가 꽉 찼습니다.");
+      }
     });
 };
 

@@ -71,8 +71,8 @@ const AccordionSummaryComponent = (props) => {
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
   const clickInOutStudyBtn = () => {
-    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
     props.setCheckState(!props.checkState);
+    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
   };
 
   const [anchorEl, setAnchorEl] = useState(null);

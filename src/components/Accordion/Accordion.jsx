@@ -87,7 +87,9 @@ const CustomizedAccordions = (props) => {
     checkState,
   ]);
 
-  if (__accordionData === "") return <></>;
+  console.log(checkState);
+
+  // if (__accordionData === "") return <></>;
 
   if (!__searchData.length) {
     // searchData가 없을 때 렌더링
