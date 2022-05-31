@@ -18,6 +18,10 @@ import noSearch from "../assets/search/noSearch.png";
 const Search = () => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const info = useSelector((state) => state.search.result);
   const ab = useSelector((state) => state.search);
 
