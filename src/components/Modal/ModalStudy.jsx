@@ -29,19 +29,18 @@ const ModalStudy = (props) => {
 
   const postInfo = useSelector((state) => state.postcode);
 
-
-  // react datepicker 상태관리
-  const [startDate, setStartDate] = useState(new Date());
-  // console.log(startDate)
-
+  
   // datepicker 현재시간 이전 시간 제한하기
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
-
+    
     return currentDate.getTime()+3600000 < selectedDate.getTime();
   };
-
+  // react datepicker 상태관리
+  const [startDate, setStartDate] = useState(filterPassedTime);
+  // console.log(startDate)
+  
   const day = moment(startDate).format("YYYY-MM-DD HH:mm");
   // console.log(day)
 
@@ -110,9 +109,15 @@ const ModalStudy = (props) => {
       studyBookInfo: bookInfo.desc,
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
-    };
-    // console.log(newStudyInfo);
-    dispatch(studyActions.addStudyDB(newStudyInfo));
+    }
+    
+    startDate === false ? 
+    alert("일시를 설정해주세요!" )
+    : 
+    (startDate.getHours() === 0 ?  
+      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.addStudyDB(newStudyInfo))) 
+
   };
 
   const editStudyInfoDB = (e) => {
@@ -134,8 +139,12 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    // console.log(editStudyInfo);
-    dispatch(studyActions.editStudyDB(editStudyInfo));
+    startDate === false ? 
+    alert("일시를 설정해주세요!" )
+    : 
+    (startDate.getHours() === 0 ?  
+      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.editStudyDB(editStudyInfo)))
   };
 
   const handleStudyTypeChange = (e) => {
@@ -158,8 +167,13 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    // console.log(newOnlineStudyInfo);
-    dispatch(studyActions.addOnlineStudyDB(newOnlineStudyInfo));
+    
+    startDate === false ? 
+    alert("일시를 설정해주세요!" )
+    : 
+    (startDate.getHours() === 0 ?  
+      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.addOnlineStudyDB(newOnlineStudyInfo)))
   };
 
   const editOnlineStudyInfoDB = (e) => {
@@ -178,7 +192,13 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    dispatch(studyActions.editOnlineStudyInfoDB(editOnlineStudyInfo));
+
+    startDate === false ? 
+    alert("일시를 설정해주세요!" )
+    : 
+    (startDate.getHours() === 0 ?  
+      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.editOnlineStudyInfoDB(editOnlineStudyInfo)))
   };
 
   // console.log(props);
@@ -234,6 +254,7 @@ const ModalStudy = (props) => {
                         timeFormat="p"
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                        placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
                     {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
@@ -405,7 +426,7 @@ const ModalStudy = (props) => {
                 >
                   <Eltext type="sub_2">
                     {/* react-datepicker  */}
-                    <StDateInput width="230px" marginTop="16px">
+                    <StDateInput width="230px" marginTop="16px" backgorundColor="black">
                       <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
@@ -416,6 +437,7 @@ const ModalStudy = (props) => {
                         timeFormat="p"
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                        placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
                     {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
@@ -440,7 +462,7 @@ const ModalStudy = (props) => {
                       marginTop="16px"
                       name="price"
                       max="50000"
-                      min="500"
+                      min="0"
                       step="500"
                       type="number"
                       placeholder={studyInfoForModal.studyPrice}
@@ -690,6 +712,7 @@ const ModalStudy = (props) => {
                         timeFormat="p"
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                        placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
                     {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
@@ -908,6 +931,7 @@ const ModalStudy = (props) => {
                         timeFormat="p"
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                        placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
                     {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
@@ -930,7 +954,7 @@ const ModalStudy = (props) => {
                       marginTop="16px"
                       name="price"
                       max="50000"
-                      min="500"
+                      min="0"
                       step="500"
                       type="number"
                       placeholder="500원 단위로 설정가능합니다."

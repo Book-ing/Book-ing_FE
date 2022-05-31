@@ -110,6 +110,7 @@ const getMyStudyDB = () => (dispatch, getState) => {
   mypageApi
     .getMyStudy()
     .then((res) => {
+   
       console.log(res.data.myStudyList);
       dispatch(get_mystudy(res.data.myStudyList));
     })

@@ -83,6 +83,7 @@ const CustomizedAccordions = (props) => {
     dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     return () => {
       dispatch(accordionActions.reset_accordion());
+      dispatch(accordionActions.getAccordionDB(paramsUserId.meetingId));
     };
   }, [
     dispatch,
@@ -90,6 +91,7 @@ const CustomizedAccordions = (props) => {
     __isJoinedStudy,
     __newStudyProfileUser,
     checkState,
+    // __accordionData,
   ]);
 
   if (__accordionData === "") return <></>;

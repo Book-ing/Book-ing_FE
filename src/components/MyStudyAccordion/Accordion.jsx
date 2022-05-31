@@ -43,33 +43,38 @@ const MyStudyAccordions = (props) => {
   const location = useLocation();
   
   const studyNum = location.search ? location.search.substring(7) : '';
-
+  
   // redux store
   const __accordionData = useSelector((state) => state.mypage.myStudy);
   const __isJoinedCrew = useSelector((state) => state.crew.isJoinedCrew);
   const __isJoinedStudy = useSelector((state) => state.study.isStudyJoined);
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
-  );
-  
-  // variables
-  const [expanded, setExpanded] = useState(Number(studyNum));
-
+    );
+  // const noteInfo = useSelector((state)=> state.mypage.myStudy);
+  // console.log(noteInfo);
+    
+    // variables
+    const [expanded, setExpanded] = useState(Number(studyNum));
+    
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
+
+  // setStatus(studyNum);
 
   useEffect(() => {
     dispatch(mypageActions.getMyStudyDB());
     return () => {
       dispatch(mypageActions.reset_mystudy());
+      dispatch(mypageActions.getMyStudyDB());
     };
   }, [
     dispatch,
     __isJoinedStudy,
     __newStudyProfileUser,
   ]);
-  console.log(props);
+
 
   if (__accordionData === "") return <></>;
   

@@ -57,8 +57,7 @@ const MyJoinedAccordions = (props) => {
   const __newStudyProfileUser = useSelector(
     (state) => state.study.newStudyProfileUser
   );
-  const fuck = useSelector((state) => state.mypage.myJoinedStudy);
-  console.log(fuck)
+ 
  
   // variables
   // const userId = localStorage.getItem("userId");

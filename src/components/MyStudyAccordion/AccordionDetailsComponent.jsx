@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { actionCreators as mypageActions } from "../../redux/modules/mypage";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -23,6 +25,7 @@ import Location from "../Location";
 // tui-veiwer
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
+import { useDispatch } from "react-redux";
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(5),
@@ -33,10 +36,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 const AccordionDetailsComponent = (props) => {
   const history = useHistory();
   const params = useParams();
+  const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
   const studyMasterId = String(props.props.studyMasterProfile.userId);
  
-
+  // const [status, setStatus] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -51,6 +55,7 @@ const AccordionDetailsComponent = (props) => {
   const id = open ? "study-popover" : undefined;
 
   const btnStatus = props.props.studyStatus;
+
 
   return (
     <AccordionDetails>

@@ -56,7 +56,7 @@ const addStudyDB = (newStudyInfo) => (dispatch, getState) => {
       );
     })
     .catch((err) => {
-      console.log(`모임 정보 로드에러!`);
+      console.log(err);
     });
 };
 

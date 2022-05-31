@@ -25,8 +25,9 @@ const NoteWrite = () => {
 
   // hitory.push로 전 페이지에서 data를 가지고 오는 작업
   const bookInfo = location.state.bookInfo.props;
+  const setStatus = location.state;
   
-  console.log(bookInfo);
+  console.log(setStatus);
   
 
   const studyInfo = {

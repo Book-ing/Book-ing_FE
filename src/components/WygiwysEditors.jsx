@@ -44,12 +44,11 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     studyInfo.studyNote === undefined
       ? dispatch(editorActions.addStudyNoteDB(studyNoteInfo))
       : (dispatch(editorActions.modifyStudyNoteDB(studyNoteInfo)));
-      dispatch(mypageActions.getMyStudyDB());
       history.push({
-      pathname:"/mypage",
-      state: status,
-      search: `?study=${studyInfo.studyId}`
-    })
+        pathname:"/mypage",
+        state: status,
+        search: `?study=${studyInfo.studyId}`
+      })
   };
 
   const defaultOpt = {
