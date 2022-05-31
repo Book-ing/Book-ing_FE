@@ -43,6 +43,9 @@ const UserList = (props) => {
     }
   };
 
+  console.log(__profileUser);
+  console.log(filterdUserList);
+
   return (
     <UserListModalWrap>
       <Header>
@@ -63,11 +66,20 @@ const UserList = (props) => {
               sx={{ marginRight: "10px" }}
               src={__profileMine.profileImage}
             />
-            <UserName type="sub_2_bold">{__profileMine.username}</UserName>
-            <TagMe type="body_4_bold">나</TagMe>
-            {__profileMaster.userId === __profileMine.userId ? (
-              <TagMaster type="body_4_bold">모임장</TagMaster>
-            ) : null}
+            <UserInfoBox>
+              <UserNameBox>
+                <UserName type="sub_2_bold">{__profileMine.username}</UserName>
+                <TagMe type="body_4_bold">나</TagMe>
+                  {__profileMaster.userId === __profileMine.userId ? (
+                  <TagMaster type="body_4_bold">모임장</TagMaster>
+                  ) : null}
+              </UserNameBox>
+                <UserStatusMsg type="body_3" color="gray">
+                  <MessageLines title={__profileMine.statusMessage}>
+                    {__profileMine.statusMessage}
+                  </MessageLines>
+                </UserStatusMsg>
+            </UserInfoBox>
           </EachUserLeftBox>
         </EachUser>
         {/* 나 영역 끝 */}
@@ -80,8 +92,17 @@ const UserList = (props) => {
                 sx={{ marginRight: "10px" }}
                 src={__profileMaster.profileImage}
               />
+            <UserInfoBox>
+              <UserNameBox>
               <UserName type="sub_2_bold">{__profileMaster.username}</UserName>
               <TagMaster type="body_4_bold">모임장</TagMaster>
+              </UserNameBox>
+                <UserStatusMsg type="body_3" color="gray">
+                  <MessageLine title={__profileMaster.statusMessage}>
+                    {__profileMaster.statusMessage}
+                  </MessageLine>
+                </UserStatusMsg>
+            </UserInfoBox>
             </EachUserLeftBox>
           </EachUser>
         )}
@@ -96,9 +117,27 @@ const UserList = (props) => {
                   src={filterdUserList[idx].profileImage}
                   sx={{ marginRight: "10px" }}
                 />
+                <UserInfoBox>
+              <UserNameBox>
                 <UserName type="sub_2_bold">
                   {filterdUserList[idx].username}
                 </UserName>
+                </UserNameBox>
+                  <UserStatusMsg type="body_3" color="gray">
+                  {__profileMine.userId === __profileMaster.userId ? 
+                  (
+                  <MessageLine title={filterdUserList[idx].statusMessage}>
+                    {filterdUserList[idx].statusMessage}
+                  </MessageLine>
+                  )
+                  :
+                  (
+                  <MessageLines title={filterdUserList[idx].statusMessage}>
+                    {filterdUserList[idx].statusMessage}
+                  </MessageLines>
+                  )}
+                  </UserStatusMsg>
+                </UserInfoBox>
               </EachUserLeftBox>
               {/* 모임장이 아니라면 보이지 않게 해야함 */}
               {__profileMine.userId === __profileMaster.userId ? (
@@ -175,7 +214,7 @@ const TagMe = styled(Eltext)`
   ${flex}
   width: 18px;
   height: 18px;
-  margin-left: 10px;
+  margin-left: 5px;
   color: #fff;
   font-weight: bold;
   background-color: var(--point);
@@ -205,4 +244,31 @@ const KickBtn = styled(Elbutton)`
   &:hover {
     color: #fff;
   }
+`;
+
+const UserInfoBox = styled.div`
+  
+`;
+
+const UserNameBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const MessageLine = styled.div`
+  width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const MessageLines = styled.div`
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const UserStatusMsg = styled(Eltext)`
+  margin-top: -3px;
 `;

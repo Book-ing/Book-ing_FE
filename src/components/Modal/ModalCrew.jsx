@@ -137,7 +137,7 @@ const ModalCrew = (props) => {
               <StInput
                 required
                 name="intro"
-                placeholder={crewInfo.meetingIntro}
+                defaultValue={crewInfo.meetingIntro ? crewInfo.meetingIntro : null}
                 onChange={onChangeEditInputHandler}
               />
               {/* 2 STEP */}
@@ -170,6 +170,7 @@ const ModalCrew = (props) => {
                       name="headCount"
                       disabled
                       max="300"
+                      min="2"
                       type="number"
                       onChange={onChangeEditInputHandler}
                       style={{ border: "1px solid var(--notice)" }}
