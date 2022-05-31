@@ -71,12 +71,8 @@ const AccordionSummaryComponent = (props) => {
   const [splitedYY, splitedMM, splitedDD] = splitedStudyDate.split("-");
 
   const clickInOutStudyBtn = () => {
-    if (props.props.studyLimitCnt === props.props.studyUserCnt) {
-      alert("스터디 인원이 가득 차 더이상 참가할 수 없습니다.");
-    } else {
-      dispatch(studyActions.inOutStudyDB(__crewId, studyId));
-      props.setCheckState(!props.checkState);
-    }
+    dispatch(studyActions.inOutStudyDB(__crewId, studyId));
+    props.setCheckState(!props.checkState);
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
