@@ -35,9 +35,11 @@ const Login = () => {
           <KaKaoBtn href={KAKAO_AUTH_URL}>
             <img src={KakaoBtnImg} alt="" />
           </KaKaoBtn>
-          <LoginText type="sub_2">
-            카카오계정으로 <LoginPointText>Book-ing</LoginPointText> 시작하기
-          </LoginText>
+          <KaKaoLogin href={KAKAO_AUTH_URL}>
+            <LoginText type="sub_2">
+              카카오계정으로 <LoginPointText>Book-ing</LoginPointText> 시작하기
+            </LoginText>
+          </KaKaoLogin>
         </RightBox>
       </LoginBox>
     </LoginWrap>
@@ -81,6 +83,8 @@ const KaKaoBtn = styled.a`
   display: block;
   width: 300px;
 `;
+
+const KaKaoLogin = styled.a``;
 
 const LoginText = styled(Eltext)`
   margin-top: 40px;
