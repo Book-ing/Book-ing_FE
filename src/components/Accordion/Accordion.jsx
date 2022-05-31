@@ -88,8 +88,6 @@ const CustomizedAccordions = (props) => {
     checkState,
   ]);
 
-  console.log(checkState);
-
   if (__accordionData === "") return <></>;
 
   if (!__searchData.length) {
