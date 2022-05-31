@@ -21,7 +21,6 @@ import flex from "../themes/flex";
 const Room = (props) => {
   const location = useLocation();
   const studyData = props.location.state.studyData;
-  // console.log("디테일");
   const nickname = localStorage.getItem("username");
   const [soundOn, setSoundOn] = useState(false);
   const [videoOn, setVideoOn] = useState(false);

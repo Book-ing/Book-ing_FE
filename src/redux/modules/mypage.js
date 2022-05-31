@@ -31,19 +31,21 @@ const put_status_message = createAction(PUT_STATUS_MESSAGE, (payload) => ({
 const get_mystudy = createAction(GET_MYSTUDY, (payload) => ({ payload }));
 const reset_mystudy = createAction(RESET_MYSTUDY, () => ({}));
 
-const get_joined_mystudy = createAction(GET_JOINED_MYSTUDY, (payload) => ({ payload }));
+const get_joined_mystudy = createAction(GET_JOINED_MYSTUDY, (payload) => ({
+  payload,
+}));
 const reset_joined_mystudy = createAction(RESET_JOINED_MYSTUDY, () => ({}));
 
 // initialState
 const initialState = {
-  myCrew: {data: {myMeeting: ""}},
-  joinedMyCrew: {data: {joinedMeeting:""}},
+  myCrew: { data: { myMeeting: "" } },
+  joinedMyCrew: { data: { joinedMeeting: "" } },
   myProfile: {},
   myStudy: "",
-  myStudyData:"",
-  myJoinedStudy:"",
-  myJoinedStudyData:"",
-  isLoading: true
+  myStudyData: "",
+  myJoinedStudy: "",
+  myJoinedStudyData: "",
+  isLoading: true,
 };
 
 // thunk
@@ -52,11 +54,9 @@ const getMyProfileDB = (userId) => (dispatch, getState) => {
     .getMyProfile(userId)
     .then((res) => {
       const data = res.data.data;
-      console.log(data);
       dispatch(get_my_profile(data));
     })
     .catch((error) => {
-      console.log("프로필 정보 GET 요청중 에러", error);
       alert("내 정보 불러오기에 실패하였습니다.");
       history.replace("/mypage");
     });
@@ -67,11 +67,9 @@ const getCrewDB = (userId) => (dispatch, getState) => {
     .getCrew(userId)
     .then((res) => {
       const { data } = res;
-      console.log(data);
       dispatch(get_mycrew(data));
     })
     .catch((error) => {
-      console.log("내가 만든 모임 GET 요청중 에러 발생", error);
       alert("내가 만든 모임 데이터를 불러오는데에 실패하였습니다.");
       history.replace("/mypage");
     });
@@ -81,13 +79,10 @@ const getJoinedCrewDB = (userId) => (dispatch, getState) => {
   mypageApi
     .getJoinedCrew(userId)
     .then((res) => {
-      console.log(res)
       const { data } = res;
-      console.log(data)
       dispatch(get_joined_mycrew(data));
     })
     .catch((error) => {
-      console.log("내가 가입한 모임 GET 요청중 에러 발생", error);
       alert("가입한 모임 목록 데이터를 불러오는데에 실패하였습니다.");
       history.replace("/mypage");
     });
@@ -100,7 +95,6 @@ const changeStatusMsgDB = (userInfo) => (dispatch, getState) => {
       dispatch(put_status_message(userInfo.statusMessage));
     })
     .catch((error) => {
-      console.log("상태메시지 변경 PUT 요청중 에러 발생", error);
       alert("상태 메시지를 변경하는데에 실패하였습니다.");
       history.replace("/mypage");
     });
@@ -110,12 +104,9 @@ const getMyStudyDB = () => (dispatch, getState) => {
   mypageApi
     .getMyStudy()
     .then((res) => {
-   
-      console.log(res.data.myStudyList);
       dispatch(get_mystudy(res.data.myStudyList));
     })
     .catch((error) => {
-      console.log("내가만든 스터디 GET 요청중 에러 발생", error);
       alert("내 스터디 목록 데이터를 불러오는데에 실패하였습니다.");
     });
 };
@@ -124,15 +115,12 @@ const getJoinedStudyDB = () => (dispatch, getState) => {
   mypageApi
     .getJoinedStudy()
     .then((res) => {
-      console.log(res.data.myJoinedStudy);
       dispatch(get_joined_mystudy(res.data.myJoinedStudy));
     })
     .catch((error) => {
-      console.log("내가만든 스터디 GET 요청중 에러 발생", error);
       alert("내 스터디 목록 데이터를 불러오는데에 실패하였습니다.");
     });
 };
-
 
 // reducer
 export default handleActions(
@@ -157,7 +145,6 @@ export default handleActions(
     [RESET_MYSTUDY]: (state, action) =>
       produce(state, (draft) => {
         draft.myStudyData = "";
-        console.log(draft.myStudyData);
       }),
 
     [GET_JOINED_MYSTUDY]: (state, action) =>
@@ -168,7 +155,6 @@ export default handleActions(
     [RESET_JOINED_MYSTUDY]: (state, action) =>
       produce(state, (draft) => {
         draft.myJoinedStudyData = "";
-        console.log(draft.myJoinedStudyData);
       }),
   },
   initialState

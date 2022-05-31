@@ -6,7 +6,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import img1 from "../assets/slideImg/slideImg1.png";
 import img2 from "../assets/slideImg/slideImg2.png";
-import img3 from "../assets/slideImg/slideImg3.png";
 
 const Slide = () => {
   return (

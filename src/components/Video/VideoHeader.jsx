@@ -62,10 +62,6 @@ const Logo = styled.img`
   cursor: pointer;
 `;
 
-const StudyTitle = styled(Eltext)`
-  color: var(--point);
-`;
-
 const HeaderBtns = styled.div`
   ${flex}
 `;

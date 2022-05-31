@@ -73,5 +73,4 @@ const BottomBox = styled.div`
 const StudyNote = styled.div`
   ${flex("center", "start", false)}
   width: 100%;
-  border: 1px solid red;
 `;

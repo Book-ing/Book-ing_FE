@@ -3,8 +3,6 @@ import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 
-
-
 const DataPickers = () => {
   const [startDate, setStartDate] = useState(new Date());
   const MyContainer = ({ className, children }) => {
@@ -38,9 +36,9 @@ const DataPickers = () => {
 export default DataPickers;
 
 // datepicker 현재시간 이전 시간 제한하기
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(time);
+const filterPassedTime = (time) => {
+  const currentDate = new Date();
+  const selectedDate = new Date(time);
 
-    return currentDate.getTime() < selectedDate.getTime();
-  };
+  return currentDate.getTime() < selectedDate.getTime();
+};

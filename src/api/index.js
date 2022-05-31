@@ -114,7 +114,6 @@ instance.interceptors.response.use(
             headers: { Authorization: `Bearer ${refreshToken}` },
           })
           .then((res) => {
-            console.log(res);
             const newAccessToken = res.data.data.accessToken;
             const newRefreshToken = res.data.data.refreshToken;
             setCookie("accessToken", newAccessToken, {
@@ -194,7 +193,6 @@ requiredInstance.interceptors.response.use(
             headers: { Authorization: `Bearer ${refreshToken}` },
           })
           .then((res) => {
-            console.log(res);
             const newAccessToken = res.data.data.accessToken;
             const newRefreshToken = res.data.data.refreshToken;
             setCookie("accessToken", newAccessToken, {
@@ -274,7 +272,6 @@ formDataInstance.interceptors.response.use(
             headers: { Authorization: `Bearer ${refreshToken}` },
           })
           .then((res) => {
-            console.log(res);
             const newAccessToken = res.data.data.accessToken;
             const newRefreshToken = res.data.data.refreshToken;
             setCookie("accessToken", newAccessToken, {

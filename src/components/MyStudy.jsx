@@ -63,7 +63,6 @@ const MyStudyWrap = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  /* ${hiddenScroll}; */
 `;
 
 const MyStudyBox = styled.div`
@@ -89,7 +88,6 @@ const MyStudyItem = styled.div`
   width: 920px;
   max-height: 545px;
   overflow-y: auto;
-  /* box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5); */
 `;
 
 const MyStudyBottomBox = styled.div`
@@ -101,8 +99,7 @@ const MyStudyBottomBox = styled.div`
 const JoinedItem = styled.div`
   width: 920px;
   max-height: 545px;
-  overflow-y: auto;  
-  /* box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5); */
+  overflow-y: auto;
 `;
 
 const AccordionSection = styled.div`

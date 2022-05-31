@@ -32,8 +32,6 @@ const WygiwysEditor = ({ option, studyInfo }) => {
   const onChangeIntroFunction = () => {
     const editorInstance = editorRef.current.getInstance();
     const getContent_md = editorInstance.getMarkdown();
-    console.log(getContent_md);
-    console.log(studyInfo);
 
     const studyNoteInfo = {
       studyId: studyInfo.studyId,
@@ -58,9 +56,7 @@ const WygiwysEditor = ({ option, studyInfo }) => {
     language: "ko-KR",
     // colorSyntax: 글자 색 바꾸는 기능 / condeSyntaxHighlight : 언어에 따른 코드 색 변경
     plugins: [colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]],
-    initialValue: `${
-      studyInfo.studyValue ? studyInfo.studyValue : ""
-    }`,
+    initialValue: `${studyInfo.studyValue ? studyInfo.studyValue : ""}`,
     hooks: {
       addImageBlobHook: async (blob, callback) => {
         const imgUrl = await uploadFile(blob);

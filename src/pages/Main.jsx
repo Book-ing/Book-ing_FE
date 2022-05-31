@@ -39,29 +39,15 @@ const Main = (props) => {
   const __listNewMeeting = useSelector((state) => state.main.newMeeting);
   const __listMyMeetingStudy = useSelector((state) => state.main.studyList);
 
-  
-  console.log(__listMyMeeting);
-  console.log(__listTodayMeeting);
-  console.log(__listRecommendMeeting);
-  console.log(__listMyMeetingStudy);
   // ========================================================================
   const userId = localStorage.getItem("userId");
-
-
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-  // React.useEffect(() => {
-  //   dispatch(mainActions.login_loadCrewDB(userId)
-  //   );
-  // }, []);
-  // ==================== 민우님이 요청한 loginCheckDB ========================
-    
 
   React.useEffect(() => {
     userId === null
       ? dispatch(mainActions.loadCrewDB())
       : dispatch(mainActions.login_loadCrewDB(userId));
   }, []);
-  
+
   const [open, setOpen] = useState(false);
 
   const hadleModalOpen = () => setOpen(true);
@@ -97,10 +83,10 @@ const Main = (props) => {
           JSON.stringify(__listMyMeeting) === "{}" ? (
             <StNothingMyCrewSection>
               <StNothingCrewText>
-                <Eltext type="sub_1_bold" color= "point">
-                <div>생성된 모임이 없습니다.</div>
-               
-                <div>모임 생성하기 버튼을 눌러 모임을 만들어주세요😋</div>
+                <Eltext type="sub_1_bold" color="point">
+                  <div>생성된 모임이 없습니다.</div>
+
+                  <div>모임 생성하기 버튼을 눌러 모임을 만들어주세요😋</div>
                 </Eltext>
               </StNothingCrewText>
               <ModalBtnGrid>
@@ -346,7 +332,7 @@ const StNothingMyCrewSection = styled.div`
 const StNothingCrewText = styled.div`
   ${flex("center")};
   text-align: center;
-`
+`;
 
 const MyCrewSection = styled.div`
   ${flex("start", "center", false)}

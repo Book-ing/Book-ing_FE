@@ -72,7 +72,6 @@ const deleteCrewDB = (payload) => (dispatch, getState) => {
   crewApi
     .deleteCrew(payload)
     .then((res) => {
-      console.log(res);
       history.replace("/");
     })
     .catch((err) => {
@@ -84,13 +83,15 @@ const joinCrewDB = (payload) => (dispatch, getState) => {
   crewApi
     .joinCrew(payload)
     .then((res) => {
-      console.log(res);
       dispatch(join_crew(payload));
     })
     .catch((err) => {
       const message = err.response.data.message;
       if (message === "강퇴당한 유저는 모임 참여가 불가능합니다.") {
         alert(message);
+      }
+      if (message === "모임 제한 인원 수가 찼습니다.") {
+        alert("모임 제한 인원 수가 꽉 찼습니다.");
       }
     });
 };
@@ -99,7 +100,6 @@ const quitCrewDB = (payload) => (dispatch, getState) => {
   crewApi
     .quitCrew(payload)
     .then((res) => {
-      console.log(res);
       dispatch(quit_crew(payload));
     })
     .catch((err) => {
@@ -111,7 +111,6 @@ const getCrewUserListDB = (payload) => (dispatch, getState) => {
   crewApi
     .getCrewUserList(payload)
     .then((res) => {
-      console.log(res.data);
       const { myProfile, meetingMasterProfile, meetingUsers } = res.data.data;
       dispatch(
         get_crew_user_list(myProfile, meetingMasterProfile, meetingUsers)
@@ -127,7 +126,6 @@ const kickCrewUserDB =
     crewApi
       .deleteCrewUserList(payloadUserId, payloadMeetingId)
       .then((res) => {
-        console.log(res.data);
         dispatch(kick_crew_user(payloadUserId));
       })
       .catch((err) => {
@@ -137,7 +135,6 @@ const kickCrewUserDB =
 
 const editCrewDB =
   (meetingId, editCrewInfo, closeFunc) => (dispatch, getState) => {
-    console.log(closeFunc);
     const formData = new FormData();
 
     formData.append("meetingCategory", editCrewInfo.category);
@@ -146,20 +143,9 @@ const editCrewDB =
     formData.append("meetingImage", editCrewInfo.image);
     formData.append("meetingId", Number(meetingId));
 
-    // FormData의 key 확인
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
-
     crewApi
       .editCrewInfo(formData)
       .then((res) => {
-        console.log(res);
         const status = res.status;
         if (status === 200) {
           alert("빈 칸을 모두 입력해주세요.");
@@ -208,7 +194,6 @@ export default handleActions(
     [DELETE_CREW]: (state, action) => produce(state, (draft) => {}),
     [GET_CREW_USERLIST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
         draft.profileMy = action.payload.profileMy;
         draft.profileMaster = action.payload.profileMaster;
         draft.profileUser = action.payload.profileUser;

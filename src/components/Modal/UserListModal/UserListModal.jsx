@@ -92,7 +92,10 @@ const UserList = (props) => {
           return (
             <EachUser key={idx}>
               <EachUserLeftBox>
-                <Avatar sx={{ marginRight: "10px" }} />
+                <Avatar
+                  src={filterdUserList[idx].profileImage}
+                  sx={{ marginRight: "10px" }}
+                />
                 <UserName type="sub_2_bold">
                   {filterdUserList[idx].username}
                 </UserName>
@@ -124,7 +127,6 @@ const style = {
 
 const UserListModalWrap = styled.div`
   position: relative;
-  /* overflow: hidden; */
   width: 100%;
   height: 100%;
 `;

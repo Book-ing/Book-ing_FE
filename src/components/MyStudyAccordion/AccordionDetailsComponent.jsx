@@ -32,15 +32,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-
 const AccordionDetailsComponent = (props) => {
   const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
   const studyMasterId = String(props.props.studyMasterProfile.userId);
- 
-  // const [status, setStatus] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -87,9 +84,10 @@ const AccordionDetailsComponent = (props) => {
         alignItems="flex-start"
       >
         <StudysectionTag type="sub_2_bold">노트 정리</StudysectionTag>
-        
+
         <NoteSection>
-          {studyMasterId !== userId || props.props.studyNote === undefined ?  null : (
+          {studyMasterId !== userId ||
+          props.props.studyNote === undefined ? null : (
             <MenuBtn onClick={handleClick}>
               <FaEllipsisH />
             </MenuBtn>
@@ -115,13 +113,13 @@ const AccordionDetailsComponent = (props) => {
             }}
           >
             <Box sx={styles}>
-              <MoreBtns 
+              <MoreBtns
                 onClick={() => {
                   history.push({
                     pathname: "/notewrite",
                     state: { bookInfo: props },
                   });
-                }} 
+                }}
                 shape="brown-outline"
               >
                 스터디 노트 수정
@@ -161,70 +159,69 @@ const AccordionDetailsComponent = (props) => {
                   출판사 : {props.props.studyBookPublisher}
                 </Eltext>
                 <Eltext type="sub_2">
-                  책 소개 :  {props.props.studyBookInfo}...
+                  책 소개 : {props.props.studyBookInfo}...
                 </Eltext>
               </Grid>
             </Grid>
             <Grid>
               <StudyNoteTag type="sub_2_bold">스터디 노트</StudyNoteTag>
               <Grid sx={{ minHeight: "200px" }}>
-                
                 {props.props.studyNote === undefined ? (
-        
                   btnStatus === "A" ? (
                     studyMasterId === userId ? (
-                        <Grid
-                          container
-                          direction="column"
-                          justifyContent="center"
-                          alignItems="center"
-                          sx={{
-                            width: "100%",
-                            minHeight: "200px",
-                          }}
-                        >
-                          <NoneNoteText type="sub_2">
-                            <div style={{textAlign:"center"}}>
+                      <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{
+                          width: "100%",
+                          minHeight: "200px",
+                        }}
+                      >
+                        <NoneNoteText type="sub_2">
+                          <div style={{ textAlign: "center" }}>
                             스터디 노트📖가 작성되지 않았습니다.
-                              <br /> 
-                            스터디 시작 일시로부터 24시간 이내에 작성해주세요🙂✏️
-                            </div>
-                          </NoneNoteText>
-                          <CreateStudyNote
-                            shape="brown-outline"
-                            onClick={() => {
-                              history.push({
-                                pathname: "/notewrite",
-                                state: { bookInfo: props },
-                              });
-                            }}
-                          >
-                            작성하기
-                          </CreateStudyNote>
-                        </Grid>
-                      ) : (
-                        <Grid
-                          container
-                          direction="column"
-                          justifyContent="center"
-                          alignItems="center"
-                          textAlign="center"
-                          sx={{
-                            width: "100%",
-                            minHeight: "200px",
+                            <br />
+                            스터디 시작 일시로부터 24시간 이내에
+                            작성해주세요🙂✏️
+                          </div>
+                        </NoneNoteText>
+                        <CreateStudyNote
+                          shape="brown-outline"
+                          onClick={() => {
+                            history.push({
+                              pathname: "/notewrite",
+                              state: { bookInfo: props },
+                            });
                           }}
                         >
-                          <NoneNoteText type="sub_2">
-                            <div style={{textAlign:"center"}}>
-                              스터디 노트📖가 작성되지 않았습니다.
-                                <br />
-                              노트는 스터디장만 작성할 수 있습니다🔒
-                            </div>   
-                          </NoneNoteText>
-                        </Grid>
-                        )
-                ) : (
-                  <Grid
+                          작성하기
+                        </CreateStudyNote>
+                      </Grid>
+                    ) : (
+                      <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        textAlign="center"
+                        sx={{
+                          width: "100%",
+                          minHeight: "200px",
+                        }}
+                      >
+                        <NoneNoteText type="sub_2">
+                          <div style={{ textAlign: "center" }}>
+                            스터디 노트📖가 작성되지 않았습니다.
+                            <br />
+                            노트는 스터디장만 작성할 수 있습니다🔒
+                          </div>
+                        </NoneNoteText>
+                      </Grid>
+                    )
+                  ) : (
+                    <Grid
                       container
                       direction="column"
                       justifyContent="center"
@@ -235,10 +232,10 @@ const AccordionDetailsComponent = (props) => {
                       }}
                     >
                       <NoneNoteText type="sub_2">
-                      <div style={{textAlign:"center"}}>
-                        스터디 시작 일시로부터 24시간이지나 노트 작성이
-                        불가능합니다😢
-                      </div>
+                        <div style={{ textAlign: "center" }}>
+                          스터디 시작 일시로부터 24시간이지나 노트 작성이
+                          불가능합니다😢
+                        </div>
                       </NoneNoteText>
                     </Grid>
                   )
@@ -351,16 +348,3 @@ const KAKAOMAPSECTION = styledComp.div`
   width: 100%;
   min-height: 300px;
 `;
-
-// 뷰단 원래 있던 그리드 css
-// <Grid
-//   container
-//   direction="column"
-//   justifyContent="center"
-//   alignItems="center"
-//   sx={{
-//     width: "1000px",
-//     minHeight: "200px",
-//   }}
-// >
-// </Grid>

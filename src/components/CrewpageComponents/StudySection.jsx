@@ -20,7 +20,6 @@ import { Elbutton, Elinput, Eltext } from "../../elements";
 import flex from "../../themes/flex";
 
 const StudySection = (props) => {
-  console.log();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -62,13 +61,8 @@ const StudySection = (props) => {
           </SearchForm>
         </StudySectionBoxLeft>
         <StudySectionBoxRight>
-          {/* <CreateStudyBtn shape="brown-outline">스터디 생성하기</CreateStudyBtn> */}
-
           {__isJoinedCrew === true && loggedId ? (
             <>
-              {/* // <CreateStudyBtn shape="brown-outline">
-            //   스터디 생성하기
-            // </CreateStudyBtn> */}
               <ModalOpenBtn shape="brown-outline" onClick={hadleModalOpen}>
                 스터디 생성하기
               </ModalOpenBtn>

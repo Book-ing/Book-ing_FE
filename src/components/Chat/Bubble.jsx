@@ -10,7 +10,6 @@ import { Eltext } from "../../elements";
 import { Avatar } from "@mui/material";
 
 const Bubble = ({ message, type }) => {
-  // console.log(message, type);
   if (type === "my") {
     return (
       <MyChat>
@@ -96,11 +95,5 @@ const Name = styled.div`
   font-size: 1.1rem;
   line-height: 1.8rem;
 `;
-
-// const Date = styled.div`
-//   font-size: 1.1rem;
-//   line-height: 1.8rem;
-//   color: var(--grey);
-// `;
 
 export default Bubble;

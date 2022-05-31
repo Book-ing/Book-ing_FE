@@ -42,13 +42,11 @@ const CrewList = (props) => {
         <StButton
           onClick={() => window.location.replace(`/crew/${props.meetingId}`)}
         >
-          {/* <Link to = {`/crew/${props.meetingId}`}> */}
           <Elchip shape="Fill" width="96px" height="36px">
             <Eltext type="sub_2" color="white">
               보러가기
             </Eltext>
           </Elchip>
-          {/* </Link> */}
         </StButton>
       </StCrewList>
     </React.Fragment>
@@ -65,7 +63,6 @@ const StCrewList = styled.div`
   height: 85px;
   background-color: #fbf9f9;
   margin-bottom: 15px;
-  /* border: 1px solid black; */
 `;
 
 const StCrewInfo = styled.div`
@@ -74,12 +71,10 @@ const StCrewInfo = styled.div`
   padding-top: 15px;
   width: 500px;
   margin-left: 150px;
-  /* border: 1px solid black; */
 `;
 
 const StCrewIntro = styled.div`
   display: block;
-  /* border: 1px solid black; */
   width: 290px;
   white-space: nowrap;
   overflow: hidden;
@@ -94,11 +89,9 @@ const StName = styled.div`
 `;
 const StTextBox = styled.div`
   width: 290px;
-  /* border: 1px solid black; */
 `;
 
 const StButton = styled.button`
   padding-right: 63px;
   align-items: center;
-  /* border: 1px solid black; */
 `;

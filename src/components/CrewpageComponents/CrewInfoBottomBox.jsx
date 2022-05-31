@@ -27,7 +27,6 @@ const CrewInfoBottomBox = (props) => {
   const __crewInfo = props.__crewInfo;
   const __MasterProfile = props.__crewInfo.meetingMasterProfile;
   const __together = props.__crewInfo.together;
-  console.log(__crewInfo);
 
   return (
     <TopWrapBottomBox>

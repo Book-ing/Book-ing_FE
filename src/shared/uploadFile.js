@@ -1,9 +1,9 @@
 // image file 업로드 함수
 import AWS from "aws-sdk";
 
-const S3_BUCKET = process.env.REACT_APP_BUCKET
-const REGION = process.env.REACT_APP_REGION
-const IDENTITY_POOL_ID = process.env.REACT_APP_AWS_IDENTITY_POOL_ID
+const S3_BUCKET = process.env.REACT_APP_BUCKET;
+const REGION = process.env.REACT_APP_REGION;
+const IDENTITY_POOL_ID = process.env.REACT_APP_AWS_IDENTITY_POOL_ID;
 
 AWS.config.update({
   region: REGION,
@@ -11,7 +11,6 @@ AWS.config.update({
     IdentityPoolId: IDENTITY_POOL_ID,
   }),
 });
-
 
 export const uploadFile = async (file) => {
   const params = {

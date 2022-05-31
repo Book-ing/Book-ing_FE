@@ -20,7 +20,6 @@ import {
   Search,
   NoteWrite,
   NoteWrites,
-  Test,
 } from "../pages/index";
 import OAuth2RedirectHandler from "../pages/OAuth2RedirectHandler";
 import Header from "../components/Header";
@@ -41,7 +40,6 @@ function App() {
           <Route path="/room/:studyId" exact component={Room} />
           <Wraper>
             <Header />
-            <Route path="/test" exact component={Test} />
             <Route path="/" exact component={Main} />
             <Route path="/crew/:meetingId" exact component={Crew} />
             <Route path="/mypage" exact component={MyPage} />

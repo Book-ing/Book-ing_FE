@@ -19,21 +19,9 @@ const SearchBar = ({ getSearchCrew }) => {
   const sendSearchCrew = (e) => {
     e.preventDefault();
     if (!e.currentTarget.value || e.currentTarget.value === "")
-      // console.log(searchCrew);
       getSearchCrew(searchCrew, dispatch, history);
-    // history.push("/search");
     else alert("검색어를 입력해주세요");
   };
-
-  // const handleKeyPress = (e) => {
-  //   if(e.key === 'Enter') {
-  //     e.preventDefault();
-  //     if (!e.currentTarget.value || e.currentTarget.value === '')
-  //     // console.log(searchCrew);
-  //     getSearchCrew(searchCrew);
-  //   }
-  // }
-  // Enter 키 검색 기능 구현 추가로 만들예정
 
   return (
     <React.Fragment>
@@ -45,16 +33,12 @@ const SearchBar = ({ getSearchCrew }) => {
               placeholder="&nbsp;&nbsp;&nbsp;원하는 모임을 검색해주세요."
               value={searchCrew}
               onChange={(e) => setSearchCrew(e.currentTarget.value)}
-              // onKeyPress={handleKeyPress}
             />
-            {/* <StSearchBtn onClick={sendSearchCrew}> */}
             <IconBox>
               <Link to="/search">
                 <SearchIcon fontSize="large" />
-                {/* <SearchIcon fontSize="large" /> */}
               </Link>
             </IconBox>
-            {/* </StSearchBtn> */}
           </StInputLine>
         </StSearchBox>
       </form>

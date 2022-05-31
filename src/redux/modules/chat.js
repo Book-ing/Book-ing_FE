@@ -47,9 +47,7 @@ const chat = handleActions(
       }),
     [ADD_MESSAGE]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
         draft.messages.push(action.payload.message);
-        console.log(action.payload.message);
       }),
     [RESET_MESSAGES]: (state, action) =>
       produce(state, (draft) => {

@@ -27,11 +27,9 @@ const PopupBookSearch = (props) => {
       )
       .then((res) => {
         setSearchBookList(res.data.documents);
-        console.log(res.data.documents);
       })
       .catch((err) => console.error(err));
   };
-  console.log(searchBookList);
 
   return (
     <React.Fragment>
@@ -82,7 +80,7 @@ const SearchContainer = styled.div`
 const ResultContainer = styled.div`
   display: block;
   position: absolute;
-  background-color: #FBF9F9;
+  background-color: #fbf9f9;
   width: 478px;
   height: 600px;
   border: 1px solid var(--point);

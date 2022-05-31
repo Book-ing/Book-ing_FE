@@ -10,7 +10,6 @@ import { Elimage, Eltext } from "../elements";
 import flex from "../themes/flex";
 
 const MypageCard = (props) => {
-  // console.log(props)
   return (
     <React.Fragment>
       <CardsWrap>
@@ -68,7 +67,6 @@ const InfoBox = styled.div`
   height: 130px;
   margin-left: 40px;
   text-overflow: ellipsis;
-  /* box-shadow: 0.5px 3px 5px rgba(0, 0, 0, 0.25); */
   background-color: var(--white);
 `;
 

@@ -7,14 +7,11 @@ export const initiateSocket = (cb, meetingId, userId) => {
   socket = io.connect("https://sparta-hs.shop/");
   socket && cb(socket);
   socket.emit("joinMeetingRoom", meetingId, userId);
-  // console.log("소켓연결!");
-  // console.log(socket);
 };
 // 모임페이지에서 나갈 때 소켓 연결 끊음
 export const disconnectSocket = () => {
   if (socket) {
     socket.disconnect();
-    // console.log("연결끝");
   }
 };
 // DB에 저장된 이 방의 메시지 받기
@@ -41,7 +38,6 @@ export const sendMessage = (meetingId, userId, message) => {
 export const joinRoom = (roomId, nickname, userId, roomName) => {
   if (socket && roomId && nickname && userId && roomName) {
     socket.emit("join", { roomId, userName: nickname, userId, roomName });
-    // console.log("socket - join room");
   }
 };
 // 참여했던 방에서 나가기(단순 나가기)
@@ -50,5 +46,4 @@ export const leaveRoom = (roomId, nickname, userId) => {
     socket.emit("leave", { roomId, userName: nickname, userId });
     socket.off("messages");
   }
-  // console.log("socket - leave room");
 };

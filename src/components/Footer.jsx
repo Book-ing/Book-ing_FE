@@ -526,17 +526,3 @@ const MemberOneLinePr = styled(Eltext)`
 const MemberLinks = styled.div`
   ${flex}
 `;
-// const Logo = styled.img`
-//   width: 122px;
-//   height: 47px;
-// `;
-
-// const FooterSpanBox = styled.div`
-//   ${flex("center", "center", true)}
-// `;
-
-// const StSpan = styled(Eltext)`
-//   padding: 10px 40px;
-//   margin: 0 10px;
-//   cursor: pointer;
-// `;

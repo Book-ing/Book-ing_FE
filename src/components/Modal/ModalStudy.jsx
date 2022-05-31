@@ -23,9 +23,6 @@ const ModalStudy = (props) => {
   const [selectData, setSelectData] = useState("online");
 
   const bookInfo = useSelector((state) => state.book);
-  // const bookInfo = useSelector((state) => state.book.list)
-  // console.log(bookInfo)
-  // console.log(params.meetingId);
 
   const postInfo = useSelector((state) => state.postcode);
 
@@ -42,7 +39,6 @@ const ModalStudy = (props) => {
   // console.log(startDate)
   
   const day = moment(startDate).format("YYYY-MM-DD HH:mm");
-  // console.log(day)
 
   // BookSearch 팝업창 상태관리
   const [isOpenPopup, setIsOpenPopup] = useState(false);
@@ -201,8 +197,6 @@ const ModalStudy = (props) => {
       : dispatch(studyActions.editOnlineStudyInfoDB(editOnlineStudyInfo)))
   };
 
-  // console.log(props);
-
   return (
     <React.Fragment>
       <ModalWrap>
@@ -257,7 +251,6 @@ const ModalStudy = (props) => {
                         placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
-                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
                     <div>
                       <StInput
                         width="205px"
@@ -289,7 +282,6 @@ const ModalStudy = (props) => {
                 <div
                   className="중간 작은 박스4"
                   style={{
-                    // border:"1px solid black",
                     width: "475px",
                     height: "236px",
                     display: "inline-block",
@@ -312,13 +304,9 @@ const ModalStudy = (props) => {
                       책 정보 찾기
                     </StPostBtn>
 
-                    {/* <div id='popupDom'> */}
                     {isOpenPopup && (
-                      // <PopupDom>
                       <PopupBookSearch onClose={closeBookSearch} />
-                      // </PopupDom>
                     )}
-                    {/* </div> */}
 
                     <div
                       className="책정보 Box"
@@ -326,10 +314,9 @@ const ModalStudy = (props) => {
                         width: "480px",
                         height: "108px",
                         marginTop: "8px",
-                        display: "flex",   
+                        display: "flex",
                       }}
                     >
-                      
                       <div
                         className="책 프리뷰이미지"
                         style={{
@@ -348,7 +335,7 @@ const ModalStudy = (props) => {
                           marginLeft: "13px",
                           // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                           overflow: "scroll",
-                          overflowX:"hidden"
+                          overflowX: "hidden",
                         }}
                       >
                         <div style={{ fontWeight: "bold" }}>
@@ -358,7 +345,6 @@ const ModalStudy = (props) => {
                         <div>출판사 : {props.studyInfo.studyBookPublisher}</div>
                         <div>소개 : {props.studyInfo.studyBookInfo}...</div>
                       </div>
-                      
                     </div>
                   </Eltext>
                 </div>
@@ -440,7 +426,6 @@ const ModalStudy = (props) => {
                         placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
-                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
                     <div>
                       <StInput
                         width="205px"
@@ -488,7 +473,6 @@ const ModalStudy = (props) => {
                 <div
                   className="중간 작은 박스4"
                   style={{
-                    // border:"1px solid black",
                     width: "475px",
                     height: "236px",
                     marginTop: "16px",
@@ -500,7 +484,6 @@ const ModalStudy = (props) => {
                       width="131px"
                       float="left"
                       name="postCode"
-                      // id="postCode"
                       placeholder={postInfo.zoneCode}
                       onChange={onChangeInputHandler}
                       onClick={openPostCode}
@@ -511,14 +494,7 @@ const ModalStudy = (props) => {
                       우편번호 찾기
                     </StPostBtn>
                     {/* 팝업 생성 기준 div */}
-                    {/* <div id='popupDom'> */}
-                    {isPopupOpen && (
-                      // <PopupDom>
-                      <PopupPostCode onClose={closePostCode} />
-                      // </PopupDom>
-                    )}
-                    {/* </div> */}
-                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
+                    {isPopupOpen && <PopupPostCode onClose={closePostCode} />}
 
                     <StInput
                       width="228px"
@@ -565,13 +541,9 @@ const ModalStudy = (props) => {
                       책 정보 찾기
                     </StPostBtn>
 
-                    {/* <div id='popupDom'> */}
                     {isOpenPopup && (
-                      // <PopupDom>
                       <PopupBookSearch onClose={closeBookSearch} />
-                      // </PopupDom>
                     )}
-                    {/* </div> */}
 
                     <div
                       className="책정보 Box"
@@ -598,9 +570,8 @@ const ModalStudy = (props) => {
                           width: "395px",
                           height: "108px",
                           marginLeft: "13px",
-                          // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                           overflow: "scroll",
-                          overflowX:"hidden"
+                          overflowX: "hidden",
                         }}
                       >
                         <div style={{ fontWeight: "bold" }}>
@@ -610,7 +581,6 @@ const ModalStudy = (props) => {
                         <div>출판사 : {props.studyInfo.studyBookPublisher}</div>
                         <div>소개 : {props.studyInfo.studyBookInfo}...</div>
                       </div>
-
                     </div>
                   </Eltext>
                 </div>
@@ -715,7 +685,6 @@ const ModalStudy = (props) => {
                         placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
-                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
                     <div>
                       <StInput
                         width="205px"
@@ -729,7 +698,6 @@ const ModalStudy = (props) => {
                         }
                         min="2"
                         type="number"
-                        // placeholder="최대 10명까지 가능합니다."
                         placeholder={`최대 ${
                           props.meetingLimitCnt >= 10
                             ? 10
@@ -755,7 +723,6 @@ const ModalStudy = (props) => {
                 <div
                   className="중간 작은 박스4"
                   style={{
-                    // border:"1px solid black",
                     width: "475px",
                     height: "236px",
                     display: "inline-block",
@@ -778,13 +745,9 @@ const ModalStudy = (props) => {
                       책 정보 찾기
                     </StPostBtn>
 
-                    {/* <div id='popupDom'> */}
                     {isOpenPopup && (
-                      // <PopupDom>
                       <PopupBookSearch onClose={closeBookSearch} />
-                      // </PopupDom>
                     )}
-                    {/* </div> */}
 
                     <div
                       className="책정보 Box"
@@ -794,38 +757,40 @@ const ModalStudy = (props) => {
                         marginTop: "8px",
                         display: "flex",
                       }}
-                    > 
-                      {bookInfo.name === "" ? <></> : (
+                    >
+                      {bookInfo.name === "" ? (
+                        <></>
+                      ) : (
                         <>
-                      <div
-                        className="책 프리뷰이미지"
-                        style={{
-                          width: "73px",
-                          height: "107px",
-                          backgroundImage: `url(${bookInfo.imgURL})`,
-                          backgroundSize: "contain",
-                        }}
-                      ></div>
+                          <div
+                            className="책 프리뷰이미지"
+                            style={{
+                              width: "73px",
+                              height: "107px",
+                              backgroundImage: `url(${bookInfo.imgURL})`,
+                              backgroundSize: "contain",
+                            }}
+                          ></div>
 
-                      <div
-                        className="책 정보 소개"
-                        style={{
-                          width: "395px",
-                          height: "108px",
-                          marginLeft: "13px",
-                          // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                          overflow: "scroll",
-                          overflowX:"hidden"
-                        }}
-                      >
-                        <div style={{ fontWeight: "bold" }}>
-                          {bookInfo.name}
-                        </div>
-                        <div>지은이 : {bookInfo.writer}</div>
-                        <div>출판사 : {bookInfo.publisher}</div>
-                        <div>소개 : {bookInfo.desc}...</div>
-                      </div>
-                      </>)}
+                          <div
+                            className="책 정보 소개"
+                            style={{
+                              width: "395px",
+                              height: "108px",
+                              marginLeft: "13px",
+                              overflow: "scroll",
+                              overflowX: "hidden",
+                            }}
+                          >
+                            <div style={{ fontWeight: "bold" }}>
+                              {bookInfo.name}
+                            </div>
+                            <div>지은이 : {bookInfo.writer}</div>
+                            <div>출판사 : {bookInfo.publisher}</div>
+                            <div>소개 : {bookInfo.desc}...</div>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </Eltext>
                 </div>
@@ -934,7 +899,6 @@ const ModalStudy = (props) => {
                         placeholderText="시간을 선택해주세요"
                       />
                     </StDateInput>
-                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
                     <div>
                       <StInput
                         width="205px"
@@ -980,7 +944,6 @@ const ModalStudy = (props) => {
                 <div
                   className="중간 작은 박스4"
                   style={{
-                    // border:"1px solid black",
                     width: "475px",
                     height: "236px",
                     marginTop: "16px",
@@ -992,7 +955,6 @@ const ModalStudy = (props) => {
                       width="131px"
                       float="left"
                       name="postCode"
-                      // id="postCode"
                       placeholder={postInfo.zoneCode}
                       onChange={onChangeInputHandler}
                       onClick={openPostCode}
@@ -1003,20 +965,13 @@ const ModalStudy = (props) => {
                       우편번호 찾기
                     </StPostBtn>
                     {/* 팝업 생성 기준 div */}
-                    {/* <div id='popupDom'> */}
-                    {isPopupOpen && (
-                      // <PopupDom>
-                      <PopupPostCode onClose={closePostCode} />
-                      // </PopupDom>
-                    )}
-                    {/* </div> */}
-                    {/* 편법 div 로 감싸지 않으면 display:flex 와 같이 가로정렬이 됨 Input 속성 태그만 쭉 펼쳐짐... */}
+
+                    {isPopupOpen && <PopupPostCode onClose={closePostCode} />}
 
                     <StInput
                       width="228px"
                       marginTop="6px"
                       name="roadAdd"
-                      // id="roadAddress"
                       placeholder={postInfo.roadAdd}
                       onChange={onChangeInputHandler}
                       onClick={openPostCode}
@@ -1057,13 +1012,9 @@ const ModalStudy = (props) => {
                       책 정보 찾기
                     </StPostBtn>
 
-                    {/* <div id='popupDom'> */}
                     {isOpenPopup && (
-                      // <PopupDom>
                       <PopupBookSearch onClose={closeBookSearch} />
-                      // </PopupDom>
                     )}
-                    {/* </div> */}
 
                     <div
                       className="책정보 Box"
@@ -1074,37 +1025,39 @@ const ModalStudy = (props) => {
                         display: "flex",
                       }}
                     >
-                      {bookInfo.name === "" ? <></> : (
+                      {bookInfo.name === "" ? (
+                        <></>
+                      ) : (
                         <>
-                      <div
-                        className="책 프리뷰이미지"
-                        style={{
-                          width: "73px",
-                          height: "107px",
-                          backgroundImage: `url(${bookInfo.imgURL})`,
-                          backgroundSize: "contain",
-                        }}
-                      ></div>
+                          <div
+                            className="책 프리뷰이미지"
+                            style={{
+                              width: "73px",
+                              height: "107px",
+                              backgroundImage: `url(${bookInfo.imgURL})`,
+                              backgroundSize: "contain",
+                            }}
+                          ></div>
 
-                      <div
-                        className="책 정보 소개"
-                        style={{
-                          width: "395px",
-                          height: "108px",
-                          marginLeft: "13px",
-                          // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                          overflow: "scroll",
-                          overflowX:"hidden"
-                        }}
-                      >
-                        <div style={{ fontWeight: "bold" }}>
-                          {bookInfo.name}
-                        </div>
-                        <div>지은이 : {bookInfo.writer}</div>
-                        <div>출판사 : {bookInfo.publisher}</div>
-                        <div>소개 : {bookInfo.desc}...</div>
-                      </div>
-                      </>)}
+                          <div
+                            className="책 정보 소개"
+                            style={{
+                              width: "395px",
+                              height: "108px",
+                              marginLeft: "13px",
+                              overflow: "scroll",
+                              overflowX: "hidden",
+                            }}
+                          >
+                            <div style={{ fontWeight: "bold" }}>
+                              {bookInfo.name}
+                            </div>
+                            <div>지은이 : {bookInfo.writer}</div>
+                            <div>출판사 : {bookInfo.publisher}</div>
+                            <div>소개 : {bookInfo.desc}...</div>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </Eltext>
                 </div>
@@ -1160,7 +1113,6 @@ const TagTop = styled(Eltext)`
   color: #fff;
   background-color: var(--point);
   margin-bottom: 20px;
-  /* border: 1px solid black; */
 `;
 
 const StDateInput = styled.div`
