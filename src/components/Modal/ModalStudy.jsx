@@ -420,7 +420,7 @@ const ModalStudy = (props) => {
                       marginTop="16px"
                       name="price"
                       max="50000"
-                      min="500"
+                      min="0"
                       step="500"
                       type="number"
                       placeholder={studyInfoForModal.studyPrice}
@@ -889,7 +889,7 @@ const ModalStudy = (props) => {
                       marginTop="16px"
                       name="price"
                       max="50000"
-                      min="500"
+                      min="0"
                       step="500"
                       type="number"
                       placeholder="500원 단위로 설정가능합니다."

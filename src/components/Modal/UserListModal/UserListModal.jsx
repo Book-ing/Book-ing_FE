@@ -92,7 +92,10 @@ const UserList = (props) => {
           return (
             <EachUser key={idx}>
               <EachUserLeftBox>
-                <Avatar sx={{ marginRight: "10px" }} />
+                <Avatar
+                  src={filterdUserList[idx].profileImage}
+                  sx={{ marginRight: "10px" }}
+                />
                 <UserName type="sub_2_bold">
                   {filterdUserList[idx].username}
                 </UserName>

@@ -83,7 +83,6 @@ const joinCrewDB = (payload) => (dispatch, getState) => {
   crewApi
     .joinCrew(payload)
     .then((res) => {
-      console.log(res);
       dispatch(join_crew(payload));
     })
     .catch((err) => {
