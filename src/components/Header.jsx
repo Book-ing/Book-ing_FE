@@ -23,6 +23,9 @@ const Header = () => {
   // login check
   const isLogin = logged();
 
+  // variables
+  const userId = localStorage.getItem("userId");
+
   const clickLogout = () => {
     const result = window.confirm("로그아웃 하시겠습니까?");
     if (result === true) {
@@ -34,7 +37,11 @@ const Header = () => {
   };
 
   useEffect(() => {
-    dispatch(userActions.loginCheckDB());
+    if (userId) {
+      dispatch(userActions.loginCheckDB());
+    } else {
+      return;
+    }
   }, []);
 
   return (

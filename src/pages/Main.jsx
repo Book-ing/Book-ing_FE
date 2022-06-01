@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slide from "../components/Slide";
 import ModalCrew from "../components/Modal/ModalCrew";
 import Card from "../components/Card";
@@ -42,7 +42,7 @@ const Main = (props) => {
   // ========================================================================
   const userId = localStorage.getItem("userId");
 
-  React.useEffect(() => {
+  useEffect(() => {
     userId === null
       ? dispatch(mainActions.loadCrewDB())
       : dispatch(mainActions.login_loadCrewDB(userId));
