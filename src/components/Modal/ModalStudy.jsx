@@ -26,18 +26,17 @@ const ModalStudy = (props) => {
 
   const postInfo = useSelector((state) => state.postcode);
 
-  
   // datepicker 현재시간 이전 시간 제한하기
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
-    
-    return currentDate.getTime()+3600000 < selectedDate.getTime();
+
+    return currentDate.getTime() + 3600000 < selectedDate.getTime();
   };
   // react datepicker 상태관리
   const [startDate, setStartDate] = useState(filterPassedTime);
   // console.log(startDate)
-  
+
   const day = moment(startDate).format("YYYY-MM-DD HH:mm");
 
   // BookSearch 팝업창 상태관리
@@ -105,15 +104,13 @@ const ModalStudy = (props) => {
       studyBookInfo: bookInfo.desc,
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
-    }
-    
-    startDate === false ? 
-    alert("일시를 설정해주세요!" )
-    : 
-    (startDate.getHours() === 0 ?  
-      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
-      : dispatch(studyActions.addStudyDB(newStudyInfo))) 
+    };
 
+    startDate === false
+      ? alert("일시를 설정해주세요!")
+      : startDate.getHours() === 0
+      ? alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.addStudyDB(newStudyInfo));
   };
 
   const editStudyInfoDB = (e) => {
@@ -135,12 +132,11 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    startDate === false ? 
-    alert("일시를 설정해주세요!" )
-    : 
-    (startDate.getHours() === 0 ?  
-      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
-      : dispatch(studyActions.editStudyDB(editStudyInfo)))
+    startDate === false
+      ? alert("일시를 설정해주세요!")
+      : startDate.getHours() === 0
+      ? alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.editStudyDB(editStudyInfo));
   };
 
   const handleStudyTypeChange = (e) => {
@@ -163,13 +159,12 @@ const ModalStudy = (props) => {
       studyBookWriter: bookInfo.writer,
       studyBookPublisher: bookInfo.publisher,
     };
-    
-    startDate === false ? 
-    alert("일시를 설정해주세요!" )
-    : 
-    (startDate.getHours() === 0 ?  
-      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
-      : dispatch(studyActions.addOnlineStudyDB(newOnlineStudyInfo)))
+
+    startDate === false
+      ? alert("일시를 설정해주세요!")
+      : startDate.getHours() === 0
+      ? alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.addOnlineStudyDB(newOnlineStudyInfo));
   };
 
   const editOnlineStudyInfoDB = (e) => {
@@ -189,12 +184,11 @@ const ModalStudy = (props) => {
       studyBookPublisher: bookInfo.publisher,
     };
 
-    startDate === false ? 
-    alert("일시를 설정해주세요!" )
-    : 
-    (startDate.getHours() === 0 ?  
-      alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
-      : dispatch(studyActions.editOnlineStudyInfoDB(editOnlineStudyInfo)))
+    startDate === false
+      ? alert("일시를 설정해주세요!")
+      : startDate.getHours() === 0
+      ? alert("스터디 일시는 현재로부터 1시간 이후로 선택가능합니다!")
+      : dispatch(studyActions.editOnlineStudyInfoDB(editOnlineStudyInfo));
   };
 
   return (
@@ -249,6 +243,7 @@ const ModalStudy = (props) => {
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
                         placeholderText="시간을 선택해주세요"
+                        required
                       />
                     </StDateInput>
                     <div>
@@ -412,7 +407,11 @@ const ModalStudy = (props) => {
                 >
                   <Eltext type="sub_2">
                     {/* react-datepicker  */}
-                    <StDateInput width="230px" marginTop="16px" backgorundColor="black">
+                    <StDateInput
+                      width="230px"
+                      marginTop="16px"
+                      backgorundColor="black"
+                    >
                       <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
@@ -424,6 +423,7 @@ const ModalStudy = (props) => {
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
                         placeholderText="시간을 선택해주세요"
+                        required
                       />
                     </StDateInput>
                     <div>
@@ -683,6 +683,7 @@ const ModalStudy = (props) => {
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
                         placeholderText="시간을 선택해주세요"
+                        required
                       />
                     </StDateInput>
                     <div>
@@ -897,6 +898,7 @@ const ModalStudy = (props) => {
                         timeIntervals={10}
                         dateFormat="yyyy년 MM월 dd일 HH시 mm분"
                         placeholderText="시간을 선택해주세요"
+                        required
                       />
                     </StDateInput>
                     <div>
