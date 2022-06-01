@@ -201,7 +201,7 @@ const ModalStudy = (props) => {
               <TagTop type="sub_2_bold">스터디 기본정보</TagTop>
               <StInput
                 name="title"
-                placeholder="스터디 타이틀 명을 입력해주세요."
+                placeholder={studyInfoForModal.studyTitle}
                 onChange={onChangeInputHandler}
                 required
               />
@@ -355,6 +355,7 @@ const ModalStudy = (props) => {
                   height: "251px",
                   border: "1px solid black",
                 }}
+                placeholder={studyInfoForModal.studyNotice}
                 required
               ></textarea>
 
