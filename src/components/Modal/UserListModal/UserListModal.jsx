@@ -43,9 +43,6 @@ const UserList = (props) => {
     }
   };
 
-  console.log(__profileUser);
-  console.log(filterdUserList);
-
   return (
     <UserListModalWrap>
       <Header>
@@ -70,15 +67,15 @@ const UserList = (props) => {
               <UserNameBox>
                 <UserName type="sub_2_bold">{__profileMine.username}</UserName>
                 <TagMe type="body_4_bold">나</TagMe>
-                  {__profileMaster.userId === __profileMine.userId ? (
+                {__profileMaster.userId === __profileMine.userId ? (
                   <TagMaster type="body_4_bold">모임장</TagMaster>
-                  ) : null}
+                ) : null}
               </UserNameBox>
-                <UserStatusMsg type="body_3" color="gray">
-                  <MessageLines title={__profileMine.statusMessage}>
-                    {__profileMine.statusMessage}
-                  </MessageLines>
-                </UserStatusMsg>
+              <UserStatusMsg type="body_3" color="gray">
+                <MessageLines title={__profileMine.statusMessage}>
+                  {__profileMine.statusMessage}
+                </MessageLines>
+              </UserStatusMsg>
             </UserInfoBox>
           </EachUserLeftBox>
         </EachUser>
@@ -92,17 +89,19 @@ const UserList = (props) => {
                 sx={{ marginRight: "10px" }}
                 src={__profileMaster.profileImage}
               />
-            <UserInfoBox>
-              <UserNameBox>
-              <UserName type="sub_2_bold">{__profileMaster.username}</UserName>
-              <TagMaster type="body_4_bold">모임장</TagMaster>
-              </UserNameBox>
+              <UserInfoBox>
+                <UserNameBox>
+                  <UserName type="sub_2_bold">
+                    {__profileMaster.username}
+                  </UserName>
+                  <TagMaster type="body_4_bold">모임장</TagMaster>
+                </UserNameBox>
                 <UserStatusMsg type="body_3" color="gray">
                   <MessageLine title={__profileMaster.statusMessage}>
                     {__profileMaster.statusMessage}
                   </MessageLine>
                 </UserStatusMsg>
-            </UserInfoBox>
+              </UserInfoBox>
             </EachUserLeftBox>
           </EachUser>
         )}
@@ -118,24 +117,21 @@ const UserList = (props) => {
                   sx={{ marginRight: "10px" }}
                 />
                 <UserInfoBox>
-              <UserNameBox>
-                <UserName type="sub_2_bold">
-                  {filterdUserList[idx].username}
-                </UserName>
-                </UserNameBox>
+                  <UserNameBox>
+                    <UserName type="sub_2_bold">
+                      {filterdUserList[idx].username}
+                    </UserName>
+                  </UserNameBox>
                   <UserStatusMsg type="body_3" color="gray">
-                  {__profileMine.userId === __profileMaster.userId ? 
-                  (
-                  <MessageLine title={filterdUserList[idx].statusMessage}>
-                    {filterdUserList[idx].statusMessage}
-                  </MessageLine>
-                  )
-                  :
-                  (
-                  <MessageLines title={filterdUserList[idx].statusMessage}>
-                    {filterdUserList[idx].statusMessage}
-                  </MessageLines>
-                  )}
+                    {__profileMine.userId === __profileMaster.userId ? (
+                      <MessageLine title={filterdUserList[idx].statusMessage}>
+                        {filterdUserList[idx].statusMessage}
+                      </MessageLine>
+                    ) : (
+                      <MessageLines title={filterdUserList[idx].statusMessage}>
+                        {filterdUserList[idx].statusMessage}
+                      </MessageLines>
+                    )}
                   </UserStatusMsg>
                 </UserInfoBox>
               </EachUserLeftBox>
@@ -246,9 +242,7 @@ const KickBtn = styled(Elbutton)`
   }
 `;
 
-const UserInfoBox = styled.div`
-  
-`;
+const UserInfoBox = styled.div``;
 
 const UserNameBox = styled.div`
   display: flex;
