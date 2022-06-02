@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import flex from "../themes/flex";
 import Elchip from "../elements/Elchip";
 import { Elimage, Eltext } from "../elements";
-import Editor from "../components/Editor";
 import WygiwysEditors from "../components/WygiwysEditors.jsx";
 import book from "../redux/modules/book";
 import { actionCreators as userActions } from "../redux/modules/crew";
