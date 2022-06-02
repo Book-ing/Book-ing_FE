@@ -168,7 +168,7 @@ const AccordionDetailsComponent = (props) => {
                     출판사 : {props.props.studyBookPublisher}
                   </Eltext>
                   <Eltext type="sub_2">
-                    책 소개 : {props.props.studyBookInfo}...
+                    책 소개 : {props.props.studyBookInfo}
                   </Eltext>
                 </Grid>
               )}
