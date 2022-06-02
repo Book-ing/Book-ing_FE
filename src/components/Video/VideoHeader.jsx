@@ -44,6 +44,7 @@ export default VideoHeader;
 const HeaderWrap = styled.div`
   z-index: 99999;
   width: 100%;
+  height: 100px;
   padding: 20px 40px;
   background-color: #fff;
   position: fixed;

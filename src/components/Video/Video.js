@@ -428,11 +428,11 @@ const MemberWrap = styled.div`
     border-radius: 8px;
     position: relative;
     object-fit: cover;
-    @media screen and (max-width: 1440px) {
+    /* @media screen and (max-width: 1440px) {
       width: 202px;
       height: 113px;
       margin: auto;
-    }
+    } */
   }
   .nickNameContainer {
     display: flex;

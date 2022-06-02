@@ -248,7 +248,10 @@ const AccordionSummaryComponent = (props) => {
               onClick={() => {
                 history.push({
                   pathname: `/room/${studyId}`,
-                  state: { meetingId: props.props.meetingId },
+                  state: {
+                    meetingId: props.props.meetingId,
+                    studyData: props.props,
+                  },
                 });
               }}
             >
