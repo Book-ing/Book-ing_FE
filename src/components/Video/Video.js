@@ -43,7 +43,7 @@ const Videoplayer = React.forwardRef((props, ref) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = io("https://sparta-hs.shop/", {
+    const socket = io("https://moingxtwice.shop/", {
       cors: { origin: "*" },
     });
     setSocket(socket);

@@ -4,7 +4,8 @@ let socket;
 
 // 모임페이지에 들어올 때 소켓 연결
 export const initiateSocket = (cb, meetingId, userId) => {
-  socket = io.connect("https://sparta-hs.shop/");
+  // socket = io.connect("https://sparta-hs.shop/");
+  socket = io.connect("https://moingxtwice.shop/");
   socket && cb(socket);
   socket.emit("joinMeetingRoom", meetingId, userId);
 };

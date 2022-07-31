@@ -2,8 +2,8 @@ import axios from "axios";
 import { history } from "../redux/configStore";
 import { setCookie, getCookie, removeCookie } from "../shared/cookie";
 
-const targetServer = "https://sparta-hs.shop/";
-// const targetServer = "https://moingxtwice.shop/";
+// const targetServer = "https://sparta-hs.shop/";
+const targetServer = "https://moingxtwice.shop/";
 
 // 로그인, 비로그인 상태에서 required flag를 통하여 판별하여 데이터 렌더링
 export const instance = axios.create({
